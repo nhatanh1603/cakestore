@@ -1,4 +1,4 @@
-# Poeme Japanese Bakery - Architecture & Technical Review
+# Cake Store
 
 A production-grade, zero-dependency e-commerce client engineered for Poeme Japanese Bakery. Built strictly on the native web platform using semantic HTML5, modern CSS3, and ES6+ modules.
 
