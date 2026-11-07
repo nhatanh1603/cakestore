@@ -1,6 +1,51 @@
 let toastTimer = null;
 let memoryCart = null;
 
+export function escapeHtml(str) {
+    if (str == null) return '';
+    return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+}
+
+export function sanitizeItem(item, products = null) {
+    if (!item || typeof item !== 'object') return null;
+    const prods = products || (typeof window !== 'undefined' && Array.isArray(window.PRODUCTS) ? window.PRODUCTS : null);
+    let authenticPrice = Number(item.price) || 0;
+    let authenticTitle = item.title || item.name || '';
+    let authenticImg = item.img || '';
+
+    if (prods && item.id) {
+        const prod = prods.find(p => p.id === item.id);
+        if (prod) {
+            authenticPrice = Number(prod.price) || 0;
+            if (item.variant && Array.isArray(prod.variants)) {
+                const mv = prod.variants.find(v => v.name === item.variant || v.size === item.variant);
+                if (mv && typeof mv.price === 'number') authenticPrice = mv.price;
+            }
+            if (prod.title) authenticTitle = prod.title;
+            if (prod.img) authenticImg = prod.img;
+        }
+    }
+
+    const safeQty = Math.max(1, Math.min(99, parseInt(item.qty, 10) || 1));
+    const safeInscription = typeof item.inscription === 'string' ? item.inscription.slice(0, 100) : '';
+    const safeVariant = typeof item.variant === 'string' ? item.variant.slice(0, 50) : '';
+
+    return {
+        ...item,
+        title: authenticTitle,
+        price: authenticPrice,
+        qty: safeQty,
+        inscription: safeInscription,
+        variant: safeVariant,
+        img: authenticImg
+    };
+}
+
 export function showCartToast(itemName) {
     let popup = document.getElementById('cartToastPopup');
     if (!popup) {
@@ -46,32 +91,39 @@ export function showCartToast(itemName) {
 export const CartStore = {
     KEY: 'poeme_cart',
     get() {
-        if (memoryCart) return memoryCart;
+        if (memoryCart) return memoryCart.map(i => sanitizeItem(i)).filter(Boolean);
         try {
             const raw = localStorage.getItem(this.KEY);
-            return raw ? JSON.parse(raw) : [];
+            const parsed = raw ? JSON.parse(raw) : [];
+            if (Array.isArray(parsed)) {
+                return parsed.map(i => sanitizeItem(i)).filter(Boolean);
+            }
+            return [];
         } catch {
             return [];
         }
     },
     save(cart) {
-        memoryCart = cart;
+        const cleanCart = (cart || []).map(i => sanitizeItem(i)).filter(Boolean);
+        memoryCart = cleanCart;
         try {
-            localStorage.setItem(this.KEY, JSON.stringify(cart));
+            localStorage.setItem(this.KEY, JSON.stringify(cleanCart));
         } catch {}
         this.updateBadges();
     },
     add(item) {
+        const sanitized = sanitizeItem(item);
+        if (!sanitized) return;
         const cart = this.get();
         const existing = cart.find(i =>
-            i.id === item.id &&
-            (i.variant || '') === (item.variant || '') &&
-            (i.inscription || '') === (item.inscription || '')
+            i.id === sanitized.id &&
+            (i.variant || '') === (sanitized.variant || '') &&
+            (i.inscription || '') === (sanitized.inscription || '')
         );
         if (existing) {
-            existing.qty += item.qty;
+            existing.qty = Math.min(99, (existing.qty || 0) + (sanitized.qty || 1));
         } else {
-            cart.push(item);
+            cart.push(sanitized);
         }
         this.save(cart);
     },
@@ -81,7 +133,7 @@ export const CartStore = {
             if (qty <= 0) {
                 cart.splice(index, 1);
             } else {
-                cart[index].qty = qty;
+                cart[index].qty = Math.max(1, Math.min(99, parseInt(qty, 10) || 1));
             }
             this.save(cart);
         }
@@ -118,4 +170,6 @@ export const CartStore = {
 if (typeof window !== 'undefined') {
     window.CartStore = CartStore;
     window.showCartToast = showCartToast;
+    window.escapeHtml = escapeHtml;
+    window.sanitizeItem = sanitizeItem;
 }

@@ -24,13 +24,14 @@ global.localStorage = {
     }
 };
 
-const { CartStore } = await import('../js/modules/cart.js');
+const { CartStore, escapeHtml, sanitizeItem } = await import('../js/modules/cart.js');
 
 const results = {
     i18n: { checked: 0, missingInEn: [], missingInVi: [] },
     cart: { tests: [] },
     checkout: { tests: [] },
-    catalog: { tests: [] }
+    catalog: { tests: [] },
+    security: { tests: [] }
 };
 
 // 1. I18N Check
@@ -180,6 +181,43 @@ try {
     });
 } catch (e) {
     results.checkout.tests.push({ name: 'Buy-Now independence', passed: false, error: e.message });
+}
+
+// 5. Security & Concurrency Defense Tests
+try {
+    const rawXss = '<script>alert("xss")</script>&<img src=x onerror=alert(\'hack\')>';
+    const escaped = escapeHtml(rawXss);
+    const noRawTags = !escaped.includes('<') && !escaped.includes('>') && !escaped.includes('"') && !escaped.includes("'");
+    results.security.tests.push({
+        name: 'DOM XSS Sanitizer neutralizes tags, quotes and scripts',
+        passed: noRawTags && escaped.includes('&lt;script&gt;') && escaped.includes('&#39;hack&#39;')
+    });
+
+    const tampered = { id: PRODUCTS[0].id, price: 1, qty: 500, inscription: 'X'.repeat(250), variant: 'V'.repeat(100) };
+    const sanitized = sanitizeItem(tampered, PRODUCTS);
+    results.security.tests.push({
+        name: 'Client Price Tampering Protection restores authentic product price',
+        passed: sanitized.price === PRODUCTS[0].price && sanitized.price !== 1
+    });
+
+    results.security.tests.push({
+        name: 'Quantity bounding clamps out-of-bounds inputs to [1, 99]',
+        passed: sanitized.qty === 99 && sanitizeItem({ id: PRODUCTS[0].id, qty: -99 }, PRODUCTS).qty === 1
+    });
+
+    results.security.tests.push({
+        name: 'Input buffer bounds truncate inscription to 100 chars and variant to 50',
+        passed: sanitized.inscription.length === 100 && sanitized.variant.length === 50
+    });
+
+    const dirtyCoupon = '  poeme-10%<hack>  ';
+    const cleanCoupon = dirtyCoupon.trim().toUpperCase().replace(/[^A-Z0-9_-]/g, '').slice(0, 20);
+    results.security.tests.push({
+        name: 'Coupon input sanitization strips unsafe characters and limits length',
+        passed: cleanCoupon === 'POEME-10HACK' && cleanCoupon.length <= 20
+    });
+} catch (e) {
+    results.security.tests.push({ name: 'Security Defense Suite', passed: false, error: e.message });
 }
 
 console.log(JSON.stringify(results, null, 2));

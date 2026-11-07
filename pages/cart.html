@@ -135,7 +135,7 @@
             <div class="header-search-bar" id="headerSearchBar">
                 <form class="header-search-form" id="headerSearchForm">
                     <i class="fa-solid fa-magnifying-glass search-bar-icon"></i>
-                    <input type="text" id="headerSearchInput" placeholder="Tìm kiếm bánh kem, bánh mì, bánh quy..." autocomplete="off" data-i18n-ph="search_placeholder">
+                    <input type="text" id="headerSearchInput" placeholder="Tìm kiếm bánh kem, bánh mì, bánh quy..." autocomplete="off" maxlength="80" data-i18n-ph="search_placeholder">
                     <button type="submit" class="search-bar-btn"><span data-i18n="search_btn">Tìm kiếm</span></button>
                     <button type="button" class="search-bar-close" id="btnSearchClose" title="Đóng">&times;</button>
                 </form>
@@ -162,7 +162,7 @@
 
                     <div class="cart-note-box">
                         <label for="orderNote" data-i18n="cart_notes">Ghi chú đơn hàng & Chữ viết lên bánh</label>
-                        <textarea id="orderNote" placeholder="Ví dụ: Ghi chữ 'Chúc mừng sinh nhật mẹ' lên mặt bánh, kèm 1 bộ nến số 18, giao lúc 16h30..." data-i18n-ph="cart_notes_ph"></textarea>
+                        <textarea id="orderNote" maxlength="300" placeholder="Ví dụ: Ghi chữ 'Chúc mừng sinh nhật mẹ' lên mặt bánh, kèm 1 bộ nến số 18, giao lúc 16h30..." data-i18n-ph="cart_notes_ph"></textarea>
                     </div>
 
                     <div class="cart-accessories-wrap" id="cartAccessoriesWrap">
@@ -268,7 +268,7 @@
                             <h2 class="footer-title" data-i18n="foot_sub_title">ĐĂNG KÍ NHẬN TIN</h2>
                             <p class="sub-text" data-i18n="foot_sub_desc">Để nhận các chương trình ưu đãi đặc biệt sớm nhất từ Poeme</p>
                             <form class="footer-email-form">
-                                <input type="email" placeholder="Nhập email của bạn..." required data-i18n-ph="foot_sub_ph">
+                                <input type="email" placeholder="Nhập email của bạn..." maxlength="80" required data-i18n-ph="foot_sub_ph">
                                 <button type="submit"><i class="fa-solid fa-arrow-right"></i></button>
                             </form>
                             <div class="footer-social ega-clearfix">

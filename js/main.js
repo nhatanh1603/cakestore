@@ -1,7 +1,7 @@
 import { PRODUCTS } from './data/products.js';
 import { STORES } from './data/stores.js';
 import { I18N, setLanguage, getLanguage, registerProductsI18n } from './data/i18n.js';
-import { CartStore, showCartToast } from './modules/cart.js';
+import { CartStore, showCartToast, escapeHtml, sanitizeItem } from './modules/cart.js';
 import { OrderStore, HANOI_DISTRICTS, validateVietnamPhone } from './modules/order.js';
 import {
     CatalogModule,
@@ -176,18 +176,22 @@ function init() {
 
         if (cartItemList) {
             const removeText = lang === 'en' ? 'Remove' : 'Xóa';
-            cartItemList.innerHTML = cart.map((item, idx) => {
-                const displayTitle = (I18N[lang] && I18N[lang][item.id]) ? I18N[lang][item.id] : item.title;
-                const variantHtml = item.variant ? `<p class="cart-item-variant"><span class="cart-variant-tag">${item.variant}</span></p>` : '';
-                const inscriptionHtml = item.inscription ? `
+            cartItemList.innerHTML = cart.map((rawItem, idx) => {
+                const item = sanitizeItem(rawItem, PRODUCTS) || rawItem;
+                const displayTitle = escapeHtml((I18N[lang] && I18N[lang][item.id]) ? I18N[lang][item.id] : item.title);
+                const safeVariant = escapeHtml(item.variant || '');
+                const safeInscription = escapeHtml(item.inscription || '');
+                const variantHtml = safeVariant ? `<p class="cart-item-variant"><span class="cart-variant-tag">${safeVariant}</span></p>` : '';
+                const inscriptionHtml = safeInscription ? `
                     <div class="cart-item-inscription">
-                        <i class="fa-solid fa-pen-nib"></i> <strong>${lang === 'en' ? 'Inscription:' : 'Lời chúc:'}</strong> "${item.inscription}"
+                        <i class="fa-solid fa-pen-nib"></i> <strong>${lang === 'en' ? 'Inscription:' : 'Lời chúc:'}</strong> "${safeInscription}"
                     </div>
                 ` : '';
+                const safeImg = escapeHtml(item.img.startsWith("/") ? item.img : "/" + item.img);
                 return `
                 <div class="cart-item-card" data-idx="${idx}">
                     <div class="cart-item-img">
-                        <img src="${item.img.startsWith("/") ? item.img : "/" + item.img}" alt="${displayTitle}" onerror="this.onerror=null; this.src='/public/images/brand/Poeme Japanese Bakery Logo.png';">
+                        <img src="${safeImg}" alt="${displayTitle}" onerror="this.onerror=null; this.src='/public/images/brand/Poeme Japanese Bakery Logo.png';">
                     </div>
                     <div class="cart-item-info">
                         <h3 class="cart-item-title">${displayTitle}</h3>
@@ -346,17 +350,19 @@ function init() {
     const isBuyNow = urlParams.get('buy_now') === '1' || (typeof sessionStorage !== 'undefined' && sessionStorage.getItem('poeme_checkout_mode') === 'buy_now');
 
     function getCheckoutItems() {
+        let items = [];
         if (isBuyNow) {
             try {
                 const raw = sessionStorage.getItem('poeme_buy_now');
                 if (raw) {
                     const parsed = JSON.parse(raw);
-                    if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+                    if (Array.isArray(parsed) && parsed.length > 0) items = parsed;
                 }
             } catch {}
-            return [];
+        } else {
+            items = CartStore.get();
         }
-        return CartStore.get();
+        return (items || []).map(i => sanitizeItem(i, PRODUCTS)).filter(Boolean);
     }
 
     if (window.location.pathname.includes('/cart')) {
@@ -394,14 +400,18 @@ function init() {
             }
             if (lastPlacedOrder) {
                 const lang = getLanguage();
-                checkoutItemsList.innerHTML = (lastPlacedOrder.items || []).map(item => {
-                    const displayTitle = (I18N[lang] && I18N[lang][item.id]) ? I18N[lang][item.id] : item.title;
-                    const variantHtml = item.variant ? `<p style="font-size: 12px; color: #777; margin: 2px 0;">${item.variant}</p>` : '';
-                    const inscHtml = item.inscription ? `<p style="font-size: 11.5px; color: #b7532a; font-style: italic; margin: 2px 0;"><i class="fa-solid fa-pen-nib"></i> "${item.inscription}"</p>` : '';
+                checkoutItemsList.innerHTML = (lastPlacedOrder.items || []).map(rawItem => {
+                    const item = sanitizeItem(rawItem, PRODUCTS) || rawItem;
+                    const displayTitle = escapeHtml((I18N[lang] && I18N[lang][item.id]) ? I18N[lang][item.id] : item.title);
+                    const safeVariant = escapeHtml(item.variant || '');
+                    const safeInscription = escapeHtml(item.inscription || '');
+                    const variantHtml = safeVariant ? `<p style="font-size: 12px; color: #777; margin: 2px 0;">${safeVariant}</p>` : '';
+                    const inscHtml = safeInscription ? `<p style="font-size: 11.5px; color: #b7532a; font-style: italic; margin: 2px 0;"><i class="fa-solid fa-pen-nib"></i> "${safeInscription}"</p>` : '';
+                    const safeImg = escapeHtml(item.img.startsWith("/") ? item.img : "/" + item.img);
                     return `
                     <div class="cart-item-preview">
                         <div class="cart-thumb">
-                            <img src="${item.img.startsWith("/") ? item.img : "/" + item.img}" alt="${displayTitle}" onerror="this.onerror=null; this.src='/public/images/brand/Poeme Japanese Bakery Logo.png';">
+                            <img src="${safeImg}" alt="${displayTitle}" onerror="this.onerror=null; this.src='/public/images/brand/Poeme Japanese Bakery Logo.png';">
                             <span class="cart-qty-badge">${item.qty}</span>
                         </div>
                         <div style="flex: 1;">
@@ -453,13 +463,16 @@ function init() {
         }
 
         checkoutItemsList.innerHTML = checkoutCart.map(item => {
-            const displayTitle = (I18N[lang] && I18N[lang][item.id]) ? I18N[lang][item.id] : item.title;
-            const variantHtml = item.variant ? `<p style="font-size: 12px; color: #777; margin: 2px 0;">${item.variant}</p>` : '';
-            const inscHtml = item.inscription ? `<p style="font-size: 11.5px; color: #b7532a; font-style: italic; margin: 2px 0;"><i class="fa-solid fa-pen-nib"></i> "${item.inscription}"</p>` : '';
+            const displayTitle = escapeHtml((I18N[lang] && I18N[lang][item.id]) ? I18N[lang][item.id] : item.title);
+            const safeVariant = escapeHtml(item.variant || '');
+            const safeInscription = escapeHtml(item.inscription || '');
+            const variantHtml = safeVariant ? `<p style="font-size: 12px; color: #777; margin: 2px 0;">${safeVariant}</p>` : '';
+            const inscHtml = safeInscription ? `<p style="font-size: 11.5px; color: #b7532a; font-style: italic; margin: 2px 0;"><i class="fa-solid fa-pen-nib"></i> "${safeInscription}"</p>` : '';
+            const safeImg = escapeHtml(item.img.startsWith("/") ? item.img : "/" + item.img);
             return `
             <div class="cart-item-preview">
                 <div class="cart-thumb">
-                    <img src="${item.img.startsWith("/") ? item.img : "/" + item.img}" alt="${displayTitle}" onerror="this.onerror=null; this.src='/public/images/brand/Poeme Japanese Bakery Logo.png';">
+                    <img src="${safeImg}" alt="${displayTitle}" onerror="this.onerror=null; this.src='/public/images/brand/Poeme Japanese Bakery Logo.png';">
                     <span class="cart-qty-badge">${item.qty}</span>
                 </div>
                 <div style="flex: 1;">
@@ -482,7 +495,8 @@ function init() {
 
         if (btnApplyCoupon && couponInput && discountRow && checkoutTotal) {
             btnApplyCoupon.addEventListener('click', () => {
-                const code = couponInput.value.trim().toUpperCase();
+                const code = couponInput.value.trim().toUpperCase().replace(/[^A-Z0-9_-]/g, '').slice(0, 20);
+                couponInput.value = code;
                 const curLang = getLanguage();
                 let checkoutCart = getCheckoutItems();
                 const baseTotal = checkoutCart.reduce((sum, i) => sum + ((i.price || 0) * (i.qty || 1)), 0);
@@ -702,15 +716,15 @@ function init() {
                 return;
             }
 
-            const name = nameInput.value.trim();
-            const phone = phoneVal;
-            const street = addressInput ? addressInput.value.trim() : '';
-            const district = checkoutDistrictSelect ? checkoutDistrictSelect.value.trim() : '';
-            const ward = checkoutWardSelect ? checkoutWardSelect.value.trim() : '';
-            const email = document.getElementById('custEmail')?.value.trim() || '';
-            const receiptDateVal = pickupDateInput ? pickupDateInput.value.trim() : '';
-            const receiptTimeVal = pickupTimeSlotSelect ? pickupTimeSlotSelect.value.trim() : '';
-            const noteVal = custNoteTextarea ? custNoteTextarea.value.trim() : '';
+            const name = nameInput.value.trim().slice(0, 60);
+            const phone = phoneVal.slice(0, 15);
+            const street = (addressInput ? addressInput.value.trim() : '').slice(0, 200);
+            const district = (checkoutDistrictSelect ? checkoutDistrictSelect.value.trim() : '').slice(0, 60);
+            const ward = (checkoutWardSelect ? checkoutWardSelect.value.trim() : '').slice(0, 60);
+            const email = (document.getElementById('custEmail')?.value.trim() || '').slice(0, 80);
+            const receiptDateVal = (pickupDateInput ? pickupDateInput.value.trim() : '').slice(0, 20);
+            const receiptTimeVal = (pickupTimeSlotSelect ? pickupTimeSlotSelect.value.trim() : '').slice(0, 30);
+            const noteVal = (custNoteTextarea ? custNoteTextarea.value.trim() : '').slice(0, 300);
 
             const currentCart = getCheckoutItems();
             const baseTotal = currentCart.reduce((sum, i) => sum + ((i.price || 0) * (i.qty || 1)), 0);

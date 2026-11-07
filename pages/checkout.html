@@ -135,7 +135,7 @@
             <div class="header-search-bar" id="headerSearchBar">
                 <form class="header-search-form" id="headerSearchForm">
                     <i class="fa-solid fa-magnifying-glass search-bar-icon"></i>
-                    <input type="text" id="headerSearchInput" placeholder="Tìm kiếm bánh kem, bánh mì, bánh quy..." autocomplete="off" data-i18n-ph="search_placeholder">
+                    <input type="text" id="headerSearchInput" placeholder="Tìm kiếm bánh kem, bánh mì, bánh quy..." autocomplete="off" maxlength="80" data-i18n-ph="search_placeholder">
                     <button type="submit" class="search-bar-btn"><span data-i18n="search_btn">Tìm kiếm</span></button>
                     <button type="button" class="search-bar-close" id="btnSearchClose" title="Đóng">&times;</button>
                 </form>
@@ -220,11 +220,11 @@
                         </div>
 
                         <div class="form-group form-req-wrap">
-                            <input type="text" id="custName" placeholder="Họ và tên người nhận" data-i18n-ph="co_name_ph">
+                            <input type="text" id="custName" placeholder="Họ và tên người nhận" data-i18n-ph="co_name_ph" maxlength="60" autocomplete="name">
                             <span class="req-star">*</span>
                         </div>
                         <div class="form-group form-row-2" style="display: flex; gap: 12px;">
-                            <input type="email" id="custEmail" placeholder="Email (không bắt buộc)" style="flex: 1.5;">
+                            <input type="email" id="custEmail" placeholder="Email (không bắt buộc)" style="flex: 1.5;" maxlength="80" autocomplete="email">
                             <div class="form-req-wrap" style="flex: 1;">
                                 <input type="tel" id="custPhone" placeholder="Số điện thoại (10 chữ số)" data-i18n-ph="co_phone_ph" maxlength="10" inputmode="numeric" pattern="[0-9]*">
                                 <span class="req-star">*</span>
@@ -233,7 +233,7 @@
 
                         <div id="deliveryFieldsWrap">
                             <div class="form-group form-req-wrap">
-                                <input type="text" id="custAddress" placeholder="Địa chỉ chi tiết (số nhà, ngõ ngách, tên đường...)" data-i18n-ph="co_addr_detail_ph">
+                                <input type="text" id="custAddress" placeholder="Địa chỉ chi tiết (số nhà, ngõ ngách, tên đường...)" data-i18n-ph="co_addr_detail_ph" maxlength="200" autocomplete="street-address">
                                 <span class="req-star">*</span>
                             </div>
                             <div class="form-group form-row-2" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
@@ -284,12 +284,12 @@
 
                         <div class="form-group">
                             <label for="custNote" class="input-mini-label" data-i18n="co_order_note_label">Ghi chú đơn hàng / Lời chúc trên bánh:</label>
-                            <textarea id="custNote" rows="2" placeholder="Ví dụ: Ghi chữ 'Chúc mừng sinh nhật mẹ' lên bánh, kèm dao nến..." style="width: 100%; padding: 10px 14px; border: 1px solid #d9d9d9; font-size: 13.5px; outline: none; font-family: inherit; resize: vertical; border-radius: 0 !important;"></textarea>
+                            <textarea id="custNote" rows="2" placeholder="Ví dụ: Ghi chữ 'Chúc mừng sinh nhật mẹ' lên bánh, kèm dao nến..." maxlength="300" style="width: 100%; padding: 10px 14px; border: 1px solid #d9d9d9; font-size: 13.5px; outline: none; font-family: inherit; resize: vertical; border-radius: 0 !important;"></textarea>
                         </div>
 
                         <div class="checkout-actions" style="display: flex; justify-content: space-between; align-items: center; margin-top: 25px;">
                             <a href="/cart" style="color: #2b78a9; font-size: 14px; text-decoration: none;" data-i18n="co_back_cart">&lt; Giỏ hàng</a>
-                            <button type="submit" class="btn-checkout-submit" style="background: #2b78a9; color: #ffffff; padding: 14px 28px; border: none; font-size: 14px; font-weight: 700; cursor: pointer; transition: background 0.2s; border-radius: 4px;" data-i18n="co_submit_btn">Đặt hàng ngay</button>
+                            <button type="submit" class="btn-checkout-submit" style="background: #2b78a9; color: #ffffff; padding: 14px 28px; border: none; font-size: 14px; font-weight: 700; cursor: pointer; transition: background 0.2s; border-radius: 30px !important;" data-i18n="co_submit_btn">Đặt hàng ngay</button>
                         </div>
                     </form>
 
@@ -354,8 +354,8 @@
                     </div>
 
                     <div id="checkoutCouponRow" style="display: flex; gap: 10px; margin: 20px 0;">
-                        <input type="text" id="couponInput" placeholder="Mã giảm giá" style="flex: 1; padding: 11px 14px; border: 1px solid #d9d9d9; font-size: 13.5px; border-radius: 4px; outline: none;" data-i18n-ph="co_coupon_ph">
-                        <button type="button" id="btnApplyCoupon" style="padding: 11px 22px; background: #c8c8c8; color: #fff; border: none; font-weight: 600; font-size: 13.5px; border-radius: 4px; cursor: pointer;" data-i18n="co_coupon_btn">Sử dụng</button>
+                        <input type="text" id="couponInput" placeholder="Mã giảm giá" style="flex: 1; padding: 11px 14px; border: 1px solid #d9d9d9; font-size: 13.5px; border-radius: 0 !important; outline: none;" data-i18n-ph="co_coupon_ph" maxlength="20" autocomplete="off">
+                        <button type="button" id="btnApplyCoupon" style="padding: 11px 22px; background: #6c757d; color: #fff; border: none; font-weight: 600; font-size: 13.5px; border-radius: 30px !important; cursor: pointer;" data-i18n="co_coupon_btn">Sử dụng</button>
                     </div>
 
                     <div style="border-top: 1px solid var(--border-color); padding-top: 16px; font-size: 14px; line-height: 2;">
@@ -440,7 +440,7 @@
                             <h2 class="footer-title" data-i18n="foot_sub_title">ĐĂNG KÍ NHẬN TIN</h2>
                             <p class="sub-text" data-i18n="foot_sub_desc">Để nhận các chương trình ưu đãi đặc biệt sớm nhất từ Poeme</p>
                             <form class="footer-email-form">
-                                <input type="email" placeholder="Nhập email của bạn..." required data-i18n-ph="foot_sub_ph">
+                                <input type="email" placeholder="Nhập email của bạn..." maxlength="80" required data-i18n-ph="foot_sub_ph">
                                 <button type="submit"><i class="fa-solid fa-arrow-right"></i></button>
                             </form>
                             <div class="footer-social ega-clearfix">
