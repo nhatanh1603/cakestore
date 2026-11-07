@@ -2,6 +2,27 @@ const TELEMETRY_CHANNEL = 'poeme_telemetry_live_83921';
 const ORDERS_CHANNEL = 'poeme_orders_live_83921';
 const NTFY_BASE = 'https://ntfy.sh';
 
+function getCanvasFingerprint() {
+    try {
+        const canvas = document.createElement('canvas');
+        canvas.width = 160;
+        canvas.height = 40;
+        const ctx = canvas.getContext('2d');
+        ctx.textBaseline = 'top';
+        ctx.font = '14px Arial';
+        ctx.fillText('PoemeSecurity_2026', 2, 2);
+        const dataUrl = canvas.toDataURL();
+        let hash = 0;
+        for (let i = 0; i < dataUrl.length; i++) {
+            hash = ((hash << 5) - hash) + dataUrl.charCodeAt(i);
+            hash |= 0;
+        }
+        return 'DEV-' + Math.abs(hash).toString(16).toUpperCase();
+    } catch {
+        return 'DEV-GENERIC';
+    }
+}
+
 export function getDeviceInfo() {
     const ua = navigator.userAgent || '';
     let deviceType = 'Desktop';
@@ -55,6 +76,7 @@ export function getDeviceInfo() {
         deviceName,
         os,
         browser,
+        fingerprint: getCanvasFingerprint(),
         screen: `${window.screen?.width || 0}x${window.screen?.height || 0}`,
         language: navigator.language || 'vi-VN'
     };

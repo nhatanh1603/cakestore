@@ -715,6 +715,7 @@
                                 <button type="button" id="btnMapSearch" title="Tìm và bay tới địa chỉ"><i class="fa-solid fa-arrow-right"></i></button>
                             </div>
                             <button type="button" class="map-tool-btn action-gps" id="btnMyGps" title="Định vị tọa độ thực tế của máy bạn bằng chip GPS/WiFi"><i class="fa-solid fa-crosshairs"></i> Vị Trí Của Tôi (GPS)</button>
+                            <button type="button" class="map-tool-btn" id="btnMyHome" style="border-color: #3b82f6; color: #60a5fa;" title="Bay nhanh tới địa chỉ 137 Đình Thôn"><i class="fa-solid fa-house-chimney"></i> 137 Đình Thôn</button>
                             <button type="button" class="map-tool-btn" id="btnFitBounds" title="Xem tất cả vị trí khách"><i class="fa-solid fa-expand"></i> Xem Toàn Bộ</button>
                             <button type="button" class="map-tool-btn" id="btnResetHanoi" title="Đưa tâm bản đồ về Hà Nội"><i class="fa-solid fa-location-dot"></i> Về Hà Nội</button>
                         </div>
@@ -863,6 +864,44 @@
                 }
             });
 
+            document.getElementById('btnMyHome')?.addEventListener('click', () => {
+                const homeLat = 21.0175;
+                const homeLon = 105.7758;
+                map.flyTo([homeLat, homeLon], 17, { duration: 1.5 });
+
+                const homeIcon = L.divIcon({
+                    className: 'custom-radar-pin-wrap',
+                    html: `<div class="radar-pin-gps" style="background: #2563eb; box-shadow: 0 0 18px rgba(37, 99, 235, 0.95);"><i class="fa-solid fa-house"></i></div>`,
+                    iconSize: [28, 28],
+                    iconAnchor: [14, 14]
+                });
+
+                const homeMarker = L.marker([homeLat, homeLon], { icon: homeIcon }).addTo(map);
+                homeMarker.bindPopup(`
+                    <div class="radar-popup-card">
+                        <div class="popup-top">
+                            <span class="popup-tag" style="background: rgba(37, 99, 235, 0.2); color: #60a5fa; border: 1px solid #60a5fa;">
+                                <i class="fa-solid fa-house-chimney"></i> ĐỊA CHỈ TRỤ SỞ CỦA BẠN
+                            </span>
+                        </div>
+                        <div class="popup-location">
+                            <strong>137 Đình Thôn, Phường Mỹ Đình 1, Nam Từ Liêm, Hà Nội</strong>
+                        </div>
+                        <div class="popup-ip">
+                            <code>Tọa độ: 21.017500, 105.775800</code>
+                        </div>
+                        <div class="popup-meta">
+                            <div style="color: #60a5fa;"><i class="fa-solid fa-location-dot"></i> Đã ghim đúng vị trí Đình Thôn của bạn!</div>
+                        </div>
+                        <div class="popup-actions">
+                            <a href="https://www.google.com/maps?q=137+Đình+Thôn,+Mỹ+Đình,+Nam+Từ+Liêm,+Hà+Nội" target="_blank" rel="noopener noreferrer" class="btn-popup-gmaps">
+                                <i class="fa-solid fa-map-location-dot"></i> Xem trên Google Maps
+                            </a>
+                        </div>
+                    </div>
+                `, { maxWidth: 300, className: 'dark-radar-popup' }).openPopup();
+            });
+
             document.getElementById('btnMyGps')?.addEventListener('click', () => {
                 if (!('geolocation' in navigator)) {
                     alert('Trình duyệt của bạn không hỗ trợ Geolocation API.');
@@ -1002,7 +1041,16 @@
         };
 
         function addMapPin(lat, lon, data, isOrder = false) {
-            if (!map || isNaN(lat) || isNaN(lon)) return;
+            let finalLat = Number(lat);
+            let finalLon = Number(lon);
+            if (isOrder && data.address) {
+                const addrLower = (data.address || '').toLowerCase();
+                if (addrLower.includes('đình thôn') || addrLower.includes('dinh thon')) {
+                    finalLat = 21.0175;
+                    finalLon = 105.7758;
+                }
+            }
+            if (!map || isNaN(finalLat) || isNaN(finalLon)) return;
 
             const pinClass = isOrder ? 'radar-pin-order' : 'radar-pin-visitor';
             const iconSymbol = isOrder ? '<i class="fa-solid fa-cake-candles"></i>' : '<i class="fa-solid fa-user"></i>';
@@ -1014,7 +1062,7 @@
                 iconAnchor: isOrder ? [14, 14] : [12, 12]
             });
 
-            const marker = L.marker([lat, lon], { icon: customIcon }).addTo(map);
+            const marker = L.marker([finalLat, finalLon], { icon: customIcon }).addTo(map);
 
             const timeStr = new Date(data.timestamp || Date.now()).toLocaleTimeString('vi-VN');
             const city = data.city || 'Hà Nội';
@@ -1025,6 +1073,7 @@
             const os = data.os || '';
             const path = data.path || '/';
             const flag = data.flag || (country.includes('Viet') ? '🇻🇳' : '🌐');
+            const fp = data.fingerprint || (data.device && data.device.fingerprint) || 'DEV-ACTIVE';
 
             const popupHtml = `
                 <div class="radar-popup-card">
@@ -1043,11 +1092,13 @@
                     <div class="popup-meta">
                         <div><i class="fa-solid fa-network-wired"></i> Nhà mạng: <strong>${isp}</strong></div>
                         <div><i class="fa-solid fa-laptop"></i> Thiết bị: <strong>${deviceName} ${os ? `(${os})` : ''}</strong></div>
+                        <div><i class="fa-solid fa-fingerprint"></i> Mã máy: <strong style="color: #a78bfa;">${fp}</strong></div>
                         <div><i class="fa-regular fa-compass"></i> Trang xem: <code class="path-code">${path}</code></div>
                         ${isOrder && (data.orderId || data.order_id) ? `<div><i class="fa-solid fa-bag-shopping"></i> Mã đơn: <strong style="color: #f59e0b;">#${data.orderId || data.order_id}</strong></div>` : ''}
+                        ${isOrder && data.address ? `<div><i class="fa-solid fa-location-dot"></i> Giao tới: <strong style="color: #38bdf8;">${data.address}</strong></div>` : ''}
                     </div>
                     <div class="popup-actions">
-                        <a href="https://www.google.com/maps?q=${lat},${lon}" target="_blank" rel="noopener noreferrer" class="btn-popup-gmaps">
+                        <a href="https://www.google.com/maps?q=${finalLat},${finalLon}" target="_blank" rel="noopener noreferrer" class="btn-popup-gmaps">
                             <i class="fa-solid fa-map-location-dot"></i> Mở trên Google Maps
                         </a>
                     </div>
@@ -1057,7 +1108,7 @@
             marker.bindPopup(popupHtml, { maxWidth: 280, className: 'dark-radar-popup' });
             markers.push(marker);
 
-            const key = `${Number(lat).toFixed(4)}_${Number(lon).toFixed(4)}`;
+            const key = `${Number(finalLat).toFixed(4)}_${Number(finalLon).toFixed(4)}`;
             markerMap.set(key, marker);
             if (ip && ip !== 'Unknown') markerMap.set(ip, marker);
 
