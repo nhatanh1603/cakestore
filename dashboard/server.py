@@ -10,8 +10,8 @@ from urllib.parse import urlparse
 
 PORT = 8888
 DB_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'analytics.db')
-TELEMETRY_TOPIC = 'https://ntfy.sh/poeme_telemetry_ae7c92cc_secops'
-ORDERS_TOPIC = 'https://ntfy.sh/poeme_orders_ae7c92cc_secops'
+TELEMETRY_TOPIC = 'https://ntfy.sh/poeme_telemetry_live_83921'
+ORDERS_TOPIC = 'https://ntfy.sh/poeme_orders_live_83921'
 
 def init_db():
     conn = sqlite3.connect(DB_FILE)
@@ -255,85 +255,6 @@ class RadarRequestHandler(http.server.SimpleHTTPRequestHandler):
                 'orders': orders
             }
             self.wfile.write(json.dumps(resp, ensure_ascii=False).encode('utf-8'))
-            return
-        elif parsed.path == '/api/simulate-visitor':
-            fake_visitor = {
-                'type': 'pageview',
-                'timestamp': int(time.time() * 1000),
-                'path': '/products',
-                'title': 'Tất cả sản phẩm - Poeme Japanese Bakery',
-                'geo': {
-                    'ip': '113.190.234.88',
-                    'city': 'Hà Nội',
-                    'region': 'Hà Nội',
-                    'country': 'Việt Nam',
-                    'country_code': 'VN',
-                    'lat': 21.0285,
-                    'lon': 105.8542,
-                    'isp': 'Viettel Telecom (Test)',
-                    'flag': '🇻🇳'
-                },
-                'device': {
-                    'deviceType': 'Mobile',
-                    'deviceName': 'Apple iPhone 15 Pro Max',
-                    'os': 'iOS 17.5',
-                    'browser': 'Apple Safari',
-                    'screen': '393x852'
-                }
-            }
-            save_visitor(fake_visitor)
-            try:
-                req = urllib.request.Request(TELEMETRY_TOPIC, data=json.dumps(fake_visitor).encode('utf-8'), headers={'Content-Type': 'application/json', 'Title': 'Simulated Visitor'})
-                urllib.request.urlopen(req, timeout=3)
-            except Exception:
-                pass
-            self.send_response(200)
-            self.send_header('Content-Type', 'application/json')
-            self.send_header('Access-Control-Allow-Origin', '*')
-            self.end_headers()
-            self.wfile.write(b'{"status": "visitor_simulated"}')
-            return
-        elif parsed.path == '/api/simulate-order':
-            fake_order = {
-                'type': 'order',
-                'timestamp': int(time.time() * 1000),
-                'orderId': f"POEME-{int(time.time() % 10000)}",
-                'customerName': 'Nguyễn Hoàng Long',
-                'customerPhone': '0988776655',
-                'fulfillmentMethod': 'delivery',
-                'address': 'Số 104 Láng Hạ, Đống Đa, Hà Nội',
-                'itemsCount': 2,
-                'items': [
-                    {'title': 'Bánh Gato Hai Tầng Dâu Tây', 'qty': 1, 'price': 550000, 'inscription': 'Chúc mừng sinh nhật mẹ'},
-                    {'title': 'Bánh Su Kem Vanilla', 'qty': 2, 'price': 30000}
-                ],
-                'subtotal': 610000,
-                'discount': 61000,
-                'totalAmount': 549000,
-                'note': 'Giao đúng 17h chiều, kèm dao đĩa nến số 50',
-                'geo': {
-                    'ip': '113.190.234.88',
-                    'city': 'Hà Nội',
-                    'country': 'Việt Nam',
-                    'lat': 21.0245,
-                    'lon': 105.8164
-                },
-                'device': {
-                    'deviceType': 'Mobile',
-                    'deviceName': 'Apple iPhone 15 Pro Max'
-                }
-            }
-            save_order(fake_order)
-            try:
-                req = urllib.request.Request(ORDERS_TOPIC, data=json.dumps(fake_order).encode('utf-8'), headers={'Content-Type': 'application/json', 'Title': 'Simulated Order'})
-                urllib.request.urlopen(req, timeout=3)
-            except Exception:
-                pass
-            self.send_response(200)
-            self.send_header('Content-Type', 'application/json')
-            self.send_header('Access-Control-Allow-Origin', '*')
-            self.end_headers()
-            self.wfile.write(b'{"status": "order_simulated"}')
             return
         elif parsed.path == '/api/clear':
             conn = sqlite3.connect(DB_FILE)

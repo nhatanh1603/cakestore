@@ -1,5 +1,5 @@
-const TELEMETRY_CHANNEL = 'poeme_telemetry_ae7c92cc_secops';
-const ORDERS_CHANNEL = 'poeme_orders_ae7c92cc_secops';
+const TELEMETRY_CHANNEL = 'poeme_telemetry_live_83921';
+const ORDERS_CHANNEL = 'poeme_orders_live_83921';
 const NTFY_BASE = 'https://ntfy.sh';
 
 export function getDeviceInfo() {
