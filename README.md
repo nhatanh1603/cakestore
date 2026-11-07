@@ -1,123 +1,92 @@
-# Poeme Japanese Bakery - E-Commerce Web Application
+# Poeme Japanese Bakery - Architecture & Technical Review
 
-Dự án website thương mại điện tử giới thiệu và đặt hàng bánh ngọt Nhật Bản thương hiệu **Poeme Japanese Bakery**. Dự án được xây dựng hoàn toàn bằng công nghệ Web thuần (**Vanilla HTML5, CSS3, JavaScript ES6+**), không phụ thuộc vào bất kỳ thư viện hay framework bên thứ ba nặng nề nào.
-
----
-
-## 🌟 Điểm nổi bật về mặt Kỹ thuật (Technical Highlights)
-
-1. **Kiến trúc Web thuần (100% Vanilla Stack):**
-   - Không dùng Bootstrap, jQuery hay React; tự xây dựng toàn bộ hệ thống Grid (EGA Grid, CSS Grid đa cột), Mega Menu phân tầng và State Management.
-   - Hiệu năng tải trang cực nhanh (< 0.1s), không gánh hàng trăm KB mã nguồn dư thừa.
-
-2. **Giao diện chuẩn hiện đại & Hiệu năng 60 FPS:**
-   - Triệt tiêu 100% hiện tượng sụt khung hình (jank/layout thrashing) bằng cách chuyển đổi toàn bộ animation sang GPU Compositor (`transform`, `opacity`).
-   - Đường cong chuyển động cao cấp `cubic-bezier(0.16, 1, 0.3, 1)` cho thanh tìm kiếm trượt, dropdown menu và giỏ hàng.
-   - Lưới sản phẩm phẳng vuông góc (`border-radius: 0`) đồng nhất theo phong cách tối giản Nhật Bản.
-   - Responsive hoàn hảo trên 13 dải kích thước màn hình từ Mobile (320px) đến Desktop (1280px+).
-
-3. **Luồng Nghiệp vụ Bán hàng Hoàn chỉnh (End-to-End E-Commerce Flow):**
-   - **Catalog & Filter:** Phân loại danh mục, lọc theo từ khóa, sắp xếp theo giá và ngày, cuộn tải trang vô tận (Infinite Scroll).
-   - **Related Products Slider:** Tự động nhận diện danh mục cùng loại, chạy tuần hoàn (auto-loop carousel), hỗ trợ vuốt chạm cảm ứng có quán tính (`-webkit-overflow-scrolling: touch`).
-   - **Cart Management (Giỏ hàng):** Thêm, xóa, cập nhật số lượng, tính toán tổng tiền chính xác theo thời gian thực.
-   - **Storage Fallback Resilience:** Cơ chế dự phòng lưu trữ trên RAM khi người dùng duyệt web ở chế độ ẩn danh (Private Browsing) hoặc trình duyệt chặn cookie/storage.
-   - **Direct Checkout (Đặt hàng 1 chạm):** Kiểm tra hợp lệ dữ liệu (regex số điện thoại Việt Nam, quận/phường Hà Nội), tự sinh mã đơn hàng độc bản `#P...` và hiển thị thẻ hoàn tất tức thì.
-
-4. **Hệ thống Song ngữ Động (i18n - Internationalization):**
-   - Hỗ trợ chuyển đổi mượt mà giữa tiếng Anh (EN) và tiếng Việt (VI) trên toàn bộ 8 trang.
-   - Tự động đồng bộ hóa từ điển ngôn ngữ cho toàn bộ cơ sở dữ liệu sản phẩm qua `registerProductsI18n`.
+A production-grade, zero-dependency e-commerce client engineered for Poeme Japanese Bakery. Built strictly on the native web platform using semantic HTML5, modern CSS3, and ES6+ modules.
 
 ---
 
-## 📁 Cấu trúc Thư mục Dự án (Project Structure)
+## Technical Review
+
+### 1. Platform & Runtime Architecture
+- **Vanilla Core:** Zero frontend frameworks (no React, Vue, jQuery, or Bootstrap). No bundling overhead, virtual DOM abstraction, or runtime polyfill footprint.
+- **Modularity:** Native ECMAScript Modules (`type="module"`), separation of concerns between state controllers, DOM renderers, and localized data stores.
+- **State & Persistence:** Decoupled cart and checkout state management with an in-memory RAM fallback for strict sandboxes (private browsing, third-party cookie restrictions).
+- **Internationalization (i18n):** Client-side dynamic dictionary synchronization supporting runtime switching between Vietnamese and English across all static views.
+
+### 2. Styling & Rendering Pipeline
+- **CSS Architecture:** Layered stylesheet hierarchy (`base.css`, `header-footer.css`, `home.css`, `pages.css`) using CSS Custom Properties for design tokens.
+- **Rendering Performance:** Elimination of layout thrashing and reflow bottlenecks. All interactive animations (drawers, modal overlays, search transitions) execute strictly on the GPU compositor thread via `transform` and `opacity` with cubic-bezier timing curves.
+- **Layout Engine:** Custom multi-column grid system combining modern CSS Grid and Flexbox with responsive breakpoints covering viewports from 320px to 1440px+.
+
+---
+
+## Directory Structure
 
 ```text
-├── index.html                   # Trang chủ (Hero Banner, Danh mục, Sản phẩm nổi bật)
-├── favicon.ico                  # Icon định danh trình duyệt
-├── robots.txt                   # Cấu hình chỉ mục tìm kiếm
-├── sitemap.xml                  # Bản đồ website chuẩn SEO
-├── site.webmanifest             # Cấu hình PWA & Mobile Bookmark
-├── css/                         # Hệ thống Stylesheet phân tầng
-│   ├── base.css                 # Reset, Biến toàn cục (:root), Grid, Typography
-│   ├── header-footer.css        # Mega Menu, Search bar, Dropdown, Footer, Floating widget
-│   ├── home.css                 # Bố cục & Banner nghệ thuật trang chủ
-│   └── pages.css                # Bố cục các trang con (Catalog, Detail, Cart, Checkout, Stores)
-├── js/                          # Hệ thống JavaScript ES6 Modules
-│   ├── main.js                  # Điều phối khởi tạo theo từng trang
+.
+├── 404.html                     # Root fallback 404 handler
+├── index.html                   # Primary landing and storefront view
+├── favicon.ico                  # Multi-resolution browser icon (16x16, 32x32, 48x48)
+├── apple-touch-icon.png         # iOS touch icon
+├── robots.txt                   # Web crawler directives
+├── sitemap.xml                  # Canonical sitemap index
+├── site.webmanifest             # Progressive Web Application manifest
+├── _redirects                   # Static hosting rewrite and 404 routing rules
+├── css/
+│   ├── base.css                 # CSS reset, variables, grid foundations, typography
+│   ├── header-footer.css        # Navigation bar, drawer menu, search bar, footer
+│   ├── home.css                 # Landing page layouts and featured product sections
+│   └── pages.css                # Catalog, product detail, cart, checkout, stores
+├── js/
+│   ├── main.js                  # Entry point, router, and page-level lifecycle coordinator
 │   ├── data/
-│   │   ├── products.js          # Cơ sở dữ liệu danh mục & sản phẩm
-│   │   └── i18n.js              # Bộ máy dịch thuật song ngữ Anh - Việt
+│   │   ├── products.js          # Product schema, metadata catalog, and inventory models
+│   │   └── i18n.js              # Localization dictionaries and dynamic translation engine
 │   └── modules/
-│       ├── catalog.js           # Bộ lọc, tìm kiếm, hiển thị lưới & slider sản phẩm
-│       ├── cart.js              # Quản lý trạng thái giỏ hàng & bộ đệm RAM
-│       └── order.js             # Xử lý đơn hàng, địa chỉ & biểu mẫu đặt hàng
-├── pages/                       # Các trang chức năng độc lập
-│   ├── about.html               # Trang Giới thiệu & Câu chuyện thương hiệu
-│   ├── cart.html                # Trang Giỏ hàng
-│   ├── checkout.html            # Trang Đặt hàng & Xác nhận đơn
-│   ├── product-detail.html      # Trang Chi tiết sản phẩm & Sản phẩm liên quan
-│   ├── products.html            # Trang Danh mục & Bộ lọc sản phẩm
-│   ├── search.html              # Trang Tra cứu & Kết quả tìm kiếm
-│   ├── stores.html              # Trang Hệ thống cửa hàng & Bản đồ
-│   └── 404.html                 # Trang báo lỗi 404 thân thiện
-├── public/                      # Tài nguyên tĩnh (Hình ảnh, Logo, Icons)
-│   ├── images/
-│   │   ├── banner/              # Ảnh banner nghệ thuật & hoa văn
-│   │   ├── brand/               # Logo nhận diện thương hiệu
-│   │   ├── icons/               # Bộ icon danh mục bánh
-│   │   └── products/            # Ảnh WebP chất lượng cao của từng sản phẩm
-├── scripts/                     # Công cụ hỗ trợ
-│   └── build_products_db.py     # Script tự động trích xuất & chuẩn hóa dữ liệu bánh
-└── tests/                       # Bộ kiểm thử tự động hóa
-    ├── test_ui_responsive.js    # Kiểm tra tràn viền & console error trên Headless Chromium
-    ├── test_ui_performance.js   # Đo đạc FPS và độ mượt chuyển động
-    └── test_js_logic.mjs        # Kiểm thử tích hợp Cart, Checkout & i18n
+│       ├── cart.js              # Cart state management, calculations, storage persistence
+│       ├── catalog.js           # Filter pipeline, search index, rendering, product carousel
+│       └── order.js             # Form validation, regex validation, checkout transaction flow
+├── pages/
+│   ├── about.html               # Brand history and information
+│   ├── cart.html                # Cart management interface
+│   ├── checkout.html            # Checkout transaction interface
+│   ├── product-detail.html      # Product inspection and dynamic carousel
+│   ├── products.html            # Filterable product catalog
+│   ├── search.html              # Search interface and keyword query results
+│   ├── stores.html              # Store locator and retail network
+│   └── 404.html                 # Secondary page-level 404 view
+├── public/
+│   ├── Poeme Dessert Logo Icon.png
+│   ├── Poeme Japanese Bakery Logo.png
+│   └── images/
+│       ├── banner/              # Hero visuals and decorative assets
+│       ├── brand/               # Official brand identity assets
+│       ├── icons/               # Navigation, utility, and category iconography
+│       └── products/            # Optimized product imagery
+├── scripts/
+│   └── build_products_db.py     # Data extraction and schema generation utility
+└── tests/
+    ├── test_js_logic.mjs        # Automated integration tests for cart, checkout, and i18n
+    ├── test_ui_performance.js   # Frame rate and compositor smoothness benchmark
+    └── test_ui_responsive.js    # Headless Chromium viewport and layout validation suite
 ```
 
 ---
 
-## 🚀 Hướng dẫn Cài đặt & Chạy Thử (How to Run)
+## Technologies Used
 
-Dự án sử dụng chuẩn **ES6 Modules**, vì vậy cần được mở qua một HTTP Server cục bộ thay vì nhấp đúp tệp `file://`.
-
-### Cách 1: Sử dụng VS Code Live Server (Khuyên dùng)
-1. Cài đặt tiện ích mở rộng **Live Server** trên VS Code.
-2. Nhấp chuột phải vào tệp `index.html` và chọn **Open with Live Server**.
-3. Trang web sẽ tự động mở tại `http://127.0.0.1:5500`.
-
-### Cách 2: Sử dụng Python
-Mở Terminal tại thư mục dự án và chạy:
-```bash
-python3 -m http.server 5500
-```
-Truy cập trình duyệt: `http://localhost:5500`.
-
-### Cách 3: Sử dụng Node.js
-```bash
-npx serve -l 5500 .
-```
+| Layer | Implementation | Notes |
+| :--- | :--- | :--- |
+| Markup | HTML5 Semantic Standard | Zero unsemantic wrappers, full accessibility tree compliance |
+| Styling | Modern CSS3 | Custom variables, Flexbox, CSS Grid, hardware-accelerated transforms |
+| Logic | JavaScript (ES6+ Standards) | Native modules, URLSearchParams API, LocalStorage with memory fallback |
+| Typography | Google Fonts | Montserrat, Pacifico |
+| Iconography | Font Awesome 6 | Vector web icons |
+| Tooling | Python 3, Node.js | Verification scripts and automated headless testing harness |
 
 ---
 
-## 🧪 Kiểm thử Tự động (Automated Verification)
+## Legal & Intellectual Property Notice
 
-Dự án đi kèm bộ kịch bản kiểm thử tự động đo đạc trực tiếp trên Headless Chromium:
+All product names, photographs, commercial logos, trademarks, and brand identity elements featured in this project are the intellectual property of **Poeme Japanese Bakery** ([poemecake.vn](https://poemecake.vn)).
 
-```bash
-# Kiểm thử toàn diện Logic Giỏ hàng, Đặt hàng & Dịch thuật
-node tests/test_js_logic.mjs
-
-# Kiểm thử Responsive & Tràn màn hình trên cả 8 trang
-node tests/test_ui_responsive.js
-```
-
-**Kết quả kiểm chuẩn:**
-- Console Errors: `0`
-- Horizontal Overflows: `0` (100% viewport an toàn)
-- Broken Assets / Links: `0`
-
----
-
-## 📜 Giấy phép & Tuyên bố Bản quyền (Disclaimer)
-
-Dự án được xây dựng và phát triển nhằm mục đích học tập và làm bài tập môn học. Toàn bộ hình ảnh, ý tưởng nhận diện thương hiệu và bản quyền gốc thuộc về **Poeme Japanese Bakery** ([poemecake.vn](https://poemecake.vn)).
+This repository exists strictly for academic evaluation, code review, and educational portfolio analysis. No commercial use or unauthorized endorsement is implied.
