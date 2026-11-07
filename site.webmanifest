@@ -1,0 +1,16 @@
+{
+  "name": "Poeme Japanese Bakery",
+  "short_name": "Poeme Bakery",
+  "description": "Tiệm bánh phong cách Nhật Bản - Bánh tươi mỗi ngày",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0e1c22",
+  "icons": [
+    {
+      "src": "public/Poeme Dessert Logo Icon.png",
+      "sizes": "192x192 512x512",
+      "type": "image/png"
+    }
+  ]
+}

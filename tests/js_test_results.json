@@ -1,0 +1,119 @@
+{
+  "i18n": {
+    "checked": 128,
+    "missingInEn": [
+      "BanhGatoHaiTangDauTay",
+      "BanhGatoSunshineKemTuoiXoai",
+      "BanhGatoDiamondDauTay",
+      "BanhGatoFujiTraXanhDauTay",
+      ".form-req-wrap",
+      "sub",
+      "cat",
+      "div",
+      "?cat=",
+      "id",
+      "q"
+    ],
+    "missingInVi": [
+      "BanhGatoHaiTangDauTay",
+      "BanhGatoSunshineKemTuoiXoai",
+      "BanhGatoDiamondDauTay",
+      "BanhGatoFujiTraXanhDauTay",
+      ".form-req-wrap",
+      "sub",
+      "cat",
+      "div",
+      "?cat=",
+      "id",
+      "q"
+    ]
+  },
+  "cart": {
+    "tests": [
+      {
+        "name": "Add product to cart with quantity",
+        "passed": true
+      },
+      {
+        "name": "Update cart quantity",
+        "passed": true
+      },
+      {
+        "name": "Remove item from cart",
+        "passed": true
+      },
+      {
+        "name": "Cart in-memory fallback on storage exception (private browsing)",
+        "passed": true
+      }
+    ]
+  },
+  "checkout": {
+    "tests": [
+      {
+        "name": "Valid VN phone numbers pass (0912345678, 0388655755, 0987654321)",
+        "passed": true
+      },
+      {
+        "name": "Invalid phone numbers fail (12345, 0123456789, abcdefghij)",
+        "passed": true
+      }
+    ]
+  },
+  "catalog": {
+    "tests": [
+      {
+        "name": "Products database non-empty",
+        "passed": true
+      },
+      {
+        "name": "Multiple categories present",
+        "passed": true,
+        "categories": [
+          "banh-gato",
+          "banh-kem-tuoi",
+          "banh-quy",
+          "banh-mi",
+          "nuoc",
+          "snack",
+          "phu-kien"
+        ]
+      },
+      {
+        "name": "Related products for category 'banh-gato' correctly filtered",
+        "passed": true,
+        "relatedCount": 37
+      },
+      {
+        "name": "Related products for category 'banh-kem-tuoi' correctly filtered",
+        "passed": true,
+        "relatedCount": 85
+      },
+      {
+        "name": "Related products for category 'banh-quy' correctly filtered",
+        "passed": true,
+        "relatedCount": 13
+      },
+      {
+        "name": "Related products for category 'banh-mi' correctly filtered",
+        "passed": true,
+        "relatedCount": 19
+      },
+      {
+        "name": "Related products for category 'nuoc' correctly filtered",
+        "passed": true,
+        "relatedCount": 6
+      },
+      {
+        "name": "Related products for category 'snack' correctly filtered",
+        "passed": true,
+        "relatedCount": 1
+      },
+      {
+        "name": "Related products for category 'phu-kien' correctly filtered",
+        "passed": true,
+        "relatedCount": 5
+      }
+    ]
+  }
+}

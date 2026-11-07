@@ -1,0 +1,314 @@
+[
+  {
+    "page": "index.html",
+    "viewport": "Mobile",
+    "consoleErrors": [],
+    "metrics": {
+      "scrollW": 375,
+      "w": 375,
+      "hasOverflow": false,
+      "overflowCount": 0,
+      "sampleOverflows": [],
+      "brokenImgs": []
+    }
+  },
+  {
+    "page": "index.html",
+    "viewport": "Tablet",
+    "consoleErrors": [],
+    "metrics": {
+      "scrollW": 768,
+      "w": 768,
+      "hasOverflow": false,
+      "overflowCount": 0,
+      "sampleOverflows": [],
+      "brokenImgs": []
+    }
+  },
+  {
+    "page": "index.html",
+    "viewport": "Desktop",
+    "consoleErrors": [],
+    "metrics": {
+      "scrollW": 1280,
+      "w": 1280,
+      "hasOverflow": false,
+      "overflowCount": 0,
+      "sampleOverflows": [],
+      "brokenImgs": []
+    }
+  },
+  {
+    "page": "pages/about.html",
+    "viewport": "Mobile",
+    "consoleErrors": [],
+    "metrics": {
+      "scrollW": 375,
+      "w": 375,
+      "hasOverflow": false,
+      "overflowCount": 0,
+      "sampleOverflows": [],
+      "brokenImgs": []
+    }
+  },
+  {
+    "page": "pages/about.html",
+    "viewport": "Tablet",
+    "consoleErrors": [],
+    "metrics": {
+      "scrollW": 768,
+      "w": 768,
+      "hasOverflow": false,
+      "overflowCount": 0,
+      "sampleOverflows": [],
+      "brokenImgs": []
+    }
+  },
+  {
+    "page": "pages/about.html",
+    "viewport": "Desktop",
+    "consoleErrors": [],
+    "metrics": {
+      "scrollW": 1280,
+      "w": 1280,
+      "hasOverflow": false,
+      "overflowCount": 0,
+      "sampleOverflows": [],
+      "brokenImgs": []
+    }
+  },
+  {
+    "page": "pages/cart.html",
+    "viewport": "Mobile",
+    "consoleErrors": [],
+    "metrics": {
+      "scrollW": 375,
+      "w": 375,
+      "hasOverflow": false,
+      "overflowCount": 0,
+      "sampleOverflows": [],
+      "brokenImgs": []
+    }
+  },
+  {
+    "page": "pages/cart.html",
+    "viewport": "Tablet",
+    "consoleErrors": [],
+    "metrics": {
+      "scrollW": 768,
+      "w": 768,
+      "hasOverflow": false,
+      "overflowCount": 0,
+      "sampleOverflows": [],
+      "brokenImgs": []
+    }
+  },
+  {
+    "page": "pages/cart.html",
+    "viewport": "Desktop",
+    "consoleErrors": [],
+    "metrics": {
+      "scrollW": 1280,
+      "w": 1280,
+      "hasOverflow": false,
+      "overflowCount": 0,
+      "sampleOverflows": [],
+      "brokenImgs": []
+    }
+  },
+  {
+    "page": "pages/checkout.html",
+    "viewport": "Mobile",
+    "consoleErrors": [],
+    "metrics": {
+      "scrollW": 375,
+      "w": 375,
+      "hasOverflow": false,
+      "overflowCount": 0,
+      "sampleOverflows": [],
+      "brokenImgs": []
+    }
+  },
+  {
+    "page": "pages/checkout.html",
+    "viewport": "Tablet",
+    "consoleErrors": [],
+    "metrics": {
+      "scrollW": 768,
+      "w": 768,
+      "hasOverflow": false,
+      "overflowCount": 0,
+      "sampleOverflows": [],
+      "brokenImgs": []
+    }
+  },
+  {
+    "page": "pages/checkout.html",
+    "viewport": "Desktop",
+    "consoleErrors": [],
+    "metrics": {
+      "scrollW": 1280,
+      "w": 1280,
+      "hasOverflow": false,
+      "overflowCount": 0,
+      "sampleOverflows": [],
+      "brokenImgs": []
+    }
+  },
+  {
+    "page": "pages/product-detail.html?id=BanhGatoSunshineKemTuoiXoai",
+    "viewport": "Mobile",
+    "consoleErrors": [],
+    "metrics": {
+      "scrollW": 375,
+      "w": 375,
+      "hasOverflow": false,
+      "overflowCount": 0,
+      "sampleOverflows": [],
+      "brokenImgs": []
+    }
+  },
+  {
+    "page": "pages/product-detail.html?id=BanhGatoSunshineKemTuoiXoai",
+    "viewport": "Tablet",
+    "consoleErrors": [],
+    "metrics": {
+      "scrollW": 768,
+      "w": 768,
+      "hasOverflow": false,
+      "overflowCount": 0,
+      "sampleOverflows": [],
+      "brokenImgs": []
+    }
+  },
+  {
+    "page": "pages/product-detail.html?id=BanhGatoSunshineKemTuoiXoai",
+    "viewport": "Desktop",
+    "consoleErrors": [],
+    "metrics": {
+      "scrollW": 1280,
+      "w": 1280,
+      "hasOverflow": false,
+      "overflowCount": 0,
+      "sampleOverflows": [],
+      "brokenImgs": []
+    }
+  },
+  {
+    "page": "pages/products.html",
+    "viewport": "Mobile",
+    "consoleErrors": [],
+    "metrics": {
+      "scrollW": 375,
+      "w": 375,
+      "hasOverflow": false,
+      "overflowCount": 0,
+      "sampleOverflows": [],
+      "brokenImgs": []
+    }
+  },
+  {
+    "page": "pages/products.html",
+    "viewport": "Tablet",
+    "consoleErrors": [],
+    "metrics": {
+      "scrollW": 768,
+      "w": 768,
+      "hasOverflow": false,
+      "overflowCount": 0,
+      "sampleOverflows": [],
+      "brokenImgs": []
+    }
+  },
+  {
+    "page": "pages/products.html",
+    "viewport": "Desktop",
+    "consoleErrors": [],
+    "metrics": {
+      "scrollW": 1280,
+      "w": 1280,
+      "hasOverflow": false,
+      "overflowCount": 0,
+      "sampleOverflows": [],
+      "brokenImgs": []
+    }
+  },
+  {
+    "page": "pages/search.html?q=gato",
+    "viewport": "Mobile",
+    "consoleErrors": [],
+    "metrics": {
+      "scrollW": 375,
+      "w": 375,
+      "hasOverflow": false,
+      "overflowCount": 0,
+      "sampleOverflows": [],
+      "brokenImgs": []
+    }
+  },
+  {
+    "page": "pages/search.html?q=gato",
+    "viewport": "Tablet",
+    "consoleErrors": [],
+    "metrics": {
+      "scrollW": 768,
+      "w": 768,
+      "hasOverflow": false,
+      "overflowCount": 0,
+      "sampleOverflows": [],
+      "brokenImgs": []
+    }
+  },
+  {
+    "page": "pages/search.html?q=gato",
+    "viewport": "Desktop",
+    "consoleErrors": [],
+    "metrics": {
+      "scrollW": 1280,
+      "w": 1280,
+      "hasOverflow": false,
+      "overflowCount": 0,
+      "sampleOverflows": [],
+      "brokenImgs": []
+    }
+  },
+  {
+    "page": "pages/stores.html",
+    "viewport": "Mobile",
+    "consoleErrors": [],
+    "metrics": {
+      "scrollW": 375,
+      "w": 375,
+      "hasOverflow": false,
+      "overflowCount": 0,
+      "sampleOverflows": [],
+      "brokenImgs": []
+    }
+  },
+  {
+    "page": "pages/stores.html",
+    "viewport": "Tablet",
+    "consoleErrors": [],
+    "metrics": {
+      "scrollW": 768,
+      "w": 768,
+      "hasOverflow": false,
+      "overflowCount": 0,
+      "sampleOverflows": [],
+      "brokenImgs": []
+    }
+  },
+  {
+    "page": "pages/stores.html",
+    "viewport": "Desktop",
+    "consoleErrors": [],
+    "metrics": {
+      "scrollW": 1280,
+      "w": 1280,
+      "hasOverflow": false,
+      "overflowCount": 0,
+      "sampleOverflows": [],
+      "brokenImgs": []
+    }
+  }
+]
