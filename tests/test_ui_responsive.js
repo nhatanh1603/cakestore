@@ -9,7 +9,8 @@ const PAGES = [
     'pages/product-detail.html?id=BanhGatoSunshineKemTuoiXoai',
     'pages/products.html',
     'pages/search.html?q=gato',
-    'pages/stores.html'
+    'pages/stores.html',
+    'pages/404.html'
 ];
 
 const VIEWPORTS = [
