@@ -371,11 +371,22 @@
             </h1>
         </div>
         <div class="radar-status">
-            <span class="live-dot" id="radarStatusText">RADAR ACTIVE (poemefake.id.vn)</span>
+            <span class="live-dot" id="radarStatusText">RADAR ACTIVE</span>
             <span style="color: var(--text-muted);" id="clockDisplay">--:--:--</span>
-            <button id="btnAudioToggle" style="background: none; border: 1px solid var(--border); color: var(--text-secondary); padding: 4px 10px; cursor: pointer; border-radius: 4px; font-size: 12px;">
-                <i class="fa-solid fa-volume-high"></i> Alert Sound: ON
-            </button>
+            <div style="display: flex; gap: 8px;">
+                <button id="btnSimVisitor" style="background: rgba(16, 185, 129, 0.15); border: 1px solid var(--accent-green); color: var(--accent-green); padding: 5px 12px; cursor: pointer; border-radius: 4px; font-size: 11.5px; font-weight: 600;">
+                    <i class="fa-solid fa-bolt"></i> Test Khách Vào
+                </button>
+                <button id="btnSimOrder" style="background: rgba(245, 158, 11, 0.15); border: 1px solid var(--accent-gold); color: var(--accent-gold); padding: 5px 12px; cursor: pointer; border-radius: 4px; font-size: 11.5px; font-weight: 600;">
+                    <i class="fa-solid fa-cake-candles"></i> Test Đơn Hàng
+                </button>
+                <a href="/web/" target="_blank" style="text-decoration: none; display: inline-flex; align-items: center; gap: 5px; background: rgba(6, 182, 212, 0.15); border: 1px solid var(--accent-cyan); color: var(--accent-cyan); padding: 5px 12px; border-radius: 4px; font-size: 11.5px; font-weight: 600;">
+                    <i class="fa-solid fa-store"></i> Mở Web Bán Bánh Local
+                </a>
+                <button id="btnAudioToggle" style="background: none; border: 1px solid var(--border); color: var(--text-secondary); padding: 5px 10px; cursor: pointer; border-radius: 4px; font-size: 11.5px;">
+                    <i class="fa-solid fa-volume-high"></i> Âm Thanh: BẬT
+                </button>
+            </div>
         </div>
     </header>
 
@@ -717,6 +728,16 @@
                 e.currentTarget.innerHTML = soundEnabled
                     ? '<i class="fa-solid fa-volume-high"></i> Alert Sound: ON'
                     : '<i class="fa-solid fa-volume-xmark"></i> Alert Sound: OFF';
+            });
+
+            document.getElementById('btnSimVisitor')?.addEventListener('click', async () => {
+                await fetch('/api/simulate-visitor');
+                setTimeout(syncFromLocalServer, 300);
+            });
+
+            document.getElementById('btnSimOrder')?.addEventListener('click', async () => {
+                await fetch('/api/simulate-order');
+                setTimeout(syncFromLocalServer, 300);
             });
 
             document.getElementById('btnClearData').addEventListener('click', async () => {

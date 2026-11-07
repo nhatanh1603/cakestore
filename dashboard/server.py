@@ -166,22 +166,54 @@ class RadarRequestHandler(http.server.SimpleHTTPRequestHandler):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, directory=os.path.dirname(os.path.abspath(__file__)), **kwargs)
 
+    def serve_file(self, file_path, content_type=None):
+        if not os.path.exists(file_path) or os.path.isdir(file_path):
+            self.send_response(404)
+            self.end_headers()
+            return
+        self.send_response(200)
+        ctype = content_type
+        if not ctype:
+            if file_path.endswith('.html'): ctype = 'text/html; charset=utf-8'
+            elif file_path.endswith('.js') or file_path.endswith('.mjs'): ctype = 'application/javascript; charset=utf-8'
+            elif file_path.endswith('.css'): ctype = 'text/css; charset=utf-8'
+            elif file_path.endswith('.png'): ctype = 'image/png'
+            elif file_path.endswith('.jpg') or file_path.endswith('.jpeg'): ctype = 'image/jpeg'
+            elif file_path.endswith('.webp'): ctype = 'image/webp'
+            elif file_path.endswith('.json'): ctype = 'application/json'
+            else: ctype = 'application/octet-stream'
+        self.send_header('Content-Type', ctype)
+        self.send_header('Cache-Control', 'no-cache')
+        self.end_headers()
+        with open(file_path, 'rb') as f:
+            self.wfile.write(f.read())
+
     def do_GET(self):
         parsed = urlparse(self.path)
-        if parsed.path.startswith('/public/'):
-            root_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-            clean_rel = urllib.parse.unquote(parsed.path).lstrip('/')
-            file_path = os.path.join(root_dir, clean_rel)
+        clean_path = urllib.parse.unquote(parsed.path)
+        root_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+        if clean_path in ['/web', '/web/']:
+            self.serve_file(os.path.join(root_dir, 'index.html'), 'text/html; charset=utf-8')
+            return
+        elif clean_path.startswith('/web/'):
+            sub = clean_path[5:]
+            if not sub.endswith('.html') and '.' not in sub:
+                candidate = os.path.join(root_dir, 'pages', f"{sub}.html")
+                if os.path.exists(candidate):
+                    self.serve_file(candidate, 'text/html; charset=utf-8')
+                    return
+            file_path = os.path.join(root_dir, sub)
             if os.path.exists(file_path):
-                self.send_response(200)
-                if file_path.endswith('.png'):
-                    self.send_header('Content-Type', 'image/png')
-                elif file_path.endswith('.jpg') or file_path.endswith('.jpeg'):
-                    self.send_header('Content-Type', 'image/jpeg')
-                self.end_headers()
-                with open(file_path, 'rb') as f:
-                    self.wfile.write(f.read())
+                self.serve_file(file_path)
                 return
+
+        for prefix in ['/css/', '/js/', '/public/', '/pages/']:
+            if clean_path.startswith(prefix):
+                file_path = os.path.join(root_dir, clean_path.lstrip('/'))
+                if os.path.exists(file_path):
+                    self.serve_file(file_path)
+                    return
 
         if parsed.path == '/api/history':
             self.send_response(200)
@@ -224,6 +256,85 @@ class RadarRequestHandler(http.server.SimpleHTTPRequestHandler):
             }
             self.wfile.write(json.dumps(resp, ensure_ascii=False).encode('utf-8'))
             return
+        elif parsed.path == '/api/simulate-visitor':
+            fake_visitor = {
+                'type': 'pageview',
+                'timestamp': int(time.time() * 1000),
+                'path': '/products',
+                'title': 'Tất cả sản phẩm - Poeme Japanese Bakery',
+                'geo': {
+                    'ip': '113.190.234.88',
+                    'city': 'Hà Nội',
+                    'region': 'Hà Nội',
+                    'country': 'Việt Nam',
+                    'country_code': 'VN',
+                    'lat': 21.0285,
+                    'lon': 105.8542,
+                    'isp': 'Viettel Telecom (Test)',
+                    'flag': '🇻🇳'
+                },
+                'device': {
+                    'deviceType': 'Mobile',
+                    'deviceName': 'Apple iPhone 15 Pro Max',
+                    'os': 'iOS 17.5',
+                    'browser': 'Apple Safari',
+                    'screen': '393x852'
+                }
+            }
+            save_visitor(fake_visitor)
+            try:
+                req = urllib.request.Request(TELEMETRY_TOPIC, data=json.dumps(fake_visitor).encode('utf-8'), headers={'Content-Type': 'application/json', 'Title': 'Simulated Visitor'})
+                urllib.request.urlopen(req, timeout=3)
+            except Exception:
+                pass
+            self.send_response(200)
+            self.send_header('Content-Type', 'application/json')
+            self.send_header('Access-Control-Allow-Origin', '*')
+            self.end_headers()
+            self.wfile.write(b'{"status": "visitor_simulated"}')
+            return
+        elif parsed.path == '/api/simulate-order':
+            fake_order = {
+                'type': 'order',
+                'timestamp': int(time.time() * 1000),
+                'orderId': f"POEME-{int(time.time() % 10000)}",
+                'customerName': 'Nguyễn Hoàng Long',
+                'customerPhone': '0988776655',
+                'fulfillmentMethod': 'delivery',
+                'address': 'Số 104 Láng Hạ, Đống Đa, Hà Nội',
+                'itemsCount': 2,
+                'items': [
+                    {'title': 'Bánh Gato Hai Tầng Dâu Tây', 'qty': 1, 'price': 550000, 'inscription': 'Chúc mừng sinh nhật mẹ'},
+                    {'title': 'Bánh Su Kem Vanilla', 'qty': 2, 'price': 30000}
+                ],
+                'subtotal': 610000,
+                'discount': 61000,
+                'totalAmount': 549000,
+                'note': 'Giao đúng 17h chiều, kèm dao đĩa nến số 50',
+                'geo': {
+                    'ip': '113.190.234.88',
+                    'city': 'Hà Nội',
+                    'country': 'Việt Nam',
+                    'lat': 21.0245,
+                    'lon': 105.8164
+                },
+                'device': {
+                    'deviceType': 'Mobile',
+                    'deviceName': 'Apple iPhone 15 Pro Max'
+                }
+            }
+            save_order(fake_order)
+            try:
+                req = urllib.request.Request(ORDERS_TOPIC, data=json.dumps(fake_order).encode('utf-8'), headers={'Content-Type': 'application/json', 'Title': 'Simulated Order'})
+                urllib.request.urlopen(req, timeout=3)
+            except Exception:
+                pass
+            self.send_response(200)
+            self.send_header('Content-Type', 'application/json')
+            self.send_header('Access-Control-Allow-Origin', '*')
+            self.end_headers()
+            self.wfile.write(b'{"status": "order_simulated"}')
+            return
         elif parsed.path == '/api/clear':
             conn = sqlite3.connect(DB_FILE)
             c = conn.cursor()
@@ -256,6 +367,7 @@ def start_server():
         print("   POEME JAPANESE BAKERY - LIVE OPS & SECURITY RADAR")
         print("=" * 66)
         print(f"   * Dashboard URL:      http://localhost:{PORT}")
+        print("   * Local Web Store:    http://localhost:8888/web/")
         print("   * Monitoring Target:  https://www.poemefake.id.vn")
         print(f"   * Local Database:     {DB_FILE}")
         print("   * Status:             Listening for Live Visitors & Orders...")

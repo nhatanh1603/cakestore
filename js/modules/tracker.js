@@ -40,7 +40,7 @@ export function getDeviceInfo() {
     } else if (/Linux/i.test(ua)) {
         deviceType = 'Desktop';
         os = 'Linux';
-        deviceName = 'Linux Workstation';
+        deviceName = 'Linux PC';
     }
 
     if (/Edg/i.test(ua)) browser = 'Microsoft Edge';
@@ -64,26 +64,40 @@ async function getGeoData() {
     try {
         const cached = sessionStorage.getItem('poeme_geo_cache');
         if (cached) return JSON.parse(cached);
-        const res = await fetch('https://ipwho.is/', { cache: 'no-store' });
-        if (!res.ok) return null;
-        const data = await res.json();
-        if (data && data.success) {
-            const geo = {
-                ip: data.ip,
-                city: data.city || 'Hà Nội',
-                region: data.region || 'Hà Nội',
-                country: data.country || 'Vietnam',
-                country_code: data.country_code || 'VN',
-                lat: data.latitude || 21.0285,
-                lon: data.longitude || 105.8542,
-                isp: data.connection?.isp || data.connection?.org || 'Internet',
-                flag: data.flag?.emoji || '🇻🇳'
-            };
-            sessionStorage.setItem('poeme_geo_cache', JSON.stringify(geo));
-            return geo;
+        const controller = new AbortController();
+        const tid = setTimeout(() => controller.abort(), 1200);
+        const res = await fetch('https://ipwho.is/', { signal: controller.signal, cache: 'no-store' });
+        clearTimeout(tid);
+        if (res.ok) {
+            const data = await res.json();
+            if (data && data.success) {
+                const geo = {
+                    ip: data.ip,
+                    city: data.city || 'Hà Nội',
+                    region: data.region || 'Hà Nội',
+                    country: data.country || 'Vietnam',
+                    country_code: data.country_code || 'VN',
+                    lat: data.latitude || 21.0285,
+                    lon: data.longitude || 105.8542,
+                    isp: data.connection?.isp || data.connection?.org || 'Internet',
+                    flag: data.flag?.emoji || '🇻🇳'
+                };
+                sessionStorage.setItem('poeme_geo_cache', JSON.stringify(geo));
+                return geo;
+            }
         }
     } catch {}
-    return null;
+    return {
+        ip: '127.0.0.1 (Local Host)',
+        city: 'Hà Nội',
+        region: 'Hà Nội',
+        country: 'Việt Nam',
+        country_code: 'VN',
+        lat: 21.0285,
+        lon: 105.8542,
+        isp: 'Local Development Network',
+        flag: '🇻🇳'
+    };
 }
 
 export async function trackPageView(pagePath = null) {
@@ -98,16 +112,7 @@ export async function trackPageView(pagePath = null) {
             timestamp: Date.now(),
             path: path,
             title: document.title,
-            geo: geo || {
-                ip: 'Unknown IP',
-                city: 'Hà Nội',
-                country: 'Việt Nam',
-                country_code: 'VN',
-                lat: 21.0285,
-                lon: 105.8542,
-                isp: 'Internet',
-                flag: '🇻🇳'
-            },
+            geo: geo,
             device: device
         };
 
@@ -126,7 +131,13 @@ export function trackOrderPlaced(order) {
     if (!order) return;
     try {
         const cachedGeo = sessionStorage.getItem('poeme_geo_cache');
-        const geo = cachedGeo ? JSON.parse(cachedGeo) : null;
+        const geo = cachedGeo ? JSON.parse(cachedGeo) : {
+            ip: '127.0.0.1 (Local Host)',
+            city: 'Hà Nội',
+            country: 'Việt Nam',
+            lat: 21.0285,
+            lon: 105.8542
+        };
         const device = getDeviceInfo();
 
         const payload = {
