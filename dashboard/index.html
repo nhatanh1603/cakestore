@@ -199,9 +199,287 @@
         }
 
         #radarMap {
-            height: 380px;
+            height: 440px;
             width: 100%;
             background: #0b111b;
+        }
+
+        .map-toolbar {
+            background: #0f1523;
+            border-bottom: 1px solid var(--border);
+            padding: 8px 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .map-layer-toggles, .map-actions {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+        .map-tool-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            font-size: 11.5px;
+            padding: 5px 11px;
+            border-radius: 4px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-weight: 500;
+            transition: all 0.15s;
+        }
+        .map-tool-btn:hover {
+            background: rgba(255, 255, 255, 0.12);
+            color: var(--text-primary);
+        }
+        .map-tool-btn.active {
+            background: rgba(6, 182, 212, 0.18);
+            border-color: var(--accent-cyan);
+            color: var(--accent-cyan);
+            font-weight: 600;
+        }
+        .map-tool-btn.action-gps {
+            background: rgba(239, 68, 68, 0.15);
+            border-color: #ef4444;
+            color: #ef4444;
+            font-weight: 600;
+        }
+        .map-tool-btn.action-gps:hover {
+            background: rgba(239, 68, 68, 0.28);
+        }
+        .map-search-box {
+            display: flex;
+            align-items: center;
+            background: #090e17;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 2px 8px;
+            gap: 6px;
+        }
+        .map-search-box i {
+            color: var(--text-muted);
+            font-size: 11px;
+        }
+        .map-search-box input {
+            background: transparent;
+            border: none;
+            outline: none;
+            color: #fff;
+            font-size: 11.5px;
+            width: 195px;
+            padding: 4px 0;
+        }
+        .map-search-box button {
+            background: transparent;
+            border: none;
+            color: var(--accent-cyan);
+            cursor: pointer;
+            font-size: 11px;
+            padding: 2px 4px;
+        }
+        .map-search-box button:hover {
+            color: #fff;
+        }
+
+        .dark-radar-popup .leaflet-popup-content-wrapper {
+            background: #111827 !important;
+            color: #f3f4f6 !important;
+            border: 1px solid #374151 !important;
+            border-radius: 8px !important;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.7) !important;
+            padding: 4px !important;
+        }
+        .dark-radar-popup .leaflet-popup-tip {
+            background: #111827 !important;
+            border: 1px solid #374151 !important;
+        }
+        .dark-radar-popup .leaflet-popup-content {
+            margin: 8px 12px !important;
+            line-height: 1.5 !important;
+            font-size: 12px !important;
+        }
+        .radar-popup-card {
+            font-family: var(--font-sans);
+        }
+        .radar-popup-card .popup-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #374151;
+            padding-bottom: 6px;
+            margin-bottom: 8px;
+        }
+        .radar-popup-card .popup-tag {
+            font-size: 10.5px;
+            font-weight: 700;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: var(--font-mono);
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .popup-tag.tag-visitor {
+            background: rgba(16, 185, 129, 0.15);
+            color: #10b981;
+            border: 1px solid rgba(16, 185, 129, 0.4);
+        }
+        .popup-tag.tag-order {
+            background: rgba(245, 158, 11, 0.15);
+            color: #f59e0b;
+            border: 1px solid rgba(245, 158, 11, 0.4);
+        }
+        .radar-popup-card .popup-time {
+            font-size: 10.5px;
+            color: #9ca3af;
+            font-family: var(--font-mono);
+        }
+        .radar-popup-card .popup-location {
+            margin-bottom: 6px;
+            font-size: 12.5px;
+            color: #fff;
+        }
+        .radar-popup-card .popup-ip {
+            font-family: var(--font-mono);
+            font-size: 11.5px;
+            color: #38bdf8;
+            background: #0f172a;
+            padding: 3px 6px;
+            border-radius: 4px;
+            margin-bottom: 6px;
+            word-break: break-all;
+        }
+        .radar-popup-card .popup-meta {
+            font-size: 11.5px;
+            color: #9ca3af;
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            margin-bottom: 8px;
+        }
+        .radar-popup-card .popup-meta strong {
+            color: #e5e7eb;
+        }
+        .radar-popup-card .popup-meta .path-code {
+            color: #34d399;
+            background: rgba(52, 211, 153, 0.1);
+            padding: 1px 4px;
+            border-radius: 2px;
+            font-family: var(--font-mono);
+        }
+        .radar-popup-card .popup-actions {
+            margin-top: 8px;
+            display: flex;
+            gap: 6px;
+        }
+        .btn-popup-gmaps {
+            flex: 1;
+            text-align: center;
+            background: #2563eb;
+            color: #fff !important;
+            text-decoration: none;
+            padding: 6px 10px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 11px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            transition: background 0.15s;
+        }
+        .btn-popup-gmaps:hover {
+            background: #1d4ed8;
+        }
+
+        .custom-radar-pin-wrap {
+            background: none !important;
+            border: none !important;
+        }
+        .radar-pin-visitor {
+            position: relative;
+            width: 24px;
+            height: 24px;
+            background: #10b981;
+            border: 2px solid #ffffff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 10px;
+            box-shadow: 0 0 14px rgba(16, 185, 129, 0.8);
+            cursor: pointer;
+        }
+        .radar-pin-visitor::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border: 2px solid #10b981;
+            border-radius: 50%;
+            animation: radar-ripple 1.8s infinite ease-out;
+            pointer-events: none;
+        }
+        .radar-pin-order {
+            position: relative;
+            width: 28px;
+            height: 28px;
+            background: #f59e0b;
+            border: 2px solid #ffffff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 11px;
+            box-shadow: 0 0 16px rgba(245, 158, 11, 0.9);
+            cursor: pointer;
+        }
+        .radar-pin-order::after {
+            content: '';
+            position: absolute;
+            width: 46px;
+            height: 46px;
+            border: 2px solid #f59e0b;
+            border-radius: 50%;
+            animation: radar-ripple 1.5s infinite ease-out;
+            pointer-events: none;
+        }
+        .radar-pin-gps {
+            position: relative;
+            width: 28px;
+            height: 28px;
+            background: #ef4444;
+            border: 2px solid #ffffff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 12px;
+            box-shadow: 0 0 16px rgba(239, 68, 68, 0.9);
+            cursor: pointer;
+        }
+        .radar-pin-gps::after {
+            content: '';
+            position: absolute;
+            width: 48px;
+            height: 48px;
+            border: 2px solid #ef4444;
+            border-radius: 50%;
+            animation: radar-ripple 1.2s infinite ease-out;
+            pointer-events: none;
+        }
+        @keyframes radar-ripple {
+            0% { transform: scale(0.5); opacity: 1; }
+            100% { transform: scale(1.6); opacity: 0; }
         }
 
         .table-wrap {
@@ -421,8 +699,25 @@
             <div style="display: flex; flex-direction: column; gap: 20px;">
                 <div class="panel">
                     <div class="panel-header">
-                        <h2><i class="fa-solid fa-earth-asia" style="color: var(--accent-cyan);"></i> Bản Đồ Định Vị Khách Hàng (Google Maps Geolocation)</h2>
+                        <h2><i class="fa-solid fa-earth-asia" style="color: var(--accent-cyan);"></i> Bản Đồ Định Vị Khách Hàng (Live Interactive Map)</h2>
                         <span class="badge" id="mapPinCount">0 Pinned Locations</span>
+                    </div>
+                    <div class="map-toolbar">
+                        <div class="map-layer-toggles">
+                            <button type="button" class="map-tool-btn active" id="btnLayerStreet"><i class="fa-solid fa-road"></i> Đường Phố Rõ Nét</button>
+                            <button type="button" class="map-tool-btn" id="btnLayerSatellite"><i class="fa-solid fa-satellite"></i> Vệ Tinh Trực Quan</button>
+                            <button type="button" class="map-tool-btn" id="btnLayerDark"><i class="fa-solid fa-moon"></i> Radar Đêm</button>
+                        </div>
+                        <div class="map-actions">
+                            <div class="map-search-box">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                                <input type="text" id="mapSearchInput" placeholder="Tìm địa chỉ (VD: 137 Đình Thôn)..." maxlength="80">
+                                <button type="button" id="btnMapSearch" title="Tìm và bay tới địa chỉ"><i class="fa-solid fa-arrow-right"></i></button>
+                            </div>
+                            <button type="button" class="map-tool-btn action-gps" id="btnMyGps" title="Định vị tọa độ thực tế của máy bạn bằng chip GPS/WiFi"><i class="fa-solid fa-crosshairs"></i> Vị Trí Của Tôi (GPS)</button>
+                            <button type="button" class="map-tool-btn" id="btnFitBounds" title="Xem tất cả vị trí khách"><i class="fa-solid fa-expand"></i> Xem Toàn Bộ</button>
+                            <button type="button" class="map-tool-btn" id="btnResetHanoi" title="Đưa tâm bản đồ về Hà Nội"><i class="fa-solid fa-location-dot"></i> Về Hà Nội</button>
+                        </div>
                     </div>
                     <div id="radarMap"></div>
                 </div>
@@ -487,7 +782,12 @@
     <script>
         let soundEnabled = true;
         let map = null;
+        let streetLayer = null;
+        let satelliteLayer = null;
+        let darkLayer = null;
+        let currentLayer = null;
         const markers = [];
+        const markerMap = new Map();
         const visitorsList = [];
         const ordersList = [];
 
@@ -511,38 +811,258 @@
         function initMap() {
             map = L.map('radarMap', { zoomControl: true }).setView([21.0285, 105.8542], 12);
 
-            const esriDark = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+            streetLayer = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
                 attribution: '&copy; Esri & OpenStreetMap contributors',
-                maxZoom: 16
-            });
-
-            const osmStandard = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; OpenStreetMap contributors',
                 maxZoom: 19
             });
 
-            esriDark.addTo(map);
+            satelliteLayer = L.layerGroup([
+                L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+                    attribution: '&copy; Esri & contributors',
+                    maxZoom: 19
+                }),
+                L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}', {
+                    maxZoom: 19
+                })
+            ]);
 
-            L.control.layers({
-                'Bản đồ Tối (Radar Dark)': esriDark,
-                'Bản đồ Chi Tiết (OpenStreetMap)': osmStandard
-            }, null, { position: 'topright' }).addTo(map);
+            darkLayer = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+                attribution: '&copy; Esri & contributors',
+                maxZoom: 16
+            });
+
+            streetLayer.addTo(map);
+            currentLayer = streetLayer;
+
+            const setupLayerBtn = (btnId, layer) => {
+                const btn = document.getElementById(btnId);
+                if (!btn) return;
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.map-layer-toggles .map-tool-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    if (currentLayer) map.removeLayer(currentLayer);
+                    layer.addTo(map);
+                    currentLayer = layer;
+                });
+            };
+
+            setupLayerBtn('btnLayerStreet', streetLayer);
+            setupLayerBtn('btnLayerSatellite', satelliteLayer);
+            setupLayerBtn('btnLayerDark', darkLayer);
+
+            document.getElementById('btnResetHanoi')?.addEventListener('click', () => {
+                map.flyTo([21.0285, 105.8542], 12, { duration: 1.2 });
+            });
+
+            document.getElementById('btnFitBounds')?.addEventListener('click', () => {
+                if (markers.length > 0) {
+                    const group = L.featureGroup(markers);
+                    map.fitBounds(group.getBounds(), { padding: [40, 40], maxZoom: 15 });
+                } else {
+                    map.flyTo([21.0285, 105.8542], 12);
+                }
+            });
+
+            document.getElementById('btnMyGps')?.addEventListener('click', () => {
+                if (!('geolocation' in navigator)) {
+                    alert('Trình duyệt của bạn không hỗ trợ Geolocation API.');
+                    return;
+                }
+                const btn = document.getElementById('btnMyGps');
+                btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Đang lấy GPS...';
+
+                navigator.geolocation.getCurrentPosition(
+                    (pos) => {
+                        btn.innerHTML = '<i class="fa-solid fa-crosshairs"></i> Vị Trí Của Tôi (GPS)';
+                        const { latitude, longitude, accuracy } = pos.coords;
+
+                        map.flyTo([latitude, longitude], 17, { duration: 1.5 });
+
+                        const gpsIcon = L.divIcon({
+                            className: 'custom-radar-pin-wrap',
+                            html: `<div class="radar-pin-gps"><i class="fa-solid fa-crosshairs"></i></div>`,
+                            iconSize: [28, 28],
+                            iconAnchor: [14, 14]
+                        });
+
+                        L.circle([latitude, longitude], {
+                            radius: Math.max(accuracy, 25),
+                            color: '#ef4444',
+                            fillColor: '#ef4444',
+                            fillOpacity: 0.15,
+                            weight: 1.5
+                        }).addTo(map);
+
+                        const gpsMarker = L.marker([latitude, longitude], { icon: gpsIcon }).addTo(map);
+
+                        const popupHtml = `
+                            <div class="radar-popup-card">
+                                <div class="popup-top">
+                                    <span class="popup-tag" style="background: rgba(239, 68, 68, 0.2); color: #ef4444; border: 1px solid #ef4444;">
+                                        <i class="fa-solid fa-crosshairs"></i> VỊ TRÍ GPS CHÍNH XÁC
+                                    </span>
+                                    <span class="popup-time">${new Date().toLocaleTimeString('vi-VN')}</span>
+                                </div>
+                                <div class="popup-location">
+                                    <strong>🎯 Vị trí thực tế của thiết bị bạn</strong>
+                                </div>
+                                <div class="popup-ip">
+                                    <code>Tọa độ: ${latitude.toFixed(6)}, ${longitude.toFixed(6)}</code>
+                                </div>
+                                <div class="popup-meta">
+                                    <div><i class="fa-solid fa-satellite"></i> Bán kính sai số: <strong>~${Math.round(accuracy)} mét</strong></div>
+                                    <div style="color: #10b981; font-weight: 600;"><i class="fa-solid fa-check"></i> Đã định vị chính xác vị trí máy bạn!</div>
+                                </div>
+                                <div class="popup-actions">
+                                    <a href="https://www.google.com/maps?q=${latitude},${longitude}" target="_blank" rel="noopener noreferrer" class="btn-popup-gmaps">
+                                        <i class="fa-solid fa-map-location-dot"></i> Mở trên Google Maps
+                                    </a>
+                                </div>
+                            </div>
+                        `;
+                        gpsMarker.bindPopup(popupHtml, { maxWidth: 280, className: 'dark-radar-popup' }).openPopup();
+                    },
+                    (err) => {
+                        btn.innerHTML = '<i class="fa-solid fa-crosshairs"></i> Vị Trí Của Tôi (GPS)';
+                        alert('Không thể lấy vị trí GPS: ' + (err.message || 'Quyền vị trí bị từ chối. Vui lòng bật quyền vị trí trên trình duyệt.'));
+                    },
+                    { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
+                );
+            });
+
+            const searchAddress = async () => {
+                const query = document.getElementById('mapSearchInput')?.value?.trim();
+                if (!query) return;
+                const btn = document.getElementById('btnMapSearch');
+                btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i>';
+                try {
+                    const fullQuery = query.toLowerCase().includes('hà nội') ? query : `${query}, Hà Nội, Việt Nam`;
+                    const res = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(fullQuery)}&limit=1`, {
+                        headers: { 'Accept-Language': 'vi,en' }
+                    });
+                    if (res.ok) {
+                        const data = await res.json();
+                        if (data && data.length > 0) {
+                            const item = data[0];
+                            const lat = parseFloat(item.lat);
+                            const lon = parseFloat(item.lon);
+                            map.flyTo([lat, lon], 17, { duration: 1.5 });
+
+                            const searchIcon = L.divIcon({
+                                className: 'custom-radar-pin-wrap',
+                                html: `<div class="radar-pin-gps" style="background: #3b82f6; box-shadow: 0 0 16px rgba(59, 130, 246, 0.9);"><i class="fa-solid fa-magnifying-glass"></i></div>`,
+                                iconSize: [28, 28],
+                                iconAnchor: [14, 14]
+                            });
+
+                            const searchMarker = L.marker([lat, lon], { icon: searchIcon }).addTo(map);
+                            searchMarker.bindPopup(`
+                                <div class="radar-popup-card">
+                                    <div class="popup-top">
+                                        <span class="popup-tag" style="background: rgba(59, 130, 246, 0.2); color: #38bdf8; border: 1px solid #38bdf8;">
+                                            <i class="fa-solid fa-search-location"></i> KẾT QUẢ TÌM KIẾM
+                                        </span>
+                                    </div>
+                                    <div class="popup-location">
+                                        <strong>${item.name || query}</strong>
+                                    </div>
+                                    <div style="font-size: 11px; color: #9ca3af; margin: 6px 0;">${item.display_name}</div>
+                                    <div class="popup-actions">
+                                        <a href="https://www.google.com/maps?q=${lat},${lon}" target="_blank" rel="noopener noreferrer" class="btn-popup-gmaps">
+                                            <i class="fa-solid fa-map-location-dot"></i> Mở trên Google Maps
+                                        </a>
+                                    </div>
+                                </div>
+                            `, { maxWidth: 300, className: 'dark-radar-popup' }).openPopup();
+                        } else {
+                            alert('Không tìm thấy địa chỉ: ' + query);
+                        }
+                    }
+                } catch (e) {
+                    alert('Lỗi tìm kiếm: ' + e.message);
+                } finally {
+                    btn.innerHTML = '<i class="fa-solid fa-arrow-right"></i>';
+                }
+            };
+
+            document.getElementById('btnMapSearch')?.addEventListener('click', searchAddress);
+            document.getElementById('mapSearchInput')?.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') searchAddress();
+            });
         }
 
-        function addMapPin(lat, lon, label, isOrder = false) {
+        window.focusMapPin = (lat, lon, ip) => {
             if (!map || isNaN(lat) || isNaN(lon)) return;
-            const color = isOrder ? '#f59e0b' : '#10b981';
-            const iconHtml = `<div style="width: 14px; height: 14px; background: ${color}; border: 2px solid #fff; border-radius: 50%; box-shadow: 0 0 12px ${color};"></div>`;
+            map.flyTo([lat, lon], 16, { duration: 1.2 });
+            const key = `${Number(lat).toFixed(4)}_${Number(lon).toFixed(4)}`;
+            const marker = markerMap.get(key) || markerMap.get(ip);
+            if (marker) {
+                setTimeout(() => marker.openPopup(), 600);
+            }
+        };
+
+        function addMapPin(lat, lon, data, isOrder = false) {
+            if (!map || isNaN(lat) || isNaN(lon)) return;
+
+            const pinClass = isOrder ? 'radar-pin-order' : 'radar-pin-visitor';
+            const iconSymbol = isOrder ? '<i class="fa-solid fa-cake-candles"></i>' : '<i class="fa-solid fa-user"></i>';
+
             const customIcon = L.divIcon({
-                html: iconHtml,
-                className: 'custom-radar-pin',
-                iconSize: [14, 14],
-                iconAnchor: [7, 7]
+                className: 'custom-radar-pin-wrap',
+                html: `<div class="${pinClass}">${iconSymbol}</div>`,
+                iconSize: isOrder ? [28, 28] : [24, 24],
+                iconAnchor: isOrder ? [14, 14] : [12, 12]
             });
+
             const marker = L.marker([lat, lon], { icon: customIcon }).addTo(map);
-            marker.bindPopup(label);
+
+            const timeStr = new Date(data.timestamp || Date.now()).toLocaleTimeString('vi-VN');
+            const city = data.city || 'Hà Nội';
+            const country = data.country || 'Việt Nam';
+            const ip = data.ip || 'Unknown';
+            const isp = data.isp || 'Internet';
+            const deviceName = data.device_name || data.deviceName || 'PC';
+            const os = data.os || '';
+            const path = data.path || '/';
+            const flag = data.flag || (country.includes('Viet') ? '🇻🇳' : '🌐');
+
+            const popupHtml = `
+                <div class="radar-popup-card">
+                    <div class="popup-top">
+                        <span class="popup-tag ${isOrder ? 'tag-order' : 'tag-visitor'}">
+                            <i class="fa-solid ${isOrder ? 'fa-receipt' : 'fa-satellite-dish'}"></i> ${isOrder ? '★ ĐƠN HÀNG MỚI' : 'KHÁCH TRUY CẬP'}
+                        </span>
+                        <span class="popup-time">${timeStr}</span>
+                    </div>
+                    <div class="popup-location">
+                        <strong>${flag} ${city}, ${country}</strong>
+                    </div>
+                    <div class="popup-ip">
+                        <code>IP: ${ip}</code>
+                    </div>
+                    <div class="popup-meta">
+                        <div><i class="fa-solid fa-network-wired"></i> Nhà mạng: <strong>${isp}</strong></div>
+                        <div><i class="fa-solid fa-laptop"></i> Thiết bị: <strong>${deviceName} ${os ? `(${os})` : ''}</strong></div>
+                        <div><i class="fa-regular fa-compass"></i> Trang xem: <code class="path-code">${path}</code></div>
+                        ${isOrder && (data.orderId || data.order_id) ? `<div><i class="fa-solid fa-bag-shopping"></i> Mã đơn: <strong style="color: #f59e0b;">#${data.orderId || data.order_id}</strong></div>` : ''}
+                    </div>
+                    <div class="popup-actions">
+                        <a href="https://www.google.com/maps?q=${lat},${lon}" target="_blank" rel="noopener noreferrer" class="btn-popup-gmaps">
+                            <i class="fa-solid fa-map-location-dot"></i> Mở trên Google Maps
+                        </a>
+                    </div>
+                </div>
+            `;
+
+            marker.bindPopup(popupHtml, { maxWidth: 280, className: 'dark-radar-popup' });
             markers.push(marker);
+
+            const key = `${Number(lat).toFixed(4)}_${Number(lon).toFixed(4)}`;
+            markerMap.set(key, marker);
+            if (ip && ip !== 'Unknown') markerMap.set(ip, marker);
+
             document.getElementById('mapPinCount').textContent = `${markers.length} Pinned Locations`;
+            return marker;
         }
 
         function renderVisitorRow(v) {
@@ -558,7 +1078,7 @@
             else if (v.device_type === 'Tablet') deviceIcon = 'fa-tablet-screen-button';
 
             return `
-                <tr>
+                <tr onclick="focusMapPin(${lat}, ${lon}, '${v.ip}')" style="cursor: pointer;" title="Nhấn để định vị ngay trên bản đồ radar">
                     <td style="color: var(--text-muted);">${timeStr}</td>
                     <td><strong style="color: var(--text-primary);">${v.ip || 'Unknown'}</strong><br><small style="color: var(--text-muted);">${v.isp || 'Internet'}</small></td>
                     <td>${v.country_code === 'VN' || country.includes('Viet') ? '🇻🇳' : '🌐'} ${city}, ${country}</td>
@@ -568,7 +1088,16 @@
                     </td>
                     <td>${v.browser || 'Browser'}</td>
                     <td><span class="path-pill">${v.path || '/'}</span></td>
-                    <td><a href="${gmapUrl}" target="_blank" rel="noopener noreferrer" class="map-link-btn" title="Xem trên Google Maps"><i class="fa-solid fa-map-location-dot"></i> Maps</a></td>
+                    <td>
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <button type="button" class="map-link-btn" onclick="event.stopPropagation(); focusMapPin(${lat}, ${lon}, '${v.ip}')" title="Phóng to trên bản đồ">
+                                <i class="fa-solid fa-crosshairs"></i> Định vị
+                            </button>
+                            <a href="${gmapUrl}" target="_blank" rel="noopener noreferrer" class="map-link-btn" onclick="event.stopPropagation();" title="Xem trên Google Maps">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            </a>
+                        </div>
+                    </td>
                 </tr>
             `;
         }
@@ -627,7 +1156,7 @@
 
                     data.visitors.forEach(v => {
                         if (v.lat && v.lon) {
-                            addMapPin(v.lat, v.lon, `<strong>${v.ip}</strong><br>${v.city}, ${v.country}<br>${v.device_name}<br>Page: ${v.path}`);
+                            addMapPin(v.lat, v.lon, v, false);
                         }
                     });
                 }
@@ -636,6 +1165,20 @@
                     const ordersContainer = document.getElementById('ordersFeedContainer');
                     ordersContainer.innerHTML = data.orders.map(renderOrderCard).join('');
                     document.getElementById('liveOrdersBadge').textContent = `${data.orders.length} Đơn`;
+
+                    data.orders.forEach(o => {
+                        if (o.lat && o.lon) {
+                            addMapPin(o.lat, o.lon, {
+                                ...o,
+                                ip: o.ip || 'Unknown',
+                                city: o.city || 'Hà Nội',
+                                country: o.country || 'Việt Nam',
+                                isp: 'Order Customer',
+                                device_name: o.customer_name || 'Khách Hàng',
+                                path: '/checkout'
+                            }, true);
+                        }
+                    });
                 }
             } catch {}
         }
@@ -669,7 +1212,7 @@
                         if (placeholder) tbody.innerHTML = '';
                         tbody.insertAdjacentHTML('afterbegin', renderVisitorRow(rowObj));
 
-                        addMapPin(rowObj.lat, rowObj.lon, `<strong>${rowObj.ip}</strong><br>${rowObj.city}<br>${rowObj.device_name}`);
+                        addMapPin(rowObj.lat, rowObj.lon, rowObj, false);
                         playChime(640, 'sine', 0.15);
 
                         const totalViewsEl = document.getElementById('kpiTotalViews');
@@ -699,7 +1242,15 @@
                         totalRevEl.textContent = (curRev + (msg.totalAmount || 0)).toLocaleString('vi-VN') + '₫';
 
                         if (msg.geo && msg.geo.lat && msg.geo.lon) {
-                            addMapPin(msg.geo.lat, msg.geo.lon, `★ <strong>ĐƠN HÀNG: ${msg.orderId}</strong><br>${msg.customerName} - ${(msg.totalAmount || 0).toLocaleString('vi-VN')}₫`, true);
+                            addMapPin(msg.geo.lat, msg.geo.lon, {
+                                ...msg,
+                                ip: msg.geo.ip || 'Unknown',
+                                city: msg.geo.city || 'Hà Nội',
+                                country: msg.geo.country || 'Việt Nam',
+                                isp: 'Order Customer',
+                                device_name: msg.customerName || 'Khách Hàng',
+                                path: '/checkout'
+                            }, true);
                         }
                     }
                 } catch {}
