@@ -639,10 +639,61 @@ export function initProductDetailPage() {
     let currentSelectedPrice = product.price;
     let selectedVariant = '';
 
-    const optGroup = document.querySelector('.pd-option-group');
-    if (optGroup) {
-        optGroup.style.display = 'none';
-        optGroup.remove();
+    const oldVariants = document.getElementById('pdVariantsSection');
+    if (oldVariants) oldVariants.remove();
+    const oldInscription = document.getElementById('pdInscriptionSection');
+    if (oldInscription) oldInscription.remove();
+
+    const actionRow = document.querySelector('.pd-action-row');
+
+    if (product.variants && product.variants.length > 0) {
+        currentSelectedPrice = product.variants[0].price;
+        selectedVariant = product.variants[0].name;
+
+        const variantsSec = document.createElement('div');
+        variantsSec.id = 'pdVariantsSection';
+        variantsSec.className = 'pd-variants-section';
+        const variantsHeading = lang === 'en' ? 'Select Cake Size:' : 'Chọn kích thước bánh:';
+        variantsSec.innerHTML = `
+            <div class="pd-variants-heading">${variantsHeading}</div>
+            <div class="pd-variants-list">
+                ${product.variants.map((v, i) => `
+                    <button type="button" class="pd-variant-btn ${i === 0 ? 'active' : ''}" data-price="${v.price}" data-name="${v.name}">
+                        <span class="v-name">${v.name}</span>
+                        <span class="v-price">${formatPrice(v.price)}</span>
+                    </button>
+                `).join('')}
+            </div>
+        `;
+
+        if (actionRow && actionRow.parentNode) {
+            actionRow.parentNode.insertBefore(variantsSec, actionRow);
+        }
+
+        variantsSec.querySelectorAll('.pd-variant-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                variantsSec.querySelectorAll('.pd-variant-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentSelectedPrice = parseInt(btn.dataset.price, 10) || product.price;
+                selectedVariant = btn.dataset.name || '';
+                if (priceEl) priceEl.textContent = formatPrice(currentSelectedPrice);
+            });
+        });
+    }
+
+    if (product.category === 'banh-gato') {
+        const inscSec = document.createElement('div');
+        inscSec.id = 'pdInscriptionSection';
+        inscSec.className = 'pd-inscription-section';
+        const inscLabel = lang === 'en' ? 'Cake Inscription (Free):' : 'Viết chữ lên bánh (Miễn phí):';
+        const inscPlaceholder = lang === 'en' ? 'E.g. Happy 20th Birthday Minh Chau' : 'Ví dụ: Chúc mừng sinh nhật Minh Châu 20t';
+        inscSec.innerHTML = `
+            <label for="pdCakeInscription"><i class="fa-solid fa-pen-nib"></i> ${inscLabel}</label>
+            <input type="text" id="pdCakeInscription" placeholder="${inscPlaceholder}" maxlength="60" autocomplete="off">
+        `;
+        if (actionRow && actionRow.parentNode) {
+            actionRow.parentNode.insertBefore(inscSec, actionRow);
+        }
     }
 
     if (priceEl) priceEl.textContent = formatPrice(currentSelectedPrice);
@@ -667,12 +718,15 @@ export function initProductDetailPage() {
 
     function createCartItem() {
         const qty = parseInt(qtyInput ? qtyInput.value : 1, 10) || 1;
+        const inscriptionInput = document.getElementById('pdCakeInscription');
+        const inscription = inscriptionInput ? inscriptionInput.value.trim() : '';
         return {
             id: product.id,
             title: title,
             price: currentSelectedPrice,
             qty: qty,
             variant: selectedVariant,
+            inscription: inscription,
             img: product.img.startsWith("/") ? product.img : "/" + product.img
         };
     }

@@ -1,7 +1,9 @@
 import fs from 'fs';
 import path from 'path';
-import { I18N } from '../js/data/i18n.js';
+import { I18N, registerProductsI18n } from '../js/data/i18n.js';
 import { PRODUCTS } from '../js/data/products.js';
+
+registerProductsI18n(PRODUCTS);
 
 // Setup DOM mocks before importing cart
 global.window = { dispatchEvent: () => {} };
@@ -55,7 +57,7 @@ const jsFiles = [
 ];
 for (const jf of jsFiles) {
     const content = fs.readFileSync(jf, 'utf8');
-    const regex = /t\(['"]([^'"]+)['"]\)/g;
+    const regex = /\bt\(['"]([^'"]+)['"]\)/g;
     let m;
     while ((m = regex.exec(content)) !== null) {
         foundKeys.add(m[1]);

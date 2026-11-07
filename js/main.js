@@ -1,4 +1,5 @@
 import { PRODUCTS } from './data/products.js';
+import { STORES } from './data/stores.js';
 import { I18N, setLanguage, getLanguage, registerProductsI18n } from './data/i18n.js';
 import { CartStore, showCartToast } from './modules/cart.js';
 import { OrderStore, HANOI_DISTRICTS, validateVietnamPhone } from './modules/order.js';
@@ -177,6 +178,12 @@ function init() {
             const removeText = lang === 'en' ? 'Remove' : 'Xóa';
             cartItemList.innerHTML = cart.map((item, idx) => {
                 const displayTitle = (I18N[lang] && I18N[lang][item.id]) ? I18N[lang][item.id] : item.title;
+                const variantHtml = item.variant ? `<p class="cart-item-variant"><span class="cart-variant-tag">${item.variant}</span></p>` : '';
+                const inscriptionHtml = item.inscription ? `
+                    <div class="cart-item-inscription">
+                        <i class="fa-solid fa-pen-nib"></i> <strong>${lang === 'en' ? 'Inscription:' : 'Lời chúc:'}</strong> "${item.inscription}"
+                    </div>
+                ` : '';
                 return `
                 <div class="cart-item-card" data-idx="${idx}">
                     <div class="cart-item-img">
@@ -184,7 +191,8 @@ function init() {
                     </div>
                     <div class="cart-item-info">
                         <h3 class="cart-item-title">${displayTitle}</h3>
-                        <p class="cart-item-variant">${item.variant || ''}</p>
+                        ${variantHtml}
+                        ${inscriptionHtml}
                         <span class="cart-item-price">${(item.price || 0).toLocaleString('vi-VN')}₫</span>
                     </div>
                     <div class="cart-item-actions">
@@ -228,6 +236,50 @@ function init() {
                     const idx = parseInt(btn.dataset.idx, 10);
                     CartStore.remove(idx);
                     renderCartPage();
+                });
+            });
+        }
+
+        const accGrid = document.getElementById('cartAccessoriesGrid');
+        if (accGrid) {
+            const accessories = PRODUCTS.filter(p => p.category === 'phu-kien');
+            accGrid.innerHTML = accessories.map(acc => {
+                const accTitle = (lang === 'en' ? acc.name_en : acc.name_vi) || acc.name_vi;
+                const quickAddText = lang === 'en' ? '+ Quick Add' : '+ Thêm nhanh';
+                return `
+                    <div class="cart-acc-card">
+                        <div class="cart-acc-thumb">
+                            <img src="${acc.img.startsWith('/') ? acc.img : '/' + acc.img}" alt="${accTitle}">
+                        </div>
+                        <div class="cart-acc-details">
+                            <h4 class="cart-acc-title">${accTitle}</h4>
+                            <div class="cart-acc-price">${(acc.price || 0).toLocaleString('vi-VN')}₫</div>
+                        </div>
+                        <button type="button" class="btn-acc-quick-add" data-id="${acc.id}">
+                            ${quickAddText}
+                        </button>
+                    </div>
+                `;
+            }).join('');
+
+            accGrid.querySelectorAll('.btn-acc-quick-add').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const id = btn.dataset.id;
+                    const target = accessories.find(a => a.id === id);
+                    if (target) {
+                        const itemTitle = (lang === 'en' ? target.name_en : target.name_vi) || target.name_vi;
+                        CartStore.add({
+                            id: target.id,
+                            title: itemTitle,
+                            price: target.price,
+                            qty: 1,
+                            variant: '',
+                            inscription: '',
+                            img: target.img
+                        });
+                        showCartToast(itemTitle);
+                        renderCartPage();
+                    }
                 });
             });
         }
@@ -304,6 +356,8 @@ function init() {
                 const lang = getLanguage();
                 checkoutItemsList.innerHTML = (lastPlacedOrder.items || []).map(item => {
                     const displayTitle = (I18N[lang] && I18N[lang][item.id]) ? I18N[lang][item.id] : item.title;
+                    const variantHtml = item.variant ? `<p style="font-size: 12px; color: #777; margin: 2px 0;">${item.variant}</p>` : '';
+                    const inscHtml = item.inscription ? `<p style="font-size: 11.5px; color: #b7532a; font-style: italic; margin: 2px 0;"><i class="fa-solid fa-pen-nib"></i> "${item.inscription}"</p>` : '';
                     return `
                     <div class="cart-item-preview">
                         <div class="cart-thumb">
@@ -311,8 +365,9 @@ function init() {
                             <span class="cart-qty-badge">${item.qty}</span>
                         </div>
                         <div style="flex: 1;">
-                            <h4 style="font-size: 14px; margin-bottom: 4px;">${displayTitle}</h4>
-                            <p style="font-size: 12px; color: #777;">${item.variant || ''}</p>
+                            <h4 style="font-size: 14px; margin-bottom: 2px;">${displayTitle}</h4>
+                            ${variantHtml}
+                            ${inscHtml}
                         </div>
                         <strong style="font-size: 14px; color: var(--text-dark);">${((item.price || 0) * (item.qty || 1)).toLocaleString('vi-VN')}₫</strong>
                     </div>
@@ -341,6 +396,8 @@ function init() {
         const lang = getLanguage();
         checkoutItemsList.innerHTML = checkoutCart.map(item => {
             const displayTitle = (I18N[lang] && I18N[lang][item.id]) ? I18N[lang][item.id] : item.title;
+            const variantHtml = item.variant ? `<p style="font-size: 12px; color: #777; margin: 2px 0;">${item.variant}</p>` : '';
+            const inscHtml = item.inscription ? `<p style="font-size: 11.5px; color: #b7532a; font-style: italic; margin: 2px 0;"><i class="fa-solid fa-pen-nib"></i> "${item.inscription}"</p>` : '';
             return `
             <div class="cart-item-preview">
                 <div class="cart-thumb">
@@ -348,8 +405,9 @@ function init() {
                     <span class="cart-qty-badge">${item.qty}</span>
                 </div>
                 <div style="flex: 1;">
-                    <h4 style="font-size: 14px; margin-bottom: 4px;">${displayTitle}</h4>
-                    <p style="font-size: 12px; color: #777;">${item.variant || ''}</p>
+                    <h4 style="font-size: 14px; margin-bottom: 2px;">${displayTitle}</h4>
+                    ${variantHtml}
+                    ${inscHtml}
                 </div>
                 <strong style="font-size: 14px; color: var(--text-dark);">${((item.price || 0) * (item.qty || 1)).toLocaleString('vi-VN')}₫</strong>
             </div>
@@ -397,6 +455,74 @@ function init() {
         const phoneInput = document.getElementById('custPhone');
         const checkoutFormError = document.getElementById('checkoutFormError');
         const checkoutFormErrorText = document.getElementById('checkoutFormErrorText');
+        const optDelivery = document.getElementById('optDelivery');
+        const optPickup = document.getElementById('optPickup');
+        const optDeliveryWrap = document.getElementById('optDeliveryWrap');
+        const optPickupWrap = document.getElementById('optPickupWrap');
+        const deliveryFieldsWrap = document.getElementById('deliveryFieldsWrap');
+        const pickupFieldsWrap = document.getElementById('pickupFieldsWrap');
+        const storeBranchSelect = document.getElementById('storeBranchSelect');
+        const selectedStoreCard = document.getElementById('selectedStoreCard');
+        const storeCardName = document.getElementById('storeCardName');
+        const storeCardAddress = document.getElementById('storeCardAddress');
+        const storeCardPhone = document.getElementById('storeCardPhone');
+        const pickupDateInput = document.getElementById('pickupDate');
+        const pickupTimeSlotSelect = document.getElementById('pickupTimeSlot');
+        const custNoteTextarea = document.getElementById('custNote');
+
+        if (custNoteTextarea) {
+            custNoteTextarea.value = localStorage.getItem('poeme_order_note') || '';
+        }
+
+        if (pickupDateInput) {
+            const today = new Date().toISOString().split('T')[0];
+            pickupDateInput.setAttribute('min', today);
+            if (!pickupDateInput.value) {
+                pickupDateInput.value = today;
+            }
+        }
+
+        if (storeBranchSelect && typeof STORES !== 'undefined') {
+            if (storeBranchSelect.options.length <= 1) {
+                STORES.forEach(s => {
+                    const opt = document.createElement('option');
+                    opt.value = s.id;
+                    opt.textContent = `${s.name} - ${s.address}`;
+                    storeBranchSelect.appendChild(opt);
+                });
+            }
+
+            storeBranchSelect.addEventListener('change', () => {
+                const wrap = storeBranchSelect.closest('.form-req-wrap');
+                if (wrap) wrap.classList.remove('has-error');
+                if (checkoutFormError) checkoutFormError.style.display = 'none';
+                const store = STORES.find(s => s.id === storeBranchSelect.value);
+                if (store && selectedStoreCard) {
+                    selectedStoreCard.style.display = 'flex';
+                    if (storeCardName) storeCardName.textContent = store.name;
+                    if (storeCardAddress) storeCardAddress.textContent = store.address;
+                    if (storeCardPhone) storeCardPhone.innerHTML = `<i class="fa-solid fa-phone"></i> Hotline: ${store.phone} (${store.hours})`;
+                } else if (selectedStoreCard) {
+                    selectedStoreCard.style.display = 'none';
+                }
+            });
+        }
+
+        function updateFulfillmentUI() {
+            const isDelivery = optDelivery ? optDelivery.checked : true;
+            if (optDeliveryWrap && optPickupWrap) {
+                optDeliveryWrap.classList.toggle('active', isDelivery);
+                optPickupWrap.classList.toggle('active', !isDelivery);
+            }
+            if (deliveryFieldsWrap) deliveryFieldsWrap.style.display = isDelivery ? 'block' : 'none';
+            if (pickupFieldsWrap) pickupFieldsWrap.style.display = isDelivery ? 'none' : 'block';
+            if (checkoutFormError) checkoutFormError.style.display = 'none';
+        }
+
+        if (optDelivery && optPickup) {
+            optDelivery.addEventListener('change', updateFulfillmentUI);
+            optPickup.addEventListener('change', updateFulfillmentUI);
+        }
 
         if (phoneInput) {
             phoneInput.addEventListener('input', (e) => {
@@ -409,10 +535,17 @@ function init() {
             });
         }
 
-        ['custName', 'custAddress'].forEach(id => {
+        ['custName', 'custAddress', 'pickupDate', 'pickupTimeSlot'].forEach(id => {
             const input = document.getElementById(id);
             if (input) {
                 input.addEventListener('input', () => {
+                    const wrap = input.closest('.form-req-wrap');
+                    if (wrap && input.value.trim()) {
+                        wrap.classList.remove('has-error');
+                    }
+                    if (checkoutFormError) checkoutFormError.style.display = 'none';
+                });
+                input.addEventListener('change', () => {
                     const wrap = input.closest('.form-req-wrap');
                     if (wrap && input.value.trim()) {
                         wrap.classList.remove('has-error');
@@ -433,6 +566,7 @@ function init() {
         checkoutForm.addEventListener('submit', (e) => {
             e.preventDefault();
 
+            const isDelivery = optDelivery ? optDelivery.checked : true;
             const nameInput = document.getElementById('custName');
             const addressInput = document.getElementById('custAddress');
 
@@ -442,10 +576,21 @@ function init() {
 
             const requiredFields = [
                 { el: nameInput, val: nameInput?.value.trim() },
-                { el: addressInput, val: addressInput?.value.trim() },
-                { el: checkoutDistrictSelect, val: checkoutDistrictSelect?.value.trim() },
-                { el: checkoutWardSelect, val: checkoutWardSelect?.value.trim() }
+                { el: pickupDateInput, val: pickupDateInput?.value.trim() },
+                { el: pickupTimeSlotSelect, val: pickupTimeSlotSelect?.value.trim() }
             ];
+
+            if (isDelivery) {
+                requiredFields.push(
+                    { el: addressInput, val: addressInput?.value.trim() },
+                    { el: checkoutDistrictSelect, val: checkoutDistrictSelect?.value.trim() },
+                    { el: checkoutWardSelect, val: checkoutWardSelect?.value.trim() }
+                );
+            } else {
+                requiredFields.push(
+                    { el: storeBranchSelect, val: storeBranchSelect?.value.trim() }
+                );
+            }
 
             requiredFields.forEach(({ el, val }) => {
                 if (!el) return;
@@ -498,28 +643,41 @@ function init() {
 
             const name = nameInput.value.trim();
             const phone = phoneVal;
-            const street = addressInput.value.trim();
-            const district = checkoutDistrictSelect.value.trim();
-            const ward = checkoutWardSelect.value.trim();
+            const street = addressInput ? addressInput.value.trim() : '';
+            const district = checkoutDistrictSelect ? checkoutDistrictSelect.value.trim() : '';
+            const ward = checkoutWardSelect ? checkoutWardSelect.value.trim() : '';
             const email = document.getElementById('custEmail')?.value.trim() || '';
+            const receiptDateVal = pickupDateInput ? pickupDateInput.value.trim() : '';
+            const receiptTimeVal = pickupTimeSlotSelect ? pickupTimeSlotSelect.value.trim() : '';
+            const noteVal = custNoteTextarea ? custNoteTextarea.value.trim() : '';
+
             const currentCart = CartStore.get();
             const baseTotal = currentCart.reduce((sum, i) => sum + ((i.price || 0) * (i.qty || 1)), 0);
             const finalAmount = Math.max(0, baseTotal - appliedDiscount);
+
+            const selectedStore = !isDelivery && storeBranchSelect ? STORES.find(s => s.id === storeBranchSelect.value) : null;
 
             const order = OrderStore.create({
                 customerName: name,
                 customerPhone: phone,
                 customerEmail: email,
-                addressDetail: street,
-                ward: ward,
-                district: district,
+                fulfillmentMethod: isDelivery ? 'delivery' : 'pickup',
+                storeBranchId: selectedStore ? selectedStore.id : null,
+                storeBranchName: selectedStore ? selectedStore.name : null,
+                storeBranchAddress: selectedStore ? selectedStore.address : null,
+                storeBranchPhone: selectedStore ? selectedStore.phone : null,
+                addressDetail: isDelivery ? street : (selectedStore ? selectedStore.address : ''),
+                ward: isDelivery ? ward : '',
+                district: isDelivery ? district : (selectedStore ? selectedStore.district : ''),
                 city: 'Hà Nội',
+                receiptDate: receiptDateVal,
+                receiptTimeSlot: receiptTimeVal,
                 items: currentCart,
                 subtotal: baseTotal,
                 discount: appliedDiscount,
                 couponCode: appliedCoupon,
                 totalAmount: finalAmount,
-                note: localStorage.getItem('poeme_order_note') || ''
+                note: noteVal
             });
             localStorage.removeItem('poeme_order_note');
             lastPlacedOrder = order;
@@ -541,14 +699,43 @@ function init() {
             }
 
             const succOrderId = document.getElementById('succOrderId');
+            const succMethod = document.getElementById('succMethod');
+            const succTime = document.getElementById('succTime');
             const succCustomer = document.getElementById('succCustomer');
             const succAddressDetail = document.getElementById('succAddressDetail');
             const succAddressArea = document.getElementById('succAddressArea');
+            const succNoteRow = document.getElementById('succNoteRow');
+            const succNoteDivider = document.getElementById('succNoteDivider');
+            const succNote = document.getElementById('succNote');
 
             if (succOrderId) succOrderId.textContent = order.id;
+            if (succMethod) {
+                succMethod.textContent = isDelivery
+                    ? (lang === 'en' ? 'Home Delivery (Hanoi only)' : 'Giao hàng tận nơi (Chỉ tại Hà Nội)')
+                    : (lang === 'en' ? `Store Pickup: ${order.storeBranchName}` : `Nhận tại cửa hàng: ${order.storeBranchName}`);
+            }
+            if (succTime) {
+                succTime.textContent = `${receiptDateVal} | ${receiptTimeVal}`;
+            }
             if (succCustomer) succCustomer.textContent = `${name} | ${phone}`;
-            if (succAddressDetail) succAddressDetail.textContent = street;
-            if (succAddressArea) succAddressArea.textContent = `Phường ${ward}, ${district}, Hà Nội`;
+
+            if (succAddressDetail) {
+                succAddressDetail.textContent = isDelivery ? street : (order.storeBranchAddress || '');
+            }
+            if (succAddressArea) {
+                succAddressArea.textContent = isDelivery
+                    ? `Phường ${ward}, ${district}, Hà Nội`
+                    : `Hotline: ${order.storeBranchPhone || '0963 720 466'} (07:30 - 21:30)`;
+            }
+
+            if (noteVal) {
+                if (succNoteRow) succNoteRow.style.display = 'flex';
+                if (succNoteDivider) succNoteDivider.style.display = 'block';
+                if (succNote) succNote.textContent = `"${noteVal}"`;
+            } else {
+                if (succNoteRow) succNoteRow.style.display = 'none';
+                if (succNoteDivider) succNoteDivider.style.display = 'none';
+            }
 
             orderSuccessBox.style.display = 'flex';
 

@@ -1,2770 +1,5681 @@
+export const CATEGORIES = [
+  {
+    "slug": "all",
+    "name_vi": "Tất cả sản phẩm",
+    "name_en": "All Products",
+    "icon": "fa-solid fa-layer-group"
+  },
+  {
+    "slug": "banh-gato",
+    "name_vi": "Bánh Gato",
+    "name_en": "Gateaux & Cakes",
+    "icon": "fa-solid fa-cake-candles"
+  },
+  {
+    "slug": "banh-kem-tuoi",
+    "name_vi": "Bánh Kem Tươi",
+    "name_en": "Fresh Cream & Mousse",
+    "icon": "fa-solid fa-ice-cream"
+  },
+  {
+    "slug": "banh-quy",
+    "name_vi": "Bánh Quy",
+    "name_en": "Cookies & Biscuits",
+    "icon": "fa-solid fa-cookie"
+  },
+  {
+    "slug": "banh-mi",
+    "name_vi": "Bánh Mì",
+    "name_en": "Breads & Pastries",
+    "icon": "fa-solid fa-bread-slice"
+  },
+  {
+    "slug": "phu-kien",
+    "name_vi": "Phụ Kiện",
+    "name_en": "Party Accessories",
+    "icon": "fa-solid fa-wand-magic-sparkles"
+  }
+];
+
+export const SUBCATEGORIES = [
+  {
+    "slug": "banh-gato-nguyen-chiec",
+    "parent": "banh-gato",
+    "name_vi": "Bánh Gato Sinh Nhật & Sự Kiện",
+    "name_en": "Birthday & Event Gateaux"
+  },
+  {
+    "slug": "banh-gato-cho-be",
+    "parent": "banh-gato",
+    "name_vi": "Bánh Tạo Hình Cho Bé",
+    "name_en": "Kids Themed Cakes"
+  },
+  {
+    "slug": "banh-gato-tinh-yeu",
+    "parent": "banh-gato",
+    "name_vi": "Bánh Trái Tim & Tình Yêu",
+    "name_en": "Love & Heart Cakes"
+  },
+  {
+    "slug": "dong-mousse",
+    "parent": "banh-kem-tuoi",
+    "name_vi": "Dòng Bánh Mousse Tươi",
+    "name_en": "Fresh Mousse Cakes"
+  },
+  {
+    "slug": "dong-su-kem",
+    "parent": "banh-kem-tuoi",
+    "name_vi": "Dòng Su Kem (Choux Cream)",
+    "name_en": "Choux Pastries"
+  },
+  {
+    "slug": "dong-tiramisu",
+    "parent": "banh-kem-tuoi",
+    "name_vi": "Dòng Tiramisu & Cà Phê",
+    "name_en": "Tiramisu & Coffee Pastries"
+  },
+  {
+    "slug": "dong-tart-ngan-lop",
+    "parent": "banh-kem-tuoi",
+    "name_vi": "Dòng Tart & Ngàn Lớp",
+    "name_en": "Tarts & Mille-Feuille"
+  },
+  {
+    "slug": "dong-banh-cuon-cat-mieng",
+    "parent": "banh-kem-tuoi",
+    "name_vi": "Bánh Cuộn & Bánh Cắt Miếng",
+    "name_en": "Roll Cakes & Slices"
+  },
+  {
+    "slug": "cookies-hop",
+    "parent": "banh-quy",
+    "name_vi": "Hộp Cookies Thủ Công",
+    "name_en": "Artisan Cookies Box"
+  },
+  {
+    "slug": "cookies-tui",
+    "parent": "banh-quy",
+    "name_vi": "Túi Cookies & Bánh Que",
+    "name_en": "Cookies Pouches & Stick Pies"
+  },
+  {
+    "slug": "banh-mi-man-ngot",
+    "parent": "banh-mi",
+    "name_vi": "Bánh Mì Mặn & Bánh Mì Bơ Ngọt",
+    "name_en": "Savory & Sweet Breads"
+  },
+  {
+    "slug": "banh-mi-goi-sandwich",
+    "parent": "banh-mi",
+    "name_vi": "Bánh Mì Gối & Sandwich",
+    "name_en": "Toast Loaves & Sandwiches"
+  },
+  {
+    "slug": "banh-sung-bo-danish",
+    "parent": "banh-mi",
+    "name_vi": "Bánh Sừng Bò & Donut",
+    "name_en": "Croissants & Donuts"
+  },
+  {
+    "slug": "phu-kien-sinh-nhat",
+    "parent": "phu-kien",
+    "name_vi": "Nến & Mũ Sinh Nhật",
+    "name_en": "Birthday Candles & Hats"
+  }
+];
+
 export const PRODUCTS = [
   {
-    "id": "BanhGatoHaiTangDauTay",
-    "name_vi": "Dreamy floral (2 tầng)",
-    "name_en": "Dreamy Floral Two-Tier Gateau",
+    "id": "DreamyFloral",
+    "name_vi": "Dreamy floral",
+    "name_en": "Dreamy Floral Gateau",
     "category": "banh-gato",
     "category_name": "Bánh Gato",
     "category_name_en": "Gateaux & Birthday Cakes",
-    "price": 550000,
-    "img": "public/images/products/banh-gato/BanhGatoHaiTangDauTay.webp",
+    "price": 350000,
+    "img": "public/images/products/banh-gato/dreamy-floral.webp",
     "featured": true,
-    "description_vi": "Cốt bông lan mềm mịn 2 tầng kết hợp kem tươi hảo hạng và dâu tây tươi nhập khẩu.",
-    "description_en": "Delicate 2-tier sponge cake with premium fresh whipped cream and fresh imported strawberries.",
-    "subcategory": "banh-gato-nguyen-chiec",
-    "subcategory_name": "Bánh Gato Nguyên Chiếc",
-    "subcategory_name_en": "Whole Gateaux"
+    "description_vi": "Bánh sinh nhật Dreamy floral hảo hạng, làm từ cốt bông lan Nhật Bản mềm xốp kết hợp cùng lớp kem tươi cao cấp thanh nhẹ, trang trí tinh tế.",
+    "description_en": "Authentic handcrafted Dreamy floral prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "banh-gato-tinh-yeu",
+    "subcategory_name": "Bánh Trái Tim & Tình Yêu",
+    "subcategory_name_en": "Love & Heart Cakes",
+    "variants": [
+      {
+        "size": "16cm",
+        "name": "Size 16cm (4-6 người)",
+        "price": 350000
+      },
+      {
+        "size": "18cm",
+        "name": "Size 18cm (6-8 người)",
+        "price": 437500
+      },
+      {
+        "size": "20cm",
+        "name": "Size 20cm (8-10 người)",
+        "price": 542500
+      }
+    ]
   },
   {
-    "id": "BanhGatoDiamondDauTay",
+    "id": "PinkOHaraRose",
     "name_vi": "Pink O'hara rose",
-    "name_en": "Pink O'hara Rose Gateau",
+    "name_en": "Pink O'Hara Rose Gateau",
     "category": "banh-gato",
     "category_name": "Bánh Gato",
     "category_name_en": "Gateaux & Birthday Cakes",
-    "price": 390000,
-    "img": "public/images/products/banh-gato/BanhGatoDiamondDauTay.webp",
+    "price": 350000,
+    "img": "public/images/products/banh-gato/pink-o-hara-rose.webp",
     "featured": true,
-    "description_vi": "Bánh gato tạo hình kim cương sang trọng phủ kem tươi và dâu tây căng mọng.",
-    "description_en": "Elegant diamond-shaped gateau topped with fresh whipping cream and juicy strawberries.",
-    "subcategory": "banh-gato-nguyen-chiec",
-    "subcategory_name": "Bánh Gato Nguyên Chiếc",
-    "subcategory_name_en": "Whole Gateaux"
+    "description_vi": "Bánh sinh nhật Pink O'hara rose hảo hạng, làm từ cốt bông lan Nhật Bản mềm xốp kết hợp cùng lớp kem tươi cao cấp thanh nhẹ, trang trí tinh tế.",
+    "description_en": "Authentic handcrafted Pink O'hara rose prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "banh-gato-tinh-yeu",
+    "subcategory_name": "Bánh Trái Tim & Tình Yêu",
+    "subcategory_name_en": "Love & Heart Cakes",
+    "variants": [
+      {
+        "size": "16cm",
+        "name": "Size 16cm (4-6 người)",
+        "price": 350000
+      },
+      {
+        "size": "18cm",
+        "name": "Size 18cm (6-8 người)",
+        "price": 437500
+      },
+      {
+        "size": "20cm",
+        "name": "Size 20cm (8-10 người)",
+        "price": 542500
+      }
+    ]
   },
   {
-    "id": "BanhGatoFujiTraXanhDauTay",
+    "id": "LavenderBlossom",
+    "name_vi": "Lavender blossom",
+    "name_en": "Lavender Blossom Gateau",
+    "category": "banh-gato",
+    "category_name": "Bánh Gato",
+    "category_name_en": "Gateaux & Birthday Cakes",
+    "price": 350000,
+    "img": "public/images/products/banh-gato/lavender-blossom.webp",
+    "featured": true,
+    "description_vi": "Bánh sinh nhật Lavender blossom hảo hạng, làm từ cốt bông lan Nhật Bản mềm xốp kết hợp cùng lớp kem tươi cao cấp thanh nhẹ, trang trí tinh tế.",
+    "description_en": "Authentic handcrafted Lavender blossom prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "banh-gato-tinh-yeu",
+    "subcategory_name": "Bánh Trái Tim & Tình Yêu",
+    "subcategory_name_en": "Love & Heart Cakes",
+    "variants": [
+      {
+        "size": "16cm",
+        "name": "Size 16cm (4-6 người)",
+        "price": 350000
+      },
+      {
+        "size": "18cm",
+        "name": "Size 18cm (6-8 người)",
+        "price": 437500
+      },
+      {
+        "size": "20cm",
+        "name": "Size 20cm (8-10 người)",
+        "price": 542500
+      }
+    ]
+  },
+  {
+    "id": "IvoryBlossom",
+    "name_vi": "Ivory blossom",
+    "name_en": "Ivory Blossom Gateau",
+    "category": "banh-gato",
+    "category_name": "Bánh Gato",
+    "category_name_en": "Gateaux & Birthday Cakes",
+    "price": 350000,
+    "img": "public/images/products/banh-gato/ivory-blossom.webp",
+    "featured": true,
+    "description_vi": "Bánh sinh nhật Ivory blossom hảo hạng, làm từ cốt bông lan Nhật Bản mềm xốp kết hợp cùng lớp kem tươi cao cấp thanh nhẹ, trang trí tinh tế.",
+    "description_en": "Authentic handcrafted Ivory blossom prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "banh-gato-tinh-yeu",
+    "subcategory_name": "Bánh Trái Tim & Tình Yêu",
+    "subcategory_name_en": "Love & Heart Cakes",
+    "variants": [
+      {
+        "size": "16cm",
+        "name": "Size 16cm (4-6 người)",
+        "price": 350000
+      },
+      {
+        "size": "18cm",
+        "name": "Size 18cm (6-8 người)",
+        "price": 437500
+      },
+      {
+        "size": "20cm",
+        "name": "Size 20cm (8-10 người)",
+        "price": 542500
+      }
+    ]
+  },
+  {
+    "id": "GreenGarden",
     "name_vi": "Green Garden",
     "name_en": "Green Garden Matcha Gateau",
     "category": "banh-gato",
     "category_name": "Bánh Gato",
     "category_name_en": "Gateaux & Birthday Cakes",
-    "price": 420000,
-    "img": "public/images/products/banh-gato/BanhGatoFujiTraXanhDauTay.webp",
+    "price": 350000,
+    "img": "public/images/products/banh-gato/green-garden.webp",
     "featured": true,
-    "description_vi": "Hòa quyện trà xanh Uji Nhật Bản thanh mát với vị ngọt dịu của dâu tây tươi.",
-    "description_en": "Refreshing Japanese Uji matcha infused cake paired with sweet fresh strawberries.",
+    "description_vi": "Bánh sinh nhật Green Garden hảo hạng, làm từ cốt bông lan Nhật Bản mềm xốp kết hợp cùng lớp kem tươi cao cấp thanh nhẹ, trang trí tinh tế.",
+    "description_en": "Authentic handcrafted Green Garden prepared with premium natural ingredients following traditional Japanese bakery recipes.",
     "subcategory": "banh-gato-nguyen-chiec",
-    "subcategory_name": "Bánh Gato Nguyên Chiếc",
-    "subcategory_name_en": "Whole Gateaux"
+    "subcategory_name": "Bánh Gato Sinh Nhật & Sự Kiện",
+    "subcategory_name_en": "Birthday & Event Gateaux",
+    "variants": [
+      {
+        "size": "16cm",
+        "name": "Size 16cm (4-6 người)",
+        "price": 350000
+      },
+      {
+        "size": "18cm",
+        "name": "Size 18cm (6-8 người)",
+        "price": 437500
+      },
+      {
+        "size": "20cm",
+        "name": "Size 20cm (8-10 người)",
+        "price": 542500
+      }
+    ]
   },
   {
-    "id": "BanhGatoIchigoQuaDauTay",
-    "name_vi": "Strawberry heart",
-    "name_en": "Strawberry Heart Gateau",
-    "category": "banh-gato",
-    "category_name": "Bánh Gato",
-    "category_name_en": "Gateaux & Birthday Cakes",
-    "price": 380000,
-    "img": "public/images/products/banh-gato/BanhGatoIchigoQuaDauTay.webp",
-    "featured": false,
-    "description_vi": "Bánh gato phong cách Nhật Bản truyền thống ngập tràn dâu tây Ichigo mọng nước.",
-    "description_en": "Classic Japanese style Ichigo gateau loaded with fresh juicy strawberries.",
-    "subcategory": "banh-gato-nguyen-chiec",
-    "subcategory_name": "Bánh Gato Nguyên Chiếc",
-    "subcategory_name_en": "Whole Gateaux"
-  },
-  {
-    "id": "BanhGatoKawaiiKemSuaDauTay",
+    "id": "RomanticTulips",
     "name_vi": "Romantic tulips",
     "name_en": "Romantic Tulips Gateau",
     "category": "banh-gato",
     "category_name": "Bánh Gato",
     "category_name_en": "Gateaux & Birthday Cakes",
-    "price": 370000,
-    "img": "public/images/products/banh-gato/BanhGatoKawaiiKemSuaDauTay.webp",
-    "featured": false,
-    "description_vi": "Vị kem sữa tươi béo ngậy ngọt ngào cùng dâu tây tươi trang trí phong cách Kawaii dễ thương.",
-    "description_en": "Sweet rich fresh milk cream gateau adorned with Kawaii strawberry garnishes.",
-    "subcategory": "banh-gato-nguyen-chiec",
-    "subcategory_name": "Bánh Gato Nguyên Chiếc",
-    "subcategory_name_en": "Whole Gateaux"
-  },
-  {
-    "id": "BanhGatoGreekXoaiVietQuat",
-    "name_vi": "Ivory blossom",
-    "name_en": "Ivory Blossom Fruit Gateau",
-    "category": "banh-gato",
-    "category_name": "Bánh Gato",
-    "category_name_en": "Gateaux & Birthday Cakes",
-    "price": 400000,
-    "img": "public/images/products/banh-gato/BanhGatoGreekXoaiVietQuat.webp",
-    "featured": false,
-    "description_vi": "Sự kết hợp hoàn hảo giữa sữa chua Hy Lạp thanh nhẹ, xoài ngọt lịm và việt quất tươi.",
-    "description_en": "Delightful Greek yogurt sponge cake topped with fresh sweet mango and blueberries.",
-    "subcategory": "banh-gato-nguyen-chiec",
-    "subcategory_name": "Bánh Gato Nguyên Chiếc",
-    "subcategory_name_en": "Whole Gateaux"
-  },
-  {
-    "id": "BanhGatoSunshineKemTuoiXoai",
-    "name_vi": "Cherry blossoms",
-    "name_en": "Cherry Blossoms Mango Gateau",
-    "category": "banh-gato",
-    "category_name": "Bánh Gato",
-    "category_name_en": "Gateaux & Birthday Cakes",
-    "price": 360000,
-    "img": "public/images/products/banh-gato/BanhGatoSunshineKemTuoiXoai.webp",
+    "price": 350000,
+    "img": "public/images/products/banh-gato/romantic-tulips.webp",
     "featured": true,
-    "description_vi": "Sắc vàng rực rỡ như ánh nắng từ xoài cát chín cây và kem whipping béo mịn.",
-    "description_en": "Radiant sunshine mango cake layered with velvety whipped cream and ripe mango.",
-    "subcategory": "banh-gato-nguyen-chiec",
-    "subcategory_name": "Bánh Gato Nguyên Chiếc",
-    "subcategory_name_en": "Whole Gateaux"
+    "description_vi": "Bánh sinh nhật Romantic tulips hảo hạng, làm từ cốt bông lan Nhật Bản mềm xốp kết hợp cùng lớp kem tươi cao cấp thanh nhẹ, trang trí tinh tế.",
+    "description_en": "Authentic handcrafted Romantic tulips prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "banh-gato-tinh-yeu",
+    "subcategory_name": "Bánh Trái Tim & Tình Yêu",
+    "subcategory_name_en": "Love & Heart Cakes",
+    "variants": [
+      {
+        "size": "16cm",
+        "name": "Size 16cm (4-6 người)",
+        "price": 350000
+      },
+      {
+        "size": "18cm",
+        "name": "Size 18cm (6-8 người)",
+        "price": 437500
+      },
+      {
+        "size": "20cm",
+        "name": "Size 20cm (8-10 người)",
+        "price": 542500
+      }
+    ]
   },
   {
-    "id": "BanhGatoKemTuoiHoaQuaTongHop",
+    "id": "StrawberryHeart",
+    "name_vi": "Strawberry heart",
+    "name_en": "Strawberry Heart Gateau",
+    "category": "banh-gato",
+    "category_name": "Bánh Gato",
+    "category_name_en": "Gateaux & Birthday Cakes",
+    "price": 350000,
+    "img": "public/images/products/banh-gato/strawberry-heart.webp",
+    "featured": true,
+    "description_vi": "Bánh sinh nhật Strawberry heart hảo hạng, làm từ cốt bông lan Nhật Bản mềm xốp kết hợp cùng lớp kem tươi cao cấp thanh nhẹ, trang trí tinh tế.",
+    "description_en": "Authentic handcrafted Strawberry heart prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "banh-gato-nguyen-chiec",
+    "subcategory_name": "Bánh Gato Sinh Nhật & Sự Kiện",
+    "subcategory_name_en": "Birthday & Event Gateaux",
+    "variants": [
+      {
+        "size": "16cm",
+        "name": "Size 16cm (4-6 người)",
+        "price": 350000
+      },
+      {
+        "size": "18cm",
+        "name": "Size 18cm (6-8 người)",
+        "price": 437500
+      },
+      {
+        "size": "20cm",
+        "name": "Size 20cm (8-10 người)",
+        "price": 542500
+      }
+    ]
+  },
+  {
+    "id": "CherryBlossoms",
+    "name_vi": "Cherry blossoms",
+    "name_en": "Cherry Blossoms Gateau",
+    "category": "banh-gato",
+    "category_name": "Bánh Gato",
+    "category_name_en": "Gateaux & Birthday Cakes",
+    "price": 350000,
+    "img": "public/images/products/banh-gato/cherry-blossoms.webp",
+    "featured": true,
+    "description_vi": "Bánh sinh nhật Cherry blossoms hảo hạng, làm từ cốt bông lan Nhật Bản mềm xốp kết hợp cùng lớp kem tươi cao cấp thanh nhẹ, trang trí tinh tế.",
+    "description_en": "Authentic handcrafted Cherry blossoms prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "banh-gato-tinh-yeu",
+    "subcategory_name": "Bánh Trái Tim & Tình Yêu",
+    "subcategory_name_en": "Love & Heart Cakes",
+    "variants": [
+      {
+        "size": "16cm",
+        "name": "Size 16cm (4-6 người)",
+        "price": 350000
+      },
+      {
+        "size": "18cm",
+        "name": "Size 18cm (6-8 người)",
+        "price": 437500
+      },
+      {
+        "size": "20cm",
+        "name": "Size 20cm (8-10 người)",
+        "price": 542500
+      }
+    ]
+  },
+  {
+    "id": "EnglishRose",
+    "name_vi": "English rose",
+    "name_en": "English Rose Gateau",
+    "category": "banh-gato",
+    "category_name": "Bánh Gato",
+    "category_name_en": "Gateaux & Birthday Cakes",
+    "price": 350000,
+    "img": "public/images/products/banh-gato/english-rose.webp",
+    "featured": false,
+    "description_vi": "Bánh sinh nhật English rose hảo hạng, làm từ cốt bông lan Nhật Bản mềm xốp kết hợp cùng lớp kem tươi cao cấp thanh nhẹ, trang trí tinh tế.",
+    "description_en": "Authentic handcrafted English rose prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "banh-gato-tinh-yeu",
+    "subcategory_name": "Bánh Trái Tim & Tình Yêu",
+    "subcategory_name_en": "Love & Heart Cakes",
+    "variants": [
+      {
+        "size": "16cm",
+        "name": "Size 16cm (4-6 người)",
+        "price": 350000
+      },
+      {
+        "size": "18cm",
+        "name": "Size 18cm (6-8 người)",
+        "price": 437500
+      },
+      {
+        "size": "20cm",
+        "name": "Size 20cm (8-10 người)",
+        "price": 542500
+      }
+    ]
+  },
+  {
+    "id": "MayNganLop",
+    "name_vi": "Mây ngàn lớp",
+    "name_en": "Mille-Feuille Cloud Pastry",
+    "category": "banh-mi",
+    "category_name": "Bánh Mì",
+    "category_name_en": "Breads & Pastries",
+    "price": 55000,
+    "img": "public/images/products/banh-mi/may-ngan-lop.webp",
+    "featured": false,
+    "description_vi": "Thành phần bánh bao gồm: Bột mỳ, bơ, đường, trứng, sữa. Bánh có lớp phủ giòn và nhân bánh dai có thể xé tách lớp.&nbsp;",
+    "description_en": "Authentic handcrafted Mây ngàn lớp prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "banh-mi-man-ngot",
+    "subcategory_name": "Bánh Mì Mặn & Bánh Mì Bơ Ngọt",
+    "subcategory_name_en": "Savory & Sweet Breads",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 55000
+      }
+    ]
+  },
+  {
+    "id": "BongLanTrungMuoiVuong",
+    "name_vi": "Bông lan trứng muối vuông",
+    "name_en": "Square Salted Egg Sponge",
+    "category": "banh-kem-tuoi",
+    "category_name": "Bánh Kem Tươi",
+    "category_name_en": "Fresh Cream & Mousse",
+    "price": 30000,
+    "img": "public/images/products/banh-kem-tuoi/bong-lan-trung-muoi-vuong.webp",
+    "featured": false,
+    "description_vi": "Thành phần bánh bao gồm: cốt bông lan mềm cùng với sốt trứng. Phủ bên trên là phomai, trứng muối và ruốc.",
+    "description_en": "Authentic handcrafted Bông lan trứng muối vuông prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-banh-cuon-cat-mieng",
+    "subcategory_name": "Bánh Cuộn & Bánh Cắt Miếng",
+    "subcategory_name_en": "Roll Cakes & Slices",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 30000
+      }
+    ]
+  },
+  {
+    "id": "CupcakeTinhYeu",
+    "name_vi": "Cupcake tình yêu",
+    "name_en": "Love Strawberry Cupcake",
+    "category": "banh-gato",
+    "category_name": "Bánh Gato",
+    "category_name_en": "Gateaux & Birthday Cakes",
+    "price": 350000,
+    "img": "public/images/products/banh-gato/cupcake-tinh-yeu.webp",
+    "featured": false,
+    "description_vi": "Set cupcake trang trí ngọt ngào. Sản phẩm không sử dụng chất bảo quản, trang trí bằng màu thực phẩm an toàn cho sức khỏe, đạt tiêu chuẩn kiểm định chất lượng.&nbsp;Bánh có thể đổi cốt gato và vị kem tươi tùy thích.",
+    "description_en": "Authentic handcrafted Cupcake tình yêu prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "banh-gato-tinh-yeu",
+    "subcategory_name": "Bánh Trái Tim & Tình Yêu",
+    "subcategory_name_en": "Love & Heart Cakes",
+    "variants": [
+      {
+        "size": "16cm",
+        "name": "Size 16cm (4-6 người)",
+        "price": 350000
+      },
+      {
+        "size": "18cm",
+        "name": "Size 18cm (6-8 người)",
+        "price": 437500
+      },
+      {
+        "size": "20cm",
+        "name": "Size 20cm (8-10 người)",
+        "price": 542500
+      }
+    ]
+  },
+  {
+    "id": "KemTuoiChanMay",
+    "name_vi": "Kem tươi chan mây",
+    "name_en": "Whipped Cream Cloud Gateau",
+    "category": "banh-gato",
+    "category_name": "Bánh Gato",
+    "category_name_en": "Gateaux & Birthday Cakes",
+    "price": 350000,
+    "img": "public/images/products/banh-gato/kem-tuoi-chan-may.webp",
+    "featured": false,
+    "description_vi": "Gato chan mây trang trí ngọt ngào. Sản phẩm không sử dụng chất bảo quản, trang trí bằng màu thực phẩm an toàn cho sức khỏe, đạt tiêu chuẩn kiểm định chất lượng.&nbsp;Bánh có thể đổi cốt gato và vị kem tươi tùy thích.",
+    "description_en": "Authentic handcrafted Kem tươi chan mây prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "banh-gato-nguyen-chiec",
+    "subcategory_name": "Bánh Gato Sinh Nhật & Sự Kiện",
+    "subcategory_name_en": "Birthday & Event Gateaux",
+    "variants": [
+      {
+        "size": "16cm",
+        "name": "Size 16cm (4-6 người)",
+        "price": 350000
+      },
+      {
+        "size": "18cm",
+        "name": "Size 18cm (6-8 người)",
+        "price": 437500
+      },
+      {
+        "size": "20cm",
+        "name": "Size 20cm (8-10 người)",
+        "price": 542500
+      }
+    ]
+  },
+  {
+    "id": "TraiTim",
+    "name_vi": "Trái tim",
+    "name_en": "Heart Shaped Cake",
+    "category": "banh-gato",
+    "category_name": "Bánh Gato",
+    "category_name_en": "Gateaux & Birthday Cakes",
+    "price": 350000,
+    "img": "public/images/products/banh-gato/trai-tim.webp",
+    "featured": false,
+    "description_vi": "Gato trái tim trang trí ngọt ngào. Sản phẩm không sử dụng chất bảo quản, trang trí bằng màu thực phẩm an toàn cho sức khỏe, đạt tiêu chuẩn kiểm định chất lượng.&nbsp;Bánh có thể đổi cốt gato và vị kem tươi tùy thích.",
+    "description_en": "Authentic handcrafted Trái tim prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "banh-gato-tinh-yeu",
+    "subcategory_name": "Bánh Trái Tim & Tình Yêu",
+    "subcategory_name_en": "Love & Heart Cakes",
+    "variants": [
+      {
+        "size": "16cm",
+        "name": "Size 16cm (4-6 người)",
+        "price": 350000
+      },
+      {
+        "size": "18cm",
+        "name": "Size 18cm (6-8 người)",
+        "price": 437500
+      },
+      {
+        "size": "20cm",
+        "name": "Size 20cm (8-10 người)",
+        "price": 542500
+      }
+    ]
+  },
+  {
+    "id": "KemTuoiTim",
+    "name_vi": "Kem tươi tim",
+    "name_en": "Fresh Cream Heart Cake",
+    "category": "banh-gato",
+    "category_name": "Bánh Gato",
+    "category_name_en": "Gateaux & Birthday Cakes",
+    "price": 350000,
+    "img": "public/images/products/banh-gato/kem-tuoi-tim.webp",
+    "featured": false,
+    "description_vi": "Gato kem tươi trang trí trái tim chocolate ngọt ngào. Sản phẩm không sử dụng chất bảo quản, trang trí bằng màu thực phẩm an toàn cho sức khỏe, đạt tiêu chuẩn kiểm định chất lượng.&nbsp;Bánh có thể đổi cốt gato và vị kem tươi tùy thích.",
+    "description_en": "Authentic handcrafted Kem tươi tim prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "banh-gato-tinh-yeu",
+    "subcategory_name": "Bánh Trái Tim & Tình Yêu",
+    "subcategory_name_en": "Love & Heart Cakes",
+    "variants": [
+      {
+        "size": "16cm",
+        "name": "Size 16cm (4-6 người)",
+        "price": 350000
+      },
+      {
+        "size": "18cm",
+        "name": "Size 18cm (6-8 người)",
+        "price": 437500
+      },
+      {
+        "size": "20cm",
+        "name": "Size 20cm (8-10 người)",
+        "price": 542500
+      }
+    ]
+  },
+  {
+    "id": "ChocoVelvetTraiCay",
+    "name_vi": "Choco Velvet trái cây",
+    "name_en": "Choco Velvet Cream Cake",
+    "category": "banh-gato",
+    "category_name": "Bánh Gato",
+    "category_name_en": "Gateaux & Birthday Cakes",
+    "price": 350000,
+    "img": "public/images/products/banh-gato/choco-velvet-trai-cay.webp",
+    "featured": false,
+    "description_vi": "Gato chocolate velvet trang trí cùng trái cây ngọt ngào Sản phẩm không sử dụng chất bảo quản, trang trí bằng màu thực phẩm an toàn cho sức khỏe, đạt tiêu chuẩn kiểm định chất lượng.&nbsp;Bánh có thể đổi cốt gato và vị kem tươi tùy thích.",
+    "description_en": "Authentic handcrafted Choco Velvet trái cây prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "banh-gato-nguyen-chiec",
+    "subcategory_name": "Bánh Gato Sinh Nhật & Sự Kiện",
+    "subcategory_name_en": "Birthday & Event Gateaux",
+    "variants": [
+      {
+        "size": "16cm",
+        "name": "Size 16cm (4-6 người)",
+        "price": 350000
+      },
+      {
+        "size": "18cm",
+        "name": "Size 18cm (6-8 người)",
+        "price": 437500
+      },
+      {
+        "size": "20cm",
+        "name": "Size 20cm (8-10 người)",
+        "price": 542500
+      }
+    ]
+  },
+  {
+    "id": "GioTraiCay",
     "name_vi": "Giỏ trái cây",
     "name_en": "Fresh Fruit Basket Gateau",
     "category": "banh-gato",
     "category_name": "Bánh Gato",
     "category_name_en": "Gateaux & Birthday Cakes",
     "price": 350000,
-    "img": "public/images/products/banh-gato/BanhGatoKemTuoiHoaQuaTongHop.webp",
+    "img": "public/images/products/banh-gato/gio-trai-cay.webp",
     "featured": false,
-    "description_vi": "Bản hòa tấu sắc màu từ các loại trái cây tươi ngon theo mùa trên nền kem mềm xốp.",
-    "description_en": "Vibrant melody of seasonal fresh fruits on a light, fluffy fresh cream sponge.",
+    "description_vi": "Gato kem tươi trang trí trái cây tươi ngọt ngào. Sản phẩm không sử dụng chất bảo quản, trang trí bằng màu thực phẩm an toàn cho sức khỏe, đạt tiêu chuẩn kiểm định chất lượng.&nbsp;Bánh có thể đổi cốt gato và vị kem tươi tùy thích.",
+    "description_en": "Authentic handcrafted Giỏ trái cây prepared with premium natural ingredients following traditional Japanese bakery recipes.",
     "subcategory": "banh-gato-nguyen-chiec",
-    "subcategory_name": "Bánh Gato Nguyên Chiếc",
-    "subcategory_name_en": "Whole Gateaux"
+    "subcategory_name": "Bánh Gato Sinh Nhật & Sự Kiện",
+    "subcategory_name_en": "Birthday & Event Gateaux",
+    "variants": [
+      {
+        "size": "16cm",
+        "name": "Size 16cm (4-6 người)",
+        "price": 350000
+      },
+      {
+        "size": "18cm",
+        "name": "Size 18cm (6-8 người)",
+        "price": 437500
+      },
+      {
+        "size": "20cm",
+        "name": "Size 20cm (8-10 người)",
+        "price": 542500
+      }
+    ]
   },
   {
-    "id": "BanhGatoKemTuoiDauTayBanhQuy",
-    "name_vi": "English rose",
-    "name_en": "English Rose Strawberry Gateau",
-    "category": "banh-gato",
-    "category_name": "Bánh Gato",
-    "category_name_en": "Gateaux & Birthday Cakes",
-    "price": 360000,
-    "img": "public/images/products/banh-gato/BanhGatoKemTuoiDauTayBanhQuy.webp",
-    "featured": false,
-    "description_vi": "Điểm nhấn giòn rụm từ bánh quy bơ nướng giòn kết hợp kem dâu tây mịn màng.",
-    "description_en": "Crisp butter cookies meet luscious fresh cream and ripe red strawberries.",
-    "subcategory": "banh-gato-nguyen-chiec",
-    "subcategory_name": "Bánh Gato Nguyên Chiếc",
-    "subcategory_name_en": "Whole Gateaux"
-  },
-  {
-    "id": "BanhGatoMiniKemTuoiSocolaTrang",
-    "name_vi": "Gato kem tươi mini",
-    "name_en": "Mini Fresh Cream Gateau",
-    "category": "banh-gato",
-    "category_name": "Bánh Gato",
-    "category_name_en": "Gateaux & Birthday Cakes",
-    "price": 250000,
-    "img": "public/images/products/banh-gato/BanhGatoMiniKemTuoiSocolaTrang.webp",
-    "featured": false,
-    "description_vi": "Phiên bản bánh mini xinh xắn phủ socola trắng ngọt ngào và kem bông tuyết.",
-    "description_en": "Charming petite gateau draped in sweet Belgian white chocolate and fluffy cream.",
-    "subcategory": "banh-gato-nguyen-chiec",
-    "subcategory_name": "Bánh Gato Nguyên Chiếc",
-    "subcategory_name_en": "Whole Gateaux"
-  },
-  {
-    "id": "BanhGatoKemTuoiMutHoaQua",
-    "name_vi": "Gato kem tươi mứt trái cây",
-    "name_en": "Fresh Fruit Jam Cream Gateau",
-    "category": "banh-gato",
-    "category_name": "Bánh Gato",
-    "category_name_en": "Gateaux & Birthday Cakes",
-    "price": 340000,
-    "img": "public/images/products/banh-gato/BanhGatoKemTuoiMutHoaQua.webp",
-    "featured": false,
-    "description_vi": "Lớp mứt trái cây cô đặc tự nhiên xen kẽ cốt bánh bông lan xốp mềm thơm ngát.",
-    "description_en": "Rich natural fruit preserve layered between clouds of soft vanilla sponge cake.",
-    "subcategory": "banh-gato-nguyen-chiec",
-    "subcategory_name": "Bánh Gato Nguyên Chiếc",
-    "subcategory_name_en": "Whole Gateaux"
-  },
-  {
-    "id": "BanhGatoKemTuoiVuongHoaQua",
-    "name_vi": "Gato kem tươi vuông",
-    "name_en": "Square Fresh Cream Fruit Gateau",
-    "category": "banh-gato",
-    "category_name": "Bánh Gato",
-    "category_name_en": "Gateaux & Birthday Cakes",
-    "price": 390000,
-    "img": "public/images/products/banh-gato/BanhGatoKemTuoiVuongHoaQua.webp",
-    "featured": false,
-    "description_vi": "Thiết kế vuông hiện đại phủ đầy trái cây tươi nhiệt đới cao cấp.",
-    "description_en": "Contemporary square cut cake crowned with an assortment of fresh tropical fruits.",
-    "subcategory": "banh-gato-nguyen-chiec",
-    "subcategory_name": "Bánh Gato Nguyên Chiếc",
-    "subcategory_name_en": "Whole Gateaux"
-  },
-  {
-    "id": "BanhGatoKhoaiMonVietQuat",
-    "name_vi": "Lavender blossom",
-    "name_en": "Lavender Blossom Gateau",
-    "category": "banh-gato",
-    "category_name": "Bánh Gato",
-    "category_name_en": "Gateaux & Birthday Cakes",
-    "price": 370000,
-    "img": "public/images/products/banh-gato/BanhGatoKhoaiMonVietQuat.webp",
-    "featured": false,
-    "description_vi": "Hương vị khoai môn bùi bùi thơm béo quyện cùng sốt việt quất chua ngọt đậm đà.",
-    "description_en": "Earthy fragrant taro sponge cake paired with sweet-tart wild blueberry puree.",
-    "subcategory": "banh-gato-nguyen-chiec",
-    "subcategory_name": "Bánh Gato Nguyên Chiếc",
-    "subcategory_name_en": "Whole Gateaux"
-  },
-  {
-    "id": "BanhGatoSocolaTornado",
-    "name_vi": "Gato Chocolate",
-    "name_en": "Signature Chocolate Gateau",
-    "category": "banh-gato",
-    "category_name": "Bánh Gato",
-    "category_name_en": "Gateaux & Birthday Cakes",
-    "price": 420000,
-    "img": "public/images/products/banh-gato/BanhGatoSocolaTornado.webp",
-    "featured": true,
-    "description_vi": "Cơn lốc socola đậm đà với các tầng mousse socola đen nguyên chất thượng hạng.",
-    "description_en": "Rich whirlwind of premium dark chocolate ganache and moist cocoa sponge.",
-    "subcategory": "banh-gato-nguyen-chiec",
-    "subcategory_name": "Bánh Gato Nguyên Chiếc",
-    "subcategory_name_en": "Whole Gateaux"
-  },
-  {
-    "id": "BanhGatoSocolaChayHoaQua",
-    "name_vi": "Gato Chocolate chan mây",
-    "name_en": "Cloud Chocolate Gateau",
-    "category": "banh-gato",
-    "category_name": "Bánh Gato",
-    "category_name_en": "Gateaux & Birthday Cakes",
-    "price": 410000,
-    "img": "public/images/products/banh-gato/BanhGatoSocolaChayHoaQua.webp",
-    "featured": false,
-    "description_vi": "Dòng sốt socola Bỉ chảy tràn hấp dẫn kết hợp dâu tây và hoa quả tươi thanh mát.",
-    "description_en": "Decadent Belgian molten chocolate drizzle draped over fresh seasonal fruits.",
-    "subcategory": "banh-gato-nguyen-chiec",
-    "subcategory_name": "Bánh Gato Nguyên Chiếc",
-    "subcategory_name_en": "Whole Gateaux"
-  },
-  {
-    "id": "BanhGatoSocolaTimHoaQua",
-    "name_vi": "Trái tim chocolate hoa quả",
-    "name_en": "Heart-Shaped Chocolate Fruit Gateau",
-    "category": "banh-gato",
-    "category_name": "Bánh Gato",
-    "category_name_en": "Gateaux & Birthday Cakes",
-    "price": 430000,
-    "img": "public/images/products/banh-gato/BanhGatoSocolaTimHoaQua.webp",
-    "featured": false,
-    "description_vi": "Tạo hình trái tim lãng mạn phủ socola bóng mượt điểm xuyết dâu tây tươi.",
-    "description_en": "Romantic heart-shaped cake coated in silky dark chocolate and fresh berries.",
-    "subcategory": "banh-gato-nguyen-chiec",
-    "subcategory_name": "Bánh Gato Nguyên Chiếc",
-    "subcategory_name_en": "Whole Gateaux"
-  },
-  {
-    "id": "BanhGatoSocolaDenCamVang",
-    "name_vi": "Gato Chocolate mini",
-    "name_en": "Mini Dark Chocolate Gateau",
-    "category": "banh-gato",
-    "category_name": "Bánh Gato",
-    "category_name_en": "Gateaux & Birthday Cakes",
-    "price": 390000,
-    "img": "public/images/products/banh-gato/BanhGatoSocolaDenCamVang.webp",
-    "featured": false,
-    "description_vi": "Hương vị socola đen nguyên chất hòa quyện cùng tinh dầu cam vàng tươi mát sang trọng.",
-    "description_en": "Artisan dark chocolate infused with zesty fresh orange slices and citrus glaze.",
-    "subcategory": "banh-gato-nguyen-chiec",
-    "subcategory_name": "Bánh Gato Nguyên Chiếc",
-    "subcategory_name_en": "Whole Gateaux"
-  },
-  {
-    "id": "BanhGatoCaPheCacao",
-    "name_vi": "Gato Cafe",
-    "name_en": "Cafe Mocha Cocoa Gateau",
-    "category": "banh-gato",
-    "category_name": "Bánh Gato",
-    "category_name_en": "Gateaux & Birthday Cakes",
-    "price": 360000,
-    "img": "public/images/products/banh-gato/BanhGatoCaPheCacao.webp",
-    "featured": false,
-    "description_vi": "Đậm đà hương vị cà phê Robusta hảo hạng hòa quyện cùng bột cacao thơm lừng.",
-    "description_en": "Robust Vietnamese coffee notes blended with premium aromatic cocoa sponge.",
-    "subcategory": "banh-gato-nguyen-chiec",
-    "subcategory_name": "Bánh Gato Nguyên Chiếc",
-    "subcategory_name_en": "Whole Gateaux"
-  },
-  {
-    "id": "BanhGatoCaPheHoaQuaTuoi",
-    "name_vi": "Gato kem tươi cafe",
-    "name_en": "Fresh Cream Coffee Gateau",
-    "category": "banh-gato",
-    "category_name": "Bánh Gato",
-    "category_name_en": "Gateaux & Birthday Cakes",
-    "price": 370000,
-    "img": "public/images/products/banh-gato/BanhGatoCaPheHoaQuaTuoi.webp",
-    "featured": false,
-    "description_vi": "Vị đắng nhẹ quyến rũ của cà phê cân bằng hoàn hảo với vị ngọt thanh từ hoa quả tươi.",
-    "description_en": "Subtle coffee bitterness exquisitely balanced with vibrant sweet fresh fruits.",
-    "subcategory": "banh-gato-nguyen-chiec",
-    "subcategory_name": "Bánh Gato Nguyên Chiếc",
-    "subcategory_name_en": "Whole Gateaux"
-  },
-  {
-    "id": "BanhGatoCaPheSocolaDauTay",
-    "name_vi": "Chocolate Velvet",
-    "name_en": "Chocolate Velvet Gateau",
-    "category": "banh-gato",
-    "category_name": "Bánh Gato",
-    "category_name_en": "Gateaux & Birthday Cakes",
-    "price": 390000,
-    "img": "public/images/products/banh-gato/BanhGatoCaPheSocolaDauTay.webp",
-    "featured": false,
-    "description_vi": "Bộ ba hương vị kinh điển: cà phê thơm nồng, socola đậm vị và dâu tây mọng nước.",
-    "description_en": "The classic trio: aromatic coffee, decadent chocolate, and juicy strawberries.",
-    "subcategory": "banh-gato-nguyen-chiec",
-    "subcategory_name": "Bánh Gato Nguyên Chiếc",
-    "subcategory_name_en": "Whole Gateaux"
-  },
-  {
-    "id": "BanhGatoCaPheSotSocolaHoaQua",
-    "name_vi": "Choco Velvet trái cây",
-    "name_en": "Fruit Chocolate Velvet Gateau",
-    "category": "banh-gato",
-    "category_name": "Bánh Gato",
-    "category_name_en": "Gateaux & Birthday Cakes",
-    "price": 380000,
-    "img": "public/images/products/banh-gato/BanhGatoCaPheSotSocolaHoaQua.webp",
-    "featured": false,
-    "description_vi": "Cốt bánh cà phê mềm xốp phủ sốt socola đen bóng bẩy và trái cây tươi.",
-    "description_en": "Moist coffee sponge crowned with glossy chocolate drizzle and fruit garnishes.",
-    "subcategory": "banh-gato-nguyen-chiec",
-    "subcategory_name": "Bánh Gato Nguyên Chiếc",
-    "subcategory_name_en": "Whole Gateaux"
-  },
-  {
-    "id": "BanhGatoKemCaPheDauTay",
-    "name_vi": "Gốc cây socola nâu",
-    "name_en": "Brown Chocolate Yule Log Gateau",
-    "category": "banh-gato",
-    "category_name": "Bánh Gato",
-    "category_name_en": "Gateaux & Birthday Cakes",
-    "price": 360000,
-    "img": "public/images/products/banh-gato/BanhGatoKemCaPheDauTay.webp",
-    "featured": false,
-    "description_vi": "Kem cà phê đánh bông thủ công mềm mịn kết hợp lát dâu tây tươi mọng.",
-    "description_en": "Handcrafted whipped coffee cream paired with sweet, fresh-cut strawberries.",
-    "subcategory": "banh-gato-nguyen-chiec",
-    "subcategory_name": "Bánh Gato Nguyên Chiếc",
-    "subcategory_name_en": "Whole Gateaux"
-  },
-  {
-    "id": "BanhGatoKemCaPheSotChay",
-    "name_vi": "Khúc củi phủ socola đen",
-    "name_en": "Dark Chocolate Yule Log",
-    "category": "banh-gato",
-    "category_name": "Bánh Gato",
-    "category_name_en": "Gateaux & Birthday Cakes",
-    "price": 370000,
-    "img": "public/images/products/banh-gato/BanhGatoKemCaPheSotChay.webp",
-    "featured": false,
-    "description_vi": "Hiệu ứng sốt cà phê chảy nghệ thuật mang lại trải nghiệm thị giác và vị giác tuyệt vời.",
-    "description_en": "Artistic cascading coffee cream drip offering a delightful coffee lover taste.",
-    "subcategory": "banh-gato-nguyen-chiec",
-    "subcategory_name": "Bánh Gato Nguyên Chiếc",
-    "subcategory_name_en": "Whole Gateaux"
-  },
-  {
-    "id": "BanhGatoCaPheKemTuyetTrang",
-    "name_vi": "Khúc củi phủ kem tươi",
-    "name_en": "Fresh Cream Yule Log Gateau",
+    "id": "GauYeu1",
+    "name_vi": "Gấu yêu",
+    "name_en": "Beloved Bear Cake",
     "category": "banh-gato",
     "category_name": "Bánh Gato",
     "category_name_en": "Gateaux & Birthday Cakes",
     "price": 350000,
-    "img": "public/images/products/banh-gato/BanhGatoCaPheKemTuyetTrang.webp",
+    "img": "public/images/products/banh-gato/gau-yeu-1.webp",
     "featured": false,
-    "description_vi": "Bánh cà phê phủ lớp kem tuyết trắng thanh khiết ngọt dịu.",
-    "description_en": "Aromatic coffee sponge enveloped in snow-white, silky whipped dairy cream.",
-    "subcategory": "banh-gato-nguyen-chiec",
-    "subcategory_name": "Bánh Gato Nguyên Chiếc",
-    "subcategory_name_en": "Whole Gateaux"
+    "description_vi": "Gato gấu yêu vị kem tươi. Sản phẩm không sử dụng chất bảo quản, trang trí bằng màu thực phẩm an toàn cho sức khỏe, đạt tiêu chuẩn kiểm định chất lượng.&nbsp;Bánh có thể đổi cốt gato và vị kem tươi tùy thích.",
+    "description_en": "Authentic handcrafted Gấu yêu prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "banh-gato-cho-be",
+    "subcategory_name": "Bánh Tạo Hình Cho Bé",
+    "subcategory_name_en": "Kids Themed Cakes",
+    "variants": [
+      {
+        "size": "16cm",
+        "name": "Size 16cm (4-6 người)",
+        "price": 350000
+      },
+      {
+        "size": "18cm",
+        "name": "Size 18cm (6-8 người)",
+        "price": 437500
+      },
+      {
+        "size": "20cm",
+        "name": "Size 20cm (8-10 người)",
+        "price": 542500
+      }
+    ]
   },
   {
-    "id": "BanhGatoMochaSotCaramel",
-    "name_vi": "Gato Cappuccino",
-    "name_en": "Cappuccino Caramel Gateau",
-    "category": "banh-gato",
-    "category_name": "Bánh Gato",
-    "category_name_en": "Gateaux & Birthday Cakes",
-    "price": 380000,
-    "img": "public/images/products/banh-gato/BanhGatoMochaSotCaramel.webp",
-    "featured": false,
-    "description_vi": "Hương vị mocha nồng nàn quyện cùng sốt caramel thủ công ngọt bùi quyến rũ.",
-    "description_en": "Rich mocha cake swirled with buttery artisan caramel glaze.",
-    "subcategory": "banh-gato-nguyen-chiec",
-    "subcategory_name": "Bánh Gato Nguyên Chiếc",
-    "subcategory_name_en": "Whole Gateaux"
-  },
-  {
-    "id": "BanhGatoCaramelFlanTraiCay",
-    "name_vi": "Gato Caramen",
-    "name_en": "Japanese Caramel Flan Gateau",
-    "category": "banh-gato",
-    "category_name": "Bánh Gato",
-    "category_name_en": "Gateaux & Birthday Cakes",
-    "price": 410000,
-    "img": "public/images/products/banh-gato/BanhGatoCaramelFlanTraiCay.webp",
-    "featured": false,
-    "description_vi": "Sự kết hợp độc đáo giữa cốt bánh gato mềm mịn và lớp flan caramel béo ngậy tan chảy.",
-    "description_en": "Unique harmony of fluffy gateau sponge, creamy caramel flan, and fresh fruits.",
-    "subcategory": "banh-gato-nguyen-chiec",
-    "subcategory_name": "Bánh Gato Nguyên Chiếc",
-    "subcategory_name_en": "Whole Gateaux"
-  },
-  {
-    "id": "BanhGatoCaramelMacaron",
-    "name_vi": "Mây ngàn lớp",
-    "name_en": "Mille-Feuille Cloud Gateau",
-    "category": "banh-gato",
-    "category_name": "Bánh Gato",
-    "category_name_en": "Gateaux & Birthday Cakes",
-    "price": 430000,
-    "img": "public/images/products/banh-gato/BanhGatoCaramelMacaron.webp",
-    "featured": false,
-    "description_vi": "Trang trí với những chiếc bánh macaron giòn rụm và sốt caramel béo ngọt.",
-    "description_en": "Garnished with delicate French macarons and rich golden caramel drizzle.",
-    "subcategory": "banh-gato-nguyen-chiec",
-    "subcategory_name": "Bánh Gato Nguyên Chiếc",
-    "subcategory_name_en": "Whole Gateaux"
-  },
-  {
-    "id": "BanhGatoOperaSocolaCaPheVuong",
-    "name_vi": "Opera",
-    "name_en": "Opera French Chocolate Gateau",
-    "category": "banh-gato",
-    "category_name": "Bánh Gato",
-    "category_name_en": "Gateaux & Birthday Cakes",
-    "price": 460000,
-    "img": "public/images/products/banh-gato/BanhGatoOperaSocolaCaPheVuong.webp",
-    "featured": true,
-    "description_vi": "Bánh Opera Pháp chuẩn mực với nhiều lớp hạnh nhân, cà phê và ganache socola đậm đặc.",
-    "description_en": "Classic French Opera cake layered with almond sponge, coffee syrup, and ganache.",
-    "subcategory": "banh-gato-nguyen-chiec",
-    "subcategory_name": "Bánh Gato Nguyên Chiếc",
-    "subcategory_name_en": "Whole Gateaux"
-  },
-  {
-    "id": "BanhGatoTiramisuTronCoDien",
-    "name_vi": "Tiramisu (Nguyên chiếc)",
-    "name_en": "Classic Italian Tiramisu Gateau (Whole)",
-    "category": "banh-gato",
-    "category_name": "Bánh Gato",
-    "category_name_en": "Gateaux & Birthday Cakes",
-    "price": 420000,
-    "img": "public/images/products/banh-gato/BanhGatoTiramisuTronCoDien.webp",
-    "featured": true,
-    "description_vi": "Tiramisu truyền thống Ý với phô mai Mascarpone béo ngậy và hương rượu cà phê nồng ấm.",
-    "description_en": "Traditional Italian tiramisu with velvety mascarpone and espresso-soaked sponge.",
-    "subcategory": "banh-gato-nguyen-chiec",
-    "subcategory_name": "Bánh Gato Nguyên Chiếc",
-    "subcategory_name_en": "Whole Gateaux"
-  },
-  {
-    "id": "BanhGatoRedVelvetTraiTim",
-    "name_vi": "Trái tim Red Velvet",
-    "name_en": "Heart Red Velvet Gateau",
-    "category": "banh-gato",
-    "category_name": "Bánh Gato",
-    "category_name_en": "Gateaux & Birthday Cakes",
-    "price": 440000,
-    "img": "public/images/products/banh-gato/BanhGatoRedVelvetTraiTim.webp",
-    "featured": false,
-    "description_vi": "Sắc đỏ nhung quý phái tạo hình trái tim cùng kem phô mai cream cheese béo chua dịu.",
-    "description_en": "Velvety crimson sponge layered with silky tangy cream cheese frosting.",
-    "subcategory": "banh-gato-nguyen-chiec",
-    "subcategory_name": "Bánh Gato Nguyên Chiếc",
-    "subcategory_name_en": "Whole Gateaux"
-  },
-  {
-    "id": "BanhGatoRedVelvetTronDauTay",
-    "name_vi": "Gato kem tươi phủ Red Velvet",
-    "name_en": "Red Velvet Fresh Cream Gateau",
-    "category": "banh-gato",
-    "category_name": "Bánh Gato",
-    "category_name_en": "Gateaux & Birthday Cakes",
-    "price": 410000,
-    "img": "public/images/products/banh-gato/BanhGatoRedVelvetTronDauTay.webp",
-    "featured": false,
-    "description_vi": "Red Velvet tròn cổ điển kết hợp dâu tây tươi mọng và kem phô mai hảo hạng.",
-    "description_en": "Classic round red velvet cake decorated with fresh strawberries and cream cheese.",
-    "subcategory": "banh-gato-nguyen-chiec",
-    "subcategory_name": "Bánh Gato Nguyên Chiếc",
-    "subcategory_name_en": "Whole Gateaux"
-  },
-  {
-    "id": "BanhGatoKemTuoiTimDoRedVelvet",
-    "name_vi": "Kem tươi tim",
-    "name_en": "Fresh Cream Heart Gateau",
-    "category": "banh-gato",
-    "category_name": "Bánh Gato",
-    "category_name_en": "Gateaux & Birthday Cakes",
-    "price": 420000,
-    "img": "public/images/products/banh-gato/BanhGatoKemTuoiTimDoRedVelvet.webp",
-    "featured": false,
-    "description_vi": "Bánh Red Velvet tạo hình trái tim phủ kem tươi đỏ rực rỡ lãng mạn.",
-    "description_en": "Romantic crimson heart-shaped Red Velvet gateau frosted with fresh cream.",
-    "subcategory": "banh-gato-nguyen-chiec",
-    "subcategory_name": "Bánh Gato Nguyên Chiếc",
-    "subcategory_name_en": "Whole Gateaux"
-  },
-  {
-    "id": "BanhGatoTraiTimDoRuyBang",
-    "name_vi": "Kem tươi chan mây",
-    "name_en": "Fresh Cream Cloud Gateau",
-    "category": "banh-gato",
-    "category_name": "Bánh Gato",
-    "category_name_en": "Gateaux & Birthday Cakes",
-    "price": 450000,
-    "img": "public/images/products/banh-gato/BanhGatoTraiTimDoRuyBang.webp",
-    "featured": false,
-    "description_vi": "Bánh gato trái tim đỏ thắt nơ ruy băng sang trọng cho dịp kỷ niệm.",
-    "description_en": "Elegant red celebration heart cake adorned with an artisan ribbon motif.",
-    "subcategory": "banh-gato-nguyen-chiec",
-    "subcategory_name": "Bánh Gato Nguyên Chiếc",
-    "subcategory_name_en": "Whole Gateaux"
-  },
-  {
-    "id": "BanhGatoRedVelvetKemTrang",
-    "name_vi": "Gato kem tươi phủ Choco Velvet",
-    "name_en": "Choco Velvet Cream Gateau",
-    "category": "banh-gato",
-    "category_name": "Bánh Gato",
-    "category_name_en": "Gateaux & Birthday Cakes",
-    "price": 390000,
-    "img": "public/images/products/banh-gato/BanhGatoRedVelvetKemTrang.webp",
-    "featured": false,
-    "description_vi": "Cốt bánh nhung đỏ ẩm mượt phủ lớp kem tươi trắng muốt thanh tao.",
-    "description_en": "Silky red velvet crumb frosted in pure white vanilla cream.",
-    "subcategory": "banh-gato-nguyen-chiec",
-    "subcategory_name": "Bánh Gato Nguyên Chiếc",
-    "subcategory_name_en": "Whole Gateaux"
-  },
-  {
-    "id": "BanhGatoChiffonTraXanhHoaQua",
-    "name_vi": "Chiffon trà",
-    "name_en": "Japanese Matcha Tea Chiffon",
-    "category": "banh-gato",
-    "category_name": "Bánh Gato",
-    "category_name_en": "Gateaux & Birthday Cakes",
-    "price": 360000,
-    "img": "public/images/products/banh-gato/BanhGatoChiffonTraXanhHoaQua.webp",
-    "featured": false,
-    "description_vi": "Bánh chiffon trà xanh bông xốp kết hợp kem tươi và hoa quả nhiệt đới tươi mát.",
-    "description_en": "Airy Japanese matcha chiffon cake garnished with fresh seasonal fruits.",
-    "subcategory": "banh-gato-nguyen-chiec",
-    "subcategory_name": "Bánh Gato Nguyên Chiếc",
-    "subcategory_name_en": "Whole Gateaux"
-  },
-  {
-    "id": "BanhGatoChiffonSocolaHoaQua",
-    "name_vi": "Chiffon socola",
-    "name_en": "Chocolate Chiffon Gateau",
-    "category": "banh-gato",
-    "category_name": "Bánh Gato",
-    "category_name_en": "Gateaux & Birthday Cakes",
-    "price": 370000,
-    "img": "public/images/products/banh-gato/BanhGatoChiffonSocolaHoaQua.webp",
-    "featured": false,
-    "description_vi": "Cốt chiffon socola mềm mịn thơm dịu điểm xuyết trái cây tươi ngon ngọt.",
-    "description_en": "Featherlight cocoa chiffon sponge decorated with fresh vibrant fruits.",
-    "subcategory": "banh-gato-nguyen-chiec",
-    "subcategory_name": "Bánh Gato Nguyên Chiếc",
-    "subcategory_name_en": "Whole Gateaux"
-  },
-  {
-    "id": "BanhGatoMatchaChiffonNguyenChiec",
-    "name_vi": "Chiffon chan mây",
-    "name_en": "Cloud Chiffon Gateau",
+    "id": "GauYeu",
+    "name_vi": "Gấu yêu",
+    "name_en": "Beloved Bear Cake",
     "category": "banh-gato",
     "category_name": "Bánh Gato",
     "category_name_en": "Gateaux & Birthday Cakes",
     "price": 350000,
-    "img": "public/images/products/banh-gato/BanhGatoMatchaChiffonNguyenChiec.webp",
+    "img": "public/images/products/banh-gato/gau-yeu.webp",
     "featured": false,
-    "description_vi": "Bánh chiffon trà xanh nguyên chiếc thơm nức hương matcha Uji thượng hạng.",
-    "description_en": "Whole artisan Kyoto matcha chiffon cake with an ultra-tender texture.",
-    "subcategory": "banh-gato-nguyen-chiec",
-    "subcategory_name": "Bánh Gato Nguyên Chiếc",
-    "subcategory_name_en": "Whole Gateaux"
+    "description_vi": "Gato gấu yêu vị chocolate. Sản phẩm không sử dụng chất bảo quản, trang trí bằng màu thực phẩm an toàn cho sức khỏe, đạt tiêu chuẩn kiểm định chất lượng.&nbsp;Bánh có thể đổi cốt gato và vị kem tươi tùy thích.",
+    "description_en": "Authentic handcrafted Gấu yêu prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "banh-gato-cho-be",
+    "subcategory_name": "Bánh Tạo Hình Cho Bé",
+    "subcategory_name_en": "Kids Themed Cakes",
+    "variants": [
+      {
+        "size": "16cm",
+        "name": "Size 16cm (4-6 người)",
+        "price": 350000
+      },
+      {
+        "size": "18cm",
+        "name": "Size 18cm (6-8 người)",
+        "price": 437500
+      },
+      {
+        "size": "20cm",
+        "name": "Size 20cm (8-10 người)",
+        "price": 542500
+      }
+    ]
   },
   {
-    "id": "BanhBongLanTrungMuoiChaBongHop",
-    "name_vi": "Bông lan trứng muối vuông",
-    "name_en": "Square Salted Egg Sponge Gateau",
+    "id": "XeTang",
+    "name_vi": "Xe tăng",
+    "name_en": "Tank Themed Cake",
     "category": "banh-gato",
     "category_name": "Bánh Gato",
     "category_name_en": "Gateaux & Birthday Cakes",
-    "price": 160000,
-    "img": "public/images/products/banh-gato/BanhBongLanTrungMuoiChaBongHop.webp",
-    "featured": true,
-    "description_vi": "Bánh bông lan trứng muối chà bông nguyên hộp đẫm sốt bơ phô mai béo ngậy.",
-    "description_en": "Whole cake box of savory salted egg sponge with rich cheese sauce and pork floss.",
-    "subcategory": "banh-gato-nguyen-chiec",
-    "subcategory_name": "Bánh Gato Nguyên Chiếc",
-    "subcategory_name_en": "Whole Gateaux"
-  },
-  {
-    "id": "BanhMousseXoaiCamTuoi",
-    "name_vi": "Mousse đào (Nguyên chiếc)",
-    "name_en": "Peach Mousse Gateau (Whole)",
-    "category": "banh-kem-tuoi",
-    "category_name": "Bánh Kem Tươi",
-    "category_name_en": "Fresh Cream & Mousse",
-    "price": 320000,
-    "img": "public/images/products/banh-kem-tuoi/BanhMousseXoaiCamTuoi.webp",
-    "featured": true,
-    "description_vi": "Mousse xoài kết hợp lát cam vàng mọng nước, chua ngọt hài hòa thanh khiết.",
-    "description_en": "Whole mango mousse topped with fresh orange slices, refreshing and vibrant.",
-    "subcategory": "dong-mousse",
-    "subcategory_name": "Bánh Mousse",
-    "subcategory_name_en": "Mousse Cakes"
-  },
-  {
-    "id": "BanhMousseChanhLeoCamTuoi",
-    "name_vi": "Mousse chanh leo (Nguyên chiếc)",
-    "name_en": "Passion Fruit Mousse (Whole)",
-    "category": "banh-kem-tuoi",
-    "category_name": "Bánh Kem Tươi",
-    "category_name_en": "Fresh Cream & Mousse",
-    "price": 310000,
-    "img": "public/images/products/banh-kem-tuoi/BanhMousseChanhLeoCamTuoi.webp",
+    "price": 350000,
+    "img": "public/images/products/banh-gato/xe-tang.webp",
     "featured": false,
-    "description_vi": "Hương thơm chanh leo nồng nàn và múi cam vàng óng ả trên lớp mousse mát lạnh.",
-    "description_en": "Whole passion fruit mousse with luscious fresh orange segments.",
-    "subcategory": "dong-mousse",
-    "subcategory_name": "Bánh Mousse",
-    "subcategory_name_en": "Mousse Cakes"
+    "description_vi": "Bánh Gato tạo hình dành cho các bé yêu thích xe tăng. Sản phẩm không sử dụng chất bảo quản, trang trí bằng màu thực phẩm an toàn cho sức khỏe, đạt tiêu chuẩn kiểm định chất lượng.&nbsp;Bánh có thể đổi cốt gato và vị kem tươi tùy thích.",
+    "description_en": "Authentic handcrafted Xe tăng prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "banh-gato-cho-be",
+    "subcategory_name": "Bánh Tạo Hình Cho Bé",
+    "subcategory_name_en": "Kids Themed Cakes",
+    "variants": [
+      {
+        "size": "16cm",
+        "name": "Size 16cm (4-6 người)",
+        "price": 350000
+      },
+      {
+        "size": "18cm",
+        "name": "Size 18cm (6-8 người)",
+        "price": 437500
+      },
+      {
+        "size": "20cm",
+        "name": "Size 20cm (8-10 người)",
+        "price": 542500
+      }
+    ]
   },
   {
-    "id": "BanhMousseSocolaKemTuoi",
-    "name_vi": "Mousse Chocolate (Nguyên chiếc)",
-    "name_en": "Chocolate Mousse (Whole)",
-    "category": "banh-kem-tuoi",
-    "category_name": "Bánh Kem Tươi",
-    "category_name_en": "Fresh Cream & Mousse",
-    "price": 330000,
-    "img": "public/images/products/banh-kem-tuoi/BanhMousseSocolaKemTuoi.webp",
+    "id": "GauHappy",
+    "name_vi": "Gấu happy",
+    "name_en": "Happy Bear Cake",
+    "category": "banh-gato",
+    "category_name": "Bánh Gato",
+    "category_name_en": "Gateaux & Birthday Cakes",
+    "price": 350000,
+    "img": "public/images/products/banh-gato/gau-happy.webp",
     "featured": false,
-    "description_vi": "Mousse socola béo ngậy phủ lớp kem tươi đánh bông xốp nhẹ chuẩn vị Nhật.",
-    "description_en": "Rich chocolate mousse crowned with pillowy whipped cream Japanese style.",
-    "subcategory": "dong-mousse",
-    "subcategory_name": "Bánh Mousse",
-    "subcategory_name_en": "Mousse Cakes"
+    "description_vi": "Bánh Gato tạo hình dành cho các bé yêu thích gấu happy. Sản phẩm không sử dụng chất bảo quản, trang trí bằng màu thực phẩm an toàn cho sức khỏe, đạt tiêu chuẩn kiểm định chất lượng.&nbsp;Bánh có thể đổi cốt gato và vị kem tươi tùy thích.",
+    "description_en": "Authentic handcrafted Gấu happy prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "banh-gato-cho-be",
+    "subcategory_name": "Bánh Tạo Hình Cho Bé",
+    "subcategory_name_en": "Kids Themed Cakes",
+    "variants": [
+      {
+        "size": "16cm",
+        "name": "Size 16cm (4-6 người)",
+        "price": 350000
+      },
+      {
+        "size": "18cm",
+        "name": "Size 18cm (6-8 người)",
+        "price": 437500
+      },
+      {
+        "size": "20cm",
+        "name": "Size 20cm (8-10 người)",
+        "price": 542500
+      }
+    ]
   },
   {
-    "id": "BanhMousseXoaiDaoNhietDoi",
-    "name_vi": "Mousse ổi đào (Nguyên chiếc)",
-    "name_en": "Guava Peach Mousse (Whole)",
-    "category": "banh-kem-tuoi",
-    "category_name": "Bánh Kem Tươi",
-    "category_name_en": "Fresh Cream & Mousse",
-    "price": 320000,
-    "img": "public/images/products/banh-kem-tuoi/BanhMousseXoaiDaoNhietDoi.webp",
+    "id": "KhungLong",
+    "name_vi": "Khủng long",
+    "name_en": "Dino Themed Cake",
+    "category": "banh-gato",
+    "category_name": "Bánh Gato",
+    "category_name_en": "Gateaux & Birthday Cakes",
+    "price": 350000,
+    "img": "public/images/products/banh-gato/khung-long.webp",
     "featured": false,
-    "description_vi": "Sự hòa quyện ngọt ngào giữa xoài chín và đào giòn thơm mát dịu nhẹ.",
-    "description_en": "Tropical harmony of sweet ripe mango and fragrant sliced peaches.",
-    "subcategory": "dong-mousse",
-    "subcategory_name": "Bánh Mousse",
-    "subcategory_name_en": "Mousse Cakes"
+    "description_vi": "Bánh Gato tạo hình dành cho các bé yêu thích khủng long. Sản phẩm không sử dụng chất bảo quản, trang trí bằng màu thực phẩm an toàn cho sức khỏe, đạt tiêu chuẩn kiểm định chất lượng.&nbsp;Bánh có thể đổi cốt gato và vị kem tươi tùy thích.",
+    "description_en": "Authentic handcrafted Khủng long prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "banh-gato-cho-be",
+    "subcategory_name": "Bánh Tạo Hình Cho Bé",
+    "subcategory_name_en": "Kids Themed Cakes",
+    "variants": [
+      {
+        "size": "16cm",
+        "name": "Size 16cm (4-6 người)",
+        "price": 350000
+      },
+      {
+        "size": "18cm",
+        "name": "Size 18cm (6-8 người)",
+        "price": 437500
+      },
+      {
+        "size": "20cm",
+        "name": "Size 20cm (8-10 người)",
+        "price": 542500
+      }
+    ]
   },
   {
-    "id": "BanhMousseSuaChuaDauTay",
-    "name_vi": "Mousse sữa chua phúc bồn tử (Nguyên chiếc)",
-    "name_en": "Raspberry Yogurt Mousse (Whole)",
-    "category": "banh-kem-tuoi",
-    "category_name": "Bánh Kem Tươi",
-    "category_name_en": "Fresh Cream & Mousse",
-    "price": 310000,
-    "img": "public/images/products/banh-kem-tuoi/BanhMousseSuaChuaDauTay.webp",
+    "id": "ThoCon2",
+    "name_vi": "Thỏ con",
+    "name_en": "Bunny Themed Cake",
+    "category": "banh-gato",
+    "category_name": "Bánh Gato",
+    "category_name_en": "Gateaux & Birthday Cakes",
+    "price": 350000,
+    "img": "public/images/products/banh-gato/tho-con-2.webp",
     "featured": false,
-    "description_vi": "Sữa chua thanh nhẹ hòa cùng dâu tây Đà Lạt tươi giòn, ít ngọt thanh tao.",
-    "description_en": "Whole light yogurt mousse blended with tart fresh strawberries.",
-    "subcategory": "dong-mousse",
-    "subcategory_name": "Bánh Mousse",
-    "subcategory_name_en": "Mousse Cakes"
+    "description_vi": "Bánh Gato tạo hình dành cho các bé yêu thích thỏ con. Sản phẩm không sử dụng chất bảo quản, trang trí bằng màu thực phẩm an toàn cho sức khỏe, đạt tiêu chuẩn kiểm định chất lượng.&nbsp;Bánh có thể đổi cốt gato và vị kem tươi tùy thích.",
+    "description_en": "Authentic handcrafted Thỏ con prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "banh-gato-cho-be",
+    "subcategory_name": "Bánh Tạo Hình Cho Bé",
+    "subcategory_name_en": "Kids Themed Cakes",
+    "variants": [
+      {
+        "size": "16cm",
+        "name": "Size 16cm (4-6 người)",
+        "price": 350000
+      },
+      {
+        "size": "18cm",
+        "name": "Size 18cm (6-8 người)",
+        "price": 437500
+      },
+      {
+        "size": "20cm",
+        "name": "Size 20cm (8-10 người)",
+        "price": 542500
+      }
+    ]
   },
   {
-    "id": "BanhMousseSuaChuaChanhLeo",
-    "name_vi": "Mousse sữa chua chanh leo (Nguyên chiếc)",
-    "name_en": "Passion Fruit Yogurt Mousse (Whole)",
-    "category": "banh-kem-tuoi",
-    "category_name": "Bánh Kem Tươi",
-    "category_name_en": "Fresh Cream & Mousse",
-    "price": 310000,
-    "img": "public/images/products/banh-kem-tuoi/BanhMousseSuaChuaChanhLeo.webp",
+    "id": "BoBaby",
+    "name_vi": "Bơ baby",
+    "name_en": "Baby Avocado Cake",
+    "category": "banh-gato",
+    "category_name": "Bánh Gato",
+    "category_name_en": "Gateaux & Birthday Cakes",
+    "price": 350000,
+    "img": "public/images/products/banh-gato/bo-baby.webp",
     "featured": false,
-    "description_vi": "Mousse sữa chua kết hợp vị chua sắc nét đặc trưng của chanh leo tươi.",
-    "description_en": "Silky yogurt mousse infused with tangy natural passion fruit glaze.",
-    "subcategory": "dong-mousse",
-    "subcategory_name": "Bánh Mousse",
-    "subcategory_name_en": "Mousse Cakes"
+    "description_vi": "Bánh Gato tạo hình dành cho các bé yêu thích trái bơ. Sản phẩm không sử dụng chất bảo quản, trang trí bằng màu thực phẩm an toàn cho sức khỏe, đạt tiêu chuẩn kiểm định chất lượng.&nbsp;Bánh có thể đổi cốt gato và vị kem tươi tùy thích.",
+    "description_en": "Authentic handcrafted Bơ baby prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "banh-gato-cho-be",
+    "subcategory_name": "Bánh Tạo Hình Cho Bé",
+    "subcategory_name_en": "Kids Themed Cakes",
+    "variants": [
+      {
+        "size": "16cm",
+        "name": "Size 16cm (4-6 người)",
+        "price": 350000
+      },
+      {
+        "size": "18cm",
+        "name": "Size 18cm (6-8 người)",
+        "price": 437500
+      },
+      {
+        "size": "20cm",
+        "name": "Size 20cm (8-10 người)",
+        "price": 542500
+      }
+    ]
   },
   {
-    "id": "BanhMousseDauTayKemTuoi",
-    "name_vi": "Mousse dâu (Nguyên chiếc)",
-    "name_en": "Strawberry Mousse (Whole)",
-    "category": "banh-kem-tuoi",
-    "category_name": "Bánh Kem Tươi",
-    "category_name_en": "Fresh Cream & Mousse",
-    "price": 330000,
-    "img": "public/images/products/banh-kem-tuoi/BanhMousseDauTayKemTuoi.webp",
+    "id": "ThoCon1",
+    "name_vi": "Thỏ con",
+    "name_en": "Bunny Themed Cake",
+    "category": "banh-gato",
+    "category_name": "Bánh Gato",
+    "category_name_en": "Gateaux & Birthday Cakes",
+    "price": 350000,
+    "img": "public/images/products/banh-gato/tho-con-1.webp",
     "featured": false,
-    "description_vi": "Dâu tây mọng đỏ phủ đầy mặt bánh mousse kem tươi béo ngậy ngọt lịm.",
-    "description_en": "Whole strawberry mousse lavished with fresh red berries and sweet cream.",
-    "subcategory": "dong-mousse",
-    "subcategory_name": "Bánh Mousse",
-    "subcategory_name_en": "Mousse Cakes"
+    "description_vi": "Bánh Gato tạo hình dành cho các bé yêu thích thỏ con. Sản phẩm không sử dụng chất bảo quản, trang trí bằng màu thực phẩm an toàn cho sức khỏe, đạt tiêu chuẩn kiểm định chất lượng.&nbsp;Bánh có thể đổi cốt gato và vị kem tươi tùy thích.",
+    "description_en": "Authentic handcrafted Thỏ con prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "banh-gato-cho-be",
+    "subcategory_name": "Bánh Tạo Hình Cho Bé",
+    "subcategory_name_en": "Kids Themed Cakes",
+    "variants": [
+      {
+        "size": "16cm",
+        "name": "Size 16cm (4-6 người)",
+        "price": 350000
+      },
+      {
+        "size": "18cm",
+        "name": "Size 18cm (6-8 người)",
+        "price": 437500
+      },
+      {
+        "size": "20cm",
+        "name": "Size 20cm (8-10 người)",
+        "price": 542500
+      }
+    ]
   },
   {
-    "id": "BanhMousseTraXanhVuong",
-    "name_vi": "Mousse trà xanh (Nguyên chiếc)",
-    "name_en": "Matcha Green Tea Mousse (Whole)",
-    "category": "banh-kem-tuoi",
-    "category_name": "Bánh Kem Tươi",
-    "category_name_en": "Fresh Cream & Mousse",
-    "price": 340000,
-    "img": "public/images/products/banh-kem-tuoi/BanhMousseTraXanhVuong.webp",
+    "id": "GauTrang",
+    "name_vi": "Gấu trắng",
+    "name_en": "White Bear Cake",
+    "category": "banh-gato",
+    "category_name": "Bánh Gato",
+    "category_name_en": "Gateaux & Birthday Cakes",
+    "price": 350000,
+    "img": "public/images/products/banh-gato/gau-trang.webp",
     "featured": false,
-    "description_vi": "Bánh mousse trà xanh tạo hình vuông tinh tế, đậm đà hương matcha Uji thượng hạng.",
-    "description_en": "Square-cut authentic Uji matcha green tea mousse with a deep grassy aroma.",
-    "subcategory": "dong-mousse",
-    "subcategory_name": "Bánh Mousse",
-    "subcategory_name_en": "Mousse Cakes"
+    "description_vi": "Bánh Gato tạo hình dành cho các bé yêu thích nhân vật gấu trắng. Sản phẩm không sử dụng chất bảo quản, đạt tiêu chuẩn kiểm định chất lượng.&nbsp;Bánh có thể đổi cốt gato và vị kem tươi tùy thích.",
+    "description_en": "Authentic handcrafted Gấu trắng prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "banh-gato-cho-be",
+    "subcategory_name": "Bánh Tạo Hình Cho Bé",
+    "subcategory_name_en": "Kids Themed Cakes",
+    "variants": [
+      {
+        "size": "16cm",
+        "name": "Size 16cm (4-6 người)",
+        "price": 350000
+      },
+      {
+        "size": "18cm",
+        "name": "Size 18cm (6-8 người)",
+        "price": 437500
+      },
+      {
+        "size": "20cm",
+        "name": "Size 20cm (8-10 người)",
+        "price": 542500
+      }
+    ]
   },
   {
-    "id": "BanhMousseVietQuatHoaQua",
-    "name_vi": "Mousse việt quất (Nguyên chiếc)",
-    "name_en": "Blueberry Fruit Mousse (Whole)",
-    "category": "banh-kem-tuoi",
-    "category_name": "Bánh Kem Tươi",
-    "category_name_en": "Fresh Cream & Mousse",
-    "price": 330000,
-    "img": "public/images/products/banh-kem-tuoi/BanhMousseVietQuatHoaQua.webp",
+    "id": "CunCon",
+    "name_vi": "Cún con",
+    "name_en": "Puppy Dog Cake",
+    "category": "banh-gato",
+    "category_name": "Bánh Gato",
+    "category_name_en": "Gateaux & Birthday Cakes",
+    "price": 350000,
+    "img": "public/images/products/banh-gato/cun-con.webp",
     "featured": false,
-    "description_vi": "Mousse việt quất chua dịu điểm xuyết các loại quả mọng tươi ngon rực rỡ.",
-    "description_en": "Whole wild blueberry mousse accented with a burst of seasonal fresh berries.",
-    "subcategory": "dong-mousse",
-    "subcategory_name": "Bánh Mousse",
-    "subcategory_name_en": "Mousse Cakes"
+    "description_vi": "Bánh Gato tạo hình dành cho các bé yêu thích cún con Sản phẩm không sử dụng chất bảo quản, trang trí bằng màu thực phẩm an toàn cho sức khỏe, đạt tiêu chuẩn kiểm định chất lượng.&nbsp;Bánh có thể đổi cốt gato và vị kem tươi tùy thích.",
+    "description_en": "Authentic handcrafted Cún con prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "banh-gato-cho-be",
+    "subcategory_name": "Bánh Tạo Hình Cho Bé",
+    "subcategory_name_en": "Kids Themed Cakes",
+    "variants": [
+      {
+        "size": "16cm",
+        "name": "Size 16cm (4-6 người)",
+        "price": 350000
+      },
+      {
+        "size": "18cm",
+        "name": "Size 18cm (6-8 người)",
+        "price": 437500
+      },
+      {
+        "size": "20cm",
+        "name": "Size 20cm (8-10 người)",
+        "price": 542500
+      }
+    ]
   },
   {
-    "id": "BanhMousseVietQuatVuong",
-    "name_vi": "Mousse bluberry vuông",
-    "name_en": "Square Blueberry Mousse Slice",
-    "category": "banh-kem-tuoi",
-    "category_name": "Bánh Kem Tươi",
-    "category_name_en": "Fresh Cream & Mousse",
-    "price": 48000,
-    "img": "public/images/products/banh-kem-tuoi/BanhMousseVietQuatVuong.webp",
+    "id": "CuuBaby",
+    "name_vi": "Cừu baby",
+    "name_en": "Baby Sheep Cake",
+    "category": "banh-gato",
+    "category_name": "Bánh Gato",
+    "category_name_en": "Gateaux & Birthday Cakes",
+    "price": 350000,
+    "img": "public/images/products/banh-gato/cuu-baby.webp",
     "featured": false,
-    "description_vi": "Miếng mousse việt quất vuông vức, lớp thạch trong veo bóng bẩy bắt mắt.",
-    "description_en": "Petite square blueberry mousse slice layered with glistening berry jelly.",
-    "subcategory": "dong-mousse",
-    "subcategory_name": "Bánh Mousse",
-    "subcategory_name_en": "Mousse Cakes"
+    "description_vi": "Bánh Gato tạo hình dành cho các bé yêu thích cừu baby. Sản phẩm không sử dụng chất bảo quản, trang trí bằng màu thực phẩm an toàn cho sức khỏe, đạt tiêu chuẩn kiểm định chất lượng.&nbsp;Bánh có thể đổi cốt gato và vị kem tươi tùy thích.",
+    "description_en": "Authentic handcrafted Cừu baby prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "banh-gato-cho-be",
+    "subcategory_name": "Bánh Tạo Hình Cho Bé",
+    "subcategory_name_en": "Kids Themed Cakes",
+    "variants": [
+      {
+        "size": "16cm",
+        "name": "Size 16cm (4-6 người)",
+        "price": 350000
+      },
+      {
+        "size": "18cm",
+        "name": "Size 18cm (6-8 người)",
+        "price": 437500
+      },
+      {
+        "size": "20cm",
+        "name": "Size 20cm (8-10 người)",
+        "price": 542500
+      }
+    ]
   },
   {
-    "id": "BanhMousseVietQuatTamGiac",
-    "name_vi": "Mousse dưa hấu",
-    "name_en": "Watermelon Mousse Slice",
-    "category": "banh-kem-tuoi",
-    "category_name": "Bánh Kem Tươi",
-    "category_name_en": "Fresh Cream & Mousse",
-    "price": 48000,
-    "img": "public/images/products/banh-kem-tuoi/BanhMousseVietQuatTamGiac.webp",
+    "id": "ThoCon",
+    "name_vi": "Thỏ con",
+    "name_en": "Bunny Themed Cake",
+    "category": "banh-gato",
+    "category_name": "Bánh Gato",
+    "category_name_en": "Gateaux & Birthday Cakes",
+    "price": 350000,
+    "img": "public/images/products/banh-gato/tho-con.webp",
     "featured": false,
-    "description_vi": "Miếng mousse việt quất cắt tam giác xinh xắn, vị chua ngọt kích thích vị giác.",
-    "description_en": "Triangular slice of creamy blueberry mousse with a delicate crumb base.",
-    "subcategory": "dong-mousse",
-    "subcategory_name": "Bánh Mousse",
-    "subcategory_name_en": "Mousse Cakes"
+    "description_vi": "Bánh Gato tạo hình dành cho các bé yêu thích thỏ con. Sản phẩm không sử dụng chất bảo quản, trang trí bằng màu thực phẩm an toàn cho sức khỏe, đạt tiêu chuẩn kiểm định chất lượng.&nbsp;Bánh có thể đổi cốt gato và vị kem tươi tùy thích.",
+    "description_en": "Authentic handcrafted Thỏ con prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "banh-gato-cho-be",
+    "subcategory_name": "Bánh Tạo Hình Cho Bé",
+    "subcategory_name_en": "Kids Themed Cakes",
+    "variants": [
+      {
+        "size": "16cm",
+        "name": "Size 16cm (4-6 người)",
+        "price": 350000
+      },
+      {
+        "size": "18cm",
+        "name": "Size 18cm (6-8 người)",
+        "price": 437500
+      },
+      {
+        "size": "20cm",
+        "name": "Size 20cm (8-10 người)",
+        "price": 542500
+      }
+    ]
   },
   {
-    "id": "BanhMousseChanhLeoVuong",
-    "name_vi": "Mousse chanh leo vuông",
-    "name_en": "Square Passion Fruit Mousse Slice",
+    "id": "GauTruc",
+    "name_vi": "gấu trúc",
+    "name_en": "Panda Bear Cake",
+    "category": "banh-gato",
+    "category_name": "Bánh Gato",
+    "category_name_en": "Gateaux & Birthday Cakes",
+    "price": 350000,
+    "img": "public/images/products/banh-gato/gau-truc.webp",
+    "featured": false,
+    "description_vi": "Bánh Gato tạo hình dành cho các bé yêu thích gấu trúc. Sản phẩm không sử dụng chất bảo quản, trang trí bằng màu thực phẩm an toàn cho sức khỏe, đạt tiêu chuẩn kiểm định chất lượng.&nbsp;Bánh có thể đổi cốt gato và vị kem tươi tùy thích.",
+    "description_en": "Authentic handcrafted gấu trúc prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "banh-gato-cho-be",
+    "subcategory_name": "Bánh Tạo Hình Cho Bé",
+    "subcategory_name_en": "Kids Themed Cakes",
+    "variants": [
+      {
+        "size": "16cm",
+        "name": "Size 16cm (4-6 người)",
+        "price": 350000
+      },
+      {
+        "size": "18cm",
+        "name": "Size 18cm (6-8 người)",
+        "price": 437500
+      },
+      {
+        "size": "20cm",
+        "name": "Size 20cm (8-10 người)",
+        "price": 542500
+      }
+    ]
+  },
+  {
+    "id": "GauNau",
+    "name_vi": "Gấu nâu",
+    "name_en": "Brown Bear Cake",
     "category": "banh-kem-tuoi",
     "category_name": "Bánh Kem Tươi",
     "category_name_en": "Fresh Cream & Mousse",
     "price": 45000,
-    "img": "public/images/products/banh-kem-tuoi/BanhMousseChanhLeoVuong.webp",
+    "img": "public/images/products/banh-kem-tuoi/gau-nau.webp",
     "featured": false,
-    "description_vi": "Mousse chanh leo miếng vuông thanh mát giải nhiệt, chua dịu ngọt thanh.",
-    "description_en": "Refreshing square passion fruit mousse slice with golden jelly topping.",
-    "subcategory": "dong-mousse",
-    "subcategory_name": "Bánh Mousse",
-    "subcategory_name_en": "Mousse Cakes"
+    "description_vi": "Bánh Gato tạo hình dành cho các bé yêu thích nhân vật gấu nâu. Sản phẩm không sử dụng chất bảo quản, trang trí bằng màu thực phẩm an toàn cho sức khỏe, đạt tiêu chuẩn kiểm định chất lượng.&nbsp;Bánh có thể đổi cốt gato và vị kem tươi tùy thích.",
+    "description_en": "Authentic handcrafted Gấu nâu prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-banh-cuon-cat-mieng",
+    "subcategory_name": "Bánh Cuộn & Bánh Cắt Miếng",
+    "subcategory_name_en": "Roll Cakes & Slices",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 45000
+      }
+    ]
   },
   {
-    "id": "BanhGatoMousseChanhLeoTamGiac",
-    "name_vi": "Mousse chanh leo Xmas",
-    "name_en": "Christmas Passion Fruit Mousse",
-    "category": "banh-kem-tuoi",
-    "category_name": "Bánh Kem Tươi",
-    "category_name_en": "Fresh Cream & Mousse",
-    "price": 45000,
-    "img": "public/images/products/banh-kem-tuoi/BanhGatoMousseChanhLeoTamGiac.webp",
+    "id": "CuuDen",
+    "name_vi": "Cừu đen",
+    "name_en": "Black Sheep Cake",
+    "category": "banh-gato",
+    "category_name": "Bánh Gato",
+    "category_name_en": "Gateaux & Birthday Cakes",
+    "price": 350000,
+    "img": "public/images/products/banh-gato/cuu-den.webp",
     "featured": false,
-    "description_vi": "Cốt bông lan mềm kết hợp lớp mousse chanh leo chua thanh tươi mới.",
-    "description_en": "Triangular slice of passion fruit mousse gateau on tender vanilla sponge.",
-    "subcategory": "dong-mousse",
-    "subcategory_name": "Bánh Mousse",
-    "subcategory_name_en": "Mousse Cakes"
+    "description_vi": "Bánh Gato tạo hình dành cho các bé yêu thích nhân vật cừu đen sấm sét. Sản phẩm không sử dụng chất bảo quản, trang trí bằng màu thực phẩm an toàn cho sức khỏe, đạt tiêu chuẩn kiểm định chất lượng.&nbsp;Bánh có thể đổi cốt gato và vị kem tươi tùy thích.",
+    "description_en": "Authentic handcrafted Cừu đen prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "banh-gato-cho-be",
+    "subcategory_name": "Bánh Tạo Hình Cho Bé",
+    "subcategory_name_en": "Kids Themed Cakes",
+    "variants": [
+      {
+        "size": "16cm",
+        "name": "Size 16cm (4-6 người)",
+        "price": 350000
+      },
+      {
+        "size": "18cm",
+        "name": "Size 18cm (6-8 người)",
+        "price": 437500
+      },
+      {
+        "size": "20cm",
+        "name": "Size 20cm (8-10 người)",
+        "price": 542500
+      }
+    ]
   },
   {
-    "id": "BanhMousseSocolaVuong",
-    "name_vi": "Mousse choco dừa",
-    "name_en": "Chocolate Coconut Mousse Slice",
-    "category": "banh-kem-tuoi",
-    "category_name": "Bánh Kem Tươi",
-    "category_name_en": "Fresh Cream & Mousse",
-    "price": 48000,
-    "img": "public/images/products/banh-kem-tuoi/BanhMousseSocolaVuong.webp",
-    "featured": false,
-    "description_vi": "Mousse socola vuông đậm đà, vị đắng ngọt êm ái quyến rũ vị giác.",
-    "description_en": "Decadent square dark chocolate mousse slice with rich cocoa dusting.",
-    "subcategory": "dong-mousse",
-    "subcategory_name": "Bánh Mousse",
-    "subcategory_name_en": "Mousse Cakes"
-  },
-  {
-    "id": "BanhMousseTraXanhTamGiac",
-    "name_vi": "Mousse trà",
-    "name_en": "Matcha Mousse Slice",
-    "category": "banh-kem-tuoi",
-    "category_name": "Bánh Kem Tươi",
-    "category_name_en": "Fresh Cream & Mousse",
-    "price": 48000,
-    "img": "public/images/products/banh-kem-tuoi/BanhMousseTraXanhTamGiac.webp",
-    "featured": false,
-    "description_vi": "Miếng mousse trà xanh thanh mát, chát nhẹ hậu vị ngọt thanh chuẩn phong vị Kyoto.",
-    "description_en": "Triangle slice of silky matcha mousse with an elegant earthy undertone.",
-    "subcategory": "dong-mousse",
-    "subcategory_name": "Bánh Mousse",
-    "subcategory_name_en": "Mousse Cakes"
-  },
-  {
-    "id": "BanhGatoMousseTraXanhDauDo",
-    "name_vi": "Mousse phúc bồn tử",
-    "name_en": "Raspberry Mousse Slice",
-    "category": "banh-kem-tuoi",
-    "category_name": "Bánh Kem Tươi",
-    "category_name_en": "Fresh Cream & Mousse",
-    "price": 52000,
-    "img": "public/images/products/banh-kem-tuoi/BanhGatoMousseTraXanhDauDo.webp",
-    "featured": true,
-    "description_vi": "Cặp đôi kinh điển ẩm thực Nhật Bản: matcha thanh tao và đậu đỏ ngọt bùi.",
-    "description_en": "Classic Japanese duo: authentic green tea mousse with sweet Azuki red beans.",
-    "subcategory": "dong-mousse",
-    "subcategory_name": "Bánh Mousse",
-    "subcategory_name_en": "Mousse Cakes"
-  },
-  {
-    "id": "BanhMousseDauTayTuoi",
-    "name_vi": "Cắt dâu đặc biệt",
-    "name_en": "Special Fresh Strawberry Slice",
-    "category": "banh-kem-tuoi",
-    "category_name": "Bánh Kem Tươi",
-    "category_name_en": "Fresh Cream & Mousse",
-    "price": 48000,
-    "img": "public/images/products/banh-kem-tuoi/BanhMousseDauTayTuoi.webp",
-    "featured": false,
-    "description_vi": "Miếng bánh mousse dâu tây hồng pastel ngọt ngào điểm lát dâu tươi mọng.",
-    "description_en": "Pastel pink strawberry mousse slice topped with freshly sliced strawberry.",
-    "subcategory": "dong-mousse",
-    "subcategory_name": "Bánh Mousse",
-    "subcategory_name_en": "Mousse Cakes"
-  },
-  {
-    "id": "BanhGatoMousseDauTayBaLop",
-    "name_vi": "Cắt kem mặn",
-    "name_en": "Salted Cream Slice Cake",
-    "category": "banh-kem-tuoi",
-    "category_name": "Bánh Kem Tươi",
-    "category_name_en": "Fresh Cream & Mousse",
-    "price": 52000,
-    "img": "public/images/products/banh-kem-tuoi/BanhGatoMousseDauTayBaLop.webp",
-    "featured": false,
-    "description_vi": "Ba tầng hương vị xen kẽ: bông lan vani, mousse dâu tây và thạch trái cây óng ánh.",
-    "description_en": "Tri-layer gateau mousse showcasing vanilla sponge, strawberry mousse and jelly.",
-    "subcategory": "dong-mousse",
-    "subcategory_name": "Bánh Mousse",
-    "subcategory_name_en": "Mousse Cakes"
-  },
-  {
-    "id": "BanhMousseSuaChuaPhoMai",
-    "name_vi": "Rare Cheese",
-    "name_en": "Rare Cheesecake Slice",
-    "category": "banh-kem-tuoi",
-    "category_name": "Bánh Kem Tươi",
-    "category_name_en": "Fresh Cream & Mousse",
-    "price": 50000,
-    "img": "public/images/products/banh-kem-tuoi/BanhMousseSuaChuaPhoMai.webp",
-    "featured": false,
-    "description_vi": "Sự giao thoa giữa phô mai béo ngậy và sữa chua lên men tự nhiên thanh nhẹ.",
-    "description_en": "Velvety hybrid of probiotic yogurt and rich cream cheese mousse.",
-    "subcategory": "dong-mousse",
-    "subcategory_name": "Bánh Mousse",
-    "subcategory_name_en": "Mousse Cakes"
-  },
-  {
-    "id": "BanhMousseXoaiPhoMai",
-    "name_vi": "Mousse caramen",
-    "name_en": "Caramel Mousse Slice",
-    "category": "banh-kem-tuoi",
-    "category_name": "Bánh Kem Tươi",
-    "category_name_en": "Fresh Cream & Mousse",
-    "price": 50000,
-    "img": "public/images/products/banh-kem-tuoi/BanhMousseXoaiPhoMai.webp",
-    "featured": false,
-    "description_vi": "Vị xoài nhiệt đới chín thơm quyện cùng vị phô mai béo ngậy đậm đà.",
-    "description_en": "Ripe tropical mango folded into smooth, decadent cream cheese mousse.",
-    "subcategory": "dong-mousse",
-    "subcategory_name": "Bánh Mousse",
-    "subcategory_name_en": "Mousse Cakes"
-  },
-  {
-    "id": "BanhSuKemVaniHop",
-    "name_vi": "Baby Syu Vani",
-    "name_en": "Baby Vanilla Choux Box",
-    "category": "banh-kem-tuoi",
-    "category_name": "Bánh Kem Tươi",
-    "category_name_en": "Fresh Cream & Mousse",
-    "price": 65000,
-    "img": "public/images/products/banh-kem-tuoi/BanhSuKemVaniHop.webp",
-    "featured": true,
-    "description_vi": "Hộp su kem vỏ mềm xốp ngập tràn nhân kem vani tươi thơm nức, ngọt thanh béo ngậy.",
-    "description_en": "Box of 6 soft-shell choux puffs bursting with luscious real vanilla pastry cream.",
-    "subcategory": "dong-su-kem",
-    "subcategory_name": "Bánh Su Kem",
-    "subcategory_name_en": "Choux Pastries"
-  },
-  {
-    "id": "BanhSuKemSocolaHop",
-    "name_vi": "Baby Syu Socola",
-    "name_en": "Baby Chocolate Choux Box",
-    "category": "banh-kem-tuoi",
-    "category_name": "Bánh Kem Tươi",
-    "category_name_en": "Fresh Cream & Mousse",
-    "price": 68000,
-    "img": "public/images/products/banh-kem-tuoi/BanhSuKemSocolaHop.webp",
-    "featured": true,
-    "description_vi": "Hộp bánh su kem vỏ mềm nhân socola Bỉ đậm đà, mát lạnh sảng khoái.",
-    "description_en": "Box of 6 tender choux pastries loaded with rich, chilled Belgian chocolate cream.",
-    "subcategory": "dong-su-kem",
-    "subcategory_name": "Bánh Su Kem",
-    "subcategory_name_en": "Choux Pastries"
-  },
-  {
-    "id": "BanhSuKemVoGionHop",
-    "name_vi": "Syu Cheese",
-    "name_en": "Crispy Cheese Choux Box",
-    "category": "banh-kem-tuoi",
-    "category_name": "Bánh Kem Tươi",
-    "category_name_en": "Fresh Cream & Mousse",
-    "price": 75000,
-    "img": "public/images/products/banh-kem-tuoi/BanhSuKemVoGionHop.webp",
-    "featured": true,
-    "description_vi": "Bánh su kem vỏ giòn rụm với lớp phủ cookie craquelin, nhân kem béo mịn tràn ngập.",
-    "description_en": "Box of 4 crunchy craquelin-topped choux filled to the brim with pastry cream.",
-    "subcategory": "dong-su-kem",
-    "subcategory_name": "Bánh Su Kem",
-    "subcategory_name_en": "Choux Pastries"
-  },
-  {
-    "id": "BanhSuKemMiniTui",
-    "name_vi": "Su kem phomai trái cây",
-    "name_en": "Fruit Cheese Choux Pastry",
-    "category": "banh-kem-tuoi",
-    "category_name": "Bánh Kem Tươi",
-    "category_name_en": "Fresh Cream & Mousse",
-    "price": 35000,
-    "img": "public/images/products/banh-kem-tuoi/BanhSuKemMiniTui.webp",
-    "featured": false,
-    "description_vi": "Túi bánh su kem mini nhỏ xinh vừa ăn, tiện lợi cho bữa xế chiều.",
-    "description_en": "Small grab-and-go pouch of bite-sized sweet cream-filled mini choux.",
-    "subcategory": "dong-su-kem",
-    "subcategory_name": "Bánh Su Kem",
-    "subcategory_name_en": "Choux Pastries"
-  },
-  {
-    "id": "BanhSuKemMiniTuiLon",
-    "name_vi": "Tháp su kem",
-    "name_en": "Grand Choux Cream Tower",
-    "category": "banh-kem-tuoi",
-    "category_name": "Bánh Kem Tươi",
-    "category_name_en": "Fresh Cream & Mousse",
+    "id": "HopCookiesLuoiMeoSocola",
+    "name_vi": "Hộp cookies lưỡi mèo socola",
+    "name_en": "Chocolate Langue de Chat Box",
+    "category": "banh-quy",
+    "category_name": "Bánh Quy",
+    "category_name_en": "Cookies & Biscuits",
     "price": 60000,
-    "img": "public/images/products/banh-kem-tuoi/BanhSuKemMiniTuiLon.webp",
+    "img": "public/images/products/banh-quy/hop-cookies-luoi-meo-socola.webp",
     "featured": false,
-    "description_vi": "Túi lớn bánh su kem mini chia sẻ cùng bạn bè và gia đình.",
-    "description_en": "Large party pouch of delicious bite-sized cream puffs to share.",
-    "subcategory": "dong-su-kem",
-    "subcategory_name": "Bánh Su Kem",
-    "subcategory_name_en": "Choux Pastries"
+    "description_vi": "Thành phần bao gồm bột, đường, bơ, sữa, bột socola.&nbsp;",
+    "description_en": "Authentic handcrafted Hộp cookies lưỡi mèo socola prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "cookies-hop",
+    "subcategory_name": "Hộp Cookies Thủ Công",
+    "subcategory_name_en": "Artisan Cookies Box",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Hộp tiêu chuẩn",
+        "price": 60000
+      }
+    ]
   },
   {
-    "id": "BanhSuKemNhanVani",
-    "name_vi": "Syu kem Vani",
-    "name_en": "Vanilla Choux Cream Puff",
-    "category": "banh-kem-tuoi",
-    "category_name": "Bánh Kem Tươi",
-    "category_name_en": "Fresh Cream & Mousse",
-    "price": 18000,
-    "img": "public/images/products/banh-kem-tuoi/BanhSuKemNhanVani.webp",
+    "id": "HopCookiesLuoiMeoTraXanh",
+    "name_vi": "Hộp cookies lưỡi mèo trà xanh",
+    "name_en": "Matcha Langue de Chat Box",
+    "category": "banh-quy",
+    "category_name": "Bánh Quy",
+    "category_name_en": "Cookies & Biscuits",
+    "price": 60000,
+    "img": "public/images/products/banh-quy/hop-cookies-luoi-meo-tra-xanh.webp",
     "featured": false,
-    "description_vi": "Chiếc bánh su kem cỡ lớn nhân kem vani ngập tràn mát lạnh.",
-    "description_en": "Single jumbo choux puff overflowing with silky chilled vanilla cream.",
-    "subcategory": "dong-su-kem",
-    "subcategory_name": "Bánh Su Kem",
-    "subcategory_name_en": "Choux Pastries"
+    "description_vi": "Thành phần bao gồm bột, đường, bơ, sữa, bột matcha Nhật Bản.",
+    "description_en": "Authentic handcrafted Hộp cookies lưỡi mèo trà xanh prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "cookies-hop",
+    "subcategory_name": "Hộp Cookies Thủ Công",
+    "subcategory_name_en": "Artisan Cookies Box",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Hộp tiêu chuẩn",
+        "price": 60000
+      }
+    ]
   },
   {
-    "id": "BanhSuKemNhanTraXanh",
-    "name_vi": "Syu kem Trà",
-    "name_en": "Matcha Tea Choux Puff",
-    "category": "banh-kem-tuoi",
-    "category_name": "Bánh Kem Tươi",
-    "category_name_en": "Fresh Cream & Mousse",
-    "price": 20000,
-    "img": "public/images/products/banh-kem-tuoi/BanhSuKemNhanTraXanh.webp",
+    "id": "HopCookiesNho",
+    "name_vi": "Hộp cookies nho",
+    "name_en": "Raisin Cookies Box",
+    "category": "banh-quy",
+    "category_name": "Bánh Quy",
+    "category_name_en": "Cookies & Biscuits",
+    "price": 60000,
+    "img": "public/images/products/banh-quy/hop-cookies-nho.webp",
     "featured": false,
-    "description_vi": "Su kem cỡ lớn ngập tràn nhân kem matcha thơm mát ngọt dịu.",
-    "description_en": "Single jumbo choux pastry filled with fragrant Japanese matcha cream.",
-    "subcategory": "dong-su-kem",
-    "subcategory_name": "Bánh Su Kem",
-    "subcategory_name_en": "Choux Pastries"
+    "description_vi": "Thành phần bao gồm bột, đường, bơ, sữa, nho khô.&nbsp;",
+    "description_en": "Authentic handcrafted Hộp cookies nho prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "cookies-hop",
+    "subcategory_name": "Hộp Cookies Thủ Công",
+    "subcategory_name_en": "Artisan Cookies Box",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Hộp tiêu chuẩn",
+        "price": 60000
+      }
+    ]
   },
   {
-    "id": "BanhSuDaiEclairSocola",
-    "name_vi": "Ekura",
-    "name_en": "Chocolate Éclair",
-    "category": "banh-kem-tuoi",
-    "category_name": "Bánh Kem Tươi",
-    "category_name_en": "Fresh Cream & Mousse",
-    "price": 32000,
-    "img": "public/images/products/banh-kem-tuoi/BanhSuDaiEclairSocola.webp",
-    "featured": true,
-    "description_vi": "Bánh su dài kiểu Pháp phủ sốt socola bóng mượt, nhân kem custard đậm đà.",
-    "description_en": "Traditional French eclair with glossy dark chocolate glaze and custard.",
-    "subcategory": "dong-su-kem",
-    "subcategory_name": "Bánh Su Kem",
-    "subcategory_name_en": "Choux Pastries"
-  },
-  {
-    "id": "BanhTiramisuHop",
-    "name_vi": "Tiramisu",
-    "name_en": "Poeme Tiramisu Box",
-    "category": "banh-kem-tuoi",
-    "category_name": "Bánh Kem Tươi",
-    "category_name_en": "Fresh Cream & Mousse",
-    "price": 75000,
-    "img": "public/images/products/banh-kem-tuoi/BanhTiramisuHop.webp",
-    "featured": true,
-    "description_vi": "Hộp Tiramisu tiện lợi với lớp phô mai Mascarpone dày mịn và bột cacao phủ đều.",
-    "description_en": "Convenient dessert box packed with creamy mascarpone, coffee savoiardi and cocoa.",
-    "subcategory": "dong-tiramisu",
-    "subcategory_name": "Bánh Tiramisu",
-    "subcategory_name_en": "Tiramisu"
-  },
-  {
-    "id": "BanhTiramisuMiengVuong",
-    "name_vi": "Tiramisu cắt",
-    "name_en": "Square Tiramisu Slice",
-    "category": "banh-kem-tuoi",
-    "category_name": "Bánh Kem Tươi",
-    "category_name_en": "Fresh Cream & Mousse",
-    "price": 50000,
-    "img": "public/images/products/banh-kem-tuoi/BanhTiramisuMiengVuong.webp",
-    "featured": false,
-    "description_vi": "Miếng bánh Tiramisu vuông chuẩn vị Ý, đắng dịu hương cà phê thơm nồng.",
-    "description_en": "Square Italian tiramisu slice boasting espresso aromas and mascarpone cream.",
-    "subcategory": "dong-tiramisu",
-    "subcategory_name": "Bánh Tiramisu",
-    "subcategory_name_en": "Tiramisu"
-  },
-  {
-    "id": "BanhTiramisuMousseTron",
-    "name_vi": "Cafe Mouka",
-    "name_en": "Cafe Mouka Mousse",
-    "category": "banh-kem-tuoi",
-    "category_name": "Bánh Kem Tươi",
-    "category_name_en": "Fresh Cream & Mousse",
-    "price": 55000,
-    "img": "public/images/products/banh-kem-tuoi/BanhTiramisuMousseTron.webp",
-    "featured": false,
-    "description_vi": "Tiramisu dạng mousse tròn xốp mềm tan chảy trong miệng.",
-    "description_en": "Round delicate tiramisu mousse presenting a featherlight texture.",
-    "subcategory": "dong-tiramisu",
-    "subcategory_name": "Bánh Tiramisu",
-    "subcategory_name_en": "Tiramisu"
-  },
-  {
-    "id": "BanhTiramisuTraXanhCoc",
-    "name_vi": "Cafe Jelly",
-    "name_en": "Coffee Jelly Cream Cup",
-    "category": "banh-kem-tuoi",
-    "category_name": "Bánh Kem Tươi",
-    "category_name_en": "Fresh Cream & Mousse",
-    "price": 45000,
-    "img": "public/images/products/banh-kem-tuoi/BanhTiramisuTraXanhCoc.webp",
-    "featured": false,
-    "description_vi": "Tiramisu trà xanh đựng trong cốc xinh xắn, ngọt thanh mát lành.",
-    "description_en": "Individual cup of matcha tiramisu layered with Uji green tea ladyfingers.",
-    "subcategory": "dong-tiramisu",
-    "subcategory_name": "Bánh Tiramisu",
-    "subcategory_name_en": "Tiramisu"
-  },
-  {
-    "id": "BanhTiramisuRedVelvetCoc",
-    "name_vi": "Tam giác trà",
-    "name_en": "Matcha Triangle Cream Slice",
-    "category": "banh-kem-tuoi",
-    "category_name": "Bánh Kem Tươi",
-    "category_name_en": "Fresh Cream & Mousse",
-    "price": 45000,
-    "img": "public/images/products/banh-kem-tuoi/BanhTiramisuRedVelvetCoc.webp",
-    "featured": false,
-    "description_vi": "Sự biến tấu độc đáo giữa Red Velvet và Tiramisu phô mai béo ngậy.",
-    "description_en": "Delightful dessert cup fusing red velvet crumbles with velvety tiramisu cream.",
-    "subcategory": "dong-tiramisu",
-    "subcategory_name": "Bánh Tiramisu",
-    "subcategory_name_en": "Tiramisu"
-  },
-  {
-    "id": "BanhTartDauTay",
-    "name_vi": "Bát dâu tươi",
-    "name_en": "Fresh Strawberry Tart Bowl",
-    "category": "banh-kem-tuoi",
-    "category_name": "Bánh Kem Tươi",
-    "category_name_en": "Fresh Cream & Mousse",
-    "price": 55000,
-    "img": "public/images/products/banh-kem-tuoi/BanhTartDauTay.webp",
-    "featured": true,
-    "description_vi": "Đế tart nướng bơ giòn rụm kết hợp kem custard ngọt ngào và dâu tây tươi.",
-    "description_en": "Buttery crisp tart shell filled with rich pastry cream and fresh strawberries.",
-    "subcategory": "dong-tart-ngan-lop",
-    "subcategory_name": "Bánh Tart & Ngàn Lớp",
-    "subcategory_name_en": "Tarts & Mille-Feuille"
-  },
-  {
-    "id": "BanhTartPhoMaiNuong",
-    "name_vi": "Fomat nướng",
-    "name_en": "Japanese Baked Cheese Tart",
-    "category": "banh-kem-tuoi",
-    "category_name": "Bánh Kem Tươi",
-    "category_name_en": "Fresh Cream & Mousse",
-    "price": 38000,
-    "img": "public/images/products/banh-kem-tuoi/BanhTartPhoMaiNuong.webp",
-    "featured": true,
-    "description_vi": "Bánh tart phô mai nướng vàng ươm kiểu Hokkaido với nhân phô mai béo ngậy chảy nhẹ.",
-    "description_en": "Hokkaido style baked cheese tart with a molten savory-sweet cheese center.",
-    "subcategory": "dong-tart-ngan-lop",
-    "subcategory_name": "Bánh Tart & Ngàn Lớp",
-    "subcategory_name_en": "Tarts & Mille-Feuille"
-  },
-  {
-    "id": "BanhTartTaoKemPhoMai",
-    "name_vi": "Fomat cam",
-    "name_en": "Orange Baked Cheese Tart",
-    "category": "banh-kem-tuoi",
-    "category_name": "Bánh Kem Tươi",
-    "category_name_en": "Fresh Cream & Mousse",
-    "price": 48000,
-    "img": "public/images/products/banh-kem-tuoi/BanhTartTaoKemPhoMai.webp",
-    "featured": false,
-    "description_vi": "Tart táo caramel thơm mùi quế hòa quyện cùng kem phô mai béo ngậy.",
-    "description_en": "Spiced caramelized apple tart paired with rich velvety cream cheese.",
-    "subcategory": "dong-tart-ngan-lop",
-    "subcategory_name": "Bánh Tart & Ngàn Lớp",
-    "subcategory_name_en": "Tarts & Mille-Feuille"
-  },
-  {
-    "id": "BanhNganLopMilleFeuille",
-    "name_vi": "Mille Feuille",
-    "name_en": "Classic French Mille-Feuille",
-    "category": "banh-kem-tuoi",
-    "category_name": "Bánh Kem Tươi",
-    "category_name_en": "Fresh Cream & Mousse",
-    "price": 58000,
-    "img": "public/images/products/banh-kem-tuoi/BanhNganLopMilleFeuille.webp",
-    "featured": true,
-    "description_vi": "Bánh ngàn lớp giòn tan xen kẽ các tầng kem bơ vani mềm mượt ngọt ngào.",
-    "description_en": "Flaky caramelized puff pastry layered with silky vanilla diplomat cream.",
-    "subcategory": "dong-tart-ngan-lop",
-    "subcategory_name": "Bánh Tart & Ngàn Lớp",
-    "subcategory_name_en": "Tarts & Mille-Feuille"
-  },
-  {
-    "id": "BanhCuonKemTuoiVani",
-    "name_vi": "Cuộn bông lan mix",
-    "name_en": "Mixed Cream Swiss Roll",
-    "category": "banh-kem-tuoi",
-    "category_name": "Bánh Kem Tươi",
-    "category_name_en": "Fresh Cream & Mousse",
-    "price": 55000,
-    "img": "public/images/products/banh-kem-tuoi/BanhCuonKemTuoiVani.webp",
-    "featured": true,
-    "description_vi": "Bánh cuộn bông lan xốp mềm kiểu Nhật cuộn chặt kem tươi thanh mát ngọt nhẹ.",
-    "description_en": "Classic Japanese vanilla Swiss roll swirled with light whipped dairy cream.",
-    "subcategory": "dong-banh-cuon-cat-mieng",
-    "subcategory_name": "Bánh Cuộn & Gato Cắt Miếng",
-    "subcategory_name_en": "Roll Cakes & Slices"
-  },
-  {
-    "id": "BanhCuonCaPheSocola",
-    "name_vi": "Cuộn bông lan Socola",
-    "name_en": "Chocolate Swiss Roll",
-    "category": "banh-kem-tuoi",
-    "category_name": "Bánh Kem Tươi",
-    "category_name_en": "Fresh Cream & Mousse",
-    "price": 58000,
-    "img": "public/images/products/banh-kem-tuoi/BanhCuonCaPheSocola.webp",
-    "featured": false,
-    "description_vi": "Bánh cuộn thơm nồng mùi cà phê kết hợp sốt socola đen quyến rũ.",
-    "description_en": "Mocha sponge roll embracing a rich swirl of Belgian dark chocolate ganache.",
-    "subcategory": "dong-banh-cuon-cat-mieng",
-    "subcategory_name": "Bánh Cuộn & Gato Cắt Miếng",
-    "subcategory_name_en": "Roll Cakes & Slices"
-  },
-  {
-    "id": "BanhCuonTraXanhMatcha",
-    "name_vi": "Cuộn bông lan trà xanh",
-    "name_en": "Matcha Green Tea Swiss Roll",
-    "category": "banh-kem-tuoi",
-    "category_name": "Bánh Kem Tươi",
-    "category_name_en": "Fresh Cream & Mousse",
-    "price": 58000,
-    "img": "public/images/products/banh-kem-tuoi/BanhCuonTraXanhMatcha.webp",
-    "featured": false,
-    "description_vi": "Cốt bánh matcha xanh mướt cuộn kem tươi Uji thanh tao, thơm dịu dễ chịu.",
-    "description_en": "Vibrant matcha green tea roll cake with delicate chantilly cream.",
-    "subcategory": "dong-banh-cuon-cat-mieng",
-    "subcategory_name": "Bánh Cuộn & Gato Cắt Miếng",
-    "subcategory_name_en": "Roll Cakes & Slices"
-  },
-  {
-    "id": "BanhCuonSotPhoMai",
-    "name_vi": "Cuộn bông lan Caramen",
-    "name_en": "Caramel Swiss Roll",
-    "category": "banh-kem-tuoi",
-    "category_name": "Bánh Kem Tươi",
-    "category_name_en": "Fresh Cream & Mousse",
-    "price": 62000,
-    "img": "public/images/products/banh-kem-tuoi/BanhCuonSotPhoMai.webp",
-    "featured": false,
-    "description_vi": "Bánh cuộn phủ sốt phô mai tan chảy béo mặn thơm ngậy khó cưỡng.",
-    "description_en": "Soft sponge roll drizzled with a decadent molten savory cheese cream.",
-    "subcategory": "dong-banh-cuon-cat-mieng",
-    "subcategory_name": "Bánh Cuộn & Gato Cắt Miếng",
-    "subcategory_name_en": "Roll Cakes & Slices"
-  },
-  {
-    "id": "BanhCuonKemBoCaPhe",
-    "name_vi": "Cuốn Cappuccino",
-    "name_en": "Cappuccino Cream Roll",
-    "category": "banh-kem-tuoi",
-    "category_name": "Bánh Kem Tươi",
-    "category_name_en": "Fresh Cream & Mousse",
-    "price": 55000,
-    "img": "public/images/products/banh-kem-tuoi/BanhCuonKemBoCaPhe.webp",
-    "featured": false,
-    "description_vi": "Bánh cuộn kem bơ cà phê đậm vị truyền thống thơm lừng béo ngậy.",
-    "description_en": "Heritage coffee roll cake spread with whipped French coffee buttercream.",
-    "subcategory": "dong-banh-cuon-cat-mieng",
-    "subcategory_name": "Bánh Cuộn & Gato Cắt Miếng",
-    "subcategory_name_en": "Roll Cakes & Slices"
-  },
-  {
-    "id": "BanhGatoKemTuoiDauTayMieng",
-    "name_vi": "Baby Cake kem tươi",
-    "name_en": "Baby Fresh Cream Strawberry Cake",
-    "category": "banh-kem-tuoi",
-    "category_name": "Bánh Kem Tươi",
-    "category_name_en": "Fresh Cream & Mousse",
-    "price": 50000,
-    "img": "public/images/products/banh-kem-tuoi/BanhGatoKemTuoiDauTayMieng.webp",
-    "featured": true,
-    "description_vi": "Bánh shortcake kinh điển Nhật Bản với dâu tây mọng và kem whipping tươi.",
-    "description_en": "Signature Japanese strawberry shortcake slice with fluffy sponge and fresh cream.",
-    "subcategory": "dong-banh-cuon-cat-mieng",
-    "subcategory_name": "Bánh Cuộn & Gato Cắt Miếng",
-    "subcategory_name_en": "Roll Cakes & Slices"
-  },
-  {
-    "id": "BanhGatoKemSuaTuoiMiengVuong",
-    "name_vi": "Baby Cake Cafe",
-    "name_en": "Baby Cafe Cream Cake",
-    "category": "banh-kem-tuoi",
-    "category_name": "Bánh Kem Tươi",
-    "category_name_en": "Fresh Cream & Mousse",
-    "price": 45000,
-    "img": "public/images/products/banh-kem-tuoi/BanhGatoKemSuaTuoiMiengVuong.webp",
-    "featured": false,
-    "description_vi": "Miếng bánh vuông phủ kem sữa tươi thanh khiết tan ngay trên đầu lưỡi.",
-    "description_en": "Square slice of ultra-fluffy sponge cake frosted with pure milk cream.",
-    "subcategory": "dong-banh-cuon-cat-mieng",
-    "subcategory_name": "Bánh Cuộn & Gato Cắt Miếng",
-    "subcategory_name_en": "Roll Cakes & Slices"
-  },
-  {
-    "id": "BanhGatoKemTuoiVaniMieng",
-    "name_vi": "Baby Cake Trà",
-    "name_en": "Baby Matcha Tea Cake",
-    "category": "banh-kem-tuoi",
-    "category_name": "Bánh Kem Tươi",
-    "category_name_en": "Fresh Cream & Mousse",
-    "price": 45000,
-    "img": "public/images/products/banh-kem-tuoi/BanhGatoKemTuoiVaniMieng.webp",
-    "featured": false,
-    "description_vi": "Cốt bánh vani Madagascar thơm phức xen kẽ tầng kem tươi mịn màng.",
-    "description_en": "Madagascar vanilla sponge slice layered with delicate whipped cream.",
-    "subcategory": "dong-banh-cuon-cat-mieng",
-    "subcategory_name": "Bánh Cuộn & Gato Cắt Miếng",
-    "subcategory_name_en": "Roll Cakes & Slices"
-  },
-  {
-    "id": "BanhGatoKemSuaTuoiDiemDau",
-    "name_vi": "Cắt dâu tươi kem sữa",
-    "name_en": "Fresh Milk Strawberry Cake Slice",
-    "category": "banh-kem-tuoi",
-    "category_name": "Bánh Kem Tươi",
-    "category_name_en": "Fresh Cream & Mousse",
-    "price": 48000,
-    "img": "public/images/products/banh-kem-tuoi/BanhGatoKemSuaTuoiDiemDau.webp",
-    "featured": false,
-    "description_vi": "Lát bánh kem sữa tươi tinh khôi điểm một trái dâu tây ngọt ngào.",
-    "description_en": "Snow-white milk cream cake slice accented with a single ripe strawberry.",
-    "subcategory": "dong-banh-cuon-cat-mieng",
-    "subcategory_name": "Bánh Cuộn & Gato Cắt Miếng",
-    "subcategory_name_en": "Roll Cakes & Slices"
-  },
-  {
-    "id": "BanhGatoKemHongNhanDau",
-    "name_vi": "Pink O'hara cắt",
-    "name_en": "Pink O'hara Rose Cake Slice",
-    "category": "banh-kem-tuoi",
-    "category_name": "Bánh Kem Tươi",
-    "category_name_en": "Fresh Cream & Mousse",
-    "price": 48000,
-    "img": "public/images/products/banh-kem-tuoi/BanhGatoKemHongNhanDau.webp",
-    "featured": false,
-    "description_vi": "Bánh kem hồng pastel dễ thương với nhân mứt dâu tây chua ngọt thơm lừng.",
-    "description_en": "Lovely pastel pink cream cake slice featuring a luscious strawberry center.",
-    "subcategory": "dong-banh-cuon-cat-mieng",
-    "subcategory_name": "Bánh Cuộn & Gato Cắt Miếng",
-    "subcategory_name_en": "Roll Cakes & Slices"
-  },
-  {
-    "id": "BanhGatoKemTuoiNhanDau",
-    "name_vi": "Cherry blossoms cắt",
-    "name_en": "Cherry Blossom Cake Slice",
-    "category": "banh-kem-tuoi",
-    "category_name": "Bánh Kem Tươi",
-    "category_name_en": "Fresh Cream & Mousse",
-    "price": 48000,
-    "img": "public/images/products/banh-kem-tuoi/BanhGatoKemTuoiNhanDau.webp",
-    "featured": false,
-    "description_vi": "Cốt bông lan mềm ngập tràn kem tươi và dâu tây thái lát bên trong.",
-    "description_en": "Fluffy sponge cake slice packed with sliced strawberries and sweet cream.",
-    "subcategory": "dong-banh-cuon-cat-mieng",
-    "subcategory_name": "Bánh Cuộn & Gato Cắt Miếng",
-    "subcategory_name_en": "Roll Cakes & Slices"
-  },
-  {
-    "id": "BanhGatoMutDauKemXanh",
-    "name_vi": "Green Garden cắt",
-    "name_en": "Green Garden Matcha Slice",
-    "category": "banh-kem-tuoi",
-    "category_name": "Bánh Kem Tươi",
-    "category_name_en": "Fresh Cream & Mousse",
-    "price": 48000,
-    "img": "public/images/products/banh-kem-tuoi/BanhGatoMutDauKemXanh.webp",
-    "featured": false,
-    "description_vi": "Sự phối màu tươi vui giữa kem lá bạc hà xanh mát và mứt dâu đỏ au.",
-    "description_en": "Vibrant slice contrasting cool mint frosting with ruby-red strawberry jam.",
-    "subcategory": "dong-banh-cuon-cat-mieng",
-    "subcategory_name": "Bánh Cuộn & Gato Cắt Miếng",
-    "subcategory_name_en": "Roll Cakes & Slices"
-  },
-  {
-    "id": "BanhGatoSotDauTayMieng",
-    "name_vi": "Romantic tulips cắt",
-    "name_en": "Romantic Tulip Cake Slice",
-    "category": "banh-kem-tuoi",
-    "category_name": "Bánh Kem Tươi",
-    "category_name_en": "Fresh Cream & Mousse",
-    "price": 46000,
-    "img": "public/images/products/banh-kem-tuoi/BanhGatoSotDauTayMieng.webp",
-    "featured": false,
-    "description_vi": "Miếng bánh gato phủ sốt dâu tây đỏ tươi mọng óng ánh hấp dẫn.",
-    "description_en": "Moist cake slice generously coated with a glossy sweet strawberry coulis.",
-    "subcategory": "dong-banh-cuon-cat-mieng",
-    "subcategory_name": "Bánh Cuộn & Gato Cắt Miếng",
-    "subcategory_name_en": "Roll Cakes & Slices"
-  },
-  {
-    "id": "BanhGatoKemXoaiMieng",
-    "name_vi": "Ivory blossom cắt",
-    "name_en": "Ivory Blossom Fruit Slice",
-    "category": "banh-kem-tuoi",
-    "category_name": "Bánh Kem Tươi",
-    "category_name_en": "Fresh Cream & Mousse",
-    "price": 48000,
-    "img": "public/images/products/banh-kem-tuoi/BanhGatoKemXoaiMieng.webp",
-    "featured": false,
-    "description_vi": "Hương xoài cát nhiệt đới chín mọng lan tỏa trong từng miếng bánh mềm xốp.",
-    "description_en": "Sunny mango cream cake slice infused with natural tropical fruit nectar.",
-    "subcategory": "dong-banh-cuon-cat-mieng",
-    "subcategory_name": "Bánh Cuộn & Gato Cắt Miếng",
-    "subcategory_name_en": "Roll Cakes & Slices"
-  },
-  {
-    "id": "BanhGatoKemChanhLeoDua",
-    "name_vi": "Coconut Cream",
-    "name_en": "Coconut Cream Cake Slice",
-    "category": "banh-kem-tuoi",
-    "category_name": "Bánh Kem Tươi",
-    "category_name_en": "Fresh Cream & Mousse",
-    "price": 48000,
-    "img": "public/images/products/banh-kem-tuoi/BanhGatoKemChanhLeoDua.webp",
-    "featured": false,
-    "description_vi": "Hương chanh leo chua thanh kết hợp dừa nạo sấy bùi béo độc đáo.",
-    "description_en": "Tropical harmony slice blending tangy passion fruit with shredded coconut.",
-    "subcategory": "dong-banh-cuon-cat-mieng",
-    "subcategory_name": "Bánh Cuộn & Gato Cắt Miếng",
-    "subcategory_name_en": "Roll Cakes & Slices"
-  },
-  {
-    "id": "BanhGatoMiengCaPheMocha",
-    "name_vi": "Gato Cafe cắt",
-    "name_en": "Mocha Cafe Cake Slice",
-    "category": "banh-kem-tuoi",
-    "category_name": "Bánh Kem Tươi",
-    "category_name_en": "Fresh Cream & Mousse",
-    "price": 48000,
-    "img": "public/images/products/banh-kem-tuoi/BanhGatoMiengCaPheMocha.webp",
-    "featured": false,
-    "description_vi": "Vị cà phê mocha đậm đà thơm ngát kết hợp socola đen quyến rũ.",
-    "description_en": "Aromatic mocha coffee cake slice finished with a dusting of fine cocoa.",
-    "subcategory": "dong-banh-cuon-cat-mieng",
-    "subcategory_name": "Bánh Cuộn & Gato Cắt Miếng",
-    "subcategory_name_en": "Roll Cakes & Slices"
-  },
-  {
-    "id": "BanhGatoSotSocolaMieng",
-    "name_vi": "Derika",
-    "name_en": "Derika Chocolate Pastry",
-    "category": "banh-kem-tuoi",
-    "category_name": "Bánh Kem Tươi",
-    "category_name_en": "Fresh Cream & Mousse",
-    "price": 48000,
-    "img": "public/images/products/banh-kem-tuoi/BanhGatoSotSocolaMieng.webp",
-    "featured": false,
-    "description_vi": "Cốt bông lan phủ đẫm sốt socola đen nguyên chất bóng mịn hấp dẫn.",
-    "description_en": "Tender sponge slice enveloped in a glistening coat of dark chocolate glaze.",
-    "subcategory": "dong-banh-cuon-cat-mieng",
-    "subcategory_name": "Bánh Cuộn & Gato Cắt Miếng",
-    "subcategory_name_en": "Roll Cakes & Slices"
-  },
-  {
-    "id": "BanhGatoSocolaKemTuoiVuong",
-    "name_vi": "Choco Velvet",
-    "name_en": "Choco Velvet Cream Slice",
-    "category": "banh-kem-tuoi",
-    "category_name": "Bánh Kem Tươi",
-    "category_name_en": "Fresh Cream & Mousse",
-    "price": 48000,
-    "img": "public/images/products/banh-kem-tuoi/BanhGatoSocolaKemTuoiVuong.webp",
-    "featured": false,
-    "description_vi": "Bánh vuông socola kem tươi mềm mại đậm đà chuẩn vị Pháp.",
-    "description_en": "Square cut chocolate cake layered with silky fresh chocolate cream.",
-    "subcategory": "dong-banh-cuon-cat-mieng",
-    "subcategory_name": "Bánh Cuộn & Gato Cắt Miếng",
-    "subcategory_name_en": "Roll Cakes & Slices"
-  },
-  {
-    "id": "BanhGatoSocolaVanDa",
-    "name_vi": "Khúc củi socola mini",
-    "name_en": "Mini Chocolate Yule Log Slice",
-    "category": "banh-kem-tuoi",
-    "category_name": "Bánh Kem Tươi",
-    "category_name_en": "Fresh Cream & Mousse",
-    "price": 46000,
-    "img": "public/images/products/banh-kem-tuoi/BanhGatoSocolaVanDa.webp",
-    "featured": false,
-    "description_vi": "Vân đá socola hòa quyện nghệ thuật giữa cốt vani và cốt cacao thơm ngậy.",
-    "description_en": "Artisanal marble cake slice with swirling vanilla and dark cocoa batter.",
-    "subcategory": "dong-banh-cuon-cat-mieng",
-    "subcategory_name": "Bánh Cuộn & Gato Cắt Miếng",
-    "subcategory_name_en": "Roll Cakes & Slices"
-  },
-  {
-    "id": "BanhGatoSocolaSocKem",
-    "name_vi": "Khúc củi phủ socola nâu",
-    "name_en": "Brown Chocolate Log Slice",
-    "category": "banh-kem-tuoi",
-    "category_name": "Bánh Kem Tươi",
-    "category_name_en": "Fresh Cream & Mousse",
-    "price": 48000,
-    "img": "public/images/products/banh-kem-tuoi/BanhGatoSocolaSocKem.webp",
-    "featured": false,
-    "description_vi": "Đường sọc socola trang trí bắt mắt trên nền kem tươi béo ngậy ngọt ngào.",
-    "description_en": "Eye-catching striped chocolate cake slice with rich dairy whipped cream.",
-    "subcategory": "dong-banh-cuon-cat-mieng",
-    "subcategory_name": "Bánh Cuộn & Gato Cắt Miếng",
-    "subcategory_name_en": "Roll Cakes & Slices"
-  },
-  {
-    "id": "BanhGatoSocolaTrangGuong",
-    "name_vi": "Khúc củi phủ socola đen",
-    "name_en": "Dark Chocolate Glazed Log Slice",
-    "category": "banh-kem-tuoi",
-    "category_name": "Bánh Kem Tươi",
-    "category_name_en": "Fresh Cream & Mousse",
-    "price": 52000,
-    "img": "public/images/products/banh-kem-tuoi/BanhGatoSocolaTrangGuong.webp",
-    "featured": true,
-    "description_vi": "Lớp tráng gương socola đen bóng bẩy sang trọng chuẩn phong cách patisserie.",
-    "description_en": "High-gloss mirror glaze chocolate cake slice with a velvety interior.",
-    "subcategory": "dong-banh-cuon-cat-mieng",
-    "subcategory_name": "Bánh Cuộn & Gato Cắt Miếng",
-    "subcategory_name_en": "Roll Cakes & Slices"
-  },
-  {
-    "id": "BanhGateauChocolatCoDien",
-    "name_vi": "Sahere",
-    "name_en": "Classic Austrian Sachertorte",
-    "category": "banh-kem-tuoi",
-    "category_name": "Bánh Kem Tươi",
-    "category_name_en": "Fresh Cream & Mousse",
-    "price": 52000,
-    "img": "public/images/products/banh-kem-tuoi/BanhGateauChocolatCoDien.webp",
-    "featured": true,
-    "description_vi": "Bánh socola nướng cổ điển đậm đặc, ẩm mượt và nồng nàn vị cacao nguyên chất.",
-    "description_en": "Dense, moist traditional French chocolate cake baked to pure perfection.",
-    "subcategory": "dong-banh-cuon-cat-mieng",
-    "subcategory_name": "Bánh Cuộn & Gato Cắt Miếng",
-    "subcategory_name_en": "Roll Cakes & Slices"
-  },
-  {
-    "id": "BanhOperaSocolaCaPhe",
-    "name_vi": "Opera cắt",
-    "name_en": "Opera French Pastry Slice",
-    "category": "banh-kem-tuoi",
-    "category_name": "Bánh Kem Tươi",
-    "category_name_en": "Fresh Cream & Mousse",
-    "price": 55000,
-    "img": "public/images/products/banh-kem-tuoi/BanhOperaSocolaCaPhe.webp",
-    "featured": true,
-    "description_vi": "Miếng bánh Opera nhiều lớp xen kẽ kem bơ cà phê và ganache socola Bỉ.",
-    "description_en": "Exquisite Opera slice featuring layered almond joconde, espresso and ganache.",
-    "subcategory": "dong-banh-cuon-cat-mieng",
-    "subcategory_name": "Bánh Cuộn & Gato Cắt Miếng",
-    "subcategory_name_en": "Roll Cakes & Slices"
-  },
-  {
-    "id": "BanhRedVelvetMieng",
-    "name_vi": "Red Velvet cắt",
-    "name_en": "Red Velvet Cream Slice",
-    "category": "banh-kem-tuoi",
-    "category_name": "Bánh Kem Tươi",
-    "category_name_en": "Fresh Cream & Mousse",
-    "price": 50000,
-    "img": "public/images/products/banh-kem-tuoi/BanhRedVelvetMieng.webp",
-    "featured": false,
-    "description_vi": "Sắc đỏ nhung quý phái quyện cùng kem phô mai chua ngọt béo ngậy.",
-    "description_en": "Classic Red Velvet slice with vibrant red crumb and tangy cream cheese icing.",
-    "subcategory": "dong-banh-cuon-cat-mieng",
-    "subcategory_name": "Bánh Cuộn & Gato Cắt Miếng",
-    "subcategory_name_en": "Roll Cakes & Slices"
-  },
-  {
-    "id": "BanhKemVietQuatCocVuong",
-    "name_vi": "Lavender blossom cắt",
-    "name_en": "Lavender Blossom Blueberry Slice",
-    "category": "banh-kem-tuoi",
-    "category_name": "Bánh Kem Tươi",
-    "category_name_en": "Fresh Cream & Mousse",
-    "price": 45000,
-    "img": "public/images/products/banh-kem-tuoi/BanhKemVietQuatCocVuong.webp",
-    "featured": false,
-    "description_vi": "Cốc bánh kem việt quất đựng trong ly vuông hiện đại tiện dụng.",
-    "description_en": "Contemporary square dessert cup filled with layers of sponge and wild blueberries.",
-    "subcategory": "dong-banh-cuon-cat-mieng",
-    "subcategory_name": "Bánh Cuộn & Gato Cắt Miếng",
-    "subcategory_name_en": "Roll Cakes & Slices"
-  },
-  {
-    "id": "BanhGatoKemTuoiDaoQuyt",
-    "name_vi": "Giỏ trái cây cắt",
-    "name_en": "Fruit Basket Pastry Slice",
-    "category": "banh-kem-tuoi",
-    "category_name": "Bánh Kem Tươi",
-    "category_name_en": "Fresh Cream & Mousse",
-    "price": 48000,
-    "img": "public/images/products/banh-kem-tuoi/BanhGatoKemTuoiDaoQuyt.webp",
-    "featured": false,
-    "description_vi": "Sự tươi mát sảng khoái từ những múi quýt vàng và miếng đào ngọt giòn.",
-    "description_en": "Refreshing cake slice topped with juicy mandarin segments and sweet peaches.",
-    "subcategory": "dong-banh-cuon-cat-mieng",
-    "subcategory_name": "Bánh Cuộn & Gato Cắt Miếng",
-    "subcategory_name_en": "Roll Cakes & Slices"
-  },
-  {
-    "id": "BanhGatoHoaQuaHopVuong",
-    "name_vi": "Mây ngàn lớp cắt",
-    "name_en": "Mille-Feuille Cloud Pastry",
-    "category": "banh-kem-tuoi",
-    "category_name": "Bánh Kem Tươi",
-    "category_name_en": "Fresh Cream & Mousse",
-    "price": 78000,
-    "img": "public/images/products/banh-kem-tuoi/BanhGatoHoaQuaHopVuong.webp",
-    "featured": false,
-    "description_vi": "Hộp bánh bento vuông phủ đầy trái cây tươi theo mùa ngọt lành.",
-    "description_en": "Petite square bento box cake adorned with an array of fresh seasonal fruits.",
-    "subcategory": "dong-banh-cuon-cat-mieng",
-    "subcategory_name": "Bánh Cuộn & Gato Cắt Miếng",
-    "subcategory_name_en": "Roll Cakes & Slices"
-  },
-  {
-    "id": "BanhHopCaPheHanhNhan",
-    "name_vi": "Brownie socola",
-    "name_en": "Chocolate Almond Brownie Box",
-    "category": "banh-kem-tuoi",
-    "category_name": "Bánh Kem Tươi",
-    "category_name_en": "Fresh Cream & Mousse",
-    "price": 78000,
-    "img": "public/images/products/banh-kem-tuoi/BanhHopCaPheHanhNhan.webp",
-    "featured": false,
-    "description_vi": "Bánh hộp cà phê béo ngậy phủ đầy hạnh nhân lát rang giòn thơm lừng.",
-    "description_en": "Gourmet coffee dessert box generously topped with toasted sliced almonds.",
-    "subcategory": "dong-banh-cuon-cat-mieng",
-    "subcategory_name": "Bánh Cuộn & Gato Cắt Miếng",
-    "subcategory_name_en": "Roll Cakes & Slices"
-  },
-  {
-    "id": "BanhHopKemSuaTuoi",
-    "name_vi": "Santa Claus",
-    "name_en": "Santa Claus Fresh Cream Pastry",
-    "category": "banh-kem-tuoi",
-    "category_name": "Bánh Kem Tươi",
-    "category_name_en": "Fresh Cream & Mousse",
-    "price": 72000,
-    "img": "public/images/products/banh-kem-tuoi/BanhHopKemSuaTuoi.webp",
-    "featured": false,
-    "description_vi": "Hộp bánh kem sữa tươi béo ngậy mềm mịn, vị ngọt thanh mát lạnh.",
-    "description_en": "Chilled fresh milk cream box cake with an irresistible melt-in-mouth crumb.",
-    "subcategory": "dong-banh-cuon-cat-mieng",
-    "subcategory_name": "Bánh Cuộn & Gato Cắt Miếng",
-    "subcategory_name_en": "Roll Cakes & Slices"
-  },
-  {
-    "id": "BanhHopTraXanhMatcha",
-    "name_vi": "English rose cắt",
-    "name_en": "English Rose Matcha Pastry",
-    "category": "banh-kem-tuoi",
-    "category_name": "Bánh Kem Tươi",
-    "category_name_en": "Fresh Cream & Mousse",
-    "price": 78000,
-    "img": "public/images/products/banh-kem-tuoi/BanhHopTraXanhMatcha.webp",
-    "featured": false,
-    "description_vi": "Bánh hộp trà xanh Uji thơm dịu mang đậm tinh thần trà đạo Nhật Bản.",
-    "description_en": "Artisanal matcha dessert box dusted with authentic Kyoto Uji green tea powder.",
-    "subcategory": "dong-banh-cuon-cat-mieng",
-    "subcategory_name": "Bánh Cuộn & Gato Cắt Miếng",
-    "subcategory_name_en": "Roll Cakes & Slices"
-  },
-  {
-    "id": "BanhBongLanTrungMuoiChaBong",
-    "name_vi": "Bông lan trứng muối 16cm",
-    "name_en": "Salted Egg Sponge Cake 16cm",
-    "category": "banh-kem-tuoi",
-    "category_name": "Bánh Kem Tươi",
-    "category_name_en": "Fresh Cream & Mousse",
-    "price": 42000,
-    "img": "public/images/products/banh-kem-tuoi/BanhBongLanTrungMuoiChaBong.webp",
-    "featured": true,
-    "description_vi": "Bông lan sốt phô mai béo ngậy kết hợp trứng muối bùi bùi và chà bông thơm lừng.",
-    "description_en": "Savory-sweet sponge cake slice topped with golden salted egg yolk and pork floss.",
-    "subcategory": "dong-banh-cuon-cat-mieng",
-    "subcategory_name": "Bánh Cuộn & Gato Cắt Miếng",
-    "subcategory_name_en": "Roll Cakes & Slices"
-  },
-  {
-    "id": "BanhBongLanChaBongKepKemHop",
-    "name_vi": "Cupcake trứng muối",
-    "name_en": "Salted Egg Cupcake Box",
-    "category": "banh-kem-tuoi",
-    "category_name": "Bánh Kem Tươi",
-    "category_name_en": "Fresh Cream & Mousse",
+    "id": "HopCookiesLuoiMeoHanhNhan",
+    "name_vi": "Hộp cookies lưỡi mèo hạnh nhân",
+    "name_en": "Almond Langue de Chat Box",
+    "category": "banh-quy",
+    "category_name": "Bánh Quy",
+    "category_name_en": "Cookies & Biscuits",
     "price": 65000,
-    "img": "public/images/products/banh-kem-tuoi/BanhBongLanChaBongKepKemHop.webp",
+    "img": "public/images/products/banh-quy/hop-cookies-luoi-meo-hanh-nhan.webp",
     "featured": false,
-    "description_vi": "Hộp bánh bông lan chà bông kẹp kem béo ngậy mặn ngọt hòa quyện.",
-    "description_en": "Box of tender sponge sandwiches stuffed with rich cream and savory pork floss.",
-    "subcategory": "dong-banh-cuon-cat-mieng",
-    "subcategory_name": "Bánh Cuộn & Gato Cắt Miếng",
-    "subcategory_name_en": "Roll Cakes & Slices"
+    "description_vi": "Thành phần bao gồm bột, đường, bơ, sữa, hạnh nhân sấy khô.",
+    "description_en": "Authentic handcrafted Hộp cookies lưỡi mèo hạnh nhân prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "cookies-hop",
+    "subcategory_name": "Hộp Cookies Thủ Công",
+    "subcategory_name_en": "Artisan Cookies Box",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Hộp tiêu chuẩn",
+        "price": 65000
+      }
+    ]
   },
   {
-    "id": "BanhBongLanPhoMaiNhatBan",
-    "name_vi": "Sy Bust",
-    "name_en": "Japanese Sy Bust Choux Pastry",
+    "id": "HopCookiesLuoiMeo",
+    "name_vi": "Hộp cookies lưỡi mèo",
+    "name_en": "Langue de Chat Cookies Box",
+    "category": "banh-quy",
+    "category_name": "Bánh Quy",
+    "category_name_en": "Cookies & Biscuits",
+    "price": 60000,
+    "img": "public/images/products/banh-quy/hop-cookies-luoi-meo.webp",
+    "featured": false,
+    "description_vi": "Thành phần bao gồm bột, đường, bơ, sữa.",
+    "description_en": "Authentic handcrafted Hộp cookies lưỡi mèo prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "cookies-hop",
+    "subcategory_name": "Hộp Cookies Thủ Công",
+    "subcategory_name_en": "Artisan Cookies Box",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Hộp tiêu chuẩn",
+        "price": 60000
+      }
+    ]
+  },
+  {
+    "id": "HopCookiesBo",
+    "name_vi": "Hộp cookies bơ",
+    "name_en": "Butter Cookies Box",
+    "category": "banh-quy",
+    "category_name": "Bánh Quy",
+    "category_name_en": "Cookies & Biscuits",
+    "price": 60000,
+    "img": "public/images/products/banh-quy/hop-cookies-bo.webp",
+    "featured": false,
+    "description_vi": "Thành phần bao gồm bột, đường, bơ, sữa.",
+    "description_en": "Authentic handcrafted Hộp cookies bơ prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "cookies-hop",
+    "subcategory_name": "Hộp Cookies Thủ Công",
+    "subcategory_name_en": "Artisan Cookies Box",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Hộp tiêu chuẩn",
+        "price": 60000
+      }
+    ]
+  },
+  {
+    "id": "HopCookiesSocolaChips",
+    "name_vi": "Hộp cookies socola chips",
+    "name_en": "Chocochip Cookies Box",
+    "category": "banh-quy",
+    "category_name": "Bánh Quy",
+    "category_name_en": "Cookies & Biscuits",
+    "price": 60000,
+    "img": "public/images/products/banh-quy/hop-cookies-socola-chips.webp",
+    "featured": false,
+    "description_vi": "Thành phần bao gồm bột, đường, bơ, sữa và kẹo socola chips.",
+    "description_en": "Authentic handcrafted Hộp cookies socola chips prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "cookies-hop",
+    "subcategory_name": "Hộp Cookies Thủ Công",
+    "subcategory_name_en": "Artisan Cookies Box",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Hộp tiêu chuẩn",
+        "price": 60000
+      }
+    ]
+  },
+  {
+    "id": "HopCookiesCaCao",
+    "name_vi": "Hộp cookies ca cao",
+    "name_en": "Cocoa Cookies Box",
+    "category": "banh-quy",
+    "category_name": "Bánh Quy",
+    "category_name_en": "Cookies & Biscuits",
+    "price": 60000,
+    "img": "public/images/products/banh-quy/hop-cookies-ca-cao.webp",
+    "featured": false,
+    "description_vi": "Thành phần bao gồm bột, đường, bơ, sữa và bột cacao.&nbsp;",
+    "description_en": "Authentic handcrafted Hộp cookies ca cao prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "cookies-hop",
+    "subcategory_name": "Hộp Cookies Thủ Công",
+    "subcategory_name_en": "Artisan Cookies Box",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Hộp tiêu chuẩn",
+        "price": 60000
+      }
+    ]
+  },
+  {
+    "id": "SuKemPhomaiTraiCay",
+    "name_vi": "Su Kem phomai trái cây",
+    "name_en": "Fruit Cheese Choux Puff",
     "category": "banh-kem-tuoi",
     "category_name": "Bánh Kem Tươi",
     "category_name_en": "Fresh Cream & Mousse",
-    "price": 58000,
-    "img": "public/images/products/banh-kem-tuoi/BanhBongLanPhoMaiNhatBan.webp",
-    "featured": true,
-    "description_vi": "Bánh bông lan phô mai Nhật Bản xốp mềm núng nính, nhẹ như mây tan trên lưỡi.",
-    "description_en": "Ultra-light Japanese cotton soufflé cheesecake that gently jiggles and melts.",
-    "subcategory": "dong-banh-cuon-cat-mieng",
-    "subcategory_name": "Bánh Cuộn & Gato Cắt Miếng",
-    "subcategory_name_en": "Roll Cakes & Slices"
+    "price": 50000,
+    "img": "public/images/products/banh-kem-tuoi/su-kem-phomai-trai-cay.webp",
+    "featured": false,
+    "description_vi": "Món bánh Su Kem phomai trái cây thanh mát đặc trưng của tiệm Poeme, hòa quyện hương vị trái cây tự nhiên và kem tươi mịn màng, bảo quản mát 2-6°C.",
+    "description_en": "Authentic handcrafted Su Kem phomai trái cây prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-su-kem",
+    "subcategory_name": "Dòng Su Kem (Choux Cream)",
+    "subcategory_name_en": "Choux Pastries",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 50000
+      }
+    ]
   },
   {
-    "id": "BanhBongLanPhoMaiKepKem",
-    "name_vi": "Pound",
-    "name_en": "Traditional Pound Cake",
+    "id": "MousseChanhLeoXmas",
+    "name_vi": "Mousse chanh leo Xmas",
+    "name_en": "Passion Fruit Mousse",
     "category": "banh-kem-tuoi",
     "category_name": "Bánh Kem Tươi",
     "category_name_en": "Fresh Cream & Mousse",
     "price": 45000,
-    "img": "public/images/products/banh-kem-tuoi/BanhBongLanPhoMaiKepKem.webp",
+    "img": "public/images/products/banh-kem-tuoi/mousse-chanh-leo-xmas.webp",
     "featured": false,
-    "description_vi": "Bông lan phô mai kẹp kem tươi thanh nhẹ thơm mùi sữa tươi béo ngậy.",
-    "description_en": "Fluffy cheese sponge sandwich hugging a layer of fresh chantilly cream.",
-    "subcategory": "dong-banh-cuon-cat-mieng",
-    "subcategory_name": "Bánh Cuộn & Gato Cắt Miếng",
-    "subcategory_name_en": "Roll Cakes & Slices"
+    "description_vi": "Món bánh Mousse chanh leo Xmas thanh mát đặc trưng của tiệm Poeme, hòa quyện hương vị trái cây tự nhiên và kem tươi mịn màng, bảo quản mát 2-6°C.",
+    "description_en": "Authentic handcrafted Mousse chanh leo Xmas prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-mousse",
+    "subcategory_name": "Dòng Bánh Mousse Tươi",
+    "subcategory_name_en": "Fresh Mousse Cakes",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 45000
+      }
+    ]
   },
   {
-    "id": "BanhCheesecakeNuong",
-    "name_vi": "Madoline",
-    "name_en": "French Madeleine Sponge",
-    "category": "banh-kem-tuoi",
-    "category_name": "Bánh Kem Tươi",
-    "category_name_en": "Fresh Cream & Mousse",
-    "price": 55000,
-    "img": "public/images/products/banh-kem-tuoi/BanhCheesecakeNuong.webp",
-    "featured": true,
-    "description_vi": "Bánh cheesecake nướng truyền thống đậm đặc phô mai béo ngậy và đế bánh giòn.",
-    "description_en": "Rich New York style baked cheesecake on a buttery graham cracker crust.",
-    "subcategory": "dong-banh-cuon-cat-mieng",
-    "subcategory_name": "Bánh Cuộn & Gato Cắt Miếng",
-    "subcategory_name_en": "Roll Cakes & Slices"
-  },
-  {
-    "id": "BanhCheesecakePhoMaiChay",
-    "name_vi": "Bánh mềm",
-    "name_en": "Soft Japanese Sponge",
-    "category": "banh-kem-tuoi",
-    "category_name": "Bánh Kem Tươi",
-    "category_name_en": "Fresh Cream & Mousse",
-    "price": 58000,
-    "img": "public/images/products/banh-kem-tuoi/BanhCheesecakePhoMaiChay.webp",
-    "featured": true,
-    "description_vi": "Cheesecake phô mai cháy kiểu Basque với lớp mặt caramen thơm nồng và tâm bánh chảy béo.",
-    "description_en": "Famous Basque burnt cheesecake with a rustic caramel crust and molten gooey core.",
-    "subcategory": "dong-banh-cuon-cat-mieng",
-    "subcategory_name": "Bánh Cuộn & Gato Cắt Miếng",
-    "subcategory_name_en": "Roll Cakes & Slices"
-  },
-  {
-    "id": "BanhCheesecakeNuongCaramel",
-    "name_vi": "Bánh mềm socola",
-    "name_en": "Soft Chocolate Sponge",
-    "category": "banh-kem-tuoi",
-    "category_name": "Bánh Kem Tươi",
-    "category_name_en": "Fresh Cream & Mousse",
-    "price": 58000,
-    "img": "public/images/products/banh-kem-tuoi/BanhCheesecakeNuongCaramel.webp",
+    "id": "Xmas2Tang",
+    "name_vi": "Xmas 2 tầng",
+    "name_en": "Xmas 2 Tầng",
+    "category": "banh-gato",
+    "category_name": "Bánh Gato",
+    "category_name_en": "Gateaux & Birthday Cakes",
+    "price": 350000,
+    "img": "public/images/products/banh-gato/xmas-2-tang.webp",
     "featured": false,
-    "description_vi": "Cheesecake nướng hòa quyện sốt caramel bơ mặn thơm lừng quyến rũ.",
-    "description_en": "Decadent baked cheesecake swirled with artisan salted caramel sauce.",
-    "subcategory": "dong-banh-cuon-cat-mieng",
-    "subcategory_name": "Bánh Cuộn & Gato Cắt Miếng",
-    "subcategory_name_en": "Roll Cakes & Slices"
+    "description_vi": "Sản phẩm đặt theo yêu cầu.&nbsp;",
+    "description_en": "Authentic handcrafted Xmas 2 tầng prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "banh-gato-nguyen-chiec",
+    "subcategory_name": "Bánh Gato Sinh Nhật & Sự Kiện",
+    "subcategory_name_en": "Birthday & Event Gateaux",
+    "variants": [
+      {
+        "size": "16cm",
+        "name": "Size 16cm (4-6 người)",
+        "price": 350000
+      },
+      {
+        "size": "18cm",
+        "name": "Size 18cm (6-8 người)",
+        "price": 437500
+      },
+      {
+        "size": "20cm",
+        "name": "Size 20cm (8-10 người)",
+        "price": 542500
+      }
+    ]
   },
   {
-    "id": "BanhChiffonSocola",
-    "name_vi": "Chiffon socola cắt",
-    "name_en": "Chocolate Chiffon Slice",
+    "id": "ThapSuKem",
+    "name_vi": "Tháp su kem xmas",
+    "name_en": "Choux Pastry Tower",
     "category": "banh-kem-tuoi",
     "category_name": "Bánh Kem Tươi",
     "category_name_en": "Fresh Cream & Mousse",
-    "price": 40000,
-    "img": "public/images/products/banh-kem-tuoi/BanhChiffonSocola.webp",
+    "price": 45000,
+    "img": "public/images/products/banh-kem-tuoi/thap-su-kem.webp",
     "featured": false,
-    "description_vi": "Bánh chiffon socola siêu nhẹ và xốp mềm, vị cacao ngọt dịu nhẹ nhàng.",
-    "description_en": "Airy, cloud-like chocolate chiffon cake with a delicate, tender crumb.",
-    "subcategory": "dong-banh-cuon-cat-mieng",
-    "subcategory_name": "Bánh Cuộn & Gato Cắt Miếng",
-    "subcategory_name_en": "Roll Cakes & Slices"
+    "description_vi": "Sản phẩm đặt theo yêu cầu.",
+    "description_en": "Authentic handcrafted Tháp su kem xmas prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-su-kem",
+    "subcategory_name": "Dòng Su Kem (Choux Cream)",
+    "subcategory_name_en": "Choux Pastries",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 45000
+      }
+    ]
   },
   {
-    "id": "BanhChiffonTraXanhMatcha",
-    "name_vi": "Chiffon trà cắt",
-    "name_en": "Matcha Chiffon Slice",
-    "category": "banh-kem-tuoi",
-    "category_name": "Bánh Kem Tươi",
-    "category_name_en": "Fresh Cream & Mousse",
-    "price": 42000,
-    "img": "public/images/products/banh-kem-tuoi/BanhChiffonTraXanhMatcha.webp",
-    "featured": false,
-    "description_vi": "Bánh chiffon trà xanh xanh ngát, thơm hương trà thanh khiết thanh tao.",
-    "description_en": "Featherlight green tea chiffon cake infused with Japanese matcha essence.",
-    "subcategory": "dong-banh-cuon-cat-mieng",
-    "subcategory_name": "Bánh Cuộn & Gato Cắt Miếng",
-    "subcategory_name_en": "Roll Cakes & Slices"
-  },
-  {
-    "id": "BanhCupcakeKemDau",
-    "name_vi": "Cupcake tình yêu",
-    "name_en": "Love Strawberry Cupcake",
-    "category": "banh-kem-tuoi",
-    "category_name": "Bánh Kem Tươi",
-    "category_name_en": "Fresh Cream & Mousse",
-    "price": 28000,
-    "img": "public/images/products/banh-kem-tuoi/BanhCupcakeKemDau.webp",
-    "featured": false,
-    "description_vi": "Cupcake vani nhỏ xinh phủ lớp kem bơ dâu tây ngọt ngào điệu đà.",
-    "description_en": "Charming vanilla cupcake crowned with a swirl of sweet strawberry frosting.",
-    "subcategory": "dong-banh-cuon-cat-mieng",
-    "subcategory_name": "Bánh Cuộn & Gato Cắt Miếng",
-    "subcategory_name_en": "Roll Cakes & Slices"
-  },
-  {
-    "id": "BanhCupcakeHanhNhanKemBo",
+    "id": "CupcakeXmas",
     "name_vi": "Cupcake Xmas",
-    "name_en": "Christmas Almond Butter Cupcake",
-    "category": "banh-kem-tuoi",
-    "category_name": "Bánh Kem Tươi",
-    "category_name_en": "Fresh Cream & Mousse",
-    "price": 30000,
-    "img": "public/images/products/banh-kem-tuoi/BanhCupcakeHanhNhanKemBo.webp",
+    "name_en": "Christmas Cupcake",
+    "category": "banh-gato",
+    "category_name": "Bánh Gato",
+    "category_name_en": "Gateaux & Birthday Cakes",
+    "price": 350000,
+    "img": "public/images/products/banh-gato/cupcake-xmas.webp",
     "featured": false,
-    "description_vi": "Cupcake hạnh nhân bùi béo phủ kem bơ mịn màng thơm nức mũi.",
-    "description_en": "Nutty almond cupcake piped with rich French buttercream and toasted almonds.",
-    "subcategory": "dong-banh-cuon-cat-mieng",
-    "subcategory_name": "Bánh Cuộn & Gato Cắt Miếng",
-    "subcategory_name_en": "Roll Cakes & Slices"
+    "description_vi": "Bánh sinh nhật Cupcake Xmas hảo hạng, làm từ cốt bông lan Nhật Bản mềm xốp kết hợp cùng lớp kem tươi cao cấp thanh nhẹ, trang trí tinh tế.",
+    "description_en": "Authentic handcrafted Cupcake Xmas prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "banh-gato-nguyen-chiec",
+    "subcategory_name": "Bánh Gato Sinh Nhật & Sự Kiện",
+    "subcategory_name_en": "Birthday & Event Gateaux",
+    "variants": [
+      {
+        "size": "16cm",
+        "name": "Size 16cm (4-6 người)",
+        "price": 350000
+      },
+      {
+        "size": "18cm",
+        "name": "Size 18cm (6-8 người)",
+        "price": 437500
+      },
+      {
+        "size": "20cm",
+        "name": "Size 20cm (8-10 người)",
+        "price": 542500
+      }
+    ]
   },
   {
-    "id": "BanhBrownieSocolaHop",
-    "name_vi": "Brownie socola hộp",
-    "name_en": "Chocolate Brownie Gift Box",
-    "category": "banh-kem-tuoi",
-    "category_name": "Bánh Kem Tươi",
-    "category_name_en": "Fresh Cream & Mousse",
-    "price": 75000,
-    "img": "public/images/products/banh-kem-tuoi/BanhBrownieSocolaHop.webp",
-    "featured": true,
-    "description_vi": "Hộp 4 bánh brownie socola đậm đặc, vỏ ngoài hơi giòn bên trong ẩm mượt.",
-    "description_en": "Box of 4 fudgy dark chocolate brownies with a crackly top and moist center.",
-    "subcategory": "dong-banh-cuon-cat-mieng",
-    "subcategory_name": "Bánh Cuộn & Gato Cắt Miếng",
-    "subcategory_name_en": "Roll Cakes & Slices"
-  },
-  {
-    "id": "BanhBrownieSocolaHanhNhanKhay",
-    "name_vi": "Biscot socola",
-    "name_en": "Almond Chocolate Biscotti",
-    "category": "banh-kem-tuoi",
-    "category_name": "Bánh Kem Tươi",
-    "category_name_en": "Fresh Cream & Mousse",
-    "price": 110000,
-    "img": "public/images/products/banh-kem-tuoi/BanhBrownieSocolaHanhNhanKhay.webp",
+    "id": "SantaClaus1",
+    "name_vi": "Santa Claus",
+    "name_en": "Santa Claus Cake",
+    "category": "banh-gato",
+    "category_name": "Bánh Gato",
+    "category_name_en": "Gateaux & Birthday Cakes",
+    "price": 350000,
+    "img": "public/images/products/banh-gato/santa-claus-1.webp",
     "featured": false,
-    "description_vi": "Khay bánh brownie socola rắc đầy hạt hạnh nhân nướng bùi thơm giòn rụm.",
-    "description_en": "Generous tray of dense chocolate brownies packed with crunchy roasted almonds.",
-    "subcategory": "dong-banh-cuon-cat-mieng",
-    "subcategory_name": "Bánh Cuộn & Gato Cắt Miếng",
-    "subcategory_name_en": "Roll Cakes & Slices"
+    "description_vi": "Bánh sinh nhật Santa Claus hảo hạng, làm từ cốt bông lan Nhật Bản mềm xốp kết hợp cùng lớp kem tươi cao cấp thanh nhẹ, trang trí tinh tế.",
+    "description_en": "Authentic handcrafted Santa Claus prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "banh-gato-nguyen-chiec",
+    "subcategory_name": "Bánh Gato Sinh Nhật & Sự Kiện",
+    "subcategory_name_en": "Birthday & Event Gateaux",
+    "variants": [
+      {
+        "size": "16cm",
+        "name": "Size 16cm (4-6 người)",
+        "price": 350000
+      },
+      {
+        "size": "18cm",
+        "name": "Size 18cm (6-8 người)",
+        "price": 437500
+      },
+      {
+        "size": "20cm",
+        "name": "Size 20cm (8-10 người)",
+        "price": 542500
+      }
+    ]
   },
   {
-    "id": "BanhBongLanBoHanhNhan",
-    "name_vi": "Táo",
-    "name_en": "Apple Pastry Cake",
-    "category": "banh-kem-tuoi",
-    "category_name": "Bánh Kem Tươi",
-    "category_name_en": "Fresh Cream & Mousse",
-    "price": 35000,
-    "img": "public/images/products/banh-kem-tuoi/BanhBongLanBoHanhNhan.webp",
+    "id": "GocCaySocolaNau",
+    "name_vi": "Gốc cây socola nâu",
+    "name_en": "Chocolate Yule Log Cake",
+    "category": "banh-gato",
+    "category_name": "Bánh Gato",
+    "category_name_en": "Gateaux & Birthday Cakes",
+    "price": 350000,
+    "img": "public/images/products/banh-gato/goc-cay-socola-nau.webp",
     "featured": false,
-    "description_vi": "Bông lan bơ Pháp truyền thống thơm ngậy vị bơ và lát hạnh nhân nướng.",
-    "description_en": "Classic French butter pound cake slice topped with sliced almonds.",
-    "subcategory": "dong-banh-cuon-cat-mieng",
-    "subcategory_name": "Bánh Cuộn & Gato Cắt Miếng",
-    "subcategory_name_en": "Roll Cakes & Slices"
+    "description_vi": "Bánh sinh nhật Gốc cây socola nâu hảo hạng, làm từ cốt bông lan Nhật Bản mềm xốp kết hợp cùng lớp kem tươi cao cấp thanh nhẹ, trang trí tinh tế.",
+    "description_en": "Authentic handcrafted Gốc cây socola nâu prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "banh-gato-nguyen-chiec",
+    "subcategory_name": "Bánh Gato Sinh Nhật & Sự Kiện",
+    "subcategory_name_en": "Birthday & Event Gateaux",
+    "variants": [
+      {
+        "size": "16cm",
+        "name": "Size 16cm (4-6 người)",
+        "price": 350000
+      },
+      {
+        "size": "18cm",
+        "name": "Size 18cm (6-8 người)",
+        "price": 437500
+      },
+      {
+        "size": "20cm",
+        "name": "Size 20cm (8-10 người)",
+        "price": 542500
+      }
+    ]
   },
   {
-    "id": "BanhBongLanChuoiNuong",
-    "name_vi": "Chuối",
-    "name_en": "Baked Banana Pastry",
-    "category": "banh-kem-tuoi",
-    "category_name": "Bánh Kem Tươi",
-    "category_name_en": "Fresh Cream & Mousse",
-    "price": 32000,
-    "img": "public/images/products/banh-kem-tuoi/BanhBongLanChuoiNuong.webp",
+    "id": "KhucCuiSocolaMini",
+    "name_vi": "Khúc củi socola mini",
+    "name_en": "Mini Yule Log Pastry",
+    "category": "banh-gato",
+    "category_name": "Bánh Gato",
+    "category_name_en": "Gateaux & Birthday Cakes",
+    "price": 350000,
+    "img": "public/images/products/banh-gato/khuc-cui-socola-mini.webp",
     "featured": false,
-    "description_vi": "Bánh chuối nướng thơm nức tự nhiên từ chuối chín cây, ngọt thanh bổ dưỡng.",
-    "description_en": "Homestyle baked banana bread slice made from naturally sweet ripe bananas.",
-    "subcategory": "dong-banh-cuon-cat-mieng",
-    "subcategory_name": "Bánh Cuộn & Gato Cắt Miếng",
-    "subcategory_name_en": "Roll Cakes & Slices"
+    "description_vi": "Bánh sinh nhật Khúc củi socola mini hảo hạng, làm từ cốt bông lan Nhật Bản mềm xốp kết hợp cùng lớp kem tươi cao cấp thanh nhẹ, trang trí tinh tế.",
+    "description_en": "Authentic handcrafted Khúc củi socola mini prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "banh-gato-nguyen-chiec",
+    "subcategory_name": "Bánh Gato Sinh Nhật & Sự Kiện",
+    "subcategory_name_en": "Birthday & Event Gateaux",
+    "variants": [
+      {
+        "size": "16cm",
+        "name": "Size 16cm (4-6 người)",
+        "price": 350000
+      },
+      {
+        "size": "18cm",
+        "name": "Size 18cm (6-8 người)",
+        "price": 437500
+      },
+      {
+        "size": "20cm",
+        "name": "Size 20cm (8-10 người)",
+        "price": 542500
+      }
+    ]
   },
   {
-    "id": "BanhTokyoBananaKemTrung",
-    "name_vi": "Dứa",
-    "name_en": "Pineapple Custard Cake",
+    "id": "KhucCuiPhuKemTuoi",
+    "name_vi": "Khúc củi phủ kem tươi",
+    "name_en": "Mini Yule Log Pastry",
+    "category": "banh-gato",
+    "category_name": "Bánh Gato",
+    "category_name_en": "Gateaux & Birthday Cakes",
+    "price": 350000,
+    "img": "public/images/products/banh-gato/khuc-cui-phu-kem-tuoi.webp",
+    "featured": false,
+    "description_vi": "Bánh sinh nhật Khúc củi phủ kem tươi hảo hạng, làm từ cốt bông lan Nhật Bản mềm xốp kết hợp cùng lớp kem tươi cao cấp thanh nhẹ, trang trí tinh tế.",
+    "description_en": "Authentic handcrafted Khúc củi phủ kem tươi prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "banh-gato-nguyen-chiec",
+    "subcategory_name": "Bánh Gato Sinh Nhật & Sự Kiện",
+    "subcategory_name_en": "Birthday & Event Gateaux",
+    "variants": [
+      {
+        "size": "16cm",
+        "name": "Size 16cm (4-6 người)",
+        "price": 350000
+      },
+      {
+        "size": "18cm",
+        "name": "Size 18cm (6-8 người)",
+        "price": 437500
+      },
+      {
+        "size": "20cm",
+        "name": "Size 20cm (8-10 người)",
+        "price": 542500
+      }
+    ]
+  },
+  {
+    "id": "KhucCuiNauXmas",
+    "name_vi": "Khúc củi phủ socola nâu",
+    "name_en": "Mini Yule Log Pastry",
+    "category": "banh-gato",
+    "category_name": "Bánh Gato",
+    "category_name_en": "Gateaux & Birthday Cakes",
+    "price": 350000,
+    "img": "public/images/products/banh-gato/khuc-cui-nau-xmas.webp",
+    "featured": false,
+    "description_vi": "Bánh sinh nhật Khúc củi phủ socola nâu hảo hạng, làm từ cốt bông lan Nhật Bản mềm xốp kết hợp cùng lớp kem tươi cao cấp thanh nhẹ, trang trí tinh tế.",
+    "description_en": "Authentic handcrafted Khúc củi phủ socola nâu prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "banh-gato-nguyen-chiec",
+    "subcategory_name": "Bánh Gato Sinh Nhật & Sự Kiện",
+    "subcategory_name_en": "Birthday & Event Gateaux",
+    "variants": [
+      {
+        "size": "16cm",
+        "name": "Size 16cm (4-6 người)",
+        "price": 350000
+      },
+      {
+        "size": "18cm",
+        "name": "Size 18cm (6-8 người)",
+        "price": 437500
+      },
+      {
+        "size": "20cm",
+        "name": "Size 20cm (8-10 người)",
+        "price": 542500
+      }
+    ]
+  },
+  {
+    "id": "KhucCuiXmas",
+    "name_vi": "Khúc củi phủ socola đen",
+    "name_en": "Mini Yule Log Pastry",
+    "category": "banh-gato",
+    "category_name": "Bánh Gato",
+    "category_name_en": "Gateaux & Birthday Cakes",
+    "price": 350000,
+    "img": "public/images/products/banh-gato/khuc-cui-xmas.webp",
+    "featured": false,
+    "description_vi": "Bánh sinh nhật Khúc củi phủ socola đen hảo hạng, làm từ cốt bông lan Nhật Bản mềm xốp kết hợp cùng lớp kem tươi cao cấp thanh nhẹ, trang trí tinh tế.",
+    "description_en": "Authentic handcrafted Khúc củi phủ socola đen prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "banh-gato-nguyen-chiec",
+    "subcategory_name": "Bánh Gato Sinh Nhật & Sự Kiện",
+    "subcategory_name_en": "Birthday & Event Gateaux",
+    "variants": [
+      {
+        "size": "16cm",
+        "name": "Size 16cm (4-6 người)",
+        "price": 350000
+      },
+      {
+        "size": "18cm",
+        "name": "Size 18cm (6-8 người)",
+        "price": 437500
+      },
+      {
+        "size": "20cm",
+        "name": "Size 20cm (8-10 người)",
+        "price": 542500
+      }
+    ]
+  },
+  {
+    "id": "GatoChocolateMini",
+    "name_vi": "GATO CHOCOLATE MINI",
+    "name_en": "Chocolate Gateau",
+    "category": "banh-gato",
+    "category_name": "Bánh Gato",
+    "category_name_en": "Gateaux & Birthday Cakes",
+    "price": 350000,
+    "img": "public/images/products/banh-gato/gato-chocolate-mini.webp",
+    "featured": false,
+    "description_vi": "Bánh sinh nhật GATO CHOCOLATE MINI hảo hạng, làm từ cốt bông lan Nhật Bản mềm xốp kết hợp cùng lớp kem tươi cao cấp thanh nhẹ, trang trí tinh tế.",
+    "description_en": "Authentic handcrafted GATO CHOCOLATE MINI prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "banh-gato-nguyen-chiec",
+    "subcategory_name": "Bánh Gato Sinh Nhật & Sự Kiện",
+    "subcategory_name_en": "Birthday & Event Gateaux",
+    "variants": [
+      {
+        "size": "16cm",
+        "name": "Size 16cm (4-6 người)",
+        "price": 350000
+      },
+      {
+        "size": "18cm",
+        "name": "Size 18cm (6-8 người)",
+        "price": 437500
+      },
+      {
+        "size": "20cm",
+        "name": "Size 20cm (8-10 người)",
+        "price": 542500
+      }
+    ]
+  },
+  {
+    "id": "ChocolateChanMayMini",
+    "name_vi": "GATO CHOCOLATE CHAN MÂY MINI",
+    "name_en": "Chocolate Gateau",
+    "category": "banh-gato",
+    "category_name": "Bánh Gato",
+    "category_name_en": "Gateaux & Birthday Cakes",
+    "price": 350000,
+    "img": "public/images/products/banh-gato/chocolate-chan-may-mini.webp",
+    "featured": false,
+    "description_vi": "Bánh sinh nhật GATO CHOCOLATE CHAN MÂY MINI hảo hạng, làm từ cốt bông lan Nhật Bản mềm xốp kết hợp cùng lớp kem tươi cao cấp thanh nhẹ, trang trí tinh tế.",
+    "description_en": "Authentic handcrafted GATO CHOCOLATE CHAN MÂY MINI prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "banh-gato-nguyen-chiec",
+    "subcategory_name": "Bánh Gato Sinh Nhật & Sự Kiện",
+    "subcategory_name_en": "Birthday & Event Gateaux",
+    "variants": [
+      {
+        "size": "16cm",
+        "name": "Size 16cm (4-6 người)",
+        "price": 350000
+      },
+      {
+        "size": "18cm",
+        "name": "Size 18cm (6-8 người)",
+        "price": 437500
+      },
+      {
+        "size": "20cm",
+        "name": "Size 20cm (8-10 người)",
+        "price": 542500
+      }
+    ]
+  },
+  {
+    "id": "GatoChocolate3",
+    "name_vi": "GATO CHOCOLATE",
+    "name_en": "Chocolate Gateau",
+    "category": "banh-gato",
+    "category_name": "Bánh Gato",
+    "category_name_en": "Gateaux & Birthday Cakes",
+    "price": 350000,
+    "img": "public/images/products/banh-gato/gato-chocolate-3.webp",
+    "featured": false,
+    "description_vi": "Bánh sinh nhật GATO CHOCOLATE hảo hạng, làm từ cốt bông lan Nhật Bản mềm xốp kết hợp cùng lớp kem tươi cao cấp thanh nhẹ, trang trí tinh tế.",
+    "description_en": "Authentic handcrafted GATO CHOCOLATE prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "banh-gato-nguyen-chiec",
+    "subcategory_name": "Bánh Gato Sinh Nhật & Sự Kiện",
+    "subcategory_name_en": "Birthday & Event Gateaux",
+    "variants": [
+      {
+        "size": "16cm",
+        "name": "Size 16cm (4-6 người)",
+        "price": 350000
+      },
+      {
+        "size": "18cm",
+        "name": "Size 18cm (6-8 người)",
+        "price": 437500
+      },
+      {
+        "size": "20cm",
+        "name": "Size 20cm (8-10 người)",
+        "price": 542500
+      }
+    ]
+  },
+  {
+    "id": "Tiramisu1",
+    "name_vi": "TIRAMISU",
+    "name_en": "Classic Tiramisu",
     "category": "banh-kem-tuoi",
     "category_name": "Bánh Kem Tươi",
     "category_name_en": "Fresh Cream & Mousse",
-    "price": 35000,
-    "img": "public/images/products/banh-kem-tuoi/BanhTokyoBananaKemTrung.webp",
-    "featured": true,
-    "description_vi": "Bánh bông lan chuối Tokyo trứ danh xốp mềm nhân kem custard chuối béo mịn.",
-    "description_en": "Famous Tokyo style banana sponge cake filled with luscious banana custard cream.",
-    "subcategory": "dong-banh-cuon-cat-mieng",
-    "subcategory_name": "Bánh Cuộn & Gato Cắt Miếng",
-    "subcategory_name_en": "Roll Cakes & Slices"
+    "price": 45000,
+    "img": "public/images/products/banh-kem-tuoi/tiramisu-1.webp",
+    "featured": false,
+    "description_vi": "Món bánh TIRAMISU thanh mát đặc trưng của tiệm Poeme, hòa quyện hương vị trái cây tự nhiên và kem tươi mịn màng, bảo quản mát 2-6°C.",
+    "description_en": "Authentic handcrafted TIRAMISU prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-tiramisu",
+    "subcategory_name": "Dòng Tiramisu & Cà Phê",
+    "subcategory_name_en": "Tiramisu & Coffee Pastries",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 45000
+      }
+    ]
   },
   {
-    "id": "BanhRanDorayaki",
-    "name_vi": "Dorayaki truyền thống",
-    "name_en": "Traditional Red Bean Dorayaki",
+    "id": "GatoKemTuoiPhuRedVelvet2",
+    "name_vi": "GATO KEM TƯƠI PHỦ RED VELVET",
+    "name_en": "Red Velvet Gateau",
+    "category": "banh-gato",
+    "category_name": "Bánh Gato",
+    "category_name_en": "Gateaux & Birthday Cakes",
+    "price": 350000,
+    "img": "public/images/products/banh-gato/gato-kem-tuoi-phu-red-velvet-2.webp",
+    "featured": false,
+    "description_vi": "Bánh sinh nhật GATO KEM TƯƠI PHỦ RED VELVET hảo hạng, làm từ cốt bông lan Nhật Bản mềm xốp kết hợp cùng lớp kem tươi cao cấp thanh nhẹ, trang trí tinh tế.",
+    "description_en": "Authentic handcrafted GATO KEM TƯƠI PHỦ RED VELVET prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "banh-gato-nguyen-chiec",
+    "subcategory_name": "Bánh Gato Sinh Nhật & Sự Kiện",
+    "subcategory_name_en": "Birthday & Event Gateaux",
+    "variants": [
+      {
+        "size": "16cm",
+        "name": "Size 16cm (4-6 người)",
+        "price": 350000
+      },
+      {
+        "size": "18cm",
+        "name": "Size 18cm (6-8 người)",
+        "price": 437500
+      },
+      {
+        "size": "20cm",
+        "name": "Size 20cm (8-10 người)",
+        "price": 542500
+      }
+    ]
+  },
+  {
+    "id": "GatoKemTuoiPhuRedVelvet1",
+    "name_vi": "GATO KEM TƯƠI PHỦ RED VELVET",
+    "name_en": "Red Velvet Gateau",
+    "category": "banh-gato",
+    "category_name": "Bánh Gato",
+    "category_name_en": "Gateaux & Birthday Cakes",
+    "price": 350000,
+    "img": "public/images/products/banh-gato/gato-kem-tuoi-phu-red-velvet-1.webp",
+    "featured": false,
+    "description_vi": "Bánh sinh nhật GATO KEM TƯƠI PHỦ RED VELVET hảo hạng, làm từ cốt bông lan Nhật Bản mềm xốp kết hợp cùng lớp kem tươi cao cấp thanh nhẹ, trang trí tinh tế.",
+    "description_en": "Authentic handcrafted GATO KEM TƯƠI PHỦ RED VELVET prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "banh-gato-nguyen-chiec",
+    "subcategory_name": "Bánh Gato Sinh Nhật & Sự Kiện",
+    "subcategory_name_en": "Birthday & Event Gateaux",
+    "variants": [
+      {
+        "size": "16cm",
+        "name": "Size 16cm (4-6 người)",
+        "price": 350000
+      },
+      {
+        "size": "18cm",
+        "name": "Size 18cm (6-8 người)",
+        "price": 437500
+      },
+      {
+        "size": "20cm",
+        "name": "Size 20cm (8-10 người)",
+        "price": 542500
+      }
+    ]
+  },
+  {
+    "id": "MousseSuaChuaChanhLeo",
+    "name_vi": "MOUSSE SỮA CHUA CHANH LEO",
+    "name_en": "Mousse Sữa Chua Chanh Leo",
     "category": "banh-kem-tuoi",
     "category_name": "Bánh Kem Tươi",
     "category_name_en": "Fresh Cream & Mousse",
+    "price": 45000,
+    "img": "public/images/products/banh-kem-tuoi/mousse-sua-chua-chanh-leo.webp",
+    "featured": false,
+    "description_vi": "Món bánh MOUSSE SỮA CHUA CHANH LEO thanh mát đặc trưng của tiệm Poeme, hòa quyện hương vị trái cây tự nhiên và kem tươi mịn màng, bảo quản mát 2-6°C.",
+    "description_en": "Authentic handcrafted MOUSSE SỮA CHUA CHANH LEO prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-mousse",
+    "subcategory_name": "Dòng Bánh Mousse Tươi",
+    "subcategory_name_en": "Fresh Mousse Cakes",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 45000
+      }
+    ]
+  },
+  {
+    "id": "GatoChocolate2",
+    "name_vi": "GATO CHOCOLATE",
+    "name_en": "Chocolate Gateau",
+    "category": "banh-gato",
+    "category_name": "Bánh Gato",
+    "category_name_en": "Gateaux & Birthday Cakes",
+    "price": 350000,
+    "img": "public/images/products/banh-gato/gato-chocolate-2.webp",
+    "featured": false,
+    "description_vi": "Bánh sinh nhật GATO CHOCOLATE hảo hạng, làm từ cốt bông lan Nhật Bản mềm xốp kết hợp cùng lớp kem tươi cao cấp thanh nhẹ, trang trí tinh tế.",
+    "description_en": "Authentic handcrafted GATO CHOCOLATE prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "banh-gato-nguyen-chiec",
+    "subcategory_name": "Bánh Gato Sinh Nhật & Sự Kiện",
+    "subcategory_name_en": "Birthday & Event Gateaux",
+    "variants": [
+      {
+        "size": "16cm",
+        "name": "Size 16cm (4-6 người)",
+        "price": 350000
+      },
+      {
+        "size": "18cm",
+        "name": "Size 18cm (6-8 người)",
+        "price": 437500
+      },
+      {
+        "size": "20cm",
+        "name": "Size 20cm (8-10 người)",
+        "price": 542500
+      }
+    ]
+  },
+  {
+    "id": "GatoChocolate1",
+    "name_vi": "GATO CHOCOLATE",
+    "name_en": "Chocolate Gateau",
+    "category": "banh-gato",
+    "category_name": "Bánh Gato",
+    "category_name_en": "Gateaux & Birthday Cakes",
+    "price": 350000,
+    "img": "public/images/products/banh-gato/gato-chocolate-1.webp",
+    "featured": false,
+    "description_vi": "Bánh sinh nhật GATO CHOCOLATE hảo hạng, làm từ cốt bông lan Nhật Bản mềm xốp kết hợp cùng lớp kem tươi cao cấp thanh nhẹ, trang trí tinh tế.",
+    "description_en": "Authentic handcrafted GATO CHOCOLATE prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "banh-gato-nguyen-chiec",
+    "subcategory_name": "Bánh Gato Sinh Nhật & Sự Kiện",
+    "subcategory_name_en": "Birthday & Event Gateaux",
+    "variants": [
+      {
+        "size": "16cm",
+        "name": "Size 16cm (4-6 người)",
+        "price": 350000
+      },
+      {
+        "size": "18cm",
+        "name": "Size 18cm (6-8 người)",
+        "price": 437500
+      },
+      {
+        "size": "20cm",
+        "name": "Size 20cm (8-10 người)",
+        "price": 542500
+      }
+    ]
+  },
+  {
+    "id": "GatoChocolate",
+    "name_vi": "GATO CHOCOLATE",
+    "name_en": "Chocolate Gateau",
+    "category": "banh-gato",
+    "category_name": "Bánh Gato",
+    "category_name_en": "Gateaux & Birthday Cakes",
+    "price": 350000,
+    "img": "public/images/products/banh-gato/gato-chocolate.webp",
+    "featured": false,
+    "description_vi": "Bánh sinh nhật GATO CHOCOLATE hảo hạng, làm từ cốt bông lan Nhật Bản mềm xốp kết hợp cùng lớp kem tươi cao cấp thanh nhẹ, trang trí tinh tế.",
+    "description_en": "Authentic handcrafted GATO CHOCOLATE prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "banh-gato-nguyen-chiec",
+    "subcategory_name": "Bánh Gato Sinh Nhật & Sự Kiện",
+    "subcategory_name_en": "Birthday & Event Gateaux",
+    "variants": [
+      {
+        "size": "16cm",
+        "name": "Size 16cm (4-6 người)",
+        "price": 350000
+      },
+      {
+        "size": "18cm",
+        "name": "Size 18cm (6-8 người)",
+        "price": 437500
+      },
+      {
+        "size": "20cm",
+        "name": "Size 20cm (8-10 người)",
+        "price": 542500
+      }
+    ]
+  },
+  {
+    "id": "RedVelvet2",
+    "name_vi": "RED VELVET",
+    "name_en": "Red Velvet Gateau",
+    "category": "banh-gato",
+    "category_name": "Bánh Gato",
+    "category_name_en": "Gateaux & Birthday Cakes",
+    "price": 350000,
+    "img": "public/images/products/banh-gato/red-velvet-2.webp",
+    "featured": false,
+    "description_vi": "Bánh sinh nhật RED VELVET hảo hạng, làm từ cốt bông lan Nhật Bản mềm xốp kết hợp cùng lớp kem tươi cao cấp thanh nhẹ, trang trí tinh tế.",
+    "description_en": "Authentic handcrafted RED VELVET prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "banh-gato-nguyen-chiec",
+    "subcategory_name": "Bánh Gato Sinh Nhật & Sự Kiện",
+    "subcategory_name_en": "Birthday & Event Gateaux",
+    "variants": [
+      {
+        "size": "16cm",
+        "name": "Size 16cm (4-6 người)",
+        "price": 350000
+      },
+      {
+        "size": "18cm",
+        "name": "Size 18cm (6-8 người)",
+        "price": 437500
+      },
+      {
+        "size": "20cm",
+        "name": "Size 20cm (8-10 người)",
+        "price": 542500
+      }
+    ]
+  },
+  {
+    "id": "GatoKemTuoiPhuRedVelvet",
+    "name_vi": "GATO KEM TƯƠI PHỦ RED VELVET",
+    "name_en": "Red Velvet Gateau",
+    "category": "banh-gato",
+    "category_name": "Bánh Gato",
+    "category_name_en": "Gateaux & Birthday Cakes",
+    "price": 350000,
+    "img": "public/images/products/banh-gato/gato-kem-tuoi-phu-red-velvet.webp",
+    "featured": false,
+    "description_vi": "Bánh sinh nhật GATO KEM TƯƠI PHỦ RED VELVET hảo hạng, làm từ cốt bông lan Nhật Bản mềm xốp kết hợp cùng lớp kem tươi cao cấp thanh nhẹ, trang trí tinh tế.",
+    "description_en": "Authentic handcrafted GATO KEM TƯƠI PHỦ RED VELVET prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "banh-gato-nguyen-chiec",
+    "subcategory_name": "Bánh Gato Sinh Nhật & Sự Kiện",
+    "subcategory_name_en": "Birthday & Event Gateaux",
+    "variants": [
+      {
+        "size": "16cm",
+        "name": "Size 16cm (4-6 người)",
+        "price": 350000
+      },
+      {
+        "size": "18cm",
+        "name": "Size 18cm (6-8 người)",
+        "price": 437500
+      },
+      {
+        "size": "20cm",
+        "name": "Size 20cm (8-10 người)",
+        "price": 542500
+      }
+    ]
+  },
+  {
+    "id": "Opera1",
+    "name_vi": "OPERA",
+    "name_en": "Opera Chocolate Gateau",
+    "category": "banh-gato",
+    "category_name": "Bánh Gato",
+    "category_name_en": "Gateaux & Birthday Cakes",
+    "price": 350000,
+    "img": "public/images/products/banh-gato/opera-1.webp",
+    "featured": false,
+    "description_vi": "Bánh sinh nhật OPERA hảo hạng, làm từ cốt bông lan Nhật Bản mềm xốp kết hợp cùng lớp kem tươi cao cấp thanh nhẹ, trang trí tinh tế.",
+    "description_en": "Authentic handcrafted OPERA prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "banh-gato-nguyen-chiec",
+    "subcategory_name": "Bánh Gato Sinh Nhật & Sự Kiện",
+    "subcategory_name_en": "Birthday & Event Gateaux",
+    "variants": [
+      {
+        "size": "16cm",
+        "name": "Size 16cm (4-6 người)",
+        "price": 350000
+      },
+      {
+        "size": "18cm",
+        "name": "Size 18cm (6-8 người)",
+        "price": 437500
+      },
+      {
+        "size": "20cm",
+        "name": "Size 20cm (8-10 người)",
+        "price": 542500
+      }
+    ]
+  },
+  {
+    "id": "MousseChanhLeo2",
+    "name_vi": "MOUSSE CHANH LEO",
+    "name_en": "Passion Fruit Mousse",
+    "category": "banh-kem-tuoi",
+    "category_name": "Bánh Kem Tươi",
+    "category_name_en": "Fresh Cream & Mousse",
+    "price": 45000,
+    "img": "public/images/products/banh-kem-tuoi/mousse-chanh-leo-2.webp",
+    "featured": false,
+    "description_vi": "Món bánh MOUSSE CHANH LEO thanh mát đặc trưng của tiệm Poeme, hòa quyện hương vị trái cây tự nhiên và kem tươi mịn màng, bảo quản mát 2-6°C.",
+    "description_en": "Authentic handcrafted MOUSSE CHANH LEO prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-mousse",
+    "subcategory_name": "Dòng Bánh Mousse Tươi",
+    "subcategory_name_en": "Fresh Mousse Cakes",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 45000
+      }
+    ]
+  },
+  {
+    "id": "MousseTraXanh",
+    "name_vi": "MOUSSE TRÀ XANH",
+    "name_en": "Matcha Green Tea Mousse",
+    "category": "banh-kem-tuoi",
+    "category_name": "Bánh Kem Tươi",
+    "category_name_en": "Fresh Cream & Mousse",
+    "price": 45000,
+    "img": "public/images/products/banh-kem-tuoi/mousse-tra-xanh.webp",
+    "featured": false,
+    "description_vi": "Món bánh MOUSSE TRÀ XANH thanh mát đặc trưng của tiệm Poeme, hòa quyện hương vị trái cây tự nhiên và kem tươi mịn màng, bảo quản mát 2-6°C.",
+    "description_en": "Authentic handcrafted MOUSSE TRÀ XANH prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-mousse",
+    "subcategory_name": "Dòng Bánh Mousse Tươi",
+    "subcategory_name_en": "Fresh Mousse Cakes",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 45000
+      }
+    ]
+  },
+  {
+    "id": "MousseChanhLeo1",
+    "name_vi": "MOUSSE CHANH LEO",
+    "name_en": "Passion Fruit Mousse",
+    "category": "banh-kem-tuoi",
+    "category_name": "Bánh Kem Tươi",
+    "category_name_en": "Fresh Cream & Mousse",
+    "price": 45000,
+    "img": "public/images/products/banh-kem-tuoi/mousse-chanh-leo-1.webp",
+    "featured": false,
+    "description_vi": "Món bánh MOUSSE CHANH LEO thanh mát đặc trưng của tiệm Poeme, hòa quyện hương vị trái cây tự nhiên và kem tươi mịn màng, bảo quản mát 2-6°C.",
+    "description_en": "Authentic handcrafted MOUSSE CHANH LEO prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-mousse",
+    "subcategory_name": "Dòng Bánh Mousse Tươi",
+    "subcategory_name_en": "Fresh Mousse Cakes",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 45000
+      }
+    ]
+  },
+  {
+    "id": "MousseDao",
+    "name_vi": "MOUSSE ĐÀO",
+    "name_en": "Peach Cream Mousse",
+    "category": "banh-kem-tuoi",
+    "category_name": "Bánh Kem Tươi",
+    "category_name_en": "Fresh Cream & Mousse",
+    "price": 45000,
+    "img": "public/images/products/banh-kem-tuoi/mousse-dao.webp",
+    "featured": false,
+    "description_vi": "Món bánh MOUSSE ĐÀO thanh mát đặc trưng của tiệm Poeme, hòa quyện hương vị trái cây tự nhiên và kem tươi mịn màng, bảo quản mát 2-6°C.",
+    "description_en": "Authentic handcrafted MOUSSE ĐÀO prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-mousse",
+    "subcategory_name": "Dòng Bánh Mousse Tươi",
+    "subcategory_name_en": "Fresh Mousse Cakes",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 45000
+      }
+    ]
+  },
+  {
+    "id": "MousseChocoDua",
+    "name_vi": "MOUSSE CHOCO DỪA",
+    "name_en": "Chocolate Coconut Mousse",
+    "category": "banh-kem-tuoi",
+    "category_name": "Bánh Kem Tươi",
+    "category_name_en": "Fresh Cream & Mousse",
+    "price": 45000,
+    "img": "public/images/products/banh-kem-tuoi/mousse-choco-dua.webp",
+    "featured": false,
+    "description_vi": "Món bánh MOUSSE CHOCO DỪA thanh mát đặc trưng của tiệm Poeme, hòa quyện hương vị trái cây tự nhiên và kem tươi mịn màng, bảo quản mát 2-6°C.",
+    "description_en": "Authentic handcrafted MOUSSE CHOCO DỪA prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-mousse",
+    "subcategory_name": "Dòng Bánh Mousse Tươi",
+    "subcategory_name_en": "Fresh Mousse Cakes",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 45000
+      }
+    ]
+  },
+  {
+    "id": "MousseDauDua",
+    "name_vi": "MOUSSE sữa chua phúc bồn tử",
+    "name_en": "Mousse Sữa Chua Phúc Bồn Tử",
+    "category": "banh-kem-tuoi",
+    "category_name": "Bánh Kem Tươi",
+    "category_name_en": "Fresh Cream & Mousse",
+    "price": 45000,
+    "img": "public/images/products/banh-kem-tuoi/mousse-dau-dua.webp",
+    "featured": false,
+    "description_vi": "Món bánh MOUSSE sữa chua phúc bồn tử thanh mát đặc trưng của tiệm Poeme, hòa quyện hương vị trái cây tự nhiên và kem tươi mịn màng, bảo quản mát 2-6°C.",
+    "description_en": "Authentic handcrafted MOUSSE sữa chua phúc bồn tử prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-mousse",
+    "subcategory_name": "Dòng Bánh Mousse Tươi",
+    "subcategory_name_en": "Fresh Mousse Cakes",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 45000
+      }
+    ]
+  },
+  {
+    "id": "MousseVietQuat1",
+    "name_vi": "MOUSSE VIỆT QUẤT",
+    "name_en": "Blueberry Cream Mousse",
+    "category": "banh-kem-tuoi",
+    "category_name": "Bánh Kem Tươi",
+    "category_name_en": "Fresh Cream & Mousse",
+    "price": 45000,
+    "img": "public/images/products/banh-kem-tuoi/mousse-viet-quat-1.webp",
+    "featured": false,
+    "description_vi": "Món bánh MOUSSE VIỆT QUẤT thanh mát đặc trưng của tiệm Poeme, hòa quyện hương vị trái cây tự nhiên và kem tươi mịn màng, bảo quản mát 2-6°C.",
+    "description_en": "Authentic handcrafted MOUSSE VIỆT QUẤT prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-mousse",
+    "subcategory_name": "Dòng Bánh Mousse Tươi",
+    "subcategory_name_en": "Fresh Mousse Cakes",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 45000
+      }
+    ]
+  },
+  {
+    "id": "MousseDau",
+    "name_vi": "MOUSSE DÂU",
+    "name_en": "Strawberry Cream Mousse",
+    "category": "banh-kem-tuoi",
+    "category_name": "Bánh Kem Tươi",
+    "category_name_en": "Fresh Cream & Mousse",
+    "price": 45000,
+    "img": "public/images/products/banh-kem-tuoi/mousse-dau.webp",
+    "featured": false,
+    "description_vi": "Món bánh MOUSSE DÂU thanh mát đặc trưng của tiệm Poeme, hòa quyện hương vị trái cây tự nhiên và kem tươi mịn màng, bảo quản mát 2-6°C.",
+    "description_en": "Authentic handcrafted MOUSSE DÂU prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-mousse",
+    "subcategory_name": "Dòng Bánh Mousse Tươi",
+    "subcategory_name_en": "Fresh Mousse Cakes",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 45000
+      }
+    ]
+  },
+  {
+    "id": "GatoKemTuoiMini1",
+    "name_vi": "GATO KEM TƯƠI MINI",
+    "name_en": "Fresh Cream Gateau",
+    "category": "banh-gato",
+    "category_name": "Bánh Gato",
+    "category_name_en": "Gateaux & Birthday Cakes",
+    "price": 350000,
+    "img": "public/images/products/banh-gato/gato-kem-tuoi-mini-1.webp",
+    "featured": false,
+    "description_vi": "Bánh sinh nhật GATO KEM TƯƠI MINI hảo hạng, làm từ cốt bông lan Nhật Bản mềm xốp kết hợp cùng lớp kem tươi cao cấp thanh nhẹ, trang trí tinh tế.",
+    "description_en": "Authentic handcrafted GATO KEM TƯƠI MINI prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "banh-gato-nguyen-chiec",
+    "subcategory_name": "Bánh Gato Sinh Nhật & Sự Kiện",
+    "subcategory_name_en": "Birthday & Event Gateaux",
+    "variants": [
+      {
+        "size": "16cm",
+        "name": "Size 16cm (4-6 người)",
+        "price": 350000
+      },
+      {
+        "size": "18cm",
+        "name": "Size 18cm (6-8 người)",
+        "price": 437500
+      },
+      {
+        "size": "20cm",
+        "name": "Size 20cm (8-10 người)",
+        "price": 542500
+      }
+    ]
+  },
+  {
+    "id": "MousseVietQuat",
+    "name_vi": "MOUSSE VIỆT QUẤT",
+    "name_en": "Blueberry Cream Mousse",
+    "category": "banh-kem-tuoi",
+    "category_name": "Bánh Kem Tươi",
+    "category_name_en": "Fresh Cream & Mousse",
+    "price": 45000,
+    "img": "public/images/products/banh-kem-tuoi/mousse-viet-quat.webp",
+    "featured": false,
+    "description_vi": "Món bánh MOUSSE VIỆT QUẤT thanh mát đặc trưng của tiệm Poeme, hòa quyện hương vị trái cây tự nhiên và kem tươi mịn màng, bảo quản mát 2-6°C.",
+    "description_en": "Authentic handcrafted MOUSSE VIỆT QUẤT prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-mousse",
+    "subcategory_name": "Dòng Bánh Mousse Tươi",
+    "subcategory_name_en": "Fresh Mousse Cakes",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 45000
+      }
+    ]
+  },
+  {
+    "id": "GatoKemTuoiPhuChocoVelvet",
+    "name_vi": "GATO KEM TƯƠI PHỦ CHOCO VELVET",
+    "name_en": "Choco Velvet Cream Cake",
+    "category": "banh-gato",
+    "category_name": "Bánh Gato",
+    "category_name_en": "Gateaux & Birthday Cakes",
+    "price": 350000,
+    "img": "public/images/products/banh-gato/gato-kem-tuoi-phu-choco-velvet.webp",
+    "featured": false,
+    "description_vi": "Bánh sinh nhật GATO KEM TƯƠI PHỦ CHOCO VELVET hảo hạng, làm từ cốt bông lan Nhật Bản mềm xốp kết hợp cùng lớp kem tươi cao cấp thanh nhẹ, trang trí tinh tế.",
+    "description_en": "Authentic handcrafted GATO KEM TƯƠI PHỦ CHOCO VELVET prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "banh-gato-nguyen-chiec",
+    "subcategory_name": "Bánh Gato Sinh Nhật & Sự Kiện",
+    "subcategory_name_en": "Birthday & Event Gateaux",
+    "variants": [
+      {
+        "size": "16cm",
+        "name": "Size 16cm (4-6 người)",
+        "price": 350000
+      },
+      {
+        "size": "18cm",
+        "name": "Size 18cm (6-8 người)",
+        "price": 437500
+      },
+      {
+        "size": "20cm",
+        "name": "Size 20cm (8-10 người)",
+        "price": 542500
+      }
+    ]
+  },
+  {
+    "id": "GatoKemTuoiMutTraiCay",
+    "name_vi": "GATO KEM TƯƠI MỨT TRÁI CÂY",
+    "name_en": "Fresh Cream Gateau",
+    "category": "banh-gato",
+    "category_name": "Bánh Gato",
+    "category_name_en": "Gateaux & Birthday Cakes",
+    "price": 350000,
+    "img": "public/images/products/banh-gato/gato-kem-tuoi-mut-trai-cay.webp",
+    "featured": false,
+    "description_vi": "Bánh sinh nhật GATO KEM TƯƠI MỨT TRÁI CÂY hảo hạng, làm từ cốt bông lan Nhật Bản mềm xốp kết hợp cùng lớp kem tươi cao cấp thanh nhẹ, trang trí tinh tế.",
+    "description_en": "Authentic handcrafted GATO KEM TƯƠI MỨT TRÁI CÂY prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "banh-gato-nguyen-chiec",
+    "subcategory_name": "Bánh Gato Sinh Nhật & Sự Kiện",
+    "subcategory_name_en": "Birthday & Event Gateaux",
+    "variants": [
+      {
+        "size": "16cm",
+        "name": "Size 16cm (4-6 người)",
+        "price": 350000
+      },
+      {
+        "size": "18cm",
+        "name": "Size 18cm (6-8 người)",
+        "price": 437500
+      },
+      {
+        "size": "20cm",
+        "name": "Size 20cm (8-10 người)",
+        "price": 542500
+      }
+    ]
+  },
+  {
+    "id": "GatoKemTuoiMini",
+    "name_vi": "GATO KEM TƯƠI MINI",
+    "name_en": "Fresh Cream Gateau",
+    "category": "banh-gato",
+    "category_name": "Bánh Gato",
+    "category_name_en": "Gateaux & Birthday Cakes",
+    "price": 350000,
+    "img": "public/images/products/banh-gato/gato-kem-tuoi-mini.webp",
+    "featured": false,
+    "description_vi": "Bánh sinh nhật GATO KEM TƯƠI MINI hảo hạng, làm từ cốt bông lan Nhật Bản mềm xốp kết hợp cùng lớp kem tươi cao cấp thanh nhẹ, trang trí tinh tế.",
+    "description_en": "Authentic handcrafted GATO KEM TƯƠI MINI prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "banh-gato-nguyen-chiec",
+    "subcategory_name": "Bánh Gato Sinh Nhật & Sự Kiện",
+    "subcategory_name_en": "Birthday & Event Gateaux",
+    "variants": [
+      {
+        "size": "16cm",
+        "name": "Size 16cm (4-6 người)",
+        "price": 350000
+      },
+      {
+        "size": "18cm",
+        "name": "Size 18cm (6-8 người)",
+        "price": 437500
+      },
+      {
+        "size": "20cm",
+        "name": "Size 20cm (8-10 người)",
+        "price": 542500
+      }
+    ]
+  },
+  {
+    "id": "GatoMiniKemTuoi",
+    "name_vi": "GATO KEM TƯƠI MINI",
+    "name_en": "Fresh Cream Gateau",
+    "category": "banh-gato",
+    "category_name": "Bánh Gato",
+    "category_name_en": "Gateaux & Birthday Cakes",
+    "price": 350000,
+    "img": "public/images/products/banh-gato/gato-mini-kem-tuoi.webp",
+    "featured": false,
+    "description_vi": "Bánh sinh nhật GATO KEM TƯƠI MINI hảo hạng, làm từ cốt bông lan Nhật Bản mềm xốp kết hợp cùng lớp kem tươi cao cấp thanh nhẹ, trang trí tinh tế.",
+    "description_en": "Authentic handcrafted GATO KEM TƯƠI MINI prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "banh-gato-nguyen-chiec",
+    "subcategory_name": "Bánh Gato Sinh Nhật & Sự Kiện",
+    "subcategory_name_en": "Birthday & Event Gateaux",
+    "variants": [
+      {
+        "size": "16cm",
+        "name": "Size 16cm (4-6 người)",
+        "price": 350000
+      },
+      {
+        "size": "18cm",
+        "name": "Size 18cm (6-8 người)",
+        "price": 437500
+      },
+      {
+        "size": "20cm",
+        "name": "Size 20cm (8-10 người)",
+        "price": 542500
+      }
+    ]
+  },
+  {
+    "id": "GatoKemTuoiVuong",
+    "name_vi": "GATO KEM TƯƠI VUÔNG",
+    "name_en": "Fresh Cream Gateau",
+    "category": "banh-gato",
+    "category_name": "Bánh Gato",
+    "category_name_en": "Gateaux & Birthday Cakes",
+    "price": 350000,
+    "img": "public/images/products/banh-gato/gato-kem-tuoi-vuong.webp",
+    "featured": false,
+    "description_vi": "Bánh sinh nhật GATO KEM TƯƠI VUÔNG hảo hạng, làm từ cốt bông lan Nhật Bản mềm xốp kết hợp cùng lớp kem tươi cao cấp thanh nhẹ, trang trí tinh tế.",
+    "description_en": "Authentic handcrafted GATO KEM TƯƠI VUÔNG prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "banh-gato-nguyen-chiec",
+    "subcategory_name": "Bánh Gato Sinh Nhật & Sự Kiện",
+    "subcategory_name_en": "Birthday & Event Gateaux",
+    "variants": [
+      {
+        "size": "16cm",
+        "name": "Size 16cm (4-6 người)",
+        "price": 350000
+      },
+      {
+        "size": "18cm",
+        "name": "Size 18cm (6-8 người)",
+        "price": 437500
+      },
+      {
+        "size": "20cm",
+        "name": "Size 20cm (8-10 người)",
+        "price": 542500
+      }
+    ]
+  },
+  {
+    "id": "GatoKemTuoi",
+    "name_vi": "GATO KEM TƯƠI",
+    "name_en": "Fresh Cream Gateau",
+    "category": "banh-gato",
+    "category_name": "Bánh Gato",
+    "category_name_en": "Gateaux & Birthday Cakes",
+    "price": 350000,
+    "img": "public/images/products/banh-gato/gato-kem-tuoi.webp",
+    "featured": false,
+    "description_vi": "Bánh sinh nhật GATO KEM TƯƠI hảo hạng, làm từ cốt bông lan Nhật Bản mềm xốp kết hợp cùng lớp kem tươi cao cấp thanh nhẹ, trang trí tinh tế.",
+    "description_en": "Authentic handcrafted GATO KEM TƯƠI prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "banh-gato-nguyen-chiec",
+    "subcategory_name": "Bánh Gato Sinh Nhật & Sự Kiện",
+    "subcategory_name_en": "Birthday & Event Gateaux",
+    "variants": [
+      {
+        "size": "16cm",
+        "name": "Size 16cm (4-6 người)",
+        "price": 350000
+      },
+      {
+        "size": "18cm",
+        "name": "Size 18cm (6-8 người)",
+        "price": 437500
+      },
+      {
+        "size": "20cm",
+        "name": "Size 20cm (8-10 người)",
+        "price": 542500
+      }
+    ]
+  },
+  {
+    "id": "ChocolateVelvet",
+    "name_vi": "CHOCOLATE VELVET",
+    "name_en": "Chocolate Velvet",
+    "category": "banh-gato",
+    "category_name": "Bánh Gato",
+    "category_name_en": "Gateaux & Birthday Cakes",
+    "price": 350000,
+    "img": "public/images/products/banh-gato/chocolate-velvet.webp",
+    "featured": false,
+    "description_vi": "Bánh sinh nhật CHOCOLATE VELVET hảo hạng, làm từ cốt bông lan Nhật Bản mềm xốp kết hợp cùng lớp kem tươi cao cấp thanh nhẹ, trang trí tinh tế.",
+    "description_en": "Authentic handcrafted CHOCOLATE VELVET prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "banh-gato-nguyen-chiec",
+    "subcategory_name": "Bánh Gato Sinh Nhật & Sự Kiện",
+    "subcategory_name_en": "Birthday & Event Gateaux",
+    "variants": [
+      {
+        "size": "16cm",
+        "name": "Size 16cm (4-6 người)",
+        "price": 350000
+      },
+      {
+        "size": "18cm",
+        "name": "Size 18cm (6-8 người)",
+        "price": 437500
+      },
+      {
+        "size": "20cm",
+        "name": "Size 20cm (8-10 người)",
+        "price": 542500
+      }
+    ]
+  },
+  {
+    "id": "GatoSocola",
+    "name_vi": "GATO CHOCOLATE",
+    "name_en": "Chocolate Gateau",
+    "category": "banh-gato",
+    "category_name": "Bánh Gato",
+    "category_name_en": "Gateaux & Birthday Cakes",
+    "price": 350000,
+    "img": "public/images/products/banh-gato/gato-socola.webp",
+    "featured": false,
+    "description_vi": "Bánh sinh nhật GATO CHOCOLATE hảo hạng, làm từ cốt bông lan Nhật Bản mềm xốp kết hợp cùng lớp kem tươi cao cấp thanh nhẹ, trang trí tinh tế.",
+    "description_en": "Authentic handcrafted GATO CHOCOLATE prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "banh-gato-nguyen-chiec",
+    "subcategory_name": "Bánh Gato Sinh Nhật & Sự Kiện",
+    "subcategory_name_en": "Birthday & Event Gateaux",
+    "variants": [
+      {
+        "size": "16cm",
+        "name": "Size 16cm (4-6 người)",
+        "price": 350000
+      },
+      {
+        "size": "18cm",
+        "name": "Size 18cm (6-8 người)",
+        "price": 437500
+      },
+      {
+        "size": "20cm",
+        "name": "Size 20cm (8-10 người)",
+        "price": 542500
+      }
+    ]
+  },
+  {
+    "id": "GatoCappuccino1",
+    "name_vi": "GATO CAPPUCCINO",
+    "name_en": "Cappuccino Gateau",
+    "category": "banh-gato",
+    "category_name": "Bánh Gato",
+    "category_name_en": "Gateaux & Birthday Cakes",
+    "price": 350000,
+    "img": "public/images/products/banh-gato/gato-cappuccino-1.webp",
+    "featured": false,
+    "description_vi": "Bánh sinh nhật GATO CAPPUCCINO hảo hạng, làm từ cốt bông lan Nhật Bản mềm xốp kết hợp cùng lớp kem tươi cao cấp thanh nhẹ, trang trí tinh tế.",
+    "description_en": "Authentic handcrafted GATO CAPPUCCINO prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "banh-gato-nguyen-chiec",
+    "subcategory_name": "Bánh Gato Sinh Nhật & Sự Kiện",
+    "subcategory_name_en": "Birthday & Event Gateaux",
+    "variants": [
+      {
+        "size": "16cm",
+        "name": "Size 16cm (4-6 người)",
+        "price": 350000
+      },
+      {
+        "size": "18cm",
+        "name": "Size 18cm (6-8 người)",
+        "price": 437500
+      },
+      {
+        "size": "20cm",
+        "name": "Size 20cm (8-10 người)",
+        "price": 542500
+      }
+    ]
+  },
+  {
+    "id": "GatoCappuccino",
+    "name_vi": "GATO CAPPUCCINO",
+    "name_en": "Cappuccino Gateau",
+    "category": "banh-gato",
+    "category_name": "Bánh Gato",
+    "category_name_en": "Gateaux & Birthday Cakes",
+    "price": 350000,
+    "img": "public/images/products/banh-gato/gato-cappuccino.webp",
+    "featured": false,
+    "description_vi": "Bánh sinh nhật GATO CAPPUCCINO hảo hạng, làm từ cốt bông lan Nhật Bản mềm xốp kết hợp cùng lớp kem tươi cao cấp thanh nhẹ, trang trí tinh tế.",
+    "description_en": "Authentic handcrafted GATO CAPPUCCINO prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "banh-gato-nguyen-chiec",
+    "subcategory_name": "Bánh Gato Sinh Nhật & Sự Kiện",
+    "subcategory_name_en": "Birthday & Event Gateaux",
+    "variants": [
+      {
+        "size": "16cm",
+        "name": "Size 16cm (4-6 người)",
+        "price": 350000
+      },
+      {
+        "size": "18cm",
+        "name": "Size 18cm (6-8 người)",
+        "price": 437500
+      },
+      {
+        "size": "20cm",
+        "name": "Size 20cm (8-10 người)",
+        "price": 542500
+      }
+    ]
+  },
+  {
+    "id": "GatoCaramen",
+    "name_vi": "GATO CARAMEN",
+    "name_en": "Caramel Flan Gateau",
+    "category": "banh-kem-tuoi",
+    "category_name": "Bánh Kem Tươi",
+    "category_name_en": "Fresh Cream & Mousse",
+    "price": 45000,
+    "img": "public/images/products/banh-kem-tuoi/gato-caramen.webp",
+    "featured": false,
+    "description_vi": "Món bánh GATO CARAMEN thanh mát đặc trưng của tiệm Poeme, hòa quyện hương vị trái cây tự nhiên và kem tươi mịn màng, bảo quản mát 2-6°C.",
+    "description_en": "Authentic handcrafted GATO CARAMEN prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-banh-cuon-cat-mieng",
+    "subcategory_name": "Bánh Cuộn & Bánh Cắt Miếng",
+    "subcategory_name_en": "Roll Cakes & Slices",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 45000
+      }
+    ]
+  },
+  {
+    "id": "GatoCafe",
+    "name_vi": "GATO CAFE",
+    "name_en": "Cafe Mocha Gateau",
+    "category": "banh-gato",
+    "category_name": "Bánh Gato",
+    "category_name_en": "Gateaux & Birthday Cakes",
+    "price": 350000,
+    "img": "public/images/products/banh-gato/gato-cafe.webp",
+    "featured": false,
+    "description_vi": "Bánh sinh nhật GATO CAFE hảo hạng, làm từ cốt bông lan Nhật Bản mềm xốp kết hợp cùng lớp kem tươi cao cấp thanh nhẹ, trang trí tinh tế.",
+    "description_en": "Authentic handcrafted GATO CAFE prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "banh-gato-nguyen-chiec",
+    "subcategory_name": "Bánh Gato Sinh Nhật & Sự Kiện",
+    "subcategory_name_en": "Birthday & Event Gateaux",
+    "variants": [
+      {
+        "size": "16cm",
+        "name": "Size 16cm (4-6 người)",
+        "price": 350000
+      },
+      {
+        "size": "18cm",
+        "name": "Size 18cm (6-8 người)",
+        "price": 437500
+      },
+      {
+        "size": "20cm",
+        "name": "Size 20cm (8-10 người)",
+        "price": 542500
+      }
+    ]
+  },
+  {
+    "id": "ChiffonSocola1",
+    "name_vi": "CHiffon socola",
+    "name_en": "Japanese Chiffon Cake",
+    "category": "banh-kem-tuoi",
+    "category_name": "Bánh Kem Tươi",
+    "category_name_en": "Fresh Cream & Mousse",
+    "price": 45000,
+    "img": "public/images/products/banh-kem-tuoi/chiffon-socola-1.webp",
+    "featured": false,
+    "description_vi": "Món bánh CHiffon socola thanh mát đặc trưng của tiệm Poeme, hòa quyện hương vị trái cây tự nhiên và kem tươi mịn màng, bảo quản mát 2-6°C.",
+    "description_en": "Authentic handcrafted CHiffon socola prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-banh-cuon-cat-mieng",
+    "subcategory_name": "Bánh Cuộn & Bánh Cắt Miếng",
+    "subcategory_name_en": "Roll Cakes & Slices",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 45000
+      }
+    ]
+  },
+  {
+    "id": "ChiffonChanMay",
+    "name_vi": "CHIFFON CHAN MÂY",
+    "name_en": "Japanese Chiffon Cake",
+    "category": "banh-kem-tuoi",
+    "category_name": "Bánh Kem Tươi",
+    "category_name_en": "Fresh Cream & Mousse",
+    "price": 45000,
+    "img": "public/images/products/banh-kem-tuoi/chiffon-chan-may.webp",
+    "featured": false,
+    "description_vi": "Món bánh CHIFFON CHAN MÂY thanh mát đặc trưng của tiệm Poeme, hòa quyện hương vị trái cây tự nhiên và kem tươi mịn màng, bảo quản mát 2-6°C.",
+    "description_en": "Authentic handcrafted CHIFFON CHAN MÂY prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-banh-cuon-cat-mieng",
+    "subcategory_name": "Bánh Cuộn & Bánh Cắt Miếng",
+    "subcategory_name_en": "Roll Cakes & Slices",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 45000
+      }
+    ]
+  },
+  {
+    "id": "SandwichDen",
+    "name_vi": "Sandwich đen",
+    "name_en": "Japanese Sandwich Loaf",
+    "category": "banh-mi",
+    "category_name": "Bánh Mì",
+    "category_name_en": "Breads & Pastries",
     "price": 25000,
-    "img": "public/images/products/banh-kem-tuoi/BanhRanDorayaki.webp",
-    "featured": true,
-    "description_vi": "Bánh rán Doraemon truyền thống mềm xốp kẹp nhân đậu đỏ ngọt bùi hấp dẫn.",
-    "description_en": "Beloved Japanese Dorayaki pancake sandwich filled with sweet Azuki red bean paste.",
-    "subcategory": "dong-banh-cuon-cat-mieng",
-    "subcategory_name": "Bánh Cuộn & Gato Cắt Miếng",
-    "subcategory_name_en": "Roll Cakes & Slices"
+    "img": "public/images/products/banh-mi/sandwich-den.webp",
+    "featured": false,
+    "description_vi": "Sandwich đen được làm từ bột lúa mạch&nbsp; đen &nbsp;giàu chất xơ, hỗ trợ tiêu hóa và mang lại cảm giác no lâu.",
+    "description_en": "Authentic handcrafted Sandwich đen prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "banh-mi-goi-sandwich",
+    "subcategory_name": "Bánh Mì Gối & Sandwich",
+    "subcategory_name_en": "Toast Loaves & Sandwiches",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 25000
+      }
+    ]
   },
   {
-    "id": "BanhCaramelTrungSua",
-    "name_vi": "Caramen đặc biệt",
-    "name_en": "Special Japanese Caramel Pudding",
+    "id": "MoussePhucBonTu1",
+    "name_vi": "Mousse phúc bồn tử",
+    "name_en": "Mousse Phúc Bồn Tử",
     "category": "banh-kem-tuoi",
     "category_name": "Bánh Kem Tươi",
     "category_name_en": "Fresh Cream & Mousse",
     "price": 22000,
-    "img": "public/images/products/banh-kem-tuoi/BanhCaramelTrungSua.webp",
-    "featured": true,
-    "description_vi": "Caramel trứng sữa mềm mượt núng nính phủ nước đường caramen đắng nhẹ thơm lừng.",
-    "description_en": "Silky Japanese purin caramel flan boasting a delicate bittersweet caramel glaze.",
-    "subcategory": "dong-banh-cuon-cat-mieng",
-    "subcategory_name": "Bánh Cuộn & Gato Cắt Miếng",
-    "subcategory_name_en": "Roll Cakes & Slices"
+    "img": "public/images/products/banh-kem-tuoi/mousse-phuc-bon-tu-1.webp",
+    "featured": false,
+    "description_vi": "Bạt bánh bông lan kết hợp cùng mousse và thạch rau câu vị phúc bồn tử.&nbsp;",
+    "description_en": "Authentic handcrafted Mousse phúc bồn tử prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-mousse",
+    "subcategory_name": "Dòng Bánh Mousse Tươi",
+    "subcategory_name_en": "Fresh Mousse Cakes",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 22000
+      }
+    ]
   },
   {
-    "id": "KemGelatoPoemeCoc",
-    "name_vi": "Bánh caramen",
-    "name_en": "Japanese Caramel Custard Cake",
+    "id": "MousseBluberryVuong",
+    "name_vi": "Mousse bluberry vuông",
+    "name_en": "Mousse Bluberry Vuông",
     "category": "banh-kem-tuoi",
     "category_name": "Bánh Kem Tươi",
     "category_name_en": "Fresh Cream & Mousse",
-    "price": 35000,
-    "img": "public/images/products/banh-kem-tuoi/KemGelatoPoemeCoc.webp",
+    "price": 22000,
+    "img": "public/images/products/banh-kem-tuoi/mousse-bluberry-vuong.webp",
     "featured": false,
-    "description_vi": "Kem Gelato thủ công Poême dẻo quánh, mát lạnh đậm đà vị sữa tươi hảo hạng.",
-    "description_en": "Artisanal Poême gelato cup with an intensely creamy, velvety Italian texture.",
+    "description_vi": "Bạt bánh bông lan kết hợp cùng mousse và thạch rau câu vị việt quất.&nbsp;",
+    "description_en": "Authentic handcrafted Mousse bluberry vuông prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-mousse",
+    "subcategory_name": "Dòng Bánh Mousse Tươi",
+    "subcategory_name_en": "Fresh Mousse Cakes",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 22000
+      }
+    ]
+  },
+  {
+    "id": "CatKemMan",
+    "name_vi": "Cắt kem mặn",
+    "name_en": "Cắt Kem Mặn",
+    "category": "banh-kem-tuoi",
+    "category_name": "Bánh Kem Tươi",
+    "category_name_en": "Fresh Cream & Mousse",
+    "price": 25000,
+    "img": "public/images/products/banh-kem-tuoi/cat-kem-man.webp",
+    "featured": false,
+    "description_vi": "Một công thức cải tiến mới từ bếp trưởng của Poeme, vẫn kem tươi nhưng được bổ sung thêm vị mặn thanh nhẹ, đảm bảo sẽ đem đến những trải nghiệm bất ngờ và vô cùng độc đáo cho các thực khách.&nbsp;",
+    "description_en": "Authentic handcrafted Cắt kem mặn prepared with premium natural ingredients following traditional Japanese bakery recipes.",
     "subcategory": "dong-banh-cuon-cat-mieng",
-    "subcategory_name": "Bánh Cuộn & Gato Cắt Miếng",
-    "subcategory_name_en": "Roll Cakes & Slices"
+    "subcategory_name": "Bánh Cuộn & Bánh Cắt Miếng",
+    "subcategory_name_en": "Roll Cakes & Slices",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 25000
+      }
+    ]
   },
   {
-    "id": "BanhQuyBoHu",
-    "name_vi": "Hộp cookies bơ",
-    "name_en": "Butter Cookies Jar",
-    "category": "banh-quy",
-    "category_name": "Bánh Quy",
-    "category_name_en": "Cookies & Biscuits",
-    "price": 75000,
-    "img": "public/images/products/banh-quy/BanhQuyBoHu.webp",
-    "featured": true,
-    "description_vi": "Hũ bánh quy bơ nướng vàng giòn, thơm nức mùi bơ New Zealand hảo hạng.",
-    "description_en": "Reusable jar of golden crunchy butter cookies made with premium New Zealand butter.",
-    "subcategory": "banh-quy-hu",
-    "subcategory_name": "Bánh Quy Hũ",
-    "subcategory_name_en": "Jar Cookies"
-  },
-  {
-    "id": "BanhQuyCacaoHu",
-    "name_vi": "Hộp cookies ca cao",
-    "name_en": "Cocoa Cookies Jar",
-    "category": "banh-quy",
-    "category_name": "Bánh Quy",
-    "category_name_en": "Cookies & Biscuits",
-    "price": 75000,
-    "img": "public/images/products/banh-quy/BanhQuyCacaoHu.webp",
+    "id": "MousseCaramen",
+    "name_vi": "Mousse caramen",
+    "name_en": "Caramel Mousse",
+    "category": "banh-kem-tuoi",
+    "category_name": "Bánh Kem Tươi",
+    "category_name_en": "Fresh Cream & Mousse",
+    "price": 22000,
+    "img": "public/images/products/banh-kem-tuoi/mousse-caramen.webp",
     "featured": false,
-    "description_vi": "Hũ bánh quy cacao giòn rụm, vị đắng ngọt hài hòa từ bột cacao nguyên chất.",
-    "description_en": "Jar of crunchy cocoa cookies infused with rich pure dark chocolate notes.",
-    "subcategory": "banh-quy-hu",
-    "subcategory_name": "Bánh Quy Hũ",
-    "subcategory_name_en": "Jar Cookies"
+    "description_vi": "Bánh là sự kết hợp của gato bông lan vani, mousse caramen thơm ngon và thạch cafe.&nbsp;",
+    "description_en": "Authentic handcrafted Mousse caramen prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-mousse",
+    "subcategory_name": "Dòng Bánh Mousse Tươi",
+    "subcategory_name_en": "Fresh Mousse Cakes",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 22000
+      }
+    ]
   },
   {
-    "id": "BanhQuyLuoiMeoVaniHu",
-    "name_vi": "Hộp cookies lưỡi mèo",
-    "name_en": "Vanilla Langue de Chat Jar",
-    "category": "banh-quy",
-    "category_name": "Bánh Quy",
-    "category_name_en": "Cookies & Biscuits",
-    "price": 80000,
-    "img": "public/images/products/banh-quy/BanhQuyLuoiMeoVaniHu.webp",
-    "featured": true,
-    "description_vi": "Bánh quy lưỡi mèo kiểu Pháp giòn xốp tan chảy, thơm dịu hương vani tự nhiên.",
-    "description_en": "Jar of delicate French Langue de Chat cat-tongue cookies with natural vanilla.",
-    "subcategory": "banh-quy-hu",
-    "subcategory_name": "Bánh Quy Hũ",
-    "subcategory_name_en": "Jar Cookies"
-  },
-  {
-    "id": "BanhQuyHanhNhanLatHu",
-    "name_vi": "Hộp cookies lưỡi mèo hạnh nhân",
-    "name_en": "Almond Langue de Chat Jar",
-    "category": "banh-quy",
-    "category_name": "Bánh Quy",
-    "category_name_en": "Cookies & Biscuits",
-    "price": 85000,
-    "img": "public/images/products/banh-quy/BanhQuyHanhNhanLatHu.webp",
-    "featured": true,
-    "description_vi": "Bánh quy ngói hạnh nhân dát mỏng nướng giòn rụm bùi thơm khó cưỡng.",
-    "description_en": "Jar of paper-thin, crispy roasted almond tuiles bursting with nutty aromas.",
-    "subcategory": "banh-quy-hu",
-    "subcategory_name": "Bánh Quy Hũ",
-    "subcategory_name_en": "Jar Cookies"
-  },
-  {
-    "id": "BanhQuyLuoiMeoSocolaHu",
-    "name_vi": "Hộp cookies lưỡi mèo socola",
-    "name_en": "Chocolate Langue de Chat Jar",
-    "category": "banh-quy",
-    "category_name": "Bánh Quy",
-    "category_name_en": "Cookies & Biscuits",
-    "price": 80000,
-    "img": "public/images/products/banh-quy/BanhQuyLuoiMeoSocolaHu.webp",
+    "id": "BrownieSocola",
+    "name_vi": "Brownie socola",
+    "name_en": "Brownie Socola",
+    "category": "banh-kem-tuoi",
+    "category_name": "Bánh Kem Tươi",
+    "category_name_en": "Fresh Cream & Mousse",
+    "price": 50000,
+    "img": "public/images/products/banh-kem-tuoi/brownie-socola.webp",
     "featured": false,
-    "description_vi": "Bánh quy lưỡi mèo socola giòn tan, ngọt ngào đậm vị cacao Bỉ.",
-    "description_en": "Jar of crispy chocolate cat-tongue cookies crafted with rich Belgian cocoa.",
-    "subcategory": "banh-quy-hu",
-    "subcategory_name": "Bánh Quy Hũ",
-    "subcategory_name_en": "Jar Cookies"
+    "description_vi": "Brownie có mềm ẩm, khi ăn có vị đắng của Socola, vị ngọt của đường và mùi thơm nhẹ của bột bánh",
+    "description_en": "Authentic handcrafted Brownie socola prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-banh-cuon-cat-mieng",
+    "subcategory_name": "Bánh Cuộn & Bánh Cắt Miếng",
+    "subcategory_name_en": "Roll Cakes & Slices",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 50000
+      }
+    ]
   },
   {
-    "id": "BanhQuyLuoiMeoTraXanhHu",
-    "name_vi": "Hộp cookies lưỡi mèo trà xanh",
-    "name_en": "Matcha Langue de Chat Jar",
+    "id": "BatDauTuoi",
+    "name_vi": "Bát Dâu Tươi",
+    "name_en": "Fresh Strawberry Tart Bowl",
+    "category": "banh-kem-tuoi",
+    "category_name": "Bánh Kem Tươi",
+    "category_name_en": "Fresh Cream & Mousse",
+    "price": 30000,
+    "img": "public/images/products/banh-kem-tuoi/bat-dau-tuoi.webp",
+    "featured": false,
+    "description_vi": "Bát dâu có lớp đế là bánh tart, phủ chocolate, kem tươi và trên cùng là những trái dâu tươi chín đỏ mọng.&nbsp;",
+    "description_en": "Authentic handcrafted Bát Dâu Tươi prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-tart-ngan-lop",
+    "subcategory_name": "Dòng Tart & Ngàn Lớp",
+    "subcategory_name_en": "Tarts & Mille-Feuille",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 30000
+      }
+    ]
+  },
+  {
+    "id": "JamDao",
+    "name_vi": "JAM ĐÀO",
+    "name_en": "Jam Đào",
+    "category": "banh-kem-tuoi",
+    "category_name": "Bánh Kem Tươi",
+    "category_name_en": "Fresh Cream & Mousse",
+    "price": 22000,
+    "img": "public/images/products/banh-kem-tuoi/jam-dao.webp",
+    "featured": false,
+    "description_vi": "Cấu tạo của bánh gồm các lớp bông lan vani kẹp xen kẽ các lớp mứt đào. Phủ bên trên là lớp mứt đào.",
+    "description_en": "Authentic handcrafted JAM ĐÀO prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-banh-cuon-cat-mieng",
+    "subcategory_name": "Bánh Cuộn & Bánh Cắt Miếng",
+    "subcategory_name_en": "Roll Cakes & Slices",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 22000
+      }
+    ]
+  },
+  {
+    "id": "JamDua",
+    "name_vi": "JAM DỨA",
+    "name_en": "Jam Dứa",
+    "category": "banh-kem-tuoi",
+    "category_name": "Bánh Kem Tươi",
+    "category_name_en": "Fresh Cream & Mousse",
+    "price": 22000,
+    "img": "public/images/products/banh-kem-tuoi/jam-dua.webp",
+    "featured": false,
+    "description_vi": "Cấu tạo của bánh gồm các lớp bông lan vani kẹp xen kẽ các lớp mứt dứa. Phủ bên trên là lớp mứt dứa.",
+    "description_en": "Authentic handcrafted JAM DỨA prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-banh-cuon-cat-mieng",
+    "subcategory_name": "Bánh Cuộn & Bánh Cắt Miếng",
+    "subcategory_name_en": "Roll Cakes & Slices",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 22000
+      }
+    ]
+  },
+  {
+    "id": "JamDau",
+    "name_vi": "JAM DÂU",
+    "name_en": "Jam Dâu",
+    "category": "banh-kem-tuoi",
+    "category_name": "Bánh Kem Tươi",
+    "category_name_en": "Fresh Cream & Mousse",
+    "price": 22000,
+    "img": "public/images/products/banh-kem-tuoi/jam-dau.webp",
+    "featured": false,
+    "description_vi": "Cấu tạo của bánh gồm các lớp bông lan vani kẹp xen kẽ các lớp mứt dâu. Phủ bên trên là lớp mứt dâu.",
+    "description_en": "Authentic handcrafted JAM DÂU prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-banh-cuon-cat-mieng",
+    "subcategory_name": "Bánh Cuộn & Bánh Cắt Miếng",
+    "subcategory_name_en": "Roll Cakes & Slices",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 22000
+      }
+    ]
+  },
+  {
+    "id": "CuonBongLanMix",
+    "name_vi": "CUỘN BÔNG LAN MIX",
+    "name_en": "Mixed Cream Swiss Roll",
+    "category": "banh-kem-tuoi",
+    "category_name": "Bánh Kem Tươi",
+    "category_name_en": "Fresh Cream & Mousse",
+    "price": 50000,
+    "img": "public/images/products/banh-kem-tuoi/cuon-bong-lan-mix.webp",
+    "featured": false,
+    "description_vi": "Thành phần bánh bao gồm 3 miếng bánh cuộn và 3 hương vị: Cuộn bông lan cafe, cuộn bông lan trà xanh và cuộn bông lan caramen&nbsp;",
+    "description_en": "Authentic handcrafted CUỘN BÔNG LAN MIX prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-banh-cuon-cat-mieng",
+    "subcategory_name": "Bánh Cuộn & Bánh Cắt Miếng",
+    "subcategory_name_en": "Roll Cakes & Slices",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 50000
+      }
+    ]
+  },
+  {
+    "id": "SuaChuaBlueberry",
+    "name_vi": "SỮA CHUA BLUEBERRY",
+    "name_en": "Sữa Chua Blueberry",
+    "category": "banh-kem-tuoi",
+    "category_name": "Bánh Kem Tươi",
+    "category_name_en": "Fresh Cream & Mousse",
+    "price": 22000,
+    "img": "public/images/products/banh-kem-tuoi/sua-chua-blueberry.webp",
+    "featured": false,
+    "description_vi": "Thành phần của bánh là việt quất được xay nhuyễn với sữa chua, dưới cùng là lớp bông lan vani.",
+    "description_en": "Authentic handcrafted SỮA CHUA BLUEBERRY prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-banh-cuon-cat-mieng",
+    "subcategory_name": "Bánh Cuộn & Bánh Cắt Miếng",
+    "subcategory_name_en": "Roll Cakes & Slices",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 22000
+      }
+    ]
+  },
+  {
+    "id": "ChocoVelvet",
+    "name_vi": "CHOCO VELVET",
+    "name_en": "Choco Velvet Cream Cake",
+    "category": "banh-kem-tuoi",
+    "category_name": "Bánh Kem Tươi",
+    "category_name_en": "Fresh Cream & Mousse",
+    "price": 30000,
+    "img": "public/images/products/banh-kem-tuoi/choco-velvet.webp",
+    "featured": false,
+    "description_vi": "Thành phần: Chocolate velvet, kem cheese.",
+    "description_en": "Authentic handcrafted CHOCO VELVET prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-banh-cuon-cat-mieng",
+    "subcategory_name": "Bánh Cuộn & Bánh Cắt Miếng",
+    "subcategory_name_en": "Roll Cakes & Slices",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 30000
+      }
+    ]
+  },
+  {
+    "id": "DaduBlueberry",
+    "name_vi": "DADU BLUEBERRY",
+    "name_en": "Dadu Blueberry",
+    "category": "banh-kem-tuoi",
+    "category_name": "Bánh Kem Tươi",
+    "category_name_en": "Fresh Cream & Mousse",
+    "price": 30000,
+    "img": "public/images/products/banh-kem-tuoi/dadu-blueberry.webp",
+    "featured": false,
+    "description_vi": "Thành phần: Bánh bông lan vani, kem việt quất",
+    "description_en": "Authentic handcrafted DADU BLUEBERRY prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-banh-cuon-cat-mieng",
+    "subcategory_name": "Bánh Cuộn & Bánh Cắt Miếng",
+    "subcategory_name_en": "Roll Cakes & Slices",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 30000
+      }
+    ]
+  },
+  {
+    "id": "DaduRedVelvet",
+    "name_vi": "DADU RED VELVET",
+    "name_en": "Red Velvet Gateau",
+    "category": "banh-kem-tuoi",
+    "category_name": "Bánh Kem Tươi",
+    "category_name_en": "Fresh Cream & Mousse",
+    "price": 30000,
+    "img": "public/images/products/banh-kem-tuoi/dadu-red-velvet.webp",
+    "featured": false,
+    "description_vi": "Thành phần: Bánh bông lan red velvet, kem tươi, bột red velvet",
+    "description_en": "Authentic handcrafted DADU RED VELVET prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-banh-cuon-cat-mieng",
+    "subcategory_name": "Bánh Cuộn & Bánh Cắt Miếng",
+    "subcategory_name_en": "Roll Cakes & Slices",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 30000
+      }
+    ]
+  },
+  {
+    "id": "BanhMiBoPhap",
+    "name_vi": "BÁNH MÌ BƠ PHÁP",
+    "name_en": "French Butter Bread",
+    "category": "banh-mi",
+    "category_name": "Bánh Mì",
+    "category_name_en": "Breads & Pastries",
+    "price": 18000,
+    "img": "public/images/products/banh-mi/banh-mi-bo-phap.webp",
+    "featured": false,
+    "description_vi": "Thành phần bao gồm bột mì, bơ.",
+    "description_en": "Authentic handcrafted BÁNH MÌ BƠ PHÁP prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "banh-mi-man-ngot",
+    "subcategory_name": "Bánh Mì Mặn & Bánh Mì Bơ Ngọt",
+    "subcategory_name_en": "Savory & Sweet Breads",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 18000
+      }
+    ]
+  },
+  {
+    "id": "SyuCheese",
+    "name_vi": "SYU CHEESE",
+    "name_en": "Crispy Cheese Choux",
+    "category": "banh-mi",
+    "category_name": "Bánh Mì",
+    "category_name_en": "Breads & Pastries",
+    "price": 45000,
+    "img": "public/images/products/banh-mi/syu-cheese.webp",
+    "featured": false,
+    "description_vi": "Kem phomai công thức riêng béo ngậy được bơm bên trong lớp vỏ mềm mềm dai dai&nbsp;",
+    "description_en": "Authentic handcrafted SYU CHEESE prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "banh-mi-man-ngot",
+    "subcategory_name": "Bánh Mì Mặn & Bánh Mì Bơ Ngọt",
+    "subcategory_name_en": "Savory & Sweet Breads",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 45000
+      }
+    ]
+  },
+  {
+    "id": "Kabocha",
+    "name_vi": "KABOCHA",
+    "name_en": "Japanese Kabocha Pumpkin Bun",
+    "category": "banh-mi",
+    "category_name": "Bánh Mì",
+    "category_name_en": "Breads & Pastries",
+    "price": 10000,
+    "img": "public/images/products/banh-mi/kabocha.webp",
+    "featured": false,
+    "description_vi": "Thành phần gồm bột mì, bơ, đường.",
+    "description_en": "Authentic handcrafted KABOCHA prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "banh-mi-man-ngot",
+    "subcategory_name": "Bánh Mì Mặn & Bánh Mì Bơ Ngọt",
+    "subcategory_name_en": "Savory & Sweet Breads",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 10000
+      }
+    ]
+  },
+  {
+    "id": "TrungChim",
+    "name_vi": "TRỨNG CHIM",
+    "name_en": "Trứng Chim",
+    "category": "banh-mi",
+    "category_name": "Bánh Mì",
+    "category_name_en": "Breads & Pastries",
+    "price": 25000,
+    "img": "public/images/products/banh-mi/trung-chim.webp",
+    "featured": false,
+    "description_vi": "Thành phần gồm bột mì, bơ, đường.",
+    "description_en": "Authentic handcrafted TRỨNG CHIM prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "banh-mi-man-ngot",
+    "subcategory_name": "Bánh Mì Mặn & Bánh Mì Bơ Ngọt",
+    "subcategory_name_en": "Savory & Sweet Breads",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 25000
+      }
+    ]
+  },
+  {
+    "id": "VungNhat",
+    "name_vi": "VỪNG NHẬT",
+    "name_en": "Vừng Nhật",
+    "category": "banh-mi",
+    "category_name": "Bánh Mì",
+    "category_name_en": "Breads & Pastries",
+    "price": 25000,
+    "img": "public/images/products/banh-mi/vung-nhat.webp",
+    "featured": false,
+    "description_vi": "Thành phần bao gồm bột mì, đường, sữa bột, trứng, muối và vừng",
+    "description_en": "Authentic handcrafted VỪNG NHẬT prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "banh-mi-man-ngot",
+    "subcategory_name": "Bánh Mì Mặn & Bánh Mì Bơ Ngọt",
+    "subcategory_name_en": "Savory & Sweet Breads",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 25000
+      }
+    ]
+  },
+  {
+    "id": "StickPie",
+    "name_vi": "STICK PIE",
+    "name_en": "Japanese Stick Pie",
     "category": "banh-quy",
     "category_name": "Bánh Quy",
     "category_name_en": "Cookies & Biscuits",
-    "price": 80000,
-    "img": "public/images/products/banh-quy/BanhQuyLuoiMeoTraXanhHu.webp",
+    "price": 30000,
+    "img": "public/images/products/banh-quy/stick-pie.webp",
     "featured": false,
-    "description_vi": "Bánh quy lưỡi mèo trà xanh Uji thơm ngát, giòn rụm và ít ngọt thanh tao.",
-    "description_en": "Jar of Kyoto Uji matcha Langue de Chat cookies offering crisp vegetal sweetness.",
-    "subcategory": "banh-quy-hu",
-    "subcategory_name": "Bánh Quy Hũ",
-    "subcategory_name_en": "Jar Cookies"
+    "description_vi": "Thành phần bao gồm bột mì, bơ, đường, muối",
+    "description_en": "Authentic handcrafted STICK PIE prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "cookies-tui",
+    "subcategory_name": "Túi Cookies & Bánh Que",
+    "subcategory_name_en": "Cookies Pouches & Stick Pies",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Hộp tiêu chuẩn",
+        "price": 30000
+      }
+    ]
   },
   {
-    "id": "BanhQuyBoTronHu",
-    "name_vi": "Hộp cookies nho",
-    "name_en": "Raisin Butter Cookies Jar",
+    "id": "CookiesHanhNhan",
+    "name_vi": "Túi COOKIES HẠNH NHÂN",
+    "name_en": "Túi Cookies Hạnh Nhân",
     "category": "banh-quy",
     "category_name": "Bánh Quy",
     "category_name_en": "Cookies & Biscuits",
-    "price": 75000,
-    "img": "public/images/products/banh-quy/BanhQuyBoTronHu.webp",
+    "price": 55000,
+    "img": "public/images/products/banh-quy/cookies-hanh-nhan.webp",
     "featured": false,
-    "description_vi": "Hũ bánh quy bơ tròn truyền thống thơm béo, tan mịn trong miệng khi thưởng trà.",
-    "description_en": "Classic round butter shortbread jar, an ideal accompaniment for afternoon tea.",
-    "subcategory": "banh-quy-hu",
-    "subcategory_name": "Bánh Quy Hũ",
-    "subcategory_name_en": "Jar Cookies"
+    "description_vi": "Thành phần bao gồm bột, đường, bơ, sữa và hạnh nhân",
+    "description_en": "Authentic handcrafted Túi COOKIES HẠNH NHÂN prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "cookies-tui",
+    "subcategory_name": "Túi Cookies & Bánh Que",
+    "subcategory_name_en": "Cookies Pouches & Stick Pies",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Hộp tiêu chuẩn",
+        "price": 55000
+      }
+    ]
   },
   {
-    "id": "BanhQuySoChocochipHu",
-    "name_vi": "Hộp cookies socola chips",
-    "name_en": "Chocolate Chip Cookies Jar",
-    "category": "banh-quy",
-    "category_name": "Bánh Quy",
-    "category_name_en": "Cookies & Biscuits",
-    "price": 78000,
-    "img": "public/images/products/banh-quy/BanhQuySoChocochipHu.webp",
-    "featured": false,
-    "description_vi": "Bánh quy tạo hình vỏ sò xinh xắn rắc vụn socola chip giòn rụm ngọt ngào.",
-    "description_en": "Whimsical shell-shaped butter cookies studded with decadent dark chocolate chips.",
-    "subcategory": "banh-quy-hu",
-    "subcategory_name": "Bánh Quy Hũ",
-    "subcategory_name_en": "Jar Cookies"
-  },
-  {
-    "id": "BanhQuyLuoiMeoVaniTui",
-    "name_vi": "Lưỡi mèo",
-    "name_en": "Vanilla Langue de Chat Pouch",
-    "category": "banh-quy",
-    "category_name": "Bánh Quy",
-    "category_name_en": "Cookies & Biscuits",
-    "price": 48000,
-    "img": "public/images/products/banh-quy/BanhQuyLuoiMeoVaniTui.webp",
-    "featured": false,
-    "description_vi": "Túi bánh quy lưỡi mèo vani nhỏ gọn, tiện mang theo thưởng thức mọi lúc.",
-    "description_en": "Grab-and-go pouch of crispy vanilla Langue de Chat cookies.",
-    "subcategory": "banh-quy-tui",
-    "subcategory_name": "Bánh Quy Túi",
-    "subcategory_name_en": "Bag Cookies"
-  },
-  {
-    "id": "BanhQuyLuoiMeoSocolaTui",
-    "name_vi": "Lưỡi mèo socola",
+    "id": "LuoiMeoSocola",
+    "name_vi": "LƯỠI MÈO SOCOLA",
     "name_en": "Chocolate Langue de Chat Pouch",
     "category": "banh-quy",
     "category_name": "Bánh Quy",
     "category_name_en": "Cookies & Biscuits",
-    "price": 48000,
-    "img": "public/images/products/banh-quy/BanhQuyLuoiMeoSocolaTui.webp",
+    "price": 50000,
+    "img": "public/images/products/banh-quy/luoi-meo-socola.webp",
     "featured": false,
-    "description_vi": "Túi bánh quy lưỡi mèo socola giòn tan đậm đà vị cacao hảo hạng.",
-    "description_en": "Portable pouch of delightful chocolate cat-tongue biscuits.",
-    "subcategory": "banh-quy-tui",
-    "subcategory_name": "Bánh Quy Túi",
-    "subcategory_name_en": "Bag Cookies"
+    "description_vi": "Thành phần bao gồm bột, đường, bơ, sữa và socola",
+    "description_en": "Authentic handcrafted LƯỠI MÈO SOCOLA prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "cookies-tui",
+    "subcategory_name": "Túi Cookies & Bánh Que",
+    "subcategory_name_en": "Cookies Pouches & Stick Pies",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Hộp tiêu chuẩn",
+        "price": 50000
+      }
+    ]
   },
   {
-    "id": "BanhQuyLuoiMeoTraXanhTui",
+    "id": "CookiesBo",
+    "name_vi": "Túi COOKIES BƠ",
+    "name_en": "Túi Cookies Bơ",
+    "category": "banh-quy",
+    "category_name": "Bánh Quy",
+    "category_name_en": "Cookies & Biscuits",
+    "price": 50000,
+    "img": "public/images/products/banh-quy/cookies-bo.webp",
+    "featured": false,
+    "description_vi": "Thành phần bao gồm bột, đường, bơ, sữa",
+    "description_en": "Authentic handcrafted Túi COOKIES BƠ prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "cookies-tui",
+    "subcategory_name": "Túi Cookies & Bánh Que",
+    "subcategory_name_en": "Cookies Pouches & Stick Pies",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Hộp tiêu chuẩn",
+        "price": 50000
+      }
+    ]
+  },
+  {
+    "id": "BanhMemSocola",
+    "name_vi": "BÁNH MỀM SOCOLA",
+    "name_en": "Japanese Soft Bread",
+    "category": "banh-kem-tuoi",
+    "category_name": "Bánh Kem Tươi",
+    "category_name_en": "Fresh Cream & Mousse",
+    "price": 55000,
+    "img": "public/images/products/banh-kem-tuoi/banh-mem-socola.webp",
+    "featured": false,
+    "description_vi": "Castella là loại bánh gato đặc biệt. Lớp gato mềm, mịn dai và không quá ngọt, vị socola",
+    "description_en": "Authentic handcrafted BÁNH MỀM SOCOLA prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-banh-cuon-cat-mieng",
+    "subcategory_name": "Bánh Cuộn & Bánh Cắt Miếng",
+    "subcategory_name_en": "Roll Cakes & Slices",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 55000
+      }
+    ]
+  },
+  {
+    "id": "BanhMemTraXanh",
+    "name_vi": "BÁNH MỀM TRÀ XANH",
+    "name_en": "Japanese Soft Bread",
+    "category": "banh-kem-tuoi",
+    "category_name": "Bánh Kem Tươi",
+    "category_name_en": "Fresh Cream & Mousse",
+    "price": 55000,
+    "img": "public/images/products/banh-kem-tuoi/banh-mem-tra-xanh.webp",
+    "featured": false,
+    "description_vi": "Castella là loại bánh gato đặc biệt. Lớp gato mềm, mịn dai và không quá ngọt, vị trà xanh",
+    "description_en": "Authentic handcrafted BÁNH MỀM TRÀ XANH prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-banh-cuon-cat-mieng",
+    "subcategory_name": "Bánh Cuộn & Bánh Cắt Miếng",
+    "subcategory_name_en": "Roll Cakes & Slices",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 55000
+      }
+    ]
+  },
+  {
+    "id": "DonutSocolaTrang",
+    "name_vi": "DONUT SOCOLA TRẮNG",
+    "name_en": "Chocolate Coated Donut",
+    "category": "banh-mi",
+    "category_name": "Bánh Mì",
+    "category_name_en": "Breads & Pastries",
+    "price": 20000,
+    "img": "public/images/products/banh-mi/donut-socola-trang.webp",
+    "featured": false,
+    "description_vi": "Bột mì được tạo thành hình tròn và rán lên, trang trí bằng kem chocolate.",
+    "description_en": "Authentic handcrafted DONUT SOCOLA TRẮNG prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "banh-sung-bo-danish",
+    "subcategory_name": "Bánh Sừng Bò & Donut",
+    "subcategory_name_en": "Croissants & Donuts",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 20000
+      }
+    ]
+  },
+  {
+    "id": "DonutSocolaDen",
+    "name_vi": "DONUT SOCOLA ĐEN",
+    "name_en": "Chocolate Coated Donut",
+    "category": "banh-mi",
+    "category_name": "Bánh Mì",
+    "category_name_en": "Breads & Pastries",
+    "price": 20000,
+    "img": "public/images/products/banh-mi/donut-socola-den.webp",
+    "featured": false,
+    "description_vi": "Bột mì được tạo thành hình tròn và rán lên, trang trí bằng kem chocolate.",
+    "description_en": "Authentic handcrafted DONUT SOCOLA ĐEN prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "banh-sung-bo-danish",
+    "subcategory_name": "Bánh Sừng Bò & Donut",
+    "subcategory_name_en": "Croissants & Donuts",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 20000
+      }
+    ]
+  },
+  {
+    "id": "MousseOiDao",
+    "name_vi": "MOUSSE ỔI ĐÀO",
+    "name_en": "Guava Peach Mousse",
+    "category": "banh-kem-tuoi",
+    "category_name": "Bánh Kem Tươi",
+    "category_name_en": "Fresh Cream & Mousse",
+    "price": 22000,
+    "img": "public/images/products/banh-kem-tuoi/mousse-oi-dao.webp",
+    "featured": false,
+    "description_vi": "Thành phần: kem tươi, ổi đào, bánh bông lan.",
+    "description_en": "Authentic handcrafted MOUSSE ỔI ĐÀO prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-mousse",
+    "subcategory_name": "Dòng Bánh Mousse Tươi",
+    "subcategory_name_en": "Fresh Mousse Cakes",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 22000
+      }
+    ]
+  },
+  {
+    "id": "DonutDoi",
+    "name_vi": "DONUT ĐÔI",
+    "name_en": "Chocolate Coated Donut",
+    "category": "banh-mi",
+    "category_name": "Bánh Mì",
+    "category_name_en": "Breads & Pastries",
+    "price": 25000,
+    "img": "public/images/products/banh-mi/donut-doi.webp",
+    "featured": false,
+    "description_vi": "Thành phần: bột mỳ, chocolate.",
+    "description_en": "Authentic handcrafted DONUT ĐÔI prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "banh-sung-bo-danish",
+    "subcategory_name": "Bánh Sừng Bò & Donut",
+    "subcategory_name_en": "Croissants & Donuts",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 25000
+      }
+    ]
+  },
+  {
+    "id": "RedVelvet",
+    "name_vi": "RED VELVET",
+    "name_en": "Red Velvet Gateau",
+    "category": "banh-kem-tuoi",
+    "category_name": "Bánh Kem Tươi",
+    "category_name_en": "Fresh Cream & Mousse",
+    "price": 30000,
+    "img": "public/images/products/banh-kem-tuoi/red-velvet.webp",
+    "featured": false,
+    "description_vi": "Thành phần: bánh Red Velvet, kem cheese.",
+    "description_en": "Authentic handcrafted RED VELVET prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-banh-cuon-cat-mieng",
+    "subcategory_name": "Bánh Cuộn & Bánh Cắt Miếng",
+    "subcategory_name_en": "Roll Cakes & Slices",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 30000
+      }
+    ]
+  },
+  {
+    "id": "DaduChocolate",
+    "name_vi": "DADU CHOCOLATE",
+    "name_en": "Dadu Chocolate",
+    "category": "banh-kem-tuoi",
+    "category_name": "Bánh Kem Tươi",
+    "category_name_en": "Fresh Cream & Mousse",
+    "price": 30000,
+    "img": "public/images/products/banh-kem-tuoi/dadu-chocolate.webp",
+    "featured": false,
+    "description_vi": "Thành phần: bánh bông lan, kem tươi chocolate.",
+    "description_en": "Authentic handcrafted DADU CHOCOLATE prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-banh-cuon-cat-mieng",
+    "subcategory_name": "Bánh Cuộn & Bánh Cắt Miếng",
+    "subcategory_name_en": "Roll Cakes & Slices",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 30000
+      }
+    ]
+  },
+  {
+    "id": "DaduTraXanh",
+    "name_vi": "DADU TRÀ XANH",
+    "name_en": "Dadu Trà Xanh",
+    "category": "banh-kem-tuoi",
+    "category_name": "Bánh Kem Tươi",
+    "category_name_en": "Fresh Cream & Mousse",
+    "price": 30000,
+    "img": "public/images/products/banh-kem-tuoi/dadu-tra-xanh.webp",
+    "featured": false,
+    "description_vi": "Thành phần: Bánh bông lan trà xanh, kem tươi, bột trà xanh",
+    "description_en": "Authentic handcrafted DADU TRÀ XANH prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-banh-cuon-cat-mieng",
+    "subcategory_name": "Bánh Cuộn & Bánh Cắt Miếng",
+    "subcategory_name_en": "Roll Cakes & Slices",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 30000
+      }
+    ]
+  },
+  {
+    "id": "SuaChuaChanhLeo",
+    "name_vi": "SỮA CHUA CHANH LEO",
+    "name_en": "Sữa Chua Chanh Leo",
+    "category": "banh-kem-tuoi",
+    "category_name": "Bánh Kem Tươi",
+    "category_name_en": "Fresh Cream & Mousse",
+    "price": 22000,
+    "img": "public/images/products/banh-kem-tuoi/sua-chua-chanh-leo.webp",
+    "featured": false,
+    "description_vi": "Thành phần: chanh leo tươi, kem tươi, sữa chua, bánh bông lan.",
+    "description_en": "Authentic handcrafted SỮA CHUA CHANH LEO prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-banh-cuon-cat-mieng",
+    "subcategory_name": "Bánh Cuộn & Bánh Cắt Miếng",
+    "subcategory_name_en": "Roll Cakes & Slices",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 22000
+      }
+    ]
+  },
+  {
+    "id": "Mellow",
+    "name_vi": "MELLOW",
+    "name_en": "Mellow",
+    "category": "banh-kem-tuoi",
+    "category_name": "Bánh Kem Tươi",
+    "category_name_en": "Fresh Cream & Mousse",
+    "price": 22000,
+    "img": "public/images/products/banh-kem-tuoi/mellow.webp",
+    "featured": false,
+    "description_vi": "Thành phần: bánh bông lan, kem bơ, bột cacao.",
+    "description_en": "Authentic handcrafted MELLOW prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-banh-cuon-cat-mieng",
+    "subcategory_name": "Bánh Cuộn & Bánh Cắt Miếng",
+    "subcategory_name_en": "Roll Cakes & Slices",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 22000
+      }
+    ]
+  },
+  {
+    "id": "MoussePhucBonTu",
+    "name_vi": "MOUSSE PHÚC BỒN TỬ",
+    "name_en": "Mousse Phúc Bồn Tử",
+    "category": "banh-kem-tuoi",
+    "category_name": "Bánh Kem Tươi",
+    "category_name_en": "Fresh Cream & Mousse",
+    "price": 22000,
+    "img": "public/images/products/banh-kem-tuoi/mousse-phuc-bon-tu.webp",
+    "featured": false,
+    "description_vi": "Thành phần: kem tươi, phúc bồn tử.",
+    "description_en": "Authentic handcrafted MOUSSE PHÚC BỒN TỬ prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-mousse",
+    "subcategory_name": "Dòng Bánh Mousse Tươi",
+    "subcategory_name_en": "Fresh Mousse Cakes",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 22000
+      }
+    ]
+  },
+  {
+    "id": "MousseDuaHau",
+    "name_vi": "MOUSSE DƯA HẤU",
+    "name_en": "Watermelon Mousse",
+    "category": "banh-kem-tuoi",
+    "category_name": "Bánh Kem Tươi",
+    "category_name_en": "Fresh Cream & Mousse",
+    "price": 22000,
+    "img": "public/images/products/banh-kem-tuoi/mousse-dua-hau.webp",
+    "featured": false,
+    "description_vi": "Bánh là sự kết hợp của lớp bông lan mềm và kem mousse được làm từ miếng dưa hấu tươi.",
+    "description_en": "Authentic handcrafted MOUSSE DƯA HẤU prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-mousse",
+    "subcategory_name": "Dòng Bánh Mousse Tươi",
+    "subcategory_name_en": "Fresh Mousse Cakes",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 22000
+      }
+    ]
+  },
+  {
+    "id": "Castle",
+    "name_vi": "Castle",
+    "name_en": "Castle",
+    "category": "banh-gato",
+    "category_name": "Bánh Gato",
+    "category_name_en": "Gateaux & Birthday Cakes",
+    "price": 350000,
+    "img": "public/images/products/banh-gato/castle.webp",
+    "featured": false,
+    "description_vi": "Bánh bao gồm 3 lớp bông lan vani xen kẽ 2 lớp kem vani ngọt dịu, bên trên xếp 1 lớp quả dâu tây tươi mọng. Bánh có thể đổi cốt gato và vị kem tươi tùy thích.",
+    "description_en": "Authentic handcrafted Castle prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "banh-gato-nguyen-chiec",
+    "subcategory_name": "Bánh Gato Sinh Nhật & Sự Kiện",
+    "subcategory_name_en": "Birthday & Event Gateaux",
+    "variants": [
+      {
+        "size": "16cm",
+        "name": "Size 16cm (4-6 người)",
+        "price": 350000
+      },
+      {
+        "size": "18cm",
+        "name": "Size 18cm (6-8 người)",
+        "price": 437500
+      },
+      {
+        "size": "20cm",
+        "name": "Size 20cm (8-10 người)",
+        "price": 542500
+      }
+    ]
+  },
+  {
+    "id": "TShirt",
+    "name_vi": "T-shirt",
+    "name_en": "T-Shirt",
+    "category": "banh-gato",
+    "category_name": "Bánh Gato",
+    "category_name_en": "Gateaux & Birthday Cakes",
+    "price": 350000,
+    "img": "public/images/products/banh-gato/t-shirt.webp",
+    "featured": false,
+    "description_vi": "Chiếc áo cầu thủ được cấu tạo bởi 3 lớp bánh và 2 lớp kem. Bánh có thể đổi cốt và kem tươi tùy theo ý thích.",
+    "description_en": "Authentic handcrafted T-shirt prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "banh-gato-nguyen-chiec",
+    "subcategory_name": "Bánh Gato Sinh Nhật & Sự Kiện",
+    "subcategory_name_en": "Birthday & Event Gateaux",
+    "variants": [
+      {
+        "size": "16cm",
+        "name": "Size 16cm (4-6 người)",
+        "price": 350000
+      },
+      {
+        "size": "18cm",
+        "name": "Size 18cm (6-8 người)",
+        "price": 437500
+      },
+      {
+        "size": "20cm",
+        "name": "Size 20cm (8-10 người)",
+        "price": 542500
+      }
+    ]
+  },
+  {
+    "id": "Spiderman",
+    "name_vi": "Spiderman",
+    "name_en": "Spiderman",
+    "category": "banh-gato",
+    "category_name": "Bánh Gato",
+    "category_name_en": "Gateaux & Birthday Cakes",
+    "price": 350000,
+    "img": "public/images/products/banh-gato/spiderman.webp",
+    "featured": false,
+    "description_vi": "Bánh được tạo bởi các lớp bông lan và kem tươi xen kẽ nhau. Bánh có thể thay cốt và kem tùy theo ý&nbsp; thích.",
+    "description_en": "Authentic handcrafted Spiderman prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "banh-gato-nguyen-chiec",
+    "subcategory_name": "Bánh Gato Sinh Nhật & Sự Kiện",
+    "subcategory_name_en": "Birthday & Event Gateaux",
+    "variants": [
+      {
+        "size": "16cm",
+        "name": "Size 16cm (4-6 người)",
+        "price": 350000
+      },
+      {
+        "size": "18cm",
+        "name": "Size 18cm (6-8 người)",
+        "price": 437500
+      },
+      {
+        "size": "20cm",
+        "name": "Size 20cm (8-10 người)",
+        "price": 542500
+      }
+    ]
+  },
+  {
+    "id": "SocccerBall",
+    "name_vi": "Socccer Ball",
+    "name_en": "Socccer Ball",
+    "category": "banh-gato",
+    "category_name": "Bánh Gato",
+    "category_name_en": "Gateaux & Birthday Cakes",
+    "price": 350000,
+    "img": "public/images/products/banh-gato/socccer-ball.webp",
+    "featured": false,
+    "description_vi": "Bánh 3D quả bóng được tạo nên bởi 3 lớp bánh và 2 lớp kem vani. Bạn có thể thay đổi cốt gato và vị kem theo sở thích.",
+    "description_en": "Authentic handcrafted Socccer Ball prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "banh-gato-nguyen-chiec",
+    "subcategory_name": "Bánh Gato Sinh Nhật & Sự Kiện",
+    "subcategory_name_en": "Birthday & Event Gateaux",
+    "variants": [
+      {
+        "size": "16cm",
+        "name": "Size 16cm (4-6 người)",
+        "price": 350000
+      },
+      {
+        "size": "18cm",
+        "name": "Size 18cm (6-8 người)",
+        "price": 437500
+      },
+      {
+        "size": "20cm",
+        "name": "Size 20cm (8-10 người)",
+        "price": 542500
+      }
+    ]
+  },
+  {
+    "id": "Piggy",
+    "name_vi": "Piggy",
+    "name_en": "Piggy",
+    "category": "banh-gato",
+    "category_name": "Bánh Gato",
+    "category_name_en": "Gateaux & Birthday Cakes",
+    "price": 350000,
+    "img": "public/images/products/banh-gato/piggy.webp",
+    "featured": false,
+    "description_vi": "Bánh lợn hồng xinh yêu được tạo bởi các lớp bông lan và kem tươi vani. Bạn có thể thay đổi cốt bánh và vị kem tùy thích.&nbsp;",
+    "description_en": "Authentic handcrafted Piggy prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "banh-gato-nguyen-chiec",
+    "subcategory_name": "Bánh Gato Sinh Nhật & Sự Kiện",
+    "subcategory_name_en": "Birthday & Event Gateaux",
+    "variants": [
+      {
+        "size": "16cm",
+        "name": "Size 16cm (4-6 người)",
+        "price": 350000
+      },
+      {
+        "size": "18cm",
+        "name": "Size 18cm (6-8 người)",
+        "price": 437500
+      },
+      {
+        "size": "20cm",
+        "name": "Size 20cm (8-10 người)",
+        "price": 542500
+      }
+    ]
+  },
+  {
+    "id": "Map",
+    "name_vi": "Map",
+    "name_en": "Map",
+    "category": "banh-gato",
+    "category_name": "Bánh Gato",
+    "category_name_en": "Gateaux & Birthday Cakes",
+    "price": 350000,
+    "img": "public/images/products/banh-gato/map.webp",
+    "featured": false,
+    "description_vi": "Chiếc bánh bản đồ này được cấu tạo bởi 3 lớp bánh bông lan và 2 lớp kem tươi vani. Bạn có thể thay cốt bánh và kem tươi tùy thích.",
+    "description_en": "Authentic handcrafted Map prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "banh-gato-nguyen-chiec",
+    "subcategory_name": "Bánh Gato Sinh Nhật & Sự Kiện",
+    "subcategory_name_en": "Birthday & Event Gateaux",
+    "variants": [
+      {
+        "size": "16cm",
+        "name": "Size 16cm (4-6 người)",
+        "price": 350000
+      },
+      {
+        "size": "18cm",
+        "name": "Size 18cm (6-8 người)",
+        "price": 437500
+      },
+      {
+        "size": "20cm",
+        "name": "Size 20cm (8-10 người)",
+        "price": 542500
+      }
+    ]
+  },
+  {
+    "id": "ICream",
+    "name_vi": "I-cream",
+    "name_en": "I-Cream",
+    "category": "banh-gato",
+    "category_name": "Bánh Gato",
+    "category_name_en": "Gateaux & Birthday Cakes",
+    "price": 350000,
+    "img": "public/images/products/banh-gato/i-cream.webp",
+    "featured": false,
+    "description_vi": "Bánh chú gà con xinh yêu dành cho các bé. Bạn có thể chọn cốt bông lan và kem tươi tùy thích.",
+    "description_en": "Authentic handcrafted I-cream prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "banh-gato-nguyen-chiec",
+    "subcategory_name": "Bánh Gato Sinh Nhật & Sự Kiện",
+    "subcategory_name_en": "Birthday & Event Gateaux",
+    "variants": [
+      {
+        "size": "16cm",
+        "name": "Size 16cm (4-6 người)",
+        "price": 350000
+      },
+      {
+        "size": "18cm",
+        "name": "Size 18cm (6-8 người)",
+        "price": 437500
+      },
+      {
+        "size": "20cm",
+        "name": "Size 20cm (8-10 người)",
+        "price": 542500
+      }
+    ]
+  },
+  {
+    "id": "Car",
+    "name_vi": "Car",
+    "name_en": "Car",
+    "category": "banh-gato",
+    "category_name": "Bánh Gato",
+    "category_name_en": "Gateaux & Birthday Cakes",
+    "price": 350000,
+    "img": "public/images/products/banh-gato/car.webp",
+    "featured": false,
+    "description_vi": "Chiếc Macqueen dành cho các bé trai được cấu tạo bởi lớp bông lan mềm mịn xen kẽ là lớp kem vani. Bánh có thể đổi cốt gato và vị kem tươi tùy thích.",
+    "description_en": "Authentic handcrafted Car prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "banh-gato-nguyen-chiec",
+    "subcategory_name": "Bánh Gato Sinh Nhật & Sự Kiện",
+    "subcategory_name_en": "Birthday & Event Gateaux",
+    "variants": [
+      {
+        "size": "16cm",
+        "name": "Size 16cm (4-6 người)",
+        "price": 350000
+      },
+      {
+        "size": "18cm",
+        "name": "Size 18cm (6-8 người)",
+        "price": 437500
+      },
+      {
+        "size": "20cm",
+        "name": "Size 20cm (8-10 người)",
+        "price": 542500
+      }
+    ]
+  },
+  {
+    "id": "Bunny",
+    "name_vi": "Bunny",
+    "name_en": "Bunny",
+    "category": "banh-gato",
+    "category_name": "Bánh Gato",
+    "category_name_en": "Gateaux & Birthday Cakes",
+    "price": 350000,
+    "img": "public/images/products/banh-gato/bunny.webp",
+    "featured": false,
+    "description_vi": "Bé thỏ xinh yêu được cấu tạo bởi 3 lớp bông lan vani cùng với 2 lớp kem vani thơm mát. Bánh có thể đổi cốt gato và vị kem tươi tùy thích.",
+    "description_en": "Authentic handcrafted Bunny prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "banh-gato-nguyen-chiec",
+    "subcategory_name": "Bánh Gato Sinh Nhật & Sự Kiện",
+    "subcategory_name_en": "Birthday & Event Gateaux",
+    "variants": [
+      {
+        "size": "16cm",
+        "name": "Size 16cm (4-6 người)",
+        "price": 350000
+      },
+      {
+        "size": "18cm",
+        "name": "Size 18cm (6-8 người)",
+        "price": 437500
+      },
+      {
+        "size": "20cm",
+        "name": "Size 20cm (8-10 người)",
+        "price": 542500
+      }
+    ]
+  },
+  {
+    "id": "Anpanman",
+    "name_vi": "Anpanman",
+    "name_en": "Anpanman",
+    "category": "banh-gato",
+    "category_name": "Bánh Gato",
+    "category_name_en": "Gateaux & Birthday Cakes",
+    "price": 350000,
+    "img": "public/images/products/banh-gato/anpanman.webp",
+    "featured": false,
+    "description_vi": "Bánh Gato dành cho các bé yêu thích nhân vật hoạt hình Anpanman. Bánh được kết hợp bởi 3 lớp bánh gato chocolate cùng với 2 lớp kem tươi chocolate. Bánh có thể đổi cốt gato và vị kem tươi tùy thích.",
+    "description_en": "Authentic handcrafted Anpanman prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "banh-gato-nguyen-chiec",
+    "subcategory_name": "Bánh Gato Sinh Nhật & Sự Kiện",
+    "subcategory_name_en": "Birthday & Event Gateaux",
+    "variants": [
+      {
+        "size": "16cm",
+        "name": "Size 16cm (4-6 người)",
+        "price": 350000
+      },
+      {
+        "size": "18cm",
+        "name": "Size 18cm (6-8 người)",
+        "price": 437500
+      },
+      {
+        "size": "20cm",
+        "name": "Size 20cm (8-10 người)",
+        "price": 542500
+      }
+    ]
+  },
+  {
+    "id": "LuoiMeoTraXanh",
     "name_vi": "Lưỡi mèo trà xanh",
     "name_en": "Matcha Langue de Chat Pouch",
     "category": "banh-quy",
     "category_name": "Bánh Quy",
     "category_name_en": "Cookies & Biscuits",
-    "price": 48000,
-    "img": "public/images/products/banh-quy/BanhQuyLuoiMeoTraXanhTui.webp",
+    "price": 50000,
+    "img": "public/images/products/banh-quy/luoi-meo-tra-xanh.webp",
     "featured": false,
-    "description_vi": "Túi bánh quy lưỡi mèo matcha thanh mát, món ăn vặt lành mạnh và thơm ngon.",
-    "description_en": "Snack-size pouch of crisp Japanese matcha green tea cat-tongue cookies.",
-    "subcategory": "banh-quy-tui",
-    "subcategory_name": "Bánh Quy Túi",
-    "subcategory_name_en": "Bag Cookies"
+    "description_vi": "Thành phần bao gồm đường, sữa và bột trà xanh.",
+    "description_en": "Authentic handcrafted Lưỡi mèo trà xanh prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "cookies-tui",
+    "subcategory_name": "Túi Cookies & Bánh Que",
+    "subcategory_name_en": "Cookies Pouches & Stick Pies",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Hộp tiêu chuẩn",
+        "price": 50000
+      }
+    ]
   },
   {
-    "id": "BanhQuyDuaGionTui",
-    "name_vi": "Túi cookies Pamia",
+    "id": "LuoiMeo",
+    "name_vi": "Lưỡi mèo",
+    "name_en": "Vanilla Langue de Chat Pouch",
+    "category": "banh-quy",
+    "category_name": "Bánh Quy",
+    "category_name_en": "Cookies & Biscuits",
+    "price": 50000,
+    "img": "public/images/products/banh-quy/luoi-meo.webp",
+    "featured": false,
+    "description_vi": "Thành phần bao gồm đường, sữa và bột.&nbsp;",
+    "description_en": "Authentic handcrafted Lưỡi mèo prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "cookies-tui",
+    "subcategory_name": "Túi Cookies & Bánh Que",
+    "subcategory_name_en": "Cookies Pouches & Stick Pies",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Hộp tiêu chuẩn",
+        "price": 50000
+      }
+    ]
+  },
+  {
+    "id": "Pamia",
+    "name_vi": "Túi Cookies Pamia",
     "name_en": "Pamia Palmier Cookies Pouch",
     "category": "banh-quy",
     "category_name": "Bánh Quy",
     "category_name_en": "Cookies & Biscuits",
-    "price": 45000,
-    "img": "public/images/products/banh-quy/BanhQuyDuaGionTui.webp",
+    "price": 50000,
+    "img": "public/images/products/banh-quy/pamia.webp",
     "featured": false,
-    "description_vi": "Bánh quy dừa nướng giòn thơm bùi mùi cơm dừa sấy béo ngậy ngọt ngào.",
-    "description_en": "Crunchy toasted coconut biscuits packed with the aroma of roasted coconut flakes.",
-    "subcategory": "banh-quy-tui",
-    "subcategory_name": "Bánh Quy Túi",
-    "subcategory_name_en": "Bag Cookies"
+    "description_vi": "Thành phần bao gồm đường, sữa và bột.",
+    "description_en": "Authentic handcrafted Túi Cookies Pamia prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "cookies-tui",
+    "subcategory_name": "Túi Cookies & Bánh Que",
+    "subcategory_name_en": "Cookies Pouches & Stick Pies",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Hộp tiêu chuẩn",
+        "price": 50000
+      }
+    ]
   },
   {
-    "id": "BanhQuyQueNganLopTui",
-    "name_vi": "Stick Pie túi",
-    "name_en": "Japanese Crunchy Stick Pie Pouch",
+    "id": "CookiesBoChip",
+    "name_vi": "Túi Cookies sô chip",
+    "name_en": "Túi Cookies Sô Chip",
     "category": "banh-quy",
     "category_name": "Bánh Quy",
     "category_name_en": "Cookies & Biscuits",
-    "price": 42000,
-    "img": "public/images/products/banh-quy/BanhQuyQueNganLopTui.webp",
+    "price": 50000,
+    "img": "public/images/products/banh-quy/cookies-bo-chip.webp",
     "featured": false,
-    "description_vi": "Túi bánh quy que ngàn lớp giòn rụm phủ đường caramen thơm phức giòn rụm.",
-    "description_en": "Pouch of flaky, caramelized puff pastry sticks with a light sugar crust.",
-    "subcategory": "banh-quy-tui",
-    "subcategory_name": "Bánh Quy Túi",
-    "subcategory_name_en": "Bag Cookies"
+    "description_vi": "Thành phần bao gồm bột, đường, bơ, sữa và socola chip.",
+    "description_en": "Authentic handcrafted Túi Cookies sô chip prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "cookies-tui",
+    "subcategory_name": "Túi Cookies & Bánh Que",
+    "subcategory_name_en": "Cookies Pouches & Stick Pies",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Hộp tiêu chuẩn",
+        "price": 50000
+      }
+    ]
   },
   {
-    "id": "BanhQuyQueNganLopHop",
+    "id": "Biscot",
     "name_vi": "Biscot",
-    "name_en": "Italian Almond Biscotti Box",
+    "name_en": "Crispy Almond Biscotti",
     "category": "banh-quy",
     "category_name": "Bánh Quy",
     "category_name_en": "Cookies & Biscuits",
-    "price": 85000,
-    "img": "public/images/products/banh-quy/BanhQuyQueNganLopHop.webp",
+    "price": 22000,
+    "img": "public/images/products/banh-quy/biscot.webp",
     "featured": false,
-    "description_vi": "Hộp quà bánh quy que ngàn lớp sang trọng, giòn tan thích hợp làm quà tặng.",
-    "description_en": "Elegant gift box of golden crispy puff pastry sticks, perfect for gifting.",
-    "subcategory": "banh-quy-hop",
-    "subcategory_name": "Bánh Quy Hộp",
-    "subcategory_name_en": "Box Cookies"
+    "description_vi": "Những lát bánh mì được phết bơ và đường được nướng giòn rụm.",
+    "description_en": "Authentic handcrafted Biscot prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "cookies-tui",
+    "subcategory_name": "Túi Cookies & Bánh Que",
+    "subcategory_name_en": "Cookies Pouches & Stick Pies",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Hộp tiêu chuẩn",
+        "price": 22000
+      }
+    ]
   },
   {
-    "id": "BanhMiBoToiNho",
-    "name_vi": "Bánh mì bơ Pháp",
-    "name_en": "French Butter Bread",
+    "id": "SanwichNguCoc",
+    "name_vi": "Sandwich Ngũ cốc",
+    "name_en": "Japanese Sandwich Loaf",
     "category": "banh-mi",
     "category_name": "Bánh Mì",
     "category_name_en": "Breads & Pastries",
-    "price": 25000,
-    "img": "public/images/products/banh-mi/BanhMiBoToiNho.webp",
-    "featured": true,
-    "description_vi": "Bánh mì nướng bơ tỏi thơm lừng, vỏ giòn ruột mềm ngậy sốt bơ tỏi thảo mộc.",
-    "description_en": "Aromatic garlic butter bread with a crispy crust and herb-infused soft crumb.",
-    "subcategory": "banh-mi-man-ngot",
-    "subcategory_name": "Bánh Mì Mặn & Bánh Mì Ngọt Tươi",
-    "subcategory_name_en": "Savory & Sweet Breads"
-  },
-  {
-    "id": "BanhMiGoiHoaCucHanhNhan",
-    "name_vi": "Bánh mì hoa cúc",
-    "name_en": "French Brioche Bread",
-    "category": "banh-mi",
-    "category_name": "Bánh Mì",
-    "category_name_en": "Breads & Pastries",
-    "price": 55000,
-    "img": "public/images/products/banh-mi/BanhMiGoiHoaCucHanhNhan.webp",
-    "featured": true,
-    "description_vi": "Bánh mì hoa cúc Brioche kiểu Pháp thơm nức mùi hoa cam và bơ tươi, rắc hạnh nhân.",
-    "description_en": "French Brioche loaf perfumed with orange blossom water and toasted almonds.",
+    "price": 28000,
+    "img": "public/images/products/banh-mi/sanwich-ngu-coc.webp",
+    "featured": false,
+    "description_vi": "Thành phần bao gồm bột mì, bơ, ngũ cốc.",
+    "description_en": "Authentic handcrafted Sandwich Ngũ cốc prepared with premium natural ingredients following traditional Japanese bakery recipes.",
     "subcategory": "banh-mi-goi-sandwich",
     "subcategory_name": "Bánh Mì Gối & Sandwich",
-    "subcategory_name_en": "Toast Bread & Sandwiches"
+    "subcategory_name_en": "Toast Loaves & Sandwiches",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 28000
+      }
+    ]
   },
   {
-    "id": "BanhMiXucXichSotCaChua",
-    "name_vi": "Bánh mỳ chả phomai",
-    "name_en": "Ham & Cheese Savory Bread",
-    "category": "banh-mi",
-    "category_name": "Bánh Mì",
-    "category_name_en": "Breads & Pastries",
-    "price": 28000,
-    "img": "public/images/products/banh-mi/BanhMiXucXichSotCaChua.webp",
-    "featured": false,
-    "description_vi": "Bánh mì xúc xích xông khói thơm ngon kết hợp sốt cà chua và phô mai kéo sợi.",
-    "description_en": "Savory bread roll hugging a smoked frankfurter topped with rich tomato sauce.",
-    "subcategory": "banh-mi-man-ngot",
-    "subcategory_name": "Bánh Mì Mặn & Bánh Mì Ngọt Tươi",
-    "subcategory_name_en": "Savory & Sweet Breads"
-  },
-  {
-    "id": "BanhMiChaBongSotMayonnaise",
-    "name_vi": "Bánh mỳ chà bông",
-    "name_en": "Pork Floss Mayonnaise Bread",
-    "category": "banh-mi",
-    "category_name": "Bánh Mì",
-    "category_name_en": "Breads & Pastries",
-    "price": 28000,
-    "img": "public/images/products/banh-mi/BanhMiChaBongSotMayonnaise.webp",
-    "featured": false,
-    "description_vi": "Bánh mì mềm mại phủ đẫm chà bông gà cay ngọt và sốt sốt mayonnaise béo thơm.",
-    "description_en": "Soft bakery bun generously topped with savory pork floss and creamy mayonnaise.",
-    "subcategory": "banh-mi-man-ngot",
-    "subcategory_name": "Bánh Mì Mặn & Bánh Mì Ngọt Tươi",
-    "subcategory_name_en": "Savory & Sweet Breads"
-  },
-  {
-    "id": "BanhMiLuaMachDenPhoMai",
+    "id": "BanhMyDen",
     "name_vi": "Bánh mỳ đen",
     "name_en": "Dark Rye Bread",
     "category": "banh-mi",
     "category_name": "Bánh Mì",
     "category_name_en": "Breads & Pastries",
-    "price": 38000,
-    "img": "public/images/products/banh-mi/BanhMiLuaMachDenPhoMai.webp",
+    "price": 15000,
+    "img": "public/images/products/banh-mi/banh-my-den.webp",
     "featured": false,
-    "description_vi": "Bánh mì lúa mạch đen giàu chất xơ kết hợp khối phô mai béo ngậy tốt cho sức khỏe.",
-    "description_en": "Wholesome dark rye artisan bread packed with savory cubes of rich cheese.",
+    "description_vi": "Thành phần gồm bột mì đen.",
+    "description_en": "Authentic handcrafted Bánh mỳ đen prepared with premium natural ingredients following traditional Japanese bakery recipes.",
     "subcategory": "banh-mi-man-ngot",
-    "subcategory_name": "Bánh Mì Mặn & Bánh Mì Ngọt Tươi",
-    "subcategory_name_en": "Savory & Sweet Breads"
+    "subcategory_name": "Bánh Mì Mặn & Bánh Mì Bơ Ngọt",
+    "subcategory_name_en": "Savory & Sweet Breads",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 15000
+      }
+    ]
   },
   {
-    "id": "BanhMiKepKemSuaTuoi",
-    "name_vi": "Bánh mỳ kem",
-    "name_en": "Fresh Milk Cream Bread",
-    "category": "banh-mi",
-    "category_name": "Bánh Mì",
-    "category_name_en": "Breads & Pastries",
-    "price": 26000,
-    "img": "public/images/products/banh-mi/BanhMiKepKemSuaTuoi.webp",
-    "featured": false,
-    "description_vi": "Chiếc bánh mì xốp mềm kẹp ngập tràn kem sữa tươi ngọt ngào thanh mát.",
-    "description_en": "Fluffy milk bun sliced and filled with luscious, sweet whipped fresh cream.",
-    "subcategory": "banh-mi-man-ngot",
-    "subcategory_name": "Bánh Mì Mặn & Bánh Mì Ngọt Tươi",
-    "subcategory_name_en": "Savory & Sweet Breads"
-  },
-  {
-    "id": "BanhMiNhanPhoMai",
+    "id": "BanhMyPhomaiChay",
     "name_vi": "Bánh mỳ phomai chảy",
     "name_en": "Lava Cheese Bread",
     "category": "banh-mi",
     "category_name": "Bánh Mì",
     "category_name_en": "Breads & Pastries",
-    "price": 28000,
-    "img": "public/images/products/banh-mi/BanhMiNhanPhoMai.webp",
+    "price": 32000,
+    "img": "public/images/products/banh-mi/banh-my-phomai-chay.webp",
     "featured": false,
-    "description_vi": "Bánh mì mềm nhân kem phô mai béo ngậy ngọt dịu tan chảy bên trong.",
-    "description_en": "Soft golden bun hiding a warm, velvety sweet cream cheese filling.",
+    "description_vi": "Kem phomai béo ngậy được bơm bên trong chiếc bánh mỳ tròn xinh.",
+    "description_en": "Authentic handcrafted Bánh mỳ phomai chảy prepared with premium natural ingredients following traditional Japanese bakery recipes.",
     "subcategory": "banh-mi-man-ngot",
-    "subcategory_name": "Bánh Mì Mặn & Bánh Mì Ngọt Tươi",
-    "subcategory_name_en": "Savory & Sweet Breads"
+    "subcategory_name": "Bánh Mì Mặn & Bánh Mì Bơ Ngọt",
+    "subcategory_name_en": "Savory & Sweet Breads",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 32000
+      }
+    ]
   },
   {
-    "id": "BanhMiTronChaBong",
-    "name_vi": "Bánh mỳ chả ruốc",
-    "name_en": "Pork Floss Round Bun",
+    "id": "PizzaMini",
+    "name_vi": "Pizza Mini",
+    "name_en": "Mini Japanese Pizza",
     "category": "banh-mi",
     "category_name": "Bánh Mì",
     "category_name_en": "Breads & Pastries",
-    "price": 25000,
-    "img": "public/images/products/banh-mi/BanhMiTronChaBong.webp",
+    "price": 18000,
+    "img": "public/images/products/banh-mi/pizza-mini.webp",
     "featured": false,
-    "description_vi": "Bánh mì tròn mềm xốp phủ ngập chà bông truyền thống mặn ngọt đậm đà.",
-    "description_en": "Classic round bakery bun dusted with savory pork floss and sesame seeds.",
+    "description_vi": "Thành phần bánh bao gồm bột mì, ngô ngọt, ớt ngọt và xúc xích.",
+    "description_en": "Authentic handcrafted Pizza Mini prepared with premium natural ingredients following traditional Japanese bakery recipes.",
     "subcategory": "banh-mi-man-ngot",
-    "subcategory_name": "Bánh Mì Mặn & Bánh Mì Ngọt Tươi",
-    "subcategory_name_en": "Savory & Sweet Breads"
+    "subcategory_name": "Bánh Mì Mặn & Bánh Mì Bơ Ngọt",
+    "subcategory_name_en": "Savory & Sweet Breads",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 18000
+      }
+    ]
   },
   {
-    "id": "BanhMiTronNhanKemSu",
+    "id": "BanhMiHoaCuc",
+    "name_vi": "Bánh mì hoa cúc",
+    "name_en": "French Brioche Loaf",
+    "category": "banh-mi",
+    "category_name": "Bánh Mì",
+    "category_name_en": "Breads & Pastries",
+    "price": 55000,
+    "img": "public/images/products/banh-mi/banh-mi-hoa-cuc.webp",
+    "featured": false,
+    "description_vi": "Bột hoa cúc được nhào nhuyễn rắc trên cùng là hạt hạnh nhân.",
+    "description_en": "Authentic handcrafted Bánh mì hoa cúc prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "banh-mi-man-ngot",
+    "subcategory_name": "Bánh Mì Mặn & Bánh Mì Bơ Ngọt",
+    "subcategory_name_en": "Savory & Sweet Breads",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 55000
+      }
+    ]
+  },
+  {
+    "id": "KhoaiTronTo",
     "name_vi": "Bánh mỳ khoai tròn",
-    "name_en": "Sweet Potato Round Bun",
+    "name_en": "Bánh Mỳ Khoai Tròn",
     "category": "banh-mi",
     "category_name": "Bánh Mì",
     "category_name_en": "Breads & Pastries",
     "price": 25000,
-    "img": "public/images/products/banh-mi/BanhMiTronNhanKemSu.webp",
+    "img": "public/images/products/banh-mi/khoai-tron-to.webp",
     "featured": false,
-    "description_vi": "Bánh mì tròn xốp mềm chứa nhân kem su custard ngọt thơm béo ngậy.",
-    "description_en": "Round Japanese sweet bread filled with silky vanilla custard pastry cream.",
+    "description_vi": "Thành phần gồm bột khoai, bơ, đường.&nbsp;",
+    "description_en": "Authentic handcrafted Bánh mỳ khoai tròn prepared with premium natural ingredients following traditional Japanese bakery recipes.",
     "subcategory": "banh-mi-man-ngot",
-    "subcategory_name": "Bánh Mì Mặn & Bánh Mì Ngọt Tươi",
-    "subcategory_name_en": "Savory & Sweet Breads"
+    "subcategory_name": "Bánh Mì Mặn & Bánh Mì Bơ Ngọt",
+    "subcategory_name_en": "Savory & Sweet Breads",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 25000
+      }
+    ]
   },
   {
-    "id": "BanhMiMexicoCaPhe",
+    "id": "SanwichNho1",
+    "name_vi": "Sandwich Nho",
+    "name_en": "Japanese Sandwich Loaf",
+    "category": "banh-mi",
+    "category_name": "Bánh Mì",
+    "category_name_en": "Breads & Pastries",
+    "price": 25000,
+    "img": "public/images/products/banh-mi/sanwich-nho-1.webp",
+    "featured": false,
+    "description_vi": "Những lát bánh mì sandwich được kết hợp thêm nho khô.",
+    "description_en": "Authentic handcrafted Sandwich Nho prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "banh-mi-goi-sandwich",
+    "subcategory_name": "Bánh Mì Gối & Sandwich",
+    "subcategory_name_en": "Toast Loaves & Sandwiches",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 25000
+      }
+    ]
+  },
+  {
+    "id": "SanwichLat",
+    "name_vi": "Sandwich lát",
+    "name_en": "Japanese Sandwich Loaf",
+    "category": "banh-mi",
+    "category_name": "Bánh Mì",
+    "category_name_en": "Breads & Pastries",
+    "price": 18000,
+    "img": "public/images/products/banh-mi/sanwich-lat.webp",
+    "featured": false,
+    "description_vi": "Thành phần bao gồm đường, sữa và bột.",
+    "description_en": "Authentic handcrafted Sandwich lát prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "banh-mi-goi-sandwich",
+    "subcategory_name": "Bánh Mì Gối & Sandwich",
+    "subcategory_name_en": "Toast Loaves & Sandwiches",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 18000
+      }
+    ]
+  },
+  {
+    "id": "Paparoti",
     "name_vi": "Paparoti",
     "name_en": "Paparoti Mexican Coffee Bun",
     "category": "banh-mi",
     "category_name": "Bánh Mì",
     "category_name_en": "Breads & Pastries",
-    "price": 28000,
-    "img": "public/images/products/banh-mi/BanhMiMexicoCaPhe.webp",
-    "featured": true,
-    "description_vi": "Bánh mì Mexico với lớp vỏ cà phê giòn rụm bên ngoài và nhân bơ mặn tan chảy bên trong.",
-    "description_en": "Famous Mexican coffee bun with a crisp espresso crust and molten salted butter core.",
+    "price": 25000,
+    "img": "public/images/products/banh-mi/paparoti.webp",
+    "featured": false,
+    "description_vi": "Thành phần bánh gồm lớp bột mì nướng cùng mặt bánh giòn rụm, nhận bên trong có phomai.",
+    "description_en": "Authentic handcrafted Paparoti prepared with premium natural ingredients following traditional Japanese bakery recipes.",
     "subcategory": "banh-mi-man-ngot",
-    "subcategory_name": "Bánh Mì Mặn & Bánh Mì Ngọt Tươi",
-    "subcategory_name_en": "Savory & Sweet Breads"
+    "subcategory_name": "Bánh Mì Mặn & Bánh Mì Bơ Ngọt",
+    "subcategory_name_en": "Savory & Sweet Breads",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 25000
+      }
+    ]
   },
   {
-    "id": "BanhMiPizzaXucXichPhoMai",
-    "name_vi": "Pizza mini",
-    "name_en": "Mini Japanese Pizza",
+    "id": "BanhMyKem",
+    "name_vi": "Bánh Mỳ Kem",
+    "name_en": "Fresh Milk Cream Bun",
     "category": "banh-mi",
     "category_name": "Bánh Mì",
     "category_name_en": "Breads & Pastries",
-    "price": 35000,
-    "img": "public/images/products/banh-mi/BanhMiPizzaXucXichPhoMai.webp",
+    "price": 18000,
+    "img": "public/images/products/banh-mi/banh-my-kem.webp",
     "featured": false,
-    "description_vi": "Bánh mì nướng kiểu pizza phủ xúc xích, sốt cà chua và phô mai mozzarella kéo sợi.",
-    "description_en": "Mini bread pizza topped with sliced sausage, sweet corn, and melted mozzarella.",
+    "description_vi": "Thành phần bánh gồm bột mì nướng và lớp kem bơ bên trong.",
+    "description_en": "Authentic handcrafted Bánh Mỳ Kem prepared with premium natural ingredients following traditional Japanese bakery recipes.",
     "subcategory": "banh-mi-man-ngot",
-    "subcategory_name": "Bánh Mì Mặn & Bánh Mì Ngọt Tươi",
-    "subcategory_name_en": "Savory & Sweet Breads"
+    "subcategory_name": "Bánh Mì Mặn & Bánh Mì Bơ Ngọt",
+    "subcategory_name_en": "Savory & Sweet Breads",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 18000
+      }
+    ]
   },
   {
-    "id": "BanhMiGoiSandwichLatTrang",
-    "name_vi": "Sandwich lát",
-    "name_en": "Sliced Toast Sandwich Bread",
-    "category": "banh-mi",
-    "category_name": "Bánh Mì",
-    "category_name_en": "Breads & Pastries",
-    "price": 35000,
-    "img": "public/images/products/banh-mi/BanhMiGoiSandwichLatTrang.webp",
-    "featured": false,
-    "description_vi": "Bánh mì gối trắng mềm mịn xốp xao, thơm mùi sữa tươi thích hợp ăn sáng mỗi ngày.",
-    "description_en": "Fluffy white sandwich bread loaf, baked fresh daily with pure dairy milk.",
-    "subcategory": "banh-mi-goi-sandwich",
-    "subcategory_name": "Bánh Mì Gối & Sandwich",
-    "subcategory_name_en": "Toast Bread & Sandwiches"
-  },
-  {
-    "id": "BanhMiGoiNguyenCam",
-    "name_vi": "Sandwich ngũ cốc",
-    "name_en": "Multigrain Sandwich Bread",
-    "category": "banh-mi",
-    "category_name": "Bánh Mì",
-    "category_name_en": "Breads & Pastries",
-    "price": 40000,
-    "img": "public/images/products/banh-mi/BanhMiGoiNguyenCam.webp",
-    "featured": true,
-    "description_vi": "Bánh mì gối nguyên cám giàu dinh dưỡng, ít calo và hỗ trợ lối sống lành mạnh.",
-    "description_en": "Nutritious 100% whole wheat bread loaf loaded with fiber and natural grains.",
-    "subcategory": "banh-mi-goi-sandwich",
-    "subcategory_name": "Bánh Mì Gối & Sandwich",
-    "subcategory_name_en": "Toast Bread & Sandwiches"
-  },
-  {
-    "id": "BanhMiGoiNhoKhoLat",
-    "name_vi": "Sandwich nho",
-    "name_en": "Raisin Toast Sandwich Bread",
-    "category": "banh-mi",
-    "category_name": "Bánh Mì",
-    "category_name_en": "Breads & Pastries",
-    "price": 42000,
-    "img": "public/images/products/banh-mi/BanhMiGoiNhoKhoLat.webp",
-    "featured": false,
-    "description_vi": "Bánh mì gối thơm nức xen kẽ những hạt nho khô ngọt dịu dẻo ngon.",
-    "description_en": "Soft sliced sandwich loaf studded with naturally sweet California raisins.",
-    "subcategory": "banh-mi-goi-sandwich",
-    "subcategory_name": "Bánh Mì Gối & Sandwich",
-    "subcategory_name_en": "Toast Bread & Sandwiches"
-  },
-  {
-    "id": "BanhMiCuonNhoKhoDanish",
-    "name_vi": "Sừng bò nho",
-    "name_en": "Raisin Mini Croissant",
-    "category": "banh-mi",
-    "category_name": "Bánh Mì",
-    "category_name_en": "Breads & Pastries",
-    "price": 32000,
-    "img": "public/images/products/banh-mi/BanhMiCuonNhoKhoDanish.webp",
-    "featured": false,
-    "description_vi": "Bánh mì Danish ngàn lớp cuộn nho khô giòn tan phủ đường bóng hấp dẫn.",
-    "description_en": "Crisp, flaky Danish pastry snail swirled with cinnamon custard and sweet raisins.",
-    "subcategory": "banh-mi-cuon-nuong",
-    "subcategory_name": "Bánh Mì Cuộn & Đồ nướng khác",
-    "subcategory_name_en": "Pastry Rolls & Baked Goods"
-  },
-  {
-    "id": "BanhSungBoCroissant",
-    "name_vi": "Sừng bò to",
-    "name_en": "Large Butter Croissant",
-    "category": "banh-mi",
-    "category_name": "Bánh Mì",
-    "category_name_en": "Breads & Pastries",
-    "price": 32000,
-    "img": "public/images/products/banh-mi/BanhSungBoCroissant.webp",
-    "featured": true,
-    "description_vi": "Bánh sừng bò croissant chuẩn Pháp với hàng chục lớp bơ giòn rụm thơm nức mũi.",
-    "description_en": "Authentic French all-butter croissant with incredible flaky honeycomb layers.",
-    "subcategory": "banh-mi-man-ngot",
-    "subcategory_name": "Bánh Mì Mặn & Bánh Mì Ngọt Tươi",
-    "subcategory_name_en": "Savory & Sweet Breads"
-  },
-  {
-    "id": "BanhMiSandwichKepThitNguoi",
-    "name_vi": "Sandwich các vị",
-    "name_en": "Assorted Flavored Sandwich",
-    "category": "banh-mi",
-    "category_name": "Bánh Mì",
-    "category_name_en": "Breads & Pastries",
-    "price": 38000,
-    "img": "public/images/products/banh-mi/BanhMiSandwichKepThitNguoi.webp",
-    "featured": false,
-    "description_vi": "Sandwich tươi kẹp thịt nguội cao cấp, phô mai Cheddar và xà lách giòn ngon.",
-    "description_en": "Freshly made club sandwich layered with savory ham, cheddar cheese and lettuce.",
-    "subcategory": "banh-mi-goi-sandwich",
-    "subcategory_name": "Bánh Mì Gối & Sandwich",
-    "subcategory_name_en": "Toast Bread & Sandwiches"
-  },
-  {
-    "id": "BanhMiSandwichNguyenCamTamGiac",
-    "name_vi": "Sandwich đen",
-    "name_en": "Dark Rye Sandwich Bread",
-    "category": "banh-mi",
-    "category_name": "Bánh Mì",
-    "category_name_en": "Breads & Pastries",
-    "price": 35000,
-    "img": "public/images/products/banh-mi/BanhMiSandwichNguyenCamTamGiac.webp",
-    "featured": false,
-    "description_vi": "Bánh sandwich tam giác bánh mì đen kẹp trứng và rau củ tươi nhẹ nhàng dinh dưỡng.",
-    "description_en": "Healthy triangular whole wheat sandwich packed with fresh veggies and egg.",
-    "subcategory": "banh-mi-goi-sandwich",
-    "subcategory_name": "Bánh Mì Gối & Sandwich",
-    "subcategory_name_en": "Toast Bread & Sandwiches"
-  },
-  {
-    "id": "BanhDonutSocolaCapDoi",
-    "name_vi": "Donut đôi",
-    "name_en": "Twin Chocolate Donut",
-    "category": "banh-mi",
-    "category_name": "Bánh Mì",
-    "category_name_en": "Breads & Pastries",
-    "price": 32000,
-    "img": "public/images/products/banh-mi/BanhDonutSocolaCapDoi.webp",
-    "featured": false,
-    "description_vi": "Cặp đôi bánh donut chiên giòn phủ sốt socola đen bóng bẩy và cốm màu rực rỡ.",
-    "description_en": "Twin pack of fluffy yeast donuts dipped in Belgian chocolate glaze.",
-    "subcategory": "banh-mi-man-ngot",
-    "subcategory_name": "Bánh Mì Mặn & Bánh Mì Ngọt Tươi",
-    "subcategory_name_en": "Savory & Sweet Breads"
-  },
-  {
-    "id": "BanhDonutSocolaTrang",
-    "name_vi": "Donut socola trắng",
-    "name_en": "White Chocolate Donut",
+    "id": "SungBoNho",
+    "name_vi": "Sừng Bò Nho",
+    "name_en": "Butter Croissant",
     "category": "banh-mi",
     "category_name": "Bánh Mì",
     "category_name_en": "Breads & Pastries",
     "price": 25000,
-    "img": "public/images/products/banh-mi/BanhDonutSocolaTrang.webp",
+    "img": "public/images/products/banh-mi/sung-bo-nho.webp",
     "featured": false,
-    "description_vi": "Bánh donut mềm xốp phủ socola trắng ngọt ngào thơm mùi sữa.",
-    "description_en": "Soft golden donut coated in sweet white chocolate frosting and sprinkles.",
+    "description_vi": "Thành phần bao gồm đường, sữa và bột, nho khô.",
+    "description_en": "Authentic handcrafted Sừng Bò Nho prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "banh-sung-bo-danish",
+    "subcategory_name": "Bánh Sừng Bò & Donut",
+    "subcategory_name_en": "Croissants & Donuts",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 25000
+      }
+    ]
+  },
+  {
+    "id": "SungBoTo",
+    "name_vi": "Sừng Bò To",
+    "name_en": "Butter Croissant",
+    "category": "banh-mi",
+    "category_name": "Bánh Mì",
+    "category_name_en": "Breads & Pastries",
+    "price": 25000,
+    "img": "public/images/products/banh-mi/sung-bo-to.webp",
+    "featured": false,
+    "description_vi": "Thành phần bao gồm đường, sữa và bột.",
+    "description_en": "Authentic handcrafted Sừng Bò To prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "banh-sung-bo-danish",
+    "subcategory_name": "Bánh Sừng Bò & Donut",
+    "subcategory_name_en": "Croissants & Donuts",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 25000
+      }
+    ]
+  },
+  {
+    "id": "ChaPhomai",
+    "name_vi": "Bánh Mỳ Chả Phomai",
+    "name_en": "Ham & Cheese Savory Bread",
+    "category": "banh-mi",
+    "category_name": "Bánh Mì",
+    "category_name_en": "Breads & Pastries",
+    "price": 25000,
+    "img": "public/images/products/banh-mi/cha-phomai.webp",
+    "featured": false,
+    "description_vi": "Thành phần bánh bao gồm bột mì được nướng cùng xúc xích thêm một chút sốt phomai và tương ớt.",
+    "description_en": "Authentic handcrafted Bánh Mỳ Chả Phomai prepared with premium natural ingredients following traditional Japanese bakery recipes.",
     "subcategory": "banh-mi-man-ngot",
-    "subcategory_name": "Bánh Mì Mặn & Bánh Mì Ngọt Tươi",
-    "subcategory_name_en": "Savory & Sweet Breads"
+    "subcategory_name": "Bánh Mì Mặn & Bánh Mì Bơ Ngọt",
+    "subcategory_name_en": "Savory & Sweet Breads",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 25000
+      }
+    ]
   },
   {
-    "id": "SuaTraiCayTHTrueJuiceMilk",
-    "name_vi": "Sữa chua Blueberry",
-    "name_en": "Blueberry Drinking Yogurt",
-    "category": "nuoc",
-    "category_name": "Đồ Uống",
-    "category_name_en": "Beverages",
-    "price": 18000,
-    "img": "public/images/products/nuoc/SuaTraiCayTHTrueJuiceMilk.webp",
+    "id": "ChaRuoc",
+    "name_vi": "Bánh Mỳ Chả Ruốc",
+    "name_en": "Savory Pork Floss Bun",
+    "category": "banh-mi",
+    "category_name": "Bánh Mì",
+    "category_name_en": "Breads & Pastries",
+    "price": 25000,
+    "img": "public/images/products/banh-mi/cha-ruoc.webp",
     "featured": false,
-    "description_vi": "Nước uống sữa trái cây tự nhiên kết hợp sữa tươi sạch TH và nước ép trái cây thật.",
-    "description_en": "Natural fruit juice milk blending clean TH fresh milk and real fruit juice 300ml.",
-    "subcategory": "nuoc",
-    "subcategory_name": "Đồ Uống",
-    "subcategory_name_en": "Fruit Milk"
+    "description_vi": "Thành phần bánh gồm bột mì được nướng cùng xúc xích và carot thái nhỏ.",
+    "description_en": "Authentic handcrafted Bánh Mỳ Chả Ruốc prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "banh-mi-man-ngot",
+    "subcategory_name": "Bánh Mì Mặn & Bánh Mì Bơ Ngọt",
+    "subcategory_name_en": "Savory & Sweet Breads",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 25000
+      }
+    ]
   },
   {
-    "id": "NuocGaoRangTHTrueRice",
-    "name_vi": "Sữa chua chanh leo",
-    "name_en": "Passion Fruit Drinking Yogurt",
-    "category": "nuoc",
-    "category_name": "Đồ Uống",
-    "category_name_en": "Beverages",
-    "price": 18000,
-    "img": "public/images/products/nuoc/NuocGaoRangTHTrueRice.webp",
+    "id": "ChaBong",
+    "name_vi": "Bánh mỳ chà Bông",
+    "name_en": "Pork Floss Soft Bread",
+    "category": "banh-mi",
+    "category_name": "Bánh Mì",
+    "category_name_en": "Breads & Pastries",
+    "price": 25000,
+    "img": "public/images/products/banh-mi/cha-bong.webp",
     "featured": false,
-    "description_vi": "Nước gạo rang tự nhiên thanh khiết, không thêm đường tinh luyện tốt cho sức khỏe.",
-    "description_en": "All-natural roasted rice drink with no added refined sugars, pure and healthy 300ml.",
-    "subcategory": "nuoc",
-    "subcategory_name": "Đồ Uống",
-    "subcategory_name_en": "Roasted Rice Drink"
+    "description_vi": "Thành phần bánh bao gồm lớp bánh mì mềm phết sốt trứng và ruốc.",
+    "description_en": "Authentic handcrafted Bánh mỳ chà Bông prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "banh-mi-man-ngot",
+    "subcategory_name": "Bánh Mì Mặn & Bánh Mì Bơ Ngọt",
+    "subcategory_name_en": "Savory & Sweet Breads",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 25000
+      }
+    ]
   },
   {
-    "id": "TraXanhViChanhTHTrueTea",
-    "name_vi": "Sữa chua dâu",
-    "name_en": "Strawberry Drinking Yogurt",
-    "category": "nuoc",
-    "category_name": "Đồ Uống",
-    "category_name_en": "Beverages",
-    "price": 15000,
-    "img": "public/images/products/nuoc/TraXanhViChanhTHTrueTea.webp",
-    "featured": false,
-    "description_vi": "Trà xanh tự nhiên vị chanh tươi mát lành giải nhiệt từ búp trà Shan Tuyết cổ thụ.",
-    "description_en": "Refreshing lemon green tea brewed from organic natural tea leaves 350ml.",
-    "subcategory": "nuoc",
-    "subcategory_name": "Đồ Uống",
-    "subcategory_name_en": "Green Tea"
-  },
-  {
-    "id": "NuocEpCamDaoTHTrueJuice",
-    "name_vi": "Jam đào",
-    "name_en": "Peach Jam Drink",
-    "category": "nuoc",
-    "category_name": "Đồ Uống",
-    "category_name_en": "Beverages",
-    "price": 22000,
-    "img": "public/images/products/nuoc/NuocEpCamDaoTHTrueJuice.webp",
-    "featured": false,
-    "description_vi": "Nước ép cam đào tự nhiên 100% nguyên chất, dồi dào Vitamin C tăng đề kháng.",
-    "description_en": "100% natural orange and peach blended juice rich in vitamin C 350ml.",
-    "subcategory": "nuoc",
-    "subcategory_name": "Đồ Uống",
-    "subcategory_name_en": "Fruit Juice"
-  },
-  {
-    "id": "NuocEpTaoOiTHTrueJuice",
-    "name_vi": "Jam dứa",
-    "name_en": "Pineapple Jam Drink",
-    "category": "nuoc",
-    "category_name": "Đồ Uống",
-    "category_name_en": "Beverages",
-    "price": 22000,
-    "img": "public/images/products/nuoc/NuocEpTaoOiTHTrueJuice.webp",
-    "featured": false,
-    "description_vi": "Nước ép táo ổi nguyên chất mát lành, ngọt dịu tự nhiên không chất bảo quản.",
-    "description_en": "Pure apple and guava juice blend with natural gentle sweetness 350ml.",
-    "subcategory": "nuoc",
-    "subcategory_name": "Đồ Uống",
-    "subcategory_name_en": "Fruit Juice"
-  },
-  {
-    "id": "TraDaoSaTraTacMatOngCozy",
-    "name_vi": "Jam dâu",
-    "name_en": "Strawberry Jam Drink",
-    "category": "nuoc",
-    "category_name": "Đồ Uống",
-    "category_name_en": "Beverages",
-    "price": 16000,
-    "img": "public/images/products/nuoc/TraDaoSaTraTacMatOngCozy.webp",
-    "featured": false,
-    "description_vi": "Trà Cozy hương vị thảo mộc thanh mát: Đào sả thơm lừng và tắc mật ong dịu ngọt.",
-    "description_en": "Refreshing Cozy ready-to-drink tea bottle in peach lemongrass & kumquat honey.",
-    "subcategory": "nuoc",
-    "subcategory_name": "Đồ Uống",
-    "subcategory_name_en": "Ready-to-drink Tea"
-  },
-  {
-    "id": "NuocTraiCayCapriSunAnhDao",
-    "name_vi": "Sữa chua đu đủ",
-    "name_en": "Papaya Drinking Yogurt",
-    "category": "nuoc",
-    "category_name": "Đồ Uống",
-    "category_name_en": "Beverages",
+    "id": "BanhCaramen",
+    "name_vi": "Bánh Caramen",
+    "name_en": "Japanese Caramel Cake",
+    "category": "banh-kem-tuoi",
+    "category_name": "Bánh Kem Tươi",
+    "category_name_en": "Fresh Cream & Mousse",
     "price": 20000,
-    "img": "public/images/products/nuoc/NuocTraiCayCapriSunAnhDao.webp",
+    "img": "public/images/products/banh-kem-tuoi/banh-caramen.webp",
     "featured": false,
-    "description_vi": "Nước trái cây Capri-Sun vị anh đào nhập khẩu, túi thiếc tiện dụng thơm mát cho bé.",
-    "description_en": "Imported Capri-Sun cherry fruit pouch, fun and refreshing with no artificial colors.",
-    "subcategory": "nuoc",
-    "subcategory_name": "Đồ Uống",
-    "subcategory_name_en": "Fruit Juice"
+    "description_vi": "Thành phần bánh bao gồm lớp bông lan Caramen xen kẽ là các lớp kem tươi Caramen.",
+    "description_en": "Authentic handcrafted Bánh Caramen prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-banh-cuon-cat-mieng",
+    "subcategory_name": "Bánh Cuộn & Bánh Cắt Miếng",
+    "subcategory_name_en": "Roll Cakes & Slices",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 20000
+      }
+    ]
   },
   {
-    "id": "BanhGaoOneOne",
-    "name_vi": "Socola vỡ rắc đường",
-    "name_en": "Sugar-Dusted Broken Chocolate Bark",
-    "category": "snack",
-    "category_name": "Snacks",
-    "category_name_en": "Snacks",
-    "price": 28000,
-    "img": "public/images/products/snack/BanhGaoOneOne.webp",
+    "id": "BongLanTrungMuoi",
+    "name_vi": "Bông Lan Trứng Muối 16cm",
+    "name_en": "Salted Egg Sponge Cake",
+    "category": "banh-kem-tuoi",
+    "category_name": "Bánh Kem Tươi",
+    "category_name_en": "Fresh Cream & Mousse",
+    "price": 100000,
+    "img": "public/images/products/banh-kem-tuoi/bong-lan-trung-muoi.webp",
     "featured": false,
-    "description_vi": "Bánh gạo nướng One One giòn tan thơm bùi vị gạo tự nhiên, ít béo.",
-    "description_en": "Crispy One One baked rice crackers, light and crunchy with natural roasted aroma.",
-    "subcategory": "do-an-nhe",
-    "subcategory_name": "Snacks",
-    "subcategory_name_en": "Snacks & Crackers"
+    "description_vi": "Thành phần bánh bao gồm cốt bông lan mềm cùng với sốt trứng. Phủ bên trên là phomai, trứng muối và ruốc.",
+    "description_en": "Authentic handcrafted Bông Lan Trứng Muối 16cm prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-banh-cuon-cat-mieng",
+    "subcategory_name": "Bánh Cuộn & Bánh Cắt Miếng",
+    "subcategory_name_en": "Roll Cakes & Slices",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 100000
+      }
+    ]
   },
   {
-    "id": "BanhComChayChaBong",
-    "name_vi": "Stick Pie",
-    "name_en": "Japanese Crunchy Stick Pie",
-    "category": "snack",
-    "category_name": "Snacks",
-    "category_name_en": "Snacks",
-    "price": 35000,
-    "img": "public/images/products/snack/BanhComChayChaBong.webp",
-    "featured": false,
-    "description_vi": "Cơm cháy chiên giòn rụm ngập sốt mắm ớt cay nhẹ và chà bông heo hảo hạng.",
-    "description_en": "Savory Saigon crispy burnt rice crackers topped with rich sauce and pork floss.",
-    "subcategory": "do-an-nhe",
-    "subcategory_name": "Snacks",
-    "subcategory_name_en": "Snacks & Crackers"
-  },
-  {
-    "id": "MuSinhNhatHoatHinh",
-    "name_vi": "Mũ sinh nhật hoạt hình",
-    "name_en": "Cartoon Birthday Cone Hat",
-    "category": "phu-kien",
-    "category_name": "Phụ Kiện Tiệc",
-    "category_name_en": "Party Accessories",
+    "id": "CupcakeTrungMuoi",
+    "name_vi": "Cupcake Trứng Muối",
+    "name_en": "Cupcake Trứng Muối",
+    "category": "banh-kem-tuoi",
+    "category_name": "Bánh Kem Tươi",
+    "category_name_en": "Fresh Cream & Mousse",
     "price": 15000,
-    "img": "public/images/products/phu-kien/MuSinhNhatHoatHinh.webp",
+    "img": "public/images/products/banh-kem-tuoi/cupcake-trung-muoi.webp",
     "featured": false,
-    "description_vi": "Mũ sinh nhật chóp nón họa tiết hoạt hình ngộ nghĩnh đáng yêu cho tiệc mừng.",
-    "description_en": "Festive party cone hat adorned with cute cartoon prints and pompom accents.",
-    "subcategory": "phu-kien-sinh-nhat",
-    "subcategory_name": "Phụ kiện trang trí sinh nhật & tiệc",
-    "subcategory_name_en": "Party & Birthday Accessories"
+    "description_vi": "Thành phần bánh bao gồm cốt bông lan mềm cùng với sốt trứng. Phủ bên trên là phomai, trứng muối và ruốc.",
+    "description_en": "Authentic handcrafted Cupcake Trứng Muối prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-banh-cuon-cat-mieng",
+    "subcategory_name": "Bánh Cuộn & Bánh Cắt Miếng",
+    "subcategory_name_en": "Roll Cakes & Slices",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 15000
+      }
+    ]
+  },
+  {
+    "id": "CuonBongLanSocola",
+    "name_vi": "Cuộn bông lan Socola",
+    "name_en": "Japanese Swiss Roll",
+    "category": "banh-kem-tuoi",
+    "category_name": "Bánh Kem Tươi",
+    "category_name_en": "Fresh Cream & Mousse",
+    "price": 50000,
+    "img": "public/images/products/banh-kem-tuoi/cuon-bong-lan-socola.webp",
+    "featured": false,
+    "description_vi": "Thành phần bánh bao gồm cốt bánh bông lan socola cùng với kem tươi socola.",
+    "description_en": "Authentic handcrafted Cuộn bông lan Socola prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-banh-cuon-cat-mieng",
+    "subcategory_name": "Bánh Cuộn & Bánh Cắt Miếng",
+    "subcategory_name_en": "Roll Cakes & Slices",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 50000
+      }
+    ]
+  },
+  {
+    "id": "CuonBongLanCafe",
+    "name_vi": "Cuộn bông lan Caramen",
+    "name_en": "Japanese Swiss Roll",
+    "category": "banh-kem-tuoi",
+    "category_name": "Bánh Kem Tươi",
+    "category_name_en": "Fresh Cream & Mousse",
+    "price": 50000,
+    "img": "public/images/products/banh-kem-tuoi/cuon-bong-lan-cafe.webp",
+    "featured": false,
+    "description_vi": "Thành phần bánh bao gồm cốt bông lan Cafe cùng với kem tươi Cafe.",
+    "description_en": "Authentic handcrafted Cuộn bông lan Caramen prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-banh-cuon-cat-mieng",
+    "subcategory_name": "Bánh Cuộn & Bánh Cắt Miếng",
+    "subcategory_name_en": "Roll Cakes & Slices",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 50000
+      }
+    ]
+  },
+  {
+    "id": "CuonBongLanTraXanh",
+    "name_vi": "Cuộn bông lan trà xanh",
+    "name_en": "Japanese Swiss Roll",
+    "category": "banh-kem-tuoi",
+    "category_name": "Bánh Kem Tươi",
+    "category_name_en": "Fresh Cream & Mousse",
+    "price": 50000,
+    "img": "public/images/products/banh-kem-tuoi/cuon-bong-lan-tra-xanh.webp",
+    "featured": false,
+    "description_vi": "Thành phần bánh bao gồm cốt bánh bông lan trà xanh cùng với kem tươi trà xanh.",
+    "description_en": "Authentic handcrafted Cuộn bông lan trà xanh prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-banh-cuon-cat-mieng",
+    "subcategory_name": "Bánh Cuộn & Bánh Cắt Miếng",
+    "subcategory_name_en": "Roll Cakes & Slices",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 50000
+      }
+    ]
+  },
+  {
+    "id": "CuonBongLan",
+    "name_vi": "Cuộn bông lan",
+    "name_en": "Japanese Swiss Roll",
+    "category": "banh-kem-tuoi",
+    "category_name": "Bánh Kem Tươi",
+    "category_name_en": "Fresh Cream & Mousse",
+    "price": 50000,
+    "img": "public/images/products/banh-kem-tuoi/cuon-bong-lan.webp",
+    "featured": false,
+    "description_vi": "Thành phần bao gồm cuộn bông lan vani cùng với kem tươi vani.",
+    "description_en": "Authentic handcrafted Cuộn bông lan prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-banh-cuon-cat-mieng",
+    "subcategory_name": "Bánh Cuộn & Bánh Cắt Miếng",
+    "subcategory_name_en": "Roll Cakes & Slices",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 50000
+      }
+    ]
+  },
+  {
+    "id": "Derika",
+    "name_vi": "Derika",
+    "name_en": "Derika",
+    "category": "banh-kem-tuoi",
+    "category_name": "Bánh Kem Tươi",
+    "category_name_en": "Fresh Cream & Mousse",
+    "price": 18000,
+    "img": "public/images/products/banh-kem-tuoi/derika.webp",
+    "featured": false,
+    "description_vi": "Thành phần bánh bao gồm cốt bánh, nho khô và rượu Rum. Phủ lên trên một lớp chocolate mỏng.",
+    "description_en": "Authentic handcrafted Derika prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-banh-cuon-cat-mieng",
+    "subcategory_name": "Bánh Cuộn & Bánh Cắt Miếng",
+    "subcategory_name_en": "Roll Cakes & Slices",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 18000
+      }
+    ]
+  },
+  {
+    "id": "Opera",
+    "name_vi": "Opera",
+    "name_en": "Opera Chocolate Gateau",
+    "category": "banh-kem-tuoi",
+    "category_name": "Bánh Kem Tươi",
+    "category_name_en": "Fresh Cream & Mousse",
+    "price": 30000,
+    "img": "public/images/products/banh-kem-tuoi/opera.webp",
+    "featured": false,
+    "description_vi": "Thành phần bánh bao gồm các lớp: bánh bông lan cafe, kem bơ, bông lan chocolate đặc, kem tươi socola, bông lan chocolate, kem tươi choco và lớp choco cứng.",
+    "description_en": "Authentic handcrafted Opera prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-banh-cuon-cat-mieng",
+    "subcategory_name": "Bánh Cuộn & Bánh Cắt Miếng",
+    "subcategory_name_en": "Roll Cakes & Slices",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 30000
+      }
+    ]
+  },
+  {
+    "id": "Rarechesse",
+    "name_vi": "Rare Chesse",
+    "name_en": "Rare Chesse",
+    "category": "banh-kem-tuoi",
+    "category_name": "Bánh Kem Tươi",
+    "category_name_en": "Fresh Cream & Mousse",
+    "price": 30000,
+    "img": "public/images/products/banh-kem-tuoi/rarechesse.webp",
+    "featured": false,
+    "description_vi": "Thành phần bánh bao gồm đế bánh Tart nướng cùng với phomat tươi.",
+    "description_en": "Authentic handcrafted Rare Chesse prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-banh-cuon-cat-mieng",
+    "subcategory_name": "Bánh Cuộn & Bánh Cắt Miếng",
+    "subcategory_name_en": "Roll Cakes & Slices",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 30000
+      }
+    ]
+  },
+  {
+    "id": "TamGiacTra",
+    "name_vi": "Tam Giác Trà",
+    "name_en": "Tam Giác Trà",
+    "category": "banh-kem-tuoi",
+    "category_name": "Bánh Kem Tươi",
+    "category_name_en": "Fresh Cream & Mousse",
+    "price": 25000,
+    "img": "public/images/products/banh-kem-tuoi/tam-giac-tra.webp",
+    "featured": false,
+    "description_vi": "Thành phần bánh bao gồm bông lan trà xanh Nhật Bản cùng lớp thạch trà trên mặt bánh.",
+    "description_en": "Authentic handcrafted Tam Giác Trà prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-banh-cuon-cat-mieng",
+    "subcategory_name": "Bánh Cuộn & Bánh Cắt Miếng",
+    "subcategory_name_en": "Roll Cakes & Slices",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 25000
+      }
+    ]
+  },
+  {
+    "id": "CafeMouka",
+    "name_vi": "Cafe Mouka",
+    "name_en": "Cafe Mouka",
+    "category": "banh-kem-tuoi",
+    "category_name": "Bánh Kem Tươi",
+    "category_name_en": "Fresh Cream & Mousse",
+    "price": 25000,
+    "img": "public/images/products/banh-kem-tuoi/cafe-mouka.webp",
+    "featured": false,
+    "description_vi": "Thành phần của bánh bao gồm lớp gato Mouka cafe cùng lớp thạch cafe trên bề mặt bánh.",
+    "description_en": "Authentic handcrafted Cafe Mouka prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-tiramisu",
+    "subcategory_name": "Dòng Tiramisu & Cà Phê",
+    "subcategory_name_en": "Tiramisu & Coffee Pastries",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 25000
+      }
+    ]
+  },
+  {
+    "id": "Tiramisu",
+    "name_vi": "Tiramisu",
+    "name_en": "Classic Tiramisu",
+    "category": "banh-kem-tuoi",
+    "category_name": "Bánh Kem Tươi",
+    "category_name_en": "Fresh Cream & Mousse",
+    "price": 28000,
+    "img": "public/images/products/banh-kem-tuoi/tiramisu.webp",
+    "featured": false,
+    "description_vi": "Thành phần của bánh bao gồm đế bánh bông lan mỏng, lớp kem tiramisu béo ngậy cùng bột cacao.",
+    "description_en": "Authentic handcrafted Tiramisu prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-tiramisu",
+    "subcategory_name": "Dòng Tiramisu & Cà Phê",
+    "subcategory_name_en": "Tiramisu & Coffee Pastries",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 28000
+      }
+    ]
+  },
+  {
+    "id": "CafeJelly",
+    "name_vi": "Cafe Jelly",
+    "name_en": "Cafe Jelly",
+    "category": "banh-kem-tuoi",
+    "category_name": "Bánh Kem Tươi",
+    "category_name_en": "Fresh Cream & Mousse",
+    "price": 18000,
+    "img": "public/images/products/banh-kem-tuoi/cafe-jelly.webp",
+    "featured": false,
+    "description_vi": "Thành phần của sản phẩm bao gồm các viên thạch cafe, được phủ bên trên là lớp kem tươi.",
+    "description_en": "Authentic handcrafted Cafe Jelly prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-tiramisu",
+    "subcategory_name": "Dòng Tiramisu & Cà Phê",
+    "subcategory_name_en": "Tiramisu & Coffee Pastries",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 18000
+      }
+    ]
+  },
+  {
+    "id": "MousseChocolate",
+    "name_vi": "Mousse Chocolate",
+    "name_en": "Mousse Chocolate",
+    "category": "banh-kem-tuoi",
+    "category_name": "Bánh Kem Tươi",
+    "category_name_en": "Fresh Cream & Mousse",
+    "price": 22000,
+    "img": "public/images/products/banh-kem-tuoi/mousse-chocolate.webp",
+    "featured": false,
+    "description_vi": "Thành phần bánh bao gồm lớp bông lan chocolate, lớp mousse chocolate cùng với lớp kem tươi chocolate phủ trên.",
+    "description_en": "Authentic handcrafted Mousse Chocolate prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-mousse",
+    "subcategory_name": "Dòng Bánh Mousse Tươi",
+    "subcategory_name_en": "Fresh Mousse Cakes",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 22000
+      }
+    ]
+  },
+  {
+    "id": "MousseTra",
+    "name_vi": "Mousse Trà",
+    "name_en": "Mousse Trà",
+    "category": "banh-kem-tuoi",
+    "category_name": "Bánh Kem Tươi",
+    "category_name_en": "Fresh Cream & Mousse",
+    "price": 22000,
+    "img": "public/images/products/banh-kem-tuoi/mousse-tra.webp",
+    "featured": false,
+    "description_vi": "Thành phần của bánh bao gồm lớp bông lan trà xanh cùng lớp mousse trà xanh Nhât.",
+    "description_en": "Authentic handcrafted Mousse Trà prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-mousse",
+    "subcategory_name": "Dòng Bánh Mousse Tươi",
+    "subcategory_name_en": "Fresh Mousse Cakes",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 22000
+      }
+    ]
+  },
+  {
+    "id": "ThachMit",
+    "name_vi": "Thạch Mít",
+    "name_en": "Thạch Mít",
+    "category": "banh-kem-tuoi",
+    "category_name": "Bánh Kem Tươi",
+    "category_name_en": "Fresh Cream & Mousse",
+    "price": 25000,
+    "img": "public/images/products/banh-kem-tuoi/thach-mit.webp",
+    "featured": false,
+    "description_vi": "Chiếc bánh được tạo nên bởi lớp bông lan mỏng, cùng với lớp mít tươi xay nhuyễn, trên cùng là lớp thạch mít tươi.",
+    "description_en": "Authentic handcrafted Thạch Mít prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-banh-cuon-cat-mieng",
+    "subcategory_name": "Bánh Cuộn & Bánh Cắt Miếng",
+    "subcategory_name_en": "Roll Cakes & Slices",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 25000
+      }
+    ]
+  },
+  {
+    "id": "MousseChanhLeoVuong",
+    "name_vi": "Mousse Chanh Leo Vuông",
+    "name_en": "Passion Fruit Mousse",
+    "category": "banh-kem-tuoi",
+    "category_name": "Bánh Kem Tươi",
+    "category_name_en": "Fresh Cream & Mousse",
+    "price": 22000,
+    "img": "public/images/products/banh-kem-tuoi/mousse-chanh-leo-vuong.webp",
+    "featured": false,
+    "description_vi": "Bánh bao gồm lớp bông lan vani, lớp mousse chanh leo và thạch chanh leo tươi.",
+    "description_en": "Authentic handcrafted Mousse Chanh Leo Vuông prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-mousse",
+    "subcategory_name": "Dòng Bánh Mousse Tươi",
+    "subcategory_name_en": "Fresh Mousse Cakes",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 22000
+      }
+    ]
+  },
+  {
+    "id": "ThachXoai",
+    "name_vi": "Thạch Xoài",
+    "name_en": "Thạch Xoài",
+    "category": "banh-kem-tuoi",
+    "category_name": "Bánh Kem Tươi",
+    "category_name_en": "Fresh Cream & Mousse",
+    "price": 25000,
+    "img": "public/images/products/banh-kem-tuoi/thach-xoai.webp",
+    "featured": false,
+    "description_vi": "Bánh gồm các lớp bông lan, lớp thạch xoài xay nhuyễn và lớp thạch xoài tươi.",
+    "description_en": "Authentic handcrafted Thạch Xoài prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-banh-cuon-cat-mieng",
+    "subcategory_name": "Bánh Cuộn & Bánh Cắt Miếng",
+    "subcategory_name_en": "Roll Cakes & Slices",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 25000
+      }
+    ]
+  },
+  {
+    "id": "SanwichNho",
+    "name_vi": "Sandwich các vị",
+    "name_en": "Japanese Sandwich Loaf",
+    "category": "banh-mi",
+    "category_name": "Bánh Mì",
+    "category_name_en": "Breads & Pastries",
+    "price": 30000,
+    "img": "public/images/products/banh-mi/sanwich-nho.webp",
+    "featured": false,
+    "description_vi": "Bánh sanwich được kẹp bên trong bởi salat, trứng, thịt hun khói và cá ngừ. Bánh có 3 loại là salat, trứng thịt hun khói và trứng cá ngừ.",
+    "description_en": "Authentic handcrafted Sandwich các vị prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "banh-mi-goi-sandwich",
+    "subcategory_name": "Bánh Mì Gối & Sandwich",
+    "subcategory_name_en": "Toast Loaves & Sandwiches",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 30000
+      }
+    ]
+  },
+  {
+    "id": "BanhMem",
+    "name_vi": "Bánh mềm",
+    "name_en": "Japanese Soft Bread",
+    "category": "banh-kem-tuoi",
+    "category_name": "Bánh Kem Tươi",
+    "category_name_en": "Fresh Cream & Mousse",
+    "price": 50000,
+    "img": "public/images/products/banh-kem-tuoi/banh-mem.webp",
+    "featured": false,
+    "description_vi": "Castella là loại bánh gato đặc biệt. Lớp gato mềm, mịn dai và không quá ngọt.",
+    "description_en": "Authentic handcrafted Bánh mềm prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-banh-cuon-cat-mieng",
+    "subcategory_name": "Bánh Cuộn & Bánh Cắt Miếng",
+    "subcategory_name_en": "Roll Cakes & Slices",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 50000
+      }
+    ]
+  },
+  {
+    "id": "MilleFeuille",
+    "name_vi": "Mille Feuille",
+    "name_en": "Classic Mille-Feuille",
+    "category": "banh-kem-tuoi",
+    "category_name": "Bánh Kem Tươi",
+    "category_name_en": "Fresh Cream & Mousse",
+    "price": 30000,
+    "img": "public/images/products/banh-kem-tuoi/mille-feuille.webp",
+    "featured": false,
+    "description_vi": "Bánh được nướng giòn rụm xếp nhiều lớp lên nhau, kèm theo là lớp kem béo ngậy.",
+    "description_en": "Authentic handcrafted Mille Feuille prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-tart-ngan-lop",
+    "subcategory_name": "Dòng Tart & Ngàn Lớp",
+    "subcategory_name_en": "Tarts & Mille-Feuille",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 30000
+      }
+    ]
+  },
+  {
+    "id": "SoVoRacDuong",
+    "name_vi": "Socola Vỡ Rắc Đường",
+    "name_en": "Socola Vỡ Rắc Đường",
+    "category": "banh-kem-tuoi",
+    "category_name": "Bánh Kem Tươi",
+    "category_name_en": "Fresh Cream & Mousse",
+    "price": 30000,
+    "img": "public/images/products/banh-kem-tuoi/so-vo-rac-duong.webp",
+    "featured": false,
+    "description_vi": "Cốt bánh socola đặc không có kem tươi, bên trên được phủ một lớp đường&nbsp; bột mỏng.",
+    "description_en": "Authentic handcrafted Socola Vỡ Rắc Đường prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-banh-cuon-cat-mieng",
+    "subcategory_name": "Bánh Cuộn & Bánh Cắt Miếng",
+    "subcategory_name_en": "Roll Cakes & Slices",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 30000
+      }
+    ]
+  },
+  {
+    "id": "CaramenDacBiet",
+    "name_vi": "Caramen Đặc Biệt",
+    "name_en": "Special Caramel Pudding",
+    "category": "banh-kem-tuoi",
+    "category_name": "Bánh Kem Tươi",
+    "category_name_en": "Fresh Cream & Mousse",
+    "price": 16000,
+    "img": "public/images/products/banh-kem-tuoi/caramen-dac-biet.webp",
+    "featured": false,
+    "description_vi": "Pudding Caramen kết hợp thêm kem Anchor.",
+    "description_en": "Authentic handcrafted Caramen Đặc Biệt prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-banh-cuon-cat-mieng",
+    "subcategory_name": "Bánh Cuộn & Bánh Cắt Miếng",
+    "subcategory_name_en": "Roll Cakes & Slices",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 16000
+      }
+    ]
+  },
+  {
+    "id": "Caramen",
+    "name_vi": "Caramen",
+    "name_en": "Caramen",
+    "category": "banh-kem-tuoi",
+    "category_name": "Bánh Kem Tươi",
+    "category_name_en": "Fresh Cream & Mousse",
+    "price": 10000,
+    "img": "public/images/products/banh-kem-tuoi/caramen.webp",
+    "featured": false,
+    "description_vi": "Pudding caramen.",
+    "description_en": "Authentic handcrafted Caramen prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-banh-cuon-cat-mieng",
+    "subcategory_name": "Bánh Cuộn & Bánh Cắt Miếng",
+    "subcategory_name_en": "Roll Cakes & Slices",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 10000
+      }
+    ]
+  },
+  {
+    "id": "Pound",
+    "name_vi": "Pound",
+    "name_en": "Pound",
+    "category": "banh-kem-tuoi",
+    "category_name": "Bánh Kem Tươi",
+    "category_name_en": "Fresh Cream & Mousse",
+    "price": 15000,
+    "img": "public/images/products/banh-kem-tuoi/pound.webp",
+    "featured": false,
+    "description_vi": "Chiếc bánh bông lan bao gồm nho khô và hạnh nhân.",
+    "description_en": "Authentic handcrafted Pound prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-banh-cuon-cat-mieng",
+    "subcategory_name": "Bánh Cuộn & Bánh Cắt Miếng",
+    "subcategory_name_en": "Roll Cakes & Slices",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 15000
+      }
+    ]
+  },
+  {
+    "id": "Madoline",
+    "name_vi": "Madoline",
+    "name_en": "Madoline",
+    "category": "banh-kem-tuoi",
+    "category_name": "Bánh Kem Tươi",
+    "category_name_en": "Fresh Cream & Mousse",
+    "price": 12000,
+    "img": "public/images/products/banh-kem-tuoi/madoline.webp",
+    "featured": false,
+    "description_vi": "Bánh bông lan mềm mịn không có thêm topping.",
+    "description_en": "Authentic handcrafted Madoline prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-banh-cuon-cat-mieng",
+    "subcategory_name": "Bánh Cuộn & Bánh Cắt Miếng",
+    "subcategory_name_en": "Roll Cakes & Slices",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 12000
+      }
+    ]
+  },
+  {
+    "id": "Dua",
+    "name_vi": "Dứa",
+    "name_en": "Dứa",
+    "category": "banh-kem-tuoi",
+    "category_name": "Bánh Kem Tươi",
+    "category_name_en": "Fresh Cream & Mousse",
+    "price": 20000,
+    "img": "public/images/products/banh-kem-tuoi/dua.webp",
+    "featured": false,
+    "description_vi": "Bánh được nướng bởi dứa tươi nghiền và bánh cookie.",
+    "description_en": "Authentic handcrafted Dứa prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-banh-cuon-cat-mieng",
+    "subcategory_name": "Bánh Cuộn & Bánh Cắt Miếng",
+    "subcategory_name_en": "Roll Cakes & Slices",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 20000
+      }
+    ]
+  },
+  {
+    "id": "Tao",
+    "name_vi": "Táo",
+    "name_en": "Táo",
+    "category": "banh-kem-tuoi",
+    "category_name": "Bánh Kem Tươi",
+    "category_name_en": "Fresh Cream & Mousse",
+    "price": 20000,
+    "img": "public/images/products/banh-kem-tuoi/tao.webp",
+    "featured": false,
+    "description_vi": "Bánh được tạo nên bởi táo tươi và bánh cookie được nướng vàng ở nhiệt độ thích hợp.",
+    "description_en": "Authentic handcrafted Táo prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-banh-cuon-cat-mieng",
+    "subcategory_name": "Bánh Cuộn & Bánh Cắt Miếng",
+    "subcategory_name_en": "Roll Cakes & Slices",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 20000
+      }
+    ]
+  },
+  {
+    "id": "SyBust",
+    "name_vi": "Sy Bust",
+    "name_en": "Sy Bust",
+    "category": "banh-kem-tuoi",
+    "category_name": "Bánh Kem Tươi",
+    "category_name_en": "Fresh Cream & Mousse",
+    "price": 22000,
+    "img": "public/images/products/banh-kem-tuoi/sy-bust.webp",
+    "featured": false,
+    "description_vi": "Đặc trưng của bánh là kem syu trộn cùng táo tươi, được nướng vàng ươm.",
+    "description_en": "Authentic handcrafted Sy Bust prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-banh-cuon-cat-mieng",
+    "subcategory_name": "Bánh Cuộn & Bánh Cắt Miếng",
+    "subcategory_name_en": "Roll Cakes & Slices",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 22000
+      }
+    ]
+  },
+  {
+    "id": "FomatNuong",
+    "name_vi": "Fomat Nướng",
+    "name_en": "Baked Cheese Tart",
+    "category": "banh-kem-tuoi",
+    "category_name": "Bánh Kem Tươi",
+    "category_name_en": "Fresh Cream & Mousse",
+    "price": 30000,
+    "img": "public/images/products/banh-kem-tuoi/fomat-nuong.webp",
+    "featured": false,
+    "description_vi": "Thành phần của bánh là phomat tươi được nướng cùng lớp bánh Tart.",
+    "description_en": "Authentic handcrafted Fomat Nướng prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-tart-ngan-lop",
+    "subcategory_name": "Dòng Tart & Ngàn Lớp",
+    "subcategory_name_en": "Tarts & Mille-Feuille",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 30000
+      }
+    ]
+  },
+  {
+    "id": "FomatCam",
+    "name_vi": "Fomat Cam",
+    "name_en": "Orange Cheese Tart",
+    "category": "banh-kem-tuoi",
+    "category_name": "Bánh Kem Tươi",
+    "category_name_en": "Fresh Cream & Mousse",
+    "price": 25000,
+    "img": "public/images/products/banh-kem-tuoi/fomat-cam.webp",
+    "featured": false,
+    "description_vi": "Bánh phomat vị kem mềm mịn. Phủ trên cùng là lớp mứt cam mỏng.",
+    "description_en": "Authentic handcrafted Fomat Cam prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-tart-ngan-lop",
+    "subcategory_name": "Dòng Tart & Ngàn Lớp",
+    "subcategory_name_en": "Tarts & Mille-Feuille",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 25000
+      }
+    ]
+  },
+  {
+    "id": "Chuoi",
+    "name_vi": "Chuối",
+    "name_en": "Chuối",
+    "category": "banh-kem-tuoi",
+    "category_name": "Bánh Kem Tươi",
+    "category_name_en": "Fresh Cream & Mousse",
+    "price": 20000,
+    "img": "public/images/products/banh-kem-tuoi/chuoi.webp",
+    "featured": false,
+    "description_vi": "Thành phần của bánh gồm bánh bông lan, chuối tươi và kem tươi vani.",
+    "description_en": "Authentic handcrafted Chuối prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-banh-cuon-cat-mieng",
+    "subcategory_name": "Bánh Cuộn & Bánh Cắt Miếng",
+    "subcategory_name_en": "Roll Cakes & Slices",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 20000
+      }
+    ]
+  },
+  {
+    "id": "Cupcake",
+    "name_vi": "CupCake",
+    "name_en": "Cupcake",
+    "category": "banh-kem-tuoi",
+    "category_name": "Bánh Kem Tươi",
+    "category_name_en": "Fresh Cream & Mousse",
+    "price": 18000,
+    "img": "public/images/products/banh-kem-tuoi/cupcake.webp",
+    "featured": false,
+    "description_vi": "Chiếc bánh cốc được bơm thêm bông hoa kem tươi trên mặt bánh.",
+    "description_en": "Authentic handcrafted CupCake prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-banh-cuon-cat-mieng",
+    "subcategory_name": "Bánh Cuộn & Bánh Cắt Miếng",
+    "subcategory_name_en": "Roll Cakes & Slices",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 18000
+      }
+    ]
+  },
+  {
+    "id": "SuaChuaDuDu",
+    "name_vi": "Sữa Chua Đu Đủ",
+    "name_en": "Sữa Chua Đu Đủ",
+    "category": "banh-kem-tuoi",
+    "category_name": "Bánh Kem Tươi",
+    "category_name_en": "Fresh Cream & Mousse",
+    "price": 22000,
+    "img": "public/images/products/banh-kem-tuoi/sua-chua-du-du.webp",
+    "featured": false,
+    "description_vi": "Thành phần của bánh là đu đủ tươi xay cùng sữa chua được đặt trên 1 lớp gato mỏng.",
+    "description_en": "Authentic handcrafted Sữa Chua Đu Đủ prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-banh-cuon-cat-mieng",
+    "subcategory_name": "Bánh Cuộn & Bánh Cắt Miếng",
+    "subcategory_name_en": "Roll Cakes & Slices",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 22000
+      }
+    ]
+  },
+  {
+    "id": "SuaChuaDau",
+    "name_vi": "Sữa Chua Dâu",
+    "name_en": "Sữa Chua Dâu",
+    "category": "banh-kem-tuoi",
+    "category_name": "Bánh Kem Tươi",
+    "category_name_en": "Fresh Cream & Mousse",
+    "price": 22000,
+    "img": "public/images/products/banh-kem-tuoi/sua-chua-dau.webp",
+    "featured": false,
+    "description_vi": "Thành phần của bánh là dâu tây được xay nhuyễn với sữa chua, dưới cùng là lớp gato vaini.",
+    "description_en": "Authentic handcrafted Sữa Chua Dâu prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-banh-cuon-cat-mieng",
+    "subcategory_name": "Bánh Cuộn & Bánh Cắt Miếng",
+    "subcategory_name_en": "Roll Cakes & Slices",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 22000
+      }
+    ]
+  },
+  {
+    "id": "DauDacBiet",
+    "name_vi": "Cắt dâu đặc biệt",
+    "name_en": "Cắt Dâu Đặc Biệt",
+    "category": "banh-kem-tuoi",
+    "category_name": "Bánh Kem Tươi",
+    "category_name_en": "Fresh Cream & Mousse",
+    "price": 30000,
+    "img": "public/images/products/banh-kem-tuoi/dau-dac-biet.webp",
+    "featured": false,
+    "description_vi": "Bánh là sự kết hợp của lớp gato mềm mịn hòa quyện cùng lớp kem Anchor béo mát, nên trong có kẹp dâu tươi.",
+    "description_en": "Authentic handcrafted Cắt dâu đặc biệt prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-banh-cuon-cat-mieng",
+    "subcategory_name": "Bánh Cuộn & Bánh Cắt Miếng",
+    "subcategory_name_en": "Roll Cakes & Slices",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 30000
+      }
+    ]
+  },
+  {
+    "id": "Sahere",
+    "name_vi": "Sahere",
+    "name_en": "Sahere",
+    "category": "banh-kem-tuoi",
+    "category_name": "Bánh Kem Tươi",
+    "category_name_en": "Fresh Cream & Mousse",
+    "price": 30000,
+    "img": "public/images/products/banh-kem-tuoi/sahere.webp",
+    "featured": false,
+    "description_vi": "Bánh là sự kết hợp của bánh gato socola đặc cùng lớp mứt việt quất bên ngoài.",
+    "description_en": "Authentic handcrafted Sahere prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-banh-cuon-cat-mieng",
+    "subcategory_name": "Bánh Cuộn & Bánh Cắt Miếng",
+    "subcategory_name_en": "Roll Cakes & Slices",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 30000
+      }
+    ]
+  },
+  {
+    "id": "Gatosocola",
+    "name_vi": "Gato Socola",
+    "name_en": "Gato Socola",
+    "category": "banh-kem-tuoi",
+    "category_name": "Bánh Kem Tươi",
+    "category_name_en": "Fresh Cream & Mousse",
+    "price": 25000,
+    "img": "public/images/products/banh-kem-tuoi/gatosocola.webp",
+    "featured": false,
+    "description_vi": "Bánh kem truyền thống vị socola.",
+    "description_en": "Authentic handcrafted Gato Socola prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-banh-cuon-cat-mieng",
+    "subcategory_name": "Bánh Cuộn & Bánh Cắt Miếng",
+    "subcategory_name_en": "Roll Cakes & Slices",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 25000
+      }
+    ]
+  },
+  {
+    "id": "ChiffonSocola",
+    "name_vi": "Chiffon Socola",
+    "name_en": "Japanese Chiffon Cake",
+    "category": "banh-kem-tuoi",
+    "category_name": "Bánh Kem Tươi",
+    "category_name_en": "Fresh Cream & Mousse",
+    "price": 25000,
+    "img": "public/images/products/banh-kem-tuoi/chiffon-socola.webp",
+    "featured": false,
+    "description_vi": "Bánh được tạo nên từ cốt chiffon mềm dai kết hợp cùng kem tươi socola.",
+    "description_en": "Authentic handcrafted Chiffon Socola prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-banh-cuon-cat-mieng",
+    "subcategory_name": "Bánh Cuộn & Bánh Cắt Miếng",
+    "subcategory_name_en": "Roll Cakes & Slices",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 25000
+      }
+    ]
+  },
+  {
+    "id": "ChiffonTra",
+    "name_vi": "Chiffon Trà",
+    "name_en": "Japanese Chiffon Cake",
+    "category": "banh-kem-tuoi",
+    "category_name": "Bánh Kem Tươi",
+    "category_name_en": "Fresh Cream & Mousse",
+    "price": 25000,
+    "img": "public/images/products/banh-kem-tuoi/chiffon-tra.webp",
+    "featured": false,
+    "description_vi": "Bánh được làm bởi cốt bánh chiffon kết hợp với kem matcha và bột trà Nhật.",
+    "description_en": "Authentic handcrafted Chiffon Trà prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-banh-cuon-cat-mieng",
+    "subcategory_name": "Bánh Cuộn & Bánh Cắt Miếng",
+    "subcategory_name_en": "Roll Cakes & Slices",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 25000
+      }
+    ]
+  },
+  {
+    "id": "DorayakiTra",
+    "name_vi": "Dorayaki Trà",
+    "name_en": "Japanese Dorayaki",
+    "category": "banh-kem-tuoi",
+    "category_name": "Bánh Kem Tươi",
+    "category_name_en": "Fresh Cream & Mousse",
+    "price": 25000,
+    "img": "public/images/products/banh-kem-tuoi/dorayaki-tra.webp",
+    "featured": false,
+    "description_vi": "Vỏ bánh matcha dai mềm kết hợp với đậu đỏ nhuyễn xào.",
+    "description_en": "Authentic handcrafted Dorayaki Trà prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-banh-cuon-cat-mieng",
+    "subcategory_name": "Bánh Cuộn & Bánh Cắt Miếng",
+    "subcategory_name_en": "Roll Cakes & Slices",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 25000
+      }
+    ]
+  },
+  {
+    "id": "DorayakiThuong",
+    "name_vi": "Dorayaki Truyền Thống",
+    "name_en": "Japanese Dorayaki",
+    "category": "banh-kem-tuoi",
+    "category_name": "Bánh Kem Tươi",
+    "category_name_en": "Fresh Cream & Mousse",
+    "price": 22000,
+    "img": "public/images/products/banh-kem-tuoi/dorayaki-thuong.webp",
+    "featured": false,
+    "description_vi": "Dorayaki là 1 loại bánh truyền thống của Nhật Bản. Vỏ bánh được rán và kẹp bên trong là nhân đậu đỏ xào.&nbsp;",
+    "description_en": "Authentic handcrafted Dorayaki Truyền Thống prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-banh-cuon-cat-mieng",
+    "subcategory_name": "Bánh Cuộn & Bánh Cắt Miếng",
+    "subcategory_name_en": "Roll Cakes & Slices",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 22000
+      }
+    ]
+  },
+  {
+    "id": "SyuKemNho",
+    "name_vi": "Syu Kem Vani",
+    "name_en": "Vanilla Choux Cream Puff",
+    "category": "banh-kem-tuoi",
+    "category_name": "Bánh Kem Tươi",
+    "category_name_en": "Fresh Cream & Mousse",
+    "price": 20000,
+    "img": "public/images/products/banh-kem-tuoi/syu-kem-nho.webp",
+    "featured": false,
+    "description_vi": "Bánh là sự kết hợp của kem syu và kem tươi, trên cùng được phủ 1 lớp đường bột ngọt dịu.",
+    "description_en": "Authentic handcrafted Syu Kem Vani prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-su-kem",
+    "subcategory_name": "Dòng Su Kem (Choux Cream)",
+    "subcategory_name_en": "Choux Pastries",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 20000
+      }
+    ]
+  },
+  {
+    "id": "SyuKemTra",
+    "name_vi": "Syu Kem Trà",
+    "name_en": "Matcha Choux Cream Puff",
+    "category": "banh-kem-tuoi",
+    "category_name": "Bánh Kem Tươi",
+    "category_name_en": "Fresh Cream & Mousse",
+    "price": 22000,
+    "img": "public/images/products/banh-kem-tuoi/syu-kem-tra.webp",
+    "featured": false,
+    "description_vi": "Bánh là sự kết hợp của kem syu, kem tươi và bột matcha Nhật Bản.",
+    "description_en": "Authentic handcrafted Syu Kem Trà prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-su-kem",
+    "subcategory_name": "Dòng Su Kem (Choux Cream)",
+    "subcategory_name_en": "Choux Pastries",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 22000
+      }
+    ]
+  },
+  {
+    "id": "Ekura",
+    "name_vi": "Ekura",
+    "name_en": "Chocolate Éclair",
+    "category": "banh-kem-tuoi",
+    "category_name": "Bánh Kem Tươi",
+    "category_name_en": "Fresh Cream & Mousse",
+    "price": 22000,
+    "img": "public/images/products/banh-kem-tuoi/ekura.webp",
+    "featured": false,
+    "description_vi": "Kem suy đánh cùng kem tươi được bơm trong vỏ giòn tạo nên chiếc bánh ekura đặc trưng.",
+    "description_en": "Authentic handcrafted Ekura prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-su-kem",
+    "subcategory_name": "Dòng Su Kem (Choux Cream)",
+    "subcategory_name_en": "Choux Pastries",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 22000
+      }
+    ]
+  },
+  {
+    "id": "BabySuysocola",
+    "name_vi": "Baby Syu Socola",
+    "name_en": "Baby Chocolate Choux Box",
+    "category": "banh-kem-tuoi",
+    "category_name": "Bánh Kem Tươi",
+    "category_name_en": "Fresh Cream & Mousse",
+    "price": 35000,
+    "img": "public/images/products/banh-kem-tuoi/baby-suysocola.webp",
+    "featured": false,
+    "description_vi": "Bên trong hộp bánh là 6 chiếc bánh suy kem nhỏ vị socola.&nbsp;",
+    "description_en": "Authentic handcrafted Baby Syu Socola prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-su-kem",
+    "subcategory_name": "Dòng Su Kem (Choux Cream)",
+    "subcategory_name_en": "Choux Pastries",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 35000
+      }
+    ]
+  },
+  {
+    "id": "BabySuy",
+    "name_vi": "Baby Syu Vani",
+    "name_en": "Baby Vanilla Choux Box",
+    "category": "banh-kem-tuoi",
+    "category_name": "Bánh Kem Tươi",
+    "category_name_en": "Fresh Cream & Mousse",
+    "price": 30000,
+    "img": "public/images/products/banh-kem-tuoi/baby-suy.webp",
+    "featured": false,
+    "description_vi": "Hộp bánh bao gồm 6 chiếc suy kem truyền thống.",
+    "description_en": "Authentic handcrafted Baby Syu Vani prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-su-kem",
+    "subcategory_name": "Dòng Su Kem (Choux Cream)",
+    "subcategory_name_en": "Choux Pastries",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 30000
+      }
+    ]
+  },
+  {
+    "id": "BabyKemTuoi",
+    "name_vi": "Baby Cake Kem Tươi",
+    "name_en": "Baby Cake Kem Tươi",
+    "category": "banh-kem-tuoi",
+    "category_name": "Bánh Kem Tươi",
+    "category_name_en": "Fresh Cream & Mousse",
+    "price": 25000,
+    "img": "public/images/products/banh-kem-tuoi/baby-kem-tuoi.webp",
+    "featured": false,
+    "description_vi": "Hộp bánh gồm 8 miếng bánh nhỏ vị kem tươi vani.",
+    "description_en": "Authentic handcrafted Baby Cake Kem Tươi prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-banh-cuon-cat-mieng",
+    "subcategory_name": "Bánh Cuộn & Bánh Cắt Miếng",
+    "subcategory_name_en": "Roll Cakes & Slices",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 25000
+      }
+    ]
+  },
+  {
+    "id": "BabyCakeTra",
+    "name_vi": "Baby Cake Trà",
+    "name_en": "Baby Cake Trà",
+    "category": "banh-kem-tuoi",
+    "category_name": "Bánh Kem Tươi",
+    "category_name_en": "Fresh Cream & Mousse",
+    "price": 25000,
+    "img": "public/images/products/banh-kem-tuoi/baby-cake-tra.webp",
+    "featured": false,
+    "description_vi": "Những miếng bánh trà xanh Nhật Bản được xếp gọn gàng trong chiếc hộp xinh xinh.",
+    "description_en": "Authentic handcrafted Baby Cake Trà prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-banh-cuon-cat-mieng",
+    "subcategory_name": "Bánh Cuộn & Bánh Cắt Miếng",
+    "subcategory_name_en": "Roll Cakes & Slices",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 25000
+      }
+    ]
+  },
+  {
+    "id": "BabyCake",
+    "name_vi": "Baby Cake Cafe",
+    "name_en": "Baby Cake Cafe",
+    "category": "banh-kem-tuoi",
+    "category_name": "Bánh Kem Tươi",
+    "category_name_en": "Fresh Cream & Mousse",
+    "price": 25000,
+    "img": "public/images/products/banh-kem-tuoi/baby-cake.webp",
+    "featured": false,
+    "description_vi": "Hộp bánh nhỏ xinh gồm 8 miếng bánh baby cake cafe thơm ngậy vị kem bơ.",
+    "description_en": "Authentic handcrafted Baby Cake Cafe prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-tiramisu",
+    "subcategory_name": "Dòng Tiramisu & Cà Phê",
+    "subcategory_name_en": "Tiramisu & Coffee Pastries",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 25000
+      }
+    ]
+  },
+  {
+    "id": "CoconutCream",
+    "name_vi": "Coconut Cream",
+    "name_en": "Coconut Cream",
+    "category": "banh-kem-tuoi",
+    "category_name": "Bánh Kem Tươi",
+    "category_name_en": "Fresh Cream & Mousse",
+    "price": 25000,
+    "img": "public/images/products/banh-kem-tuoi/coconut-cream.webp",
+    "featured": false,
+    "description_vi": "Chiếc bánh kem dừa là sự kết hợp xen kẽ hoàn hảo giữa các tầng bánh bông lan và kem dừa. Trên cùng được rắc lớp vụn dừa tươi thơm ngon.",
+    "description_en": "Authentic handcrafted Coconut Cream prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-banh-cuon-cat-mieng",
+    "subcategory_name": "Bánh Cuộn & Bánh Cắt Miếng",
+    "subcategory_name_en": "Roll Cakes & Slices",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 25000
+      }
+    ]
+  },
+  {
+    "id": "Capuchino",
+    "name_vi": "Cuốn Cappuccino",
+    "name_en": "Cappuccino Cream Roll",
+    "category": "banh-kem-tuoi",
+    "category_name": "Bánh Kem Tươi",
+    "category_name_en": "Fresh Cream & Mousse",
+    "price": 18000,
+    "img": "public/images/products/banh-kem-tuoi/capuchino.webp",
+    "featured": false,
+    "description_vi": "Bánh được kết hợp từ cuộn bông lan cafe và lớp kem capuchino. Phủ lên trên là 1 lớp đường nướng bột quế thơm lừng.",
+    "description_en": "Authentic handcrafted Cuốn Cappuccino prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-banh-cuon-cat-mieng",
+    "subcategory_name": "Bánh Cuộn & Bánh Cắt Miếng",
+    "subcategory_name_en": "Roll Cakes & Slices",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 18000
+      }
+    ]
   },
   {
     "id": "NenSoSinhNhatNhuVang",
-    "name_vi": "Nến số sinh nhật nhũ vàng",
+    "name_vi": "Nến Số Sinh Nhật Nhũ Vàng",
     "name_en": "Gold Glitter Number Birthday Candle",
     "category": "phu-kien",
-    "category_name": "Phụ Kiện Tiệc",
+    "category_name": "Phụ Kiện",
     "category_name_en": "Party Accessories",
     "price": 15000,
     "img": "public/images/products/phu-kien/NenSoSinhNhatNhuVang.webp",
     "featured": false,
-    "description_vi": "Nến sinh nhật hình số mạ nhũ vàng lấp lánh sang trọng cho chiếc bánh kem.",
-    "description_en": "Glamorous metallic gold glitter number birthday candle (0-9).",
+    "description_vi": "Nến số sinh nhật ánh vàng sang trọng lấp lánh cho bữa tiệc ấm cúng.",
+    "description_en": "Elegant gold glitter number candle for festive birthday cakes.",
     "subcategory": "phu-kien-sinh-nhat",
-    "subcategory_name": "Phụ kiện trang trí sinh nhật & tiệc",
-    "subcategory_name_en": "Party & Birthday Accessories"
+    "subcategory_name": "Nến & Mũ Sinh Nhật",
+    "subcategory_name_en": "Birthday Candles & Hats",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Cây nến",
+        "price": 15000
+      }
+    ]
   },
   {
     "id": "PhaoBongSinhNhat",
-    "name_vi": "Pháo bông sinh nhật",
-    "name_en": "Birthday Cake Sparklers",
+    "name_vi": "Pháo Bông Sinh Nhật (Set 6 cây)",
+    "name_en": "Birthday Cake Sparklers (Pack of 6)",
     "category": "phu-kien",
-    "category_name": "Phụ Kiện Tiệc",
+    "category_name": "Phụ Kiện",
     "category_name_en": "Party Accessories",
-    "price": 30000,
+    "price": 35000,
     "img": "public/images/products/phu-kien/PhaoBongSinhNhat.webp",
     "featured": false,
-    "description_vi": "Gói 6 que pháo bông cắm bánh sinh nhật phát sáng lung linh an toàn.",
-    "description_en": "Pack of 6 indoor sparkling cake sparklers to illuminate your celebration.",
+    "description_vi": "Pháo sáng phụt trang trí bánh kem an toàn, tạo khoảnh khắc thắp nến lung linh.",
+    "description_en": "Sparkling cake pyrotechnics for unforgettable celebration moments.",
     "subcategory": "phu-kien-sinh-nhat",
-    "subcategory_name": "Phụ kiện trang trí sinh nhật & tiệc",
-    "subcategory_name_en": "Party & Birthday Accessories"
+    "subcategory_name": "Nến & Mũ Sinh Nhật",
+    "subcategory_name_en": "Birthday Candles & Hats",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Vỉ 6 cây",
+        "price": 35000
+      }
+    ]
   },
   {
-    "id": "NenXoanSinhNhatNhieuMau",
-    "name_vi": "Nến xoắn sinh nhật nhiều màu",
-    "name_en": "Spiral Colorful Birthday Candles",
+    "id": "MuSinhNhatHoatHinh",
+    "name_vi": "Mũ Sinh Nhật Hoạt Hình",
+    "name_en": "Cartoon Birthday Cone Hat",
     "category": "phu-kien",
-    "category_name": "Phụ Kiện Tiệc",
+    "category_name": "Phụ Kiện",
     "category_name_en": "Party Accessories",
-    "price": 20000,
-    "img": "public/images/products/phu-kien/NenXoanSinhNhatNhieuMau.webp",
+    "price": 12000,
+    "img": "public/images/products/phu-kien/MuSinhNhatHoatHinh.webp",
     "featured": false,
-    "description_vi": "Hộp 10 cây nến xoắn sinh nhật sắc màu tươi vui rực rỡ.",
-    "description_en": "Box of 10 vibrant metallic spiral birthday candles with holders.",
+    "description_vi": "Mũ chóp sinh nhật họa tiết dễ thương sắc màu cho bé và bạn bè.",
+    "description_en": "Fun colorful birthday party hat for kids and guests.",
     "subcategory": "phu-kien-sinh-nhat",
-    "subcategory_name": "Phụ kiện trang trí sinh nhật & tiệc",
-    "subcategory_name_en": "Party & Birthday Accessories"
-  },
-  {
-    "id": "NenChiSinhNhatAnhKim",
-    "name_vi": "Nến chỉ sinh nhật ánh kim",
-    "name_en": "Metallic Slim Birthday Candles",
-    "category": "phu-kien",
-    "category_name": "Phụ Kiện Tiệc",
-    "category_name_en": "Party Accessories",
-    "price": 25000,
-    "img": "public/images/products/phu-kien/NenChiSinhNhatAnhKim.webp",
-    "featured": false,
-    "description_vi": "Bộ 12 cây nến chỉ dáng thon dài ánh kim phong cách Hàn Quốc thanh lịch.",
-    "description_en": "Pack of 12 sleek minimalist metallic pencil candles in modern pastel and gold.",
-    "subcategory": "phu-kien-sinh-nhat",
-    "subcategory_name": "Phụ kiện trang trí sinh nhật & tiệc",
-    "subcategory_name_en": "Party & Birthday Accessories"
-  },
-  {
-    "id": "BomCaiTocHappyBirthday",
-    "name_vi": "Bờm cài tóc Happy Birthday",
-    "name_en": "Happy Birthday Hairband",
-    "category": "phu-kien",
-    "category_name": "Phụ Kiện Tiệc",
-    "category_name_en": "Party Accessories",
-    "price": 25000,
-    "img": "public/images/products/phu-kien/BomCaiTocHappyBirthday.webp",
-    "featured": false,
-    "description_vi": "Bờm cài tóc chữ Happy Birthday lấp lánh phụ kiện chụp ảnh nổi bật bữa tiệc.",
-    "description_en": "Glittering Happy Birthday headband, the ultimate celebration photo accessory.",
-    "subcategory": "phu-kien-sinh-nhat",
-    "subcategory_name": "Phụ kiện trang trí sinh nhật & tiệc",
-    "subcategory_name_en": "Party & Birthday Accessories"
+    "subcategory_name": "Nến & Mũ Sinh Nhật",
+    "subcategory_name_en": "Birthday Candles & Hats",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Cái",
+        "price": 12000
+      }
+    ]
   }
 ];

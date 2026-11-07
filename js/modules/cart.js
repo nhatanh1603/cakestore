@@ -63,7 +63,11 @@ export const CartStore = {
     },
     add(item) {
         const cart = this.get();
-        const existing = cart.find(i => i.id === item.id && i.variant === item.variant);
+        const existing = cart.find(i =>
+            i.id === item.id &&
+            (i.variant || '') === (item.variant || '') &&
+            (i.inscription || '') === (item.inscription || '')
+        );
         if (existing) {
             existing.qty += item.qty;
         } else {
