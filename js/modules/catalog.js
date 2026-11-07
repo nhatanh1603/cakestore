@@ -1,40 +1,55 @@
 import { PRODUCTS } from '../data/products.js';
 
 export const CATEGORIES = [
-    { slug: 'all', name_vi: 'Tất cả sản phẩm', name_en: 'All Products', count: 173 },
-    { slug: 'banh-gato', name_vi: 'Bánh Gato', name_en: 'Gateaux & Cakes', count: 38 },
-    { slug: 'banh-kem-tuoi', name_vi: 'Bánh Kem Tươi', name_en: 'Fresh Cream & Mousse', count: 86 },
-    { slug: 'banh-quy', name_vi: 'Bánh Quy', name_en: 'Cookies & Biscuits', count: 14 },
-    { slug: 'banh-mi', name_vi: 'Bánh Mì', name_en: 'Breads & Pastries', count: 20 },
+    { slug: 'all', name_vi: 'Tất cả sản phẩm', name_en: 'All Products', count: 220 },
+    { slug: 'banh-gato', name_vi: 'Bánh Gato', name_en: 'Gateaux & Cakes', count: 70 },
+    { slug: 'banh-kem-tuoi', name_vi: 'Bánh Kem Tươi', name_en: 'Fresh Cream & Mousse', count: 95 },
+    { slug: 'banh-quy', name_vi: 'Bánh Quy', name_en: 'Cookies & Biscuits', count: 17 },
+    { slug: 'banh-mi', name_vi: 'Bánh Mì', name_en: 'Breads & Pastries', count: 26 },
     { slug: 'nuoc', name_vi: 'Đồ Uống', name_en: 'Beverages', count: 7 },
     { slug: 'snack', name_vi: 'Snacks', name_en: 'Snacks', count: 2 },
-    { slug: 'phu-kien', name_vi: 'Phụ Kiện', name_en: 'Party Accessories', count: 6 }
+    { slug: 'phu-kien', name_vi: 'Phụ Kiện', name_en: 'Party Accessories', count: 3 }
 ];
 
 export const SUBCATEGORIES = [
-
-    { slug: 'banh-gato-nguyen-chiec', parent: 'banh-gato', name_vi: 'Bánh Gato Nguyên Chiếc', name_en: 'Whole Gateaux', count: 38 },
+    { slug: 'banh-gato-nguyen-chiec', parent: 'banh-gato', name_vi: 'Bánh Gato Nguyên Chiếc', name_en: 'Whole Gateaux', count: 70 },
 
     { slug: 'dong-mousse', parent: 'banh-kem-tuoi', name_vi: 'Bánh Mousse', name_en: 'Mousse Cakes', count: 20 },
-    { slug: 'dong-su-kem', parent: 'banh-kem-tuoi', name_vi: 'Bánh Su Kem', name_en: 'Choux', count: 8 },
+    { slug: 'dong-su-kem', parent: 'banh-kem-tuoi', name_vi: 'Bánh Su Kem', name_en: 'Choux', count: 7 },
     { slug: 'dong-tiramisu', parent: 'banh-kem-tuoi', name_vi: 'Bánh Tiramisu', name_en: 'Tiramisu', count: 5 },
     { slug: 'dong-tart-ngan-lop', parent: 'banh-kem-tuoi', name_vi: 'Bánh Tart & Ngàn Lớp', name_en: 'Tarts & Mille-Feuille', count: 4 },
-    { slug: 'dong-banh-cuon-cat-mieng', parent: 'banh-kem-tuoi', name_vi: 'Bánh Cuộn & Gato Cắt Miếng', name_en: 'Roll Cakes & Slices', count: 49 },
+    { slug: 'dong-banh-cuon-cat-mieng', parent: 'banh-kem-tuoi', name_vi: 'Bánh Cuộn & Gato Cắt Miếng', name_en: 'Roll Cakes & Slices', count: 59 },
 
-    { slug: 'banh-quy-hu', parent: 'banh-quy', name_vi: 'Bánh Quy Hũ', name_en: 'Jar Cookies', count: 8 },
-    { slug: 'banh-quy-tui', parent: 'banh-quy', name_vi: 'Bánh Quy Túi', name_en: 'Bag Cookies', count: 5 },
-    { slug: 'banh-quy-hop', parent: 'banh-quy', name_vi: 'Bánh Quy Hộp', name_en: 'Box Cookies', count: 1 },
+    { slug: 'banh-quy-hop', parent: 'banh-quy', name_vi: 'Bánh Quy Hộp', name_en: 'Box Cookies', count: 8 },
+    { slug: 'banh-quy-tui', parent: 'banh-quy', name_vi: 'Bánh Quy Túi', name_en: 'Bag Cookies', count: 9 },
 
-    { slug: 'banh-mi-man-ngot', parent: 'banh-mi', name_vi: 'Bánh Mì Mặn & Bánh Mì Ngọt Tươi', name_en: 'Savory & Sweet Breads', count: 13 },
-    { slug: 'banh-mi-goi-sandwich', parent: 'banh-mi', name_vi: 'Bánh Mì Gối & Sandwich', name_en: 'Toast Bread & Sandwiches', count: 6 },
-    { slug: 'banh-mi-cuon-nuong', parent: 'banh-mi', name_vi: 'Bánh Mì Cuộn & Đồ nướng khác', name_en: 'Pastry Rolls & Baked Goods', count: 1 },
+    { slug: 'banh-mi-man-ngot', parent: 'banh-mi', name_vi: 'Bánh Mì Mặn & Bánh Mì Ngọt Tươi', name_en: 'Savory & Sweet Breads', count: 16 },
+    { slug: 'banh-mi-goi-sandwich', parent: 'banh-mi', name_vi: 'Bánh Mì Gối & Sandwich', name_en: 'Toast Bread & Sandwiches', count: 5 },
+    { slug: 'banh-sung-bo-danish', parent: 'banh-mi', name_vi: 'Bánh Sừng Bò & Donut', name_en: 'Croissants & Donuts', count: 5 },
 
     { slug: 'nuoc', parent: 'nuoc', name_vi: 'Đồ Uống', name_en: 'Beverages', count: 7 },
 
     { slug: 'do-an-nhe', parent: 'snack', name_vi: 'Snacks', name_en: 'Snacks', count: 2 },
 
-    { slug: 'phu-kien-sinh-nhat', parent: 'phu-kien', name_vi: 'Phụ kiện trang trí sinh nhật & tiệc', name_en: 'Birthday & Party Accessories', count: 6 }
+    { slug: 'phu-kien-sinh-nhat', parent: 'phu-kien', name_vi: 'Phụ kiện trang trí sinh nhật & tiệc', name_en: 'Birthday & Party Accessories', count: 3 }
 ];
+
+export function matchesSubcategory(pSub, targetSub) {
+    if (!pSub || !targetSub) return false;
+    if (pSub === targetSub) return true;
+    if ((targetSub === 'banh-quy-hop' || targetSub === 'banh-quy-hu' || targetSub === 'cookies-hop') &&
+        (pSub === 'banh-quy-hop' || pSub === 'banh-quy-hu' || pSub === 'cookies-hop')) return true;
+    if ((targetSub === 'banh-quy-tui' || targetSub === 'cookies-tui') &&
+        (pSub === 'banh-quy-tui' || pSub === 'cookies-tui')) return true;
+    if ((targetSub === 'banh-mi-cuon-nuong' || targetSub === 'banh-sung-bo-danish') &&
+        (pSub === 'banh-mi-cuon-nuong' || pSub === 'banh-sung-bo-danish')) return true;
+    if ((targetSub === 'do-an-nhe' || targetSub === 'snack' || targetSub === 'snack-do-an-vat') &&
+        (pSub === 'do-an-nhe' || pSub === 'snack' || pSub === 'snack-do-an-vat')) return true;
+    if ((targetSub === 'nuoc' || targetSub === 'nuoc-sua-trai-cay' || targetSub === 'nuoc-tra-hoa-qua') &&
+        (pSub === 'nuoc' || pSub === 'nuoc-sua-trai-cay' || pSub === 'nuoc-tra-hoa-qua')) return true;
+    if (targetSub === 'banh-gato-nguyen-chiec' && (pSub === 'banh-gato-nguyen-chiec' || pSub === 'banh-gato-tinh-yeu' || pSub === 'banh-gato-cho-be')) return true;
+    return false;
+}
 
 export function removeDiacritics(str) {
     return (str || '')
@@ -348,7 +363,7 @@ export function initProductsPageCatalog() {
 
         let filtered = products;
         if (currentSubcategory !== 'all') {
-            filtered = products.filter(p => p.subcategory === currentSubcategory);
+            filtered = products.filter(p => matchesSubcategory(p.subcategory, currentSubcategory));
         } else if (currentCategory !== 'all') {
             filtered = products.filter(p => p.category === currentCategory);
         }

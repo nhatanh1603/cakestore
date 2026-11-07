@@ -30,12 +30,6 @@ export const CATEGORIES = [
     "icon": "fa-solid fa-bread-slice"
   },
   {
-    "slug": "phu-kien",
-    "name_vi": "Phụ Kiện",
-    "name_en": "Party Accessories",
-    "icon": "fa-solid fa-wand-magic-sparkles"
-  },
-  {
     "slug": "nuoc",
     "name_vi": "Đồ Uống",
     "name_en": "Beverages",
@@ -46,6 +40,12 @@ export const CATEGORIES = [
     "name_vi": "Snacks & Đồ Ăn Vặt",
     "name_en": "Snacks & Tidbits",
     "icon": "fa-solid fa-bowl-food"
+  },
+  {
+    "slug": "phu-kien",
+    "name_vi": "Phụ Kiện",
+    "name_en": "Party Accessories",
+    "icon": "fa-solid fa-wand-magic-sparkles"
   }
 ];
 
@@ -2926,121 +2926,6 @@ export const PRODUCTS = [
     ]
   },
   {
-    "id": "Tiramisu1",
-    "name_vi": "TIRAMISU",
-    "name_en": "Classic Tiramisu",
-    "category": "banh-kem-tuoi",
-    "category_name": "Bánh Kem Tươi",
-    "category_name_en": "Fresh Cream & Mousse",
-    "price": 45000,
-    "img": "public/images/products/banh-kem-tuoi/tiramisu-1.webp",
-    "featured": false,
-    "description_vi": "Món bánh TIRAMISU thanh mát đặc trưng của tiệm Poeme, hòa quyện hương vị trái cây tự nhiên và kem tươi mịn màng, bảo quản mát 2-6°C.",
-    "description_en": "Authentic handcrafted TIRAMISU prepared with premium natural ingredients following traditional Japanese bakery recipes.",
-    "subcategory": "dong-tiramisu",
-    "subcategory_name": "Dòng Tiramisu & Cà Phê",
-    "subcategory_name_en": "Tiramisu & Coffee Pastries",
-    "variants": [
-      {
-        "size": "standard",
-        "name": "Phần tiêu chuẩn",
-        "price": 45000
-      }
-    ]
-  },
-  {
-    "id": "CafeMouka",
-    "name_vi": "Cafe Mouka",
-    "name_en": "Cafe Mouka",
-    "category": "banh-kem-tuoi",
-    "category_name": "Bánh Kem Tươi",
-    "category_name_en": "Fresh Cream & Mousse",
-    "price": 25000,
-    "img": "public/images/products/banh-kem-tuoi/cafe-mouka.webp",
-    "featured": false,
-    "description_vi": "Thành phần của bánh bao gồm lớp gato Mouka cafe cùng lớp thạch cafe trên bề mặt bánh.",
-    "description_en": "Authentic handcrafted Cafe Mouka prepared with premium natural ingredients following traditional Japanese bakery recipes.",
-    "subcategory": "dong-tiramisu",
-    "subcategory_name": "Dòng Tiramisu & Cà Phê",
-    "subcategory_name_en": "Tiramisu & Coffee Pastries",
-    "variants": [
-      {
-        "size": "standard",
-        "name": "Phần tiêu chuẩn",
-        "price": 25000
-      }
-    ]
-  },
-  {
-    "id": "Tiramisu",
-    "name_vi": "Tiramisu",
-    "name_en": "Classic Tiramisu",
-    "category": "banh-kem-tuoi",
-    "category_name": "Bánh Kem Tươi",
-    "category_name_en": "Fresh Cream & Mousse",
-    "price": 28000,
-    "img": "public/images/products/banh-kem-tuoi/tiramisu.webp",
-    "featured": false,
-    "description_vi": "Thành phần của bánh bao gồm đế bánh bông lan mỏng, lớp kem tiramisu béo ngậy cùng bột cacao.",
-    "description_en": "Authentic handcrafted Tiramisu prepared with premium natural ingredients following traditional Japanese bakery recipes.",
-    "subcategory": "dong-tiramisu",
-    "subcategory_name": "Dòng Tiramisu & Cà Phê",
-    "subcategory_name_en": "Tiramisu & Coffee Pastries",
-    "variants": [
-      {
-        "size": "standard",
-        "name": "Phần tiêu chuẩn",
-        "price": 28000
-      }
-    ]
-  },
-  {
-    "id": "CafeJelly",
-    "name_vi": "Cafe Jelly",
-    "name_en": "Cafe Jelly",
-    "category": "banh-kem-tuoi",
-    "category_name": "Bánh Kem Tươi",
-    "category_name_en": "Fresh Cream & Mousse",
-    "price": 18000,
-    "img": "public/images/products/banh-kem-tuoi/cafe-jelly.webp",
-    "featured": false,
-    "description_vi": "Thành phần của sản phẩm bao gồm các viên thạch cafe, được phủ bên trên là lớp kem tươi.",
-    "description_en": "Authentic handcrafted Cafe Jelly prepared with premium natural ingredients following traditional Japanese bakery recipes.",
-    "subcategory": "dong-tiramisu",
-    "subcategory_name": "Dòng Tiramisu & Cà Phê",
-    "subcategory_name_en": "Tiramisu & Coffee Pastries",
-    "variants": [
-      {
-        "size": "standard",
-        "name": "Phần tiêu chuẩn",
-        "price": 18000
-      }
-    ]
-  },
-  {
-    "id": "BabyCake",
-    "name_vi": "Baby Cake Cafe",
-    "name_en": "Baby Cake Cafe",
-    "category": "banh-kem-tuoi",
-    "category_name": "Bánh Kem Tươi",
-    "category_name_en": "Fresh Cream & Mousse",
-    "price": 25000,
-    "img": "public/images/products/banh-kem-tuoi/baby-cake.webp",
-    "featured": false,
-    "description_vi": "Hộp bánh nhỏ xinh gồm 8 miếng bánh baby cake cafe thơm ngậy vị kem bơ.",
-    "description_en": "Authentic handcrafted Baby Cake Cafe prepared with premium natural ingredients following traditional Japanese bakery recipes.",
-    "subcategory": "dong-tiramisu",
-    "subcategory_name": "Dòng Tiramisu & Cà Phê",
-    "subcategory_name_en": "Tiramisu & Coffee Pastries",
-    "variants": [
-      {
-        "size": "standard",
-        "name": "Phần tiêu chuẩn",
-        "price": 25000
-      }
-    ]
-  },
-  {
     "id": "SuKemPhomaiTraiCay",
     "name_vi": "Su Kem phomai trái cây",
     "name_en": "Fruit Cheese Choux Puff",
@@ -3198,6 +3083,121 @@ export const PRODUCTS = [
         "size": "standard",
         "name": "Phần tiêu chuẩn",
         "price": 30000
+      }
+    ]
+  },
+  {
+    "id": "Tiramisu1",
+    "name_vi": "TIRAMISU",
+    "name_en": "Classic Tiramisu",
+    "category": "banh-kem-tuoi",
+    "category_name": "Bánh Kem Tươi",
+    "category_name_en": "Fresh Cream & Mousse",
+    "price": 45000,
+    "img": "public/images/products/banh-kem-tuoi/tiramisu-1.webp",
+    "featured": false,
+    "description_vi": "Món bánh TIRAMISU thanh mát đặc trưng của tiệm Poeme, hòa quyện hương vị trái cây tự nhiên và kem tươi mịn màng, bảo quản mát 2-6°C.",
+    "description_en": "Authentic handcrafted TIRAMISU prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-tiramisu",
+    "subcategory_name": "Dòng Tiramisu & Cà Phê",
+    "subcategory_name_en": "Tiramisu & Coffee Pastries",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 45000
+      }
+    ]
+  },
+  {
+    "id": "CafeMouka",
+    "name_vi": "Cafe Mouka",
+    "name_en": "Cafe Mouka",
+    "category": "banh-kem-tuoi",
+    "category_name": "Bánh Kem Tươi",
+    "category_name_en": "Fresh Cream & Mousse",
+    "price": 25000,
+    "img": "public/images/products/banh-kem-tuoi/cafe-mouka.webp",
+    "featured": false,
+    "description_vi": "Thành phần của bánh bao gồm lớp gato Mouka cafe cùng lớp thạch cafe trên bề mặt bánh.",
+    "description_en": "Authentic handcrafted Cafe Mouka prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-tiramisu",
+    "subcategory_name": "Dòng Tiramisu & Cà Phê",
+    "subcategory_name_en": "Tiramisu & Coffee Pastries",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 25000
+      }
+    ]
+  },
+  {
+    "id": "Tiramisu",
+    "name_vi": "Tiramisu",
+    "name_en": "Classic Tiramisu",
+    "category": "banh-kem-tuoi",
+    "category_name": "Bánh Kem Tươi",
+    "category_name_en": "Fresh Cream & Mousse",
+    "price": 28000,
+    "img": "public/images/products/banh-kem-tuoi/tiramisu.webp",
+    "featured": false,
+    "description_vi": "Thành phần của bánh bao gồm đế bánh bông lan mỏng, lớp kem tiramisu béo ngậy cùng bột cacao.",
+    "description_en": "Authentic handcrafted Tiramisu prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-tiramisu",
+    "subcategory_name": "Dòng Tiramisu & Cà Phê",
+    "subcategory_name_en": "Tiramisu & Coffee Pastries",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 28000
+      }
+    ]
+  },
+  {
+    "id": "CafeJelly",
+    "name_vi": "Cafe Jelly",
+    "name_en": "Cafe Jelly",
+    "category": "banh-kem-tuoi",
+    "category_name": "Bánh Kem Tươi",
+    "category_name_en": "Fresh Cream & Mousse",
+    "price": 18000,
+    "img": "public/images/products/banh-kem-tuoi/cafe-jelly.webp",
+    "featured": false,
+    "description_vi": "Thành phần của sản phẩm bao gồm các viên thạch cafe, được phủ bên trên là lớp kem tươi.",
+    "description_en": "Authentic handcrafted Cafe Jelly prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-tiramisu",
+    "subcategory_name": "Dòng Tiramisu & Cà Phê",
+    "subcategory_name_en": "Tiramisu & Coffee Pastries",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 18000
+      }
+    ]
+  },
+  {
+    "id": "BabyCake",
+    "name_vi": "Baby Cake Cafe",
+    "name_en": "Baby Cake Cafe",
+    "category": "banh-kem-tuoi",
+    "category_name": "Bánh Kem Tươi",
+    "category_name_en": "Fresh Cream & Mousse",
+    "price": 25000,
+    "img": "public/images/products/banh-kem-tuoi/baby-cake.webp",
+    "featured": false,
+    "description_vi": "Hộp bánh nhỏ xinh gồm 8 miếng bánh baby cake cafe thơm ngậy vị kem bơ.",
+    "description_en": "Authentic handcrafted Baby Cake Cafe prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "dong-tiramisu",
+    "subcategory_name": "Dòng Tiramisu & Cà Phê",
+    "subcategory_name_en": "Tiramisu & Coffee Pastries",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Phần tiêu chuẩn",
+        "price": 25000
       }
     ]
   },
@@ -4651,117 +4651,393 @@ export const PRODUCTS = [
     ]
   },
   {
-    "id": "DonutSocolaTrang",
-    "name_vi": "DONUT SOCOLA TRẮNG",
-    "name_en": "Chocolate Coated Donut",
-    "category": "banh-mi",
-    "category_name": "Bánh Mì",
-    "category_name_en": "Breads & Pastries",
-    "price": 20000,
-    "img": "public/images/products/banh-mi/donut-socola-trang.webp",
+    "id": "HopCookiesLuoiMeoSocola",
+    "name_vi": "Hộp cookies lưỡi mèo socola",
+    "name_en": "Chocolate Langue de Chat Box",
+    "category": "banh-quy",
+    "category_name": "Bánh Quy",
+    "category_name_en": "Cookies & Biscuits",
+    "price": 60000,
+    "img": "public/images/products/banh-quy/hop-cookies-luoi-meo-socola.webp",
     "featured": false,
-    "description_vi": "Bột mì được tạo thành hình tròn và rán lên, trang trí bằng kem chocolate.",
-    "description_en": "Authentic handcrafted DONUT SOCOLA TRẮNG prepared with premium natural ingredients following traditional Japanese bakery recipes.",
-    "subcategory": "banh-sung-bo-danish",
-    "subcategory_name": "Bánh Sừng Bò & Donut",
-    "subcategory_name_en": "Croissants & Donuts",
+    "description_vi": "Thành phần bao gồm bột, đường, bơ, sữa, bột socola.&nbsp;",
+    "description_en": "Authentic handcrafted Hộp cookies lưỡi mèo socola prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "cookies-hop",
+    "subcategory_name": "Hộp Cookies Thủ Công",
+    "subcategory_name_en": "Artisan Cookies Box",
     "variants": [
       {
         "size": "standard",
-        "name": "Phần tiêu chuẩn",
-        "price": 20000
+        "name": "Hộp tiêu chuẩn",
+        "price": 60000
       }
     ]
   },
   {
-    "id": "DonutSocolaDen",
-    "name_vi": "DONUT SOCOLA ĐEN",
-    "name_en": "Chocolate Coated Donut",
-    "category": "banh-mi",
-    "category_name": "Bánh Mì",
-    "category_name_en": "Breads & Pastries",
-    "price": 20000,
-    "img": "public/images/products/banh-mi/donut-socola-den.webp",
+    "id": "HopCookiesLuoiMeoTraXanh",
+    "name_vi": "Hộp cookies lưỡi mèo trà xanh",
+    "name_en": "Matcha Langue de Chat Box",
+    "category": "banh-quy",
+    "category_name": "Bánh Quy",
+    "category_name_en": "Cookies & Biscuits",
+    "price": 60000,
+    "img": "public/images/products/banh-quy/hop-cookies-luoi-meo-tra-xanh.webp",
     "featured": false,
-    "description_vi": "Bột mì được tạo thành hình tròn và rán lên, trang trí bằng kem chocolate.",
-    "description_en": "Authentic handcrafted DONUT SOCOLA ĐEN prepared with premium natural ingredients following traditional Japanese bakery recipes.",
-    "subcategory": "banh-sung-bo-danish",
-    "subcategory_name": "Bánh Sừng Bò & Donut",
-    "subcategory_name_en": "Croissants & Donuts",
+    "description_vi": "Thành phần bao gồm bột, đường, bơ, sữa, bột matcha Nhật Bản.",
+    "description_en": "Authentic handcrafted Hộp cookies lưỡi mèo trà xanh prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "cookies-hop",
+    "subcategory_name": "Hộp Cookies Thủ Công",
+    "subcategory_name_en": "Artisan Cookies Box",
     "variants": [
       {
         "size": "standard",
-        "name": "Phần tiêu chuẩn",
-        "price": 20000
+        "name": "Hộp tiêu chuẩn",
+        "price": 60000
       }
     ]
   },
   {
-    "id": "DonutDoi",
-    "name_vi": "DONUT ĐÔI",
-    "name_en": "Chocolate Coated Donut",
-    "category": "banh-mi",
-    "category_name": "Bánh Mì",
-    "category_name_en": "Breads & Pastries",
-    "price": 25000,
-    "img": "public/images/products/banh-mi/donut-doi.webp",
+    "id": "HopCookiesNho",
+    "name_vi": "Hộp cookies nho",
+    "name_en": "Raisin Cookies Box",
+    "category": "banh-quy",
+    "category_name": "Bánh Quy",
+    "category_name_en": "Cookies & Biscuits",
+    "price": 60000,
+    "img": "public/images/products/banh-quy/hop-cookies-nho.webp",
     "featured": false,
-    "description_vi": "Thành phần: bột mỳ, chocolate.",
-    "description_en": "Authentic handcrafted DONUT ĐÔI prepared with premium natural ingredients following traditional Japanese bakery recipes.",
-    "subcategory": "banh-sung-bo-danish",
-    "subcategory_name": "Bánh Sừng Bò & Donut",
-    "subcategory_name_en": "Croissants & Donuts",
+    "description_vi": "Thành phần bao gồm bột, đường, bơ, sữa, nho khô.&nbsp;",
+    "description_en": "Authentic handcrafted Hộp cookies nho prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "cookies-hop",
+    "subcategory_name": "Hộp Cookies Thủ Công",
+    "subcategory_name_en": "Artisan Cookies Box",
     "variants": [
       {
         "size": "standard",
-        "name": "Phần tiêu chuẩn",
-        "price": 25000
+        "name": "Hộp tiêu chuẩn",
+        "price": 60000
       }
     ]
   },
   {
-    "id": "SungBoNho",
-    "name_vi": "Sừng Bò Nho",
-    "name_en": "Butter Croissant",
-    "category": "banh-mi",
-    "category_name": "Bánh Mì",
-    "category_name_en": "Breads & Pastries",
-    "price": 25000,
-    "img": "public/images/products/banh-mi/sung-bo-nho.webp",
+    "id": "HopCookiesLuoiMeoHanhNhan",
+    "name_vi": "Hộp cookies lưỡi mèo hạnh nhân",
+    "name_en": "Almond Langue de Chat Box",
+    "category": "banh-quy",
+    "category_name": "Bánh Quy",
+    "category_name_en": "Cookies & Biscuits",
+    "price": 65000,
+    "img": "public/images/products/banh-quy/hop-cookies-luoi-meo-hanh-nhan.webp",
     "featured": false,
-    "description_vi": "Thành phần bao gồm đường, sữa và bột, nho khô.",
-    "description_en": "Authentic handcrafted Sừng Bò Nho prepared with premium natural ingredients following traditional Japanese bakery recipes.",
-    "subcategory": "banh-sung-bo-danish",
-    "subcategory_name": "Bánh Sừng Bò & Donut",
-    "subcategory_name_en": "Croissants & Donuts",
+    "description_vi": "Thành phần bao gồm bột, đường, bơ, sữa, hạnh nhân sấy khô.",
+    "description_en": "Authentic handcrafted Hộp cookies lưỡi mèo hạnh nhân prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "cookies-hop",
+    "subcategory_name": "Hộp Cookies Thủ Công",
+    "subcategory_name_en": "Artisan Cookies Box",
     "variants": [
       {
         "size": "standard",
-        "name": "Phần tiêu chuẩn",
-        "price": 25000
+        "name": "Hộp tiêu chuẩn",
+        "price": 65000
       }
     ]
   },
   {
-    "id": "SungBoTo",
-    "name_vi": "Sừng Bò To",
-    "name_en": "Butter Croissant",
-    "category": "banh-mi",
-    "category_name": "Bánh Mì",
-    "category_name_en": "Breads & Pastries",
-    "price": 25000,
-    "img": "public/images/products/banh-mi/sung-bo-to.webp",
+    "id": "HopCookiesLuoiMeo",
+    "name_vi": "Hộp cookies lưỡi mèo",
+    "name_en": "Langue de Chat Cookies Box",
+    "category": "banh-quy",
+    "category_name": "Bánh Quy",
+    "category_name_en": "Cookies & Biscuits",
+    "price": 60000,
+    "img": "public/images/products/banh-quy/hop-cookies-luoi-meo.webp",
+    "featured": false,
+    "description_vi": "Thành phần bao gồm bột, đường, bơ, sữa.",
+    "description_en": "Authentic handcrafted Hộp cookies lưỡi mèo prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "cookies-hop",
+    "subcategory_name": "Hộp Cookies Thủ Công",
+    "subcategory_name_en": "Artisan Cookies Box",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Hộp tiêu chuẩn",
+        "price": 60000
+      }
+    ]
+  },
+  {
+    "id": "HopCookiesBo",
+    "name_vi": "Hộp cookies bơ",
+    "name_en": "Butter Cookies Box",
+    "category": "banh-quy",
+    "category_name": "Bánh Quy",
+    "category_name_en": "Cookies & Biscuits",
+    "price": 60000,
+    "img": "public/images/products/banh-quy/hop-cookies-bo.webp",
+    "featured": false,
+    "description_vi": "Thành phần bao gồm bột, đường, bơ, sữa.",
+    "description_en": "Authentic handcrafted Hộp cookies bơ prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "cookies-hop",
+    "subcategory_name": "Hộp Cookies Thủ Công",
+    "subcategory_name_en": "Artisan Cookies Box",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Hộp tiêu chuẩn",
+        "price": 60000
+      }
+    ]
+  },
+  {
+    "id": "HopCookiesSocolaChips",
+    "name_vi": "Hộp cookies socola chips",
+    "name_en": "Chocochip Cookies Box",
+    "category": "banh-quy",
+    "category_name": "Bánh Quy",
+    "category_name_en": "Cookies & Biscuits",
+    "price": 60000,
+    "img": "public/images/products/banh-quy/hop-cookies-socola-chips.webp",
+    "featured": false,
+    "description_vi": "Thành phần bao gồm bột, đường, bơ, sữa và kẹo socola chips.",
+    "description_en": "Authentic handcrafted Hộp cookies socola chips prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "cookies-hop",
+    "subcategory_name": "Hộp Cookies Thủ Công",
+    "subcategory_name_en": "Artisan Cookies Box",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Hộp tiêu chuẩn",
+        "price": 60000
+      }
+    ]
+  },
+  {
+    "id": "HopCookiesCaCao",
+    "name_vi": "Hộp cookies ca cao",
+    "name_en": "Cocoa Cookies Box",
+    "category": "banh-quy",
+    "category_name": "Bánh Quy",
+    "category_name_en": "Cookies & Biscuits",
+    "price": 60000,
+    "img": "public/images/products/banh-quy/hop-cookies-ca-cao.webp",
+    "featured": false,
+    "description_vi": "Thành phần bao gồm bột, đường, bơ, sữa và bột cacao.&nbsp;",
+    "description_en": "Authentic handcrafted Hộp cookies ca cao prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "cookies-hop",
+    "subcategory_name": "Hộp Cookies Thủ Công",
+    "subcategory_name_en": "Artisan Cookies Box",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Hộp tiêu chuẩn",
+        "price": 60000
+      }
+    ]
+  },
+  {
+    "id": "StickPie",
+    "name_vi": "STICK PIE",
+    "name_en": "Japanese Stick Pie",
+    "category": "banh-quy",
+    "category_name": "Bánh Quy",
+    "category_name_en": "Cookies & Biscuits",
+    "price": 30000,
+    "img": "public/images/products/banh-quy/stick-pie.webp",
+    "featured": false,
+    "description_vi": "Thành phần bao gồm bột mì, bơ, đường, muối",
+    "description_en": "Authentic handcrafted STICK PIE prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "cookies-tui",
+    "subcategory_name": "Túi Cookies & Bánh Que",
+    "subcategory_name_en": "Cookies Pouches & Stick Pies",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Hộp tiêu chuẩn",
+        "price": 30000
+      }
+    ]
+  },
+  {
+    "id": "CookiesHanhNhan",
+    "name_vi": "Túi COOKIES HẠNH NHÂN",
+    "name_en": "Túi Cookies Hạnh Nhân",
+    "category": "banh-quy",
+    "category_name": "Bánh Quy",
+    "category_name_en": "Cookies & Biscuits",
+    "price": 55000,
+    "img": "public/images/products/banh-quy/cookies-hanh-nhan.webp",
+    "featured": false,
+    "description_vi": "Thành phần bao gồm bột, đường, bơ, sữa và hạnh nhân",
+    "description_en": "Authentic handcrafted Túi COOKIES HẠNH NHÂN prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "cookies-tui",
+    "subcategory_name": "Túi Cookies & Bánh Que",
+    "subcategory_name_en": "Cookies Pouches & Stick Pies",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Hộp tiêu chuẩn",
+        "price": 55000
+      }
+    ]
+  },
+  {
+    "id": "LuoiMeoSocola",
+    "name_vi": "LƯỠI MÈO SOCOLA",
+    "name_en": "Chocolate Langue de Chat Pouch",
+    "category": "banh-quy",
+    "category_name": "Bánh Quy",
+    "category_name_en": "Cookies & Biscuits",
+    "price": 50000,
+    "img": "public/images/products/banh-quy/luoi-meo-socola.webp",
+    "featured": false,
+    "description_vi": "Thành phần bao gồm bột, đường, bơ, sữa và socola",
+    "description_en": "Authentic handcrafted LƯỠI MÈO SOCOLA prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "cookies-tui",
+    "subcategory_name": "Túi Cookies & Bánh Que",
+    "subcategory_name_en": "Cookies Pouches & Stick Pies",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Hộp tiêu chuẩn",
+        "price": 50000
+      }
+    ]
+  },
+  {
+    "id": "CookiesBo",
+    "name_vi": "Túi COOKIES BƠ",
+    "name_en": "Túi Cookies Bơ",
+    "category": "banh-quy",
+    "category_name": "Bánh Quy",
+    "category_name_en": "Cookies & Biscuits",
+    "price": 50000,
+    "img": "public/images/products/banh-quy/cookies-bo.webp",
+    "featured": false,
+    "description_vi": "Thành phần bao gồm bột, đường, bơ, sữa",
+    "description_en": "Authentic handcrafted Túi COOKIES BƠ prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "cookies-tui",
+    "subcategory_name": "Túi Cookies & Bánh Que",
+    "subcategory_name_en": "Cookies Pouches & Stick Pies",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Hộp tiêu chuẩn",
+        "price": 50000
+      }
+    ]
+  },
+  {
+    "id": "LuoiMeoTraXanh",
+    "name_vi": "Lưỡi mèo trà xanh",
+    "name_en": "Matcha Langue de Chat Pouch",
+    "category": "banh-quy",
+    "category_name": "Bánh Quy",
+    "category_name_en": "Cookies & Biscuits",
+    "price": 50000,
+    "img": "public/images/products/banh-quy/luoi-meo-tra-xanh.webp",
+    "featured": false,
+    "description_vi": "Thành phần bao gồm đường, sữa và bột trà xanh.",
+    "description_en": "Authentic handcrafted Lưỡi mèo trà xanh prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "cookies-tui",
+    "subcategory_name": "Túi Cookies & Bánh Que",
+    "subcategory_name_en": "Cookies Pouches & Stick Pies",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Hộp tiêu chuẩn",
+        "price": 50000
+      }
+    ]
+  },
+  {
+    "id": "LuoiMeo",
+    "name_vi": "Lưỡi mèo",
+    "name_en": "Vanilla Langue de Chat Pouch",
+    "category": "banh-quy",
+    "category_name": "Bánh Quy",
+    "category_name_en": "Cookies & Biscuits",
+    "price": 50000,
+    "img": "public/images/products/banh-quy/luoi-meo.webp",
+    "featured": false,
+    "description_vi": "Thành phần bao gồm đường, sữa và bột.&nbsp;",
+    "description_en": "Authentic handcrafted Lưỡi mèo prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "cookies-tui",
+    "subcategory_name": "Túi Cookies & Bánh Que",
+    "subcategory_name_en": "Cookies Pouches & Stick Pies",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Hộp tiêu chuẩn",
+        "price": 50000
+      }
+    ]
+  },
+  {
+    "id": "Pamia",
+    "name_vi": "Túi Cookies Pamia",
+    "name_en": "Pamia Palmier Cookies Pouch",
+    "category": "banh-quy",
+    "category_name": "Bánh Quy",
+    "category_name_en": "Cookies & Biscuits",
+    "price": 50000,
+    "img": "public/images/products/banh-quy/pamia.webp",
     "featured": false,
     "description_vi": "Thành phần bao gồm đường, sữa và bột.",
-    "description_en": "Authentic handcrafted Sừng Bò To prepared with premium natural ingredients following traditional Japanese bakery recipes.",
-    "subcategory": "banh-sung-bo-danish",
-    "subcategory_name": "Bánh Sừng Bò & Donut",
-    "subcategory_name_en": "Croissants & Donuts",
+    "description_en": "Authentic handcrafted Túi Cookies Pamia prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "cookies-tui",
+    "subcategory_name": "Túi Cookies & Bánh Que",
+    "subcategory_name_en": "Cookies Pouches & Stick Pies",
     "variants": [
       {
         "size": "standard",
-        "name": "Phần tiêu chuẩn",
-        "price": 25000
+        "name": "Hộp tiêu chuẩn",
+        "price": 50000
+      }
+    ]
+  },
+  {
+    "id": "CookiesBoChip",
+    "name_vi": "Túi Cookies sô chip",
+    "name_en": "Túi Cookies Sô Chip",
+    "category": "banh-quy",
+    "category_name": "Bánh Quy",
+    "category_name_en": "Cookies & Biscuits",
+    "price": 50000,
+    "img": "public/images/products/banh-quy/cookies-bo-chip.webp",
+    "featured": false,
+    "description_vi": "Thành phần bao gồm bột, đường, bơ, sữa và socola chip.",
+    "description_en": "Authentic handcrafted Túi Cookies sô chip prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "cookies-tui",
+    "subcategory_name": "Túi Cookies & Bánh Que",
+    "subcategory_name_en": "Cookies Pouches & Stick Pies",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Hộp tiêu chuẩn",
+        "price": 50000
+      }
+    ]
+  },
+  {
+    "id": "Biscot",
+    "name_vi": "Biscot",
+    "name_en": "Crispy Almond Biscotti",
+    "category": "banh-quy",
+    "category_name": "Bánh Quy",
+    "category_name_en": "Cookies & Biscuits",
+    "price": 22000,
+    "img": "public/images/products/banh-quy/biscot.webp",
+    "featured": false,
+    "description_vi": "Những lát bánh mì được phết bơ và đường được nướng giòn rụm.",
+    "description_en": "Authentic handcrafted Biscot prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "cookies-tui",
+    "subcategory_name": "Túi Cookies & Bánh Que",
+    "subcategory_name_en": "Cookies Pouches & Stick Pies",
+    "variants": [
+      {
+        "size": "standard",
+        "name": "Hộp tiêu chuẩn",
+        "price": 22000
       }
     ]
   },
@@ -5249,393 +5525,117 @@ export const PRODUCTS = [
     ]
   },
   {
-    "id": "HopCookiesLuoiMeoSocola",
-    "name_vi": "Hộp cookies lưỡi mèo socola",
-    "name_en": "Chocolate Langue de Chat Box",
-    "category": "banh-quy",
-    "category_name": "Bánh Quy",
-    "category_name_en": "Cookies & Biscuits",
-    "price": 60000,
-    "img": "public/images/products/banh-quy/hop-cookies-luoi-meo-socola.webp",
+    "id": "DonutSocolaTrang",
+    "name_vi": "DONUT SOCOLA TRẮNG",
+    "name_en": "Chocolate Coated Donut",
+    "category": "banh-mi",
+    "category_name": "Bánh Mì",
+    "category_name_en": "Breads & Pastries",
+    "price": 20000,
+    "img": "public/images/products/banh-mi/donut-socola-trang.webp",
     "featured": false,
-    "description_vi": "Thành phần bao gồm bột, đường, bơ, sữa, bột socola.&nbsp;",
-    "description_en": "Authentic handcrafted Hộp cookies lưỡi mèo socola prepared with premium natural ingredients following traditional Japanese bakery recipes.",
-    "subcategory": "cookies-hop",
-    "subcategory_name": "Hộp Cookies Thủ Công",
-    "subcategory_name_en": "Artisan Cookies Box",
+    "description_vi": "Bột mì được tạo thành hình tròn và rán lên, trang trí bằng kem chocolate.",
+    "description_en": "Authentic handcrafted DONUT SOCOLA TRẮNG prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "banh-sung-bo-danish",
+    "subcategory_name": "Bánh Sừng Bò & Donut",
+    "subcategory_name_en": "Croissants & Donuts",
     "variants": [
       {
         "size": "standard",
-        "name": "Hộp tiêu chuẩn",
-        "price": 60000
+        "name": "Phần tiêu chuẩn",
+        "price": 20000
       }
     ]
   },
   {
-    "id": "HopCookiesLuoiMeoTraXanh",
-    "name_vi": "Hộp cookies lưỡi mèo trà xanh",
-    "name_en": "Matcha Langue de Chat Box",
-    "category": "banh-quy",
-    "category_name": "Bánh Quy",
-    "category_name_en": "Cookies & Biscuits",
-    "price": 60000,
-    "img": "public/images/products/banh-quy/hop-cookies-luoi-meo-tra-xanh.webp",
+    "id": "DonutSocolaDen",
+    "name_vi": "DONUT SOCOLA ĐEN",
+    "name_en": "Chocolate Coated Donut",
+    "category": "banh-mi",
+    "category_name": "Bánh Mì",
+    "category_name_en": "Breads & Pastries",
+    "price": 20000,
+    "img": "public/images/products/banh-mi/donut-socola-den.webp",
     "featured": false,
-    "description_vi": "Thành phần bao gồm bột, đường, bơ, sữa, bột matcha Nhật Bản.",
-    "description_en": "Authentic handcrafted Hộp cookies lưỡi mèo trà xanh prepared with premium natural ingredients following traditional Japanese bakery recipes.",
-    "subcategory": "cookies-hop",
-    "subcategory_name": "Hộp Cookies Thủ Công",
-    "subcategory_name_en": "Artisan Cookies Box",
+    "description_vi": "Bột mì được tạo thành hình tròn và rán lên, trang trí bằng kem chocolate.",
+    "description_en": "Authentic handcrafted DONUT SOCOLA ĐEN prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "banh-sung-bo-danish",
+    "subcategory_name": "Bánh Sừng Bò & Donut",
+    "subcategory_name_en": "Croissants & Donuts",
     "variants": [
       {
         "size": "standard",
-        "name": "Hộp tiêu chuẩn",
-        "price": 60000
+        "name": "Phần tiêu chuẩn",
+        "price": 20000
       }
     ]
   },
   {
-    "id": "HopCookiesNho",
-    "name_vi": "Hộp cookies nho",
-    "name_en": "Raisin Cookies Box",
-    "category": "banh-quy",
-    "category_name": "Bánh Quy",
-    "category_name_en": "Cookies & Biscuits",
-    "price": 60000,
-    "img": "public/images/products/banh-quy/hop-cookies-nho.webp",
+    "id": "DonutDoi",
+    "name_vi": "DONUT ĐÔI",
+    "name_en": "Chocolate Coated Donut",
+    "category": "banh-mi",
+    "category_name": "Bánh Mì",
+    "category_name_en": "Breads & Pastries",
+    "price": 25000,
+    "img": "public/images/products/banh-mi/donut-doi.webp",
     "featured": false,
-    "description_vi": "Thành phần bao gồm bột, đường, bơ, sữa, nho khô.&nbsp;",
-    "description_en": "Authentic handcrafted Hộp cookies nho prepared with premium natural ingredients following traditional Japanese bakery recipes.",
-    "subcategory": "cookies-hop",
-    "subcategory_name": "Hộp Cookies Thủ Công",
-    "subcategory_name_en": "Artisan Cookies Box",
+    "description_vi": "Thành phần: bột mỳ, chocolate.",
+    "description_en": "Authentic handcrafted DONUT ĐÔI prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "banh-sung-bo-danish",
+    "subcategory_name": "Bánh Sừng Bò & Donut",
+    "subcategory_name_en": "Croissants & Donuts",
     "variants": [
       {
         "size": "standard",
-        "name": "Hộp tiêu chuẩn",
-        "price": 60000
+        "name": "Phần tiêu chuẩn",
+        "price": 25000
       }
     ]
   },
   {
-    "id": "HopCookiesLuoiMeoHanhNhan",
-    "name_vi": "Hộp cookies lưỡi mèo hạnh nhân",
-    "name_en": "Almond Langue de Chat Box",
-    "category": "banh-quy",
-    "category_name": "Bánh Quy",
-    "category_name_en": "Cookies & Biscuits",
-    "price": 65000,
-    "img": "public/images/products/banh-quy/hop-cookies-luoi-meo-hanh-nhan.webp",
+    "id": "SungBoNho",
+    "name_vi": "Sừng Bò Nho",
+    "name_en": "Butter Croissant",
+    "category": "banh-mi",
+    "category_name": "Bánh Mì",
+    "category_name_en": "Breads & Pastries",
+    "price": 25000,
+    "img": "public/images/products/banh-mi/sung-bo-nho.webp",
     "featured": false,
-    "description_vi": "Thành phần bao gồm bột, đường, bơ, sữa, hạnh nhân sấy khô.",
-    "description_en": "Authentic handcrafted Hộp cookies lưỡi mèo hạnh nhân prepared with premium natural ingredients following traditional Japanese bakery recipes.",
-    "subcategory": "cookies-hop",
-    "subcategory_name": "Hộp Cookies Thủ Công",
-    "subcategory_name_en": "Artisan Cookies Box",
+    "description_vi": "Thành phần bao gồm đường, sữa và bột, nho khô.",
+    "description_en": "Authentic handcrafted Sừng Bò Nho prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "banh-sung-bo-danish",
+    "subcategory_name": "Bánh Sừng Bò & Donut",
+    "subcategory_name_en": "Croissants & Donuts",
     "variants": [
       {
         "size": "standard",
-        "name": "Hộp tiêu chuẩn",
-        "price": 65000
+        "name": "Phần tiêu chuẩn",
+        "price": 25000
       }
     ]
   },
   {
-    "id": "HopCookiesLuoiMeo",
-    "name_vi": "Hộp cookies lưỡi mèo",
-    "name_en": "Langue de Chat Cookies Box",
-    "category": "banh-quy",
-    "category_name": "Bánh Quy",
-    "category_name_en": "Cookies & Biscuits",
-    "price": 60000,
-    "img": "public/images/products/banh-quy/hop-cookies-luoi-meo.webp",
-    "featured": false,
-    "description_vi": "Thành phần bao gồm bột, đường, bơ, sữa.",
-    "description_en": "Authentic handcrafted Hộp cookies lưỡi mèo prepared with premium natural ingredients following traditional Japanese bakery recipes.",
-    "subcategory": "cookies-hop",
-    "subcategory_name": "Hộp Cookies Thủ Công",
-    "subcategory_name_en": "Artisan Cookies Box",
-    "variants": [
-      {
-        "size": "standard",
-        "name": "Hộp tiêu chuẩn",
-        "price": 60000
-      }
-    ]
-  },
-  {
-    "id": "HopCookiesBo",
-    "name_vi": "Hộp cookies bơ",
-    "name_en": "Butter Cookies Box",
-    "category": "banh-quy",
-    "category_name": "Bánh Quy",
-    "category_name_en": "Cookies & Biscuits",
-    "price": 60000,
-    "img": "public/images/products/banh-quy/hop-cookies-bo.webp",
-    "featured": false,
-    "description_vi": "Thành phần bao gồm bột, đường, bơ, sữa.",
-    "description_en": "Authentic handcrafted Hộp cookies bơ prepared with premium natural ingredients following traditional Japanese bakery recipes.",
-    "subcategory": "cookies-hop",
-    "subcategory_name": "Hộp Cookies Thủ Công",
-    "subcategory_name_en": "Artisan Cookies Box",
-    "variants": [
-      {
-        "size": "standard",
-        "name": "Hộp tiêu chuẩn",
-        "price": 60000
-      }
-    ]
-  },
-  {
-    "id": "HopCookiesSocolaChips",
-    "name_vi": "Hộp cookies socola chips",
-    "name_en": "Chocochip Cookies Box",
-    "category": "banh-quy",
-    "category_name": "Bánh Quy",
-    "category_name_en": "Cookies & Biscuits",
-    "price": 60000,
-    "img": "public/images/products/banh-quy/hop-cookies-socola-chips.webp",
-    "featured": false,
-    "description_vi": "Thành phần bao gồm bột, đường, bơ, sữa và kẹo socola chips.",
-    "description_en": "Authentic handcrafted Hộp cookies socola chips prepared with premium natural ingredients following traditional Japanese bakery recipes.",
-    "subcategory": "cookies-hop",
-    "subcategory_name": "Hộp Cookies Thủ Công",
-    "subcategory_name_en": "Artisan Cookies Box",
-    "variants": [
-      {
-        "size": "standard",
-        "name": "Hộp tiêu chuẩn",
-        "price": 60000
-      }
-    ]
-  },
-  {
-    "id": "HopCookiesCaCao",
-    "name_vi": "Hộp cookies ca cao",
-    "name_en": "Cocoa Cookies Box",
-    "category": "banh-quy",
-    "category_name": "Bánh Quy",
-    "category_name_en": "Cookies & Biscuits",
-    "price": 60000,
-    "img": "public/images/products/banh-quy/hop-cookies-ca-cao.webp",
-    "featured": false,
-    "description_vi": "Thành phần bao gồm bột, đường, bơ, sữa và bột cacao.&nbsp;",
-    "description_en": "Authentic handcrafted Hộp cookies ca cao prepared with premium natural ingredients following traditional Japanese bakery recipes.",
-    "subcategory": "cookies-hop",
-    "subcategory_name": "Hộp Cookies Thủ Công",
-    "subcategory_name_en": "Artisan Cookies Box",
-    "variants": [
-      {
-        "size": "standard",
-        "name": "Hộp tiêu chuẩn",
-        "price": 60000
-      }
-    ]
-  },
-  {
-    "id": "StickPie",
-    "name_vi": "STICK PIE",
-    "name_en": "Japanese Stick Pie",
-    "category": "banh-quy",
-    "category_name": "Bánh Quy",
-    "category_name_en": "Cookies & Biscuits",
-    "price": 30000,
-    "img": "public/images/products/banh-quy/stick-pie.webp",
-    "featured": false,
-    "description_vi": "Thành phần bao gồm bột mì, bơ, đường, muối",
-    "description_en": "Authentic handcrafted STICK PIE prepared with premium natural ingredients following traditional Japanese bakery recipes.",
-    "subcategory": "cookies-tui",
-    "subcategory_name": "Túi Cookies & Bánh Que",
-    "subcategory_name_en": "Cookies Pouches & Stick Pies",
-    "variants": [
-      {
-        "size": "standard",
-        "name": "Hộp tiêu chuẩn",
-        "price": 30000
-      }
-    ]
-  },
-  {
-    "id": "CookiesHanhNhan",
-    "name_vi": "Túi COOKIES HẠNH NHÂN",
-    "name_en": "Túi Cookies Hạnh Nhân",
-    "category": "banh-quy",
-    "category_name": "Bánh Quy",
-    "category_name_en": "Cookies & Biscuits",
-    "price": 55000,
-    "img": "public/images/products/banh-quy/cookies-hanh-nhan.webp",
-    "featured": false,
-    "description_vi": "Thành phần bao gồm bột, đường, bơ, sữa và hạnh nhân",
-    "description_en": "Authentic handcrafted Túi COOKIES HẠNH NHÂN prepared with premium natural ingredients following traditional Japanese bakery recipes.",
-    "subcategory": "cookies-tui",
-    "subcategory_name": "Túi Cookies & Bánh Que",
-    "subcategory_name_en": "Cookies Pouches & Stick Pies",
-    "variants": [
-      {
-        "size": "standard",
-        "name": "Hộp tiêu chuẩn",
-        "price": 55000
-      }
-    ]
-  },
-  {
-    "id": "LuoiMeoSocola",
-    "name_vi": "LƯỠI MÈO SOCOLA",
-    "name_en": "Chocolate Langue de Chat Pouch",
-    "category": "banh-quy",
-    "category_name": "Bánh Quy",
-    "category_name_en": "Cookies & Biscuits",
-    "price": 50000,
-    "img": "public/images/products/banh-quy/luoi-meo-socola.webp",
-    "featured": false,
-    "description_vi": "Thành phần bao gồm bột, đường, bơ, sữa và socola",
-    "description_en": "Authentic handcrafted LƯỠI MÈO SOCOLA prepared with premium natural ingredients following traditional Japanese bakery recipes.",
-    "subcategory": "cookies-tui",
-    "subcategory_name": "Túi Cookies & Bánh Que",
-    "subcategory_name_en": "Cookies Pouches & Stick Pies",
-    "variants": [
-      {
-        "size": "standard",
-        "name": "Hộp tiêu chuẩn",
-        "price": 50000
-      }
-    ]
-  },
-  {
-    "id": "CookiesBo",
-    "name_vi": "Túi COOKIES BƠ",
-    "name_en": "Túi Cookies Bơ",
-    "category": "banh-quy",
-    "category_name": "Bánh Quy",
-    "category_name_en": "Cookies & Biscuits",
-    "price": 50000,
-    "img": "public/images/products/banh-quy/cookies-bo.webp",
-    "featured": false,
-    "description_vi": "Thành phần bao gồm bột, đường, bơ, sữa",
-    "description_en": "Authentic handcrafted Túi COOKIES BƠ prepared with premium natural ingredients following traditional Japanese bakery recipes.",
-    "subcategory": "cookies-tui",
-    "subcategory_name": "Túi Cookies & Bánh Que",
-    "subcategory_name_en": "Cookies Pouches & Stick Pies",
-    "variants": [
-      {
-        "size": "standard",
-        "name": "Hộp tiêu chuẩn",
-        "price": 50000
-      }
-    ]
-  },
-  {
-    "id": "LuoiMeoTraXanh",
-    "name_vi": "Lưỡi mèo trà xanh",
-    "name_en": "Matcha Langue de Chat Pouch",
-    "category": "banh-quy",
-    "category_name": "Bánh Quy",
-    "category_name_en": "Cookies & Biscuits",
-    "price": 50000,
-    "img": "public/images/products/banh-quy/luoi-meo-tra-xanh.webp",
-    "featured": false,
-    "description_vi": "Thành phần bao gồm đường, sữa và bột trà xanh.",
-    "description_en": "Authentic handcrafted Lưỡi mèo trà xanh prepared with premium natural ingredients following traditional Japanese bakery recipes.",
-    "subcategory": "cookies-tui",
-    "subcategory_name": "Túi Cookies & Bánh Que",
-    "subcategory_name_en": "Cookies Pouches & Stick Pies",
-    "variants": [
-      {
-        "size": "standard",
-        "name": "Hộp tiêu chuẩn",
-        "price": 50000
-      }
-    ]
-  },
-  {
-    "id": "LuoiMeo",
-    "name_vi": "Lưỡi mèo",
-    "name_en": "Vanilla Langue de Chat Pouch",
-    "category": "banh-quy",
-    "category_name": "Bánh Quy",
-    "category_name_en": "Cookies & Biscuits",
-    "price": 50000,
-    "img": "public/images/products/banh-quy/luoi-meo.webp",
-    "featured": false,
-    "description_vi": "Thành phần bao gồm đường, sữa và bột.&nbsp;",
-    "description_en": "Authentic handcrafted Lưỡi mèo prepared with premium natural ingredients following traditional Japanese bakery recipes.",
-    "subcategory": "cookies-tui",
-    "subcategory_name": "Túi Cookies & Bánh Que",
-    "subcategory_name_en": "Cookies Pouches & Stick Pies",
-    "variants": [
-      {
-        "size": "standard",
-        "name": "Hộp tiêu chuẩn",
-        "price": 50000
-      }
-    ]
-  },
-  {
-    "id": "Pamia",
-    "name_vi": "Túi Cookies Pamia",
-    "name_en": "Pamia Palmier Cookies Pouch",
-    "category": "banh-quy",
-    "category_name": "Bánh Quy",
-    "category_name_en": "Cookies & Biscuits",
-    "price": 50000,
-    "img": "public/images/products/banh-quy/pamia.webp",
+    "id": "SungBoTo",
+    "name_vi": "Sừng Bò To",
+    "name_en": "Butter Croissant",
+    "category": "banh-mi",
+    "category_name": "Bánh Mì",
+    "category_name_en": "Breads & Pastries",
+    "price": 25000,
+    "img": "public/images/products/banh-mi/sung-bo-to.webp",
     "featured": false,
     "description_vi": "Thành phần bao gồm đường, sữa và bột.",
-    "description_en": "Authentic handcrafted Túi Cookies Pamia prepared with premium natural ingredients following traditional Japanese bakery recipes.",
-    "subcategory": "cookies-tui",
-    "subcategory_name": "Túi Cookies & Bánh Que",
-    "subcategory_name_en": "Cookies Pouches & Stick Pies",
+    "description_en": "Authentic handcrafted Sừng Bò To prepared with premium natural ingredients following traditional Japanese bakery recipes.",
+    "subcategory": "banh-sung-bo-danish",
+    "subcategory_name": "Bánh Sừng Bò & Donut",
+    "subcategory_name_en": "Croissants & Donuts",
     "variants": [
       {
         "size": "standard",
-        "name": "Hộp tiêu chuẩn",
-        "price": 50000
-      }
-    ]
-  },
-  {
-    "id": "CookiesBoChip",
-    "name_vi": "Túi Cookies sô chip",
-    "name_en": "Túi Cookies Sô Chip",
-    "category": "banh-quy",
-    "category_name": "Bánh Quy",
-    "category_name_en": "Cookies & Biscuits",
-    "price": 50000,
-    "img": "public/images/products/banh-quy/cookies-bo-chip.webp",
-    "featured": false,
-    "description_vi": "Thành phần bao gồm bột, đường, bơ, sữa và socola chip.",
-    "description_en": "Authentic handcrafted Túi Cookies sô chip prepared with premium natural ingredients following traditional Japanese bakery recipes.",
-    "subcategory": "cookies-tui",
-    "subcategory_name": "Túi Cookies & Bánh Que",
-    "subcategory_name_en": "Cookies Pouches & Stick Pies",
-    "variants": [
-      {
-        "size": "standard",
-        "name": "Hộp tiêu chuẩn",
-        "price": 50000
-      }
-    ]
-  },
-  {
-    "id": "Biscot",
-    "name_vi": "Biscot",
-    "name_en": "Crispy Almond Biscotti",
-    "category": "banh-quy",
-    "category_name": "Bánh Quy",
-    "category_name_en": "Cookies & Biscuits",
-    "price": 22000,
-    "img": "public/images/products/banh-quy/biscot.webp",
-    "featured": false,
-    "description_vi": "Những lát bánh mì được phết bơ và đường được nướng giòn rụm.",
-    "description_en": "Authentic handcrafted Biscot prepared with premium natural ingredients following traditional Japanese bakery recipes.",
-    "subcategory": "cookies-tui",
-    "subcategory_name": "Túi Cookies & Bánh Que",
-    "subcategory_name_en": "Cookies Pouches & Stick Pies",
-    "variants": [
-      {
-        "size": "standard",
-        "name": "Hộp tiêu chuẩn",
-        "price": 22000
+        "name": "Phần tiêu chuẩn",
+        "price": 25000
       }
     ]
   },
