@@ -17,3 +17,7 @@ __pycache__/
 
 *.log
 .agent/
+
+# Local Analytics Database
+dashboard/*.db
+dashboard/*.sqlite

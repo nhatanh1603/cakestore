@@ -10,6 +10,7 @@ import {
     initProductDetailPage,
     initSearchPageCatalog
 } from './modules/catalog.js';
+import { trackPageView, trackOrderPlaced } from './modules/tracker.js';
 
 if (typeof window !== 'undefined' && window.location) {
     const p = window.location.pathname;
@@ -51,6 +52,7 @@ if (typeof window !== 'undefined') {
 }
 
 function init() {
+    trackPageView();
 
     const currentLang = getLanguage();
     setLanguage(currentLang);
@@ -756,6 +758,7 @@ function init() {
             });
             localStorage.removeItem('poeme_order_note');
             lastPlacedOrder = order;
+            trackOrderPlaced(order);
             try {
                 sessionStorage.setItem('poeme_last_placed_order', JSON.stringify(order));
             } catch {}

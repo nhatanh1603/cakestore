@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poeme Live Security & Ops Radar | poemefake.id.vn</title>
+    <link rel="icon" type="image/png" href="/public/Poeme Dessert Logo Icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <style>
+        :root {
+            --bg-base: #090d14;
+            --bg-card: #111722;
+            --bg-card-hover: #162030;
+            --border: #1e293b;
+            --accent-green: #10b981;
+            --accent-cyan: #06b6d4;
+            --accent-gold: #f59e0b;
+            --accent-red: #ef4444;
+            --accent-purple: #8b5cf6;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --font-mono: 'JetBrains Mono', monospace;
+            --font-main: 'Montserrat', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: var(--bg-base);
+            color: var(--text-primary);
+            font-family: var(--font-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        header.radar-header {
+            background: rgba(17, 23, 34, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            padding: 14px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .header-brand {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+        .header-brand img {
+            height: 34px;
+            object-fit: contain;
+        }
+        .header-brand h1 {
+            font-size: 16px;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .header-brand .radar-tag {
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--accent-green);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            font-size: 11px;
+            font-family: var(--font-mono);
+            font-weight: 600;
+            padding: 3px 8px;
+            border-radius: 4px;
+            text-transform: uppercase;
+        }
+        .radar-status {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            font-family: var(--font-mono);
+            font-size: 12.5px;
+        }
+        .live-dot {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--accent-green);
+        }
+        .live-dot::before {
+            content: '';
+            width: 9px;
+            height: 9px;
+            background: var(--accent-green);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--accent-green);
+            animation: pulse 1.6s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(0.85); }
+        }
+
+        .main-container {
+            flex: 1;
+            padding: 20px 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+        .metric-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+        }
+        .metric-card::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+        }
+        .card-online::after { background: var(--accent-green); }
+        .card-views::after { background: var(--accent-cyan); }
+        .card-orders::after { background: var(--accent-gold); }
+        .card-revenue::after { background: var(--accent-purple); }
+
+        .metric-info h3 {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+            font-family: var(--font-mono);
+        }
+        .metric-info .metric-num {
+            font-size: 26px;
+            font-weight: 800;
+            font-family: var(--font-mono);
+        }
+        .metric-icon {
+            font-size: 28px;
+            opacity: 0.35;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1.6fr 1fr;
+            gap: 20px;
+            flex: 1;
+        }
+        .panel {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .panel-header {
+            padding: 12px 18px;
+            border-bottom: 1px solid var(--border);
+            background: rgba(255, 255, 255, 0.02);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .panel-header h2 {
+            font-size: 13.5px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .panel-header .badge {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-family: var(--font-mono);
+        }
+
+        #radarMap {
+            height: 380px;
+            width: 100%;
+            background: #0b111b;
+        }
+
+        .table-wrap {
+            max-height: 360px;
+            overflow-y: auto;
+        }
+        table.radar-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12px;
+            text-align: left;
+        }
+        table.radar-table th {
+            background: #0f1521;
+            padding: 10px 14px;
+            font-family: var(--font-mono);
+            font-size: 11px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 2;
+        }
+        table.radar-table td {
+            padding: 10px 14px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            font-family: var(--font-mono);
+        }
+        table.radar-table tr:hover td {
+            background: var(--bg-card-hover);
+        }
+        .device-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 3px 8px;
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 4px;
+            font-size: 11px;
+        }
+        .path-pill {
+            color: var(--accent-cyan);
+            background: rgba(6, 182, 212, 0.1);
+            padding: 2px 6px;
+            border-radius: 3px;
+        }
+        .map-link-btn {
+            color: var(--accent-gold);
+            text-decoration: none;
+            transition: color 0.15s;
+        }
+        .map-link-btn:hover {
+            text-decoration: underline;
+        }
+
+        .orders-feed {
+            flex: 1;
+            max-height: 760px;
+            overflow-y: auto;
+            padding: 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .order-card-live {
+            background: #0d1420;
+            border: 1px solid rgba(245, 158, 11, 0.35);
+            border-left: 4px solid var(--accent-gold);
+            padding: 14px;
+            animation: slideDown 0.3s ease;
+        }
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .order-card-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 8px;
+        }
+        .order-card-id {
+            font-family: var(--font-mono);
+            font-weight: 700;
+            color: var(--accent-gold);
+            font-size: 13px;
+        }
+        .order-card-time {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+        .order-card-cust {
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        .order-card-addr {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+        .order-items-mini {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 8px;
+            border-radius: 4px;
+            font-size: 11.5px;
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+        .order-card-total {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            font-weight: 700;
+            border-top: 1px dashed var(--border);
+            padding-top: 8px;
+        }
+        .order-card-total span:last-child {
+            color: var(--accent-gold);
+            font-family: var(--font-mono);
+            font-size: 14px;
+        }
+
+        .threat-radar {
+            margin-top: 16px;
+            background: #0c121c;
+            border: 1px solid var(--border);
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-family: var(--font-mono);
+            font-size: 11.5px;
+        }
+        .threat-status-ok {
+            color: var(--accent-green);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .empty-placeholder {
+            text-align: center;
+            color: var(--text-muted);
+            padding: 40px 20px;
+            font-size: 13px;
+            font-family: var(--font-mono);
+        }
+
+        @media (max-width: 1024px) {
+            .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+            .content-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="radar-header">
+        <div class="header-brand">
+            <img src="/public/Poeme Japanese Bakery Logo.png" alt="Poeme Logo" onerror="this.style.display='none'">
+            <h1>
+                POEME OPS & SECURITY RADAR
+                <span class="radar-tag">ONLINE MONITOR</span>
+            </h1>
+        </div>
+        <div class="radar-status">
+            <span class="live-dot" id="radarStatusText">RADAR ACTIVE (poemefake.id.vn)</span>
+            <span style="color: var(--text-muted);" id="clockDisplay">--:--:--</span>
+            <button id="btnAudioToggle" style="background: none; border: 1px solid var(--border); color: var(--text-secondary); padding: 4px 10px; cursor: pointer; border-radius: 4px; font-size: 12px;">
+                <i class="fa-solid fa-volume-high"></i> Alert Sound: ON
+            </button>
+        </div>
+    </header>
+
+    <main class="main-container">
+
+        <div class="metrics-grid">
+            <div class="metric-card card-online">
+                <div class="metric-info">
+                    <h3>Đang Online (5m)</h3>
+                    <div class="metric-num" style="color: var(--accent-green);" id="kpiActiveVisitors">0</div>
+                </div>
+                <div class="metric-icon" style="color: var(--accent-green);"><i class="fa-solid fa-users-viewfinder"></i></div>
+            </div>
+            <div class="metric-card card-views">
+                <div class="metric-info">
+                    <h3>Tổng Lượt Xem</h3>
+                    <div class="metric-num" style="color: var(--accent-cyan);" id="kpiTotalViews">0</div>
+                </div>
+                <div class="metric-icon" style="color: var(--accent-cyan);"><i class="fa-solid fa-eye"></i></div>
+            </div>
+            <div class="metric-card card-orders">
+                <div class="metric-info">
+                    <h3>Đơn Hàng Mới</h3>
+                    <div class="metric-num" style="color: var(--accent-gold);" id="kpiTotalOrders">0</div>
+                </div>
+                <div class="metric-icon" style="color: var(--accent-gold);"><i class="fa-solid fa-receipt"></i></div>
+            </div>
+            <div class="metric-card card-revenue">
+                <div class="metric-info">
+                    <h3>Doanh Thu Đã Chốt</h3>
+                    <div class="metric-num" style="color: var(--accent-purple);" id="kpiTotalRevenue">0₫</div>
+                </div>
+                <div class="metric-icon" style="color: var(--accent-purple);"><i class="fa-solid fa-sack-dollar"></i></div>
+            </div>
+        </div>
+
+        <div class="content-grid">
+            <div style="display: flex; flex-direction: column; gap: 20px;">
+                <div class="panel">
+                    <div class="panel-header">
+                        <h2><i class="fa-solid fa-earth-asia" style="color: var(--accent-cyan);"></i> Bản Đồ Định Vị Khách Hàng (Google Maps Geolocation)</h2>
+                        <span class="badge" id="mapPinCount">0 Pinned Locations</span>
+                    </div>
+                    <div id="radarMap"></div>
+                </div>
+
+                <div class="panel">
+                    <div class="panel-header">
+                        <h2><i class="fa-solid fa-list-check" style="color: var(--accent-green);"></i> Luồng Truy Cập Thời Gian Thực (Live Visitor Stream)</h2>
+                        <span class="badge" id="visitorStreamCount">0 Logs</span>
+                    </div>
+                    <div class="table-wrap">
+                        <table class="radar-table">
+                            <thead>
+                                <tr>
+                                    <th>Thời Gian</th>
+                                    <th>Địa Chỉ IP & Nhà Mạng</th>
+                                    <th>Vị Trí (Tỉnh / Thành)</th>
+                                    <th>Thiết Bị & Model</th>
+                                    <th>Trình Duyệt</th>
+                                    <th>Trang Đang Xem</th>
+                                    <th>Bản Đồ</th>
+                                </tr>
+                            </thead>
+                            <tbody id="visitorTableBody">
+                                <tr>
+                                    <td colspan="7" class="empty-placeholder">
+                                        <i class="fa-solid fa-satellite-dish" style="font-size: 24px; margin-bottom: 8px; display: block;"></i>
+                                        Đang lắng nghe tín hiệu từ poemefake.id.vn...
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 20px;">
+                <div class="panel" style="flex: 1;">
+                    <div class="panel-header">
+                        <h2><i class="fa-solid fa-bell" style="color: var(--accent-gold);"></i> Đơn Hàng Vừa Đặt (Live Orders)</h2>
+                        <span class="badge" id="liveOrdersBadge" style="background: rgba(245, 158, 11, 0.2); color: var(--accent-gold);">0 Đơn</span>
+                    </div>
+                    <div class="orders-feed" id="ordersFeedContainer">
+                        <div class="empty-placeholder" id="emptyOrdersNotice">
+                            <i class="fa-solid fa-box-open" style="font-size: 26px; margin-bottom: 8px; display: block;"></i>
+                            Chưa có đơn hàng mới nào được đặt.<br>
+                            Khi khách bấm "Đặt hàng ngay" trên web online, đơn sẽ xuất hiện tại đây ngay lập tức!
+                        </div>
+                    </div>
+                </div>
+
+                <div class="threat-radar">
+                    <span class="threat-status-ok"><i class="fa-solid fa-shield-halved"></i> Firewall Status: Active • XSS & Tamper Guard Online</span>
+                    <button id="btnClearData" style="background: none; border: 1px solid var(--border); color: var(--text-muted); padding: 3px 8px; font-size: 11px; cursor: pointer; border-radius: 3px;">
+                        <i class="fa-solid fa-trash-can"></i> Xóa Lịch Sử
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        let soundEnabled = true;
+        let map = null;
+        const markers = [];
+        const visitorsList = [];
+        const ordersList = [];
+
+        function playChime(freq = 880, type = 'sine', duration = 0.25) {
+            if (!soundEnabled) return;
+            try {
+                const ctx = new (window.AudioContext || window.webkitAudioContext)();
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.type = type;
+                osc.frequency.setValueAtTime(freq, ctx.currentTime);
+                gain.gain.setValueAtTime(0.15, ctx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + duration);
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                osc.start();
+                osc.stop(ctx.currentTime + duration);
+            } catch {}
+        }
+
+        function initMap() {
+            map = L.map('radarMap', { zoomControl: true }).setView([21.0285, 105.8542], 11);
+            L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+                attribution: '&copy; CartoDB & OpenStreetMap contributors',
+                maxZoom: 19
+            }).addTo(map);
+        }
+
+        function addMapPin(lat, lon, label, isOrder = false) {
+            if (!map || isNaN(lat) || isNaN(lon)) return;
+            const color = isOrder ? '#f59e0b' : '#10b981';
+            const iconHtml = `<div style="width: 14px; height: 14px; background: ${color}; border: 2px solid #fff; border-radius: 50%; box-shadow: 0 0 12px ${color};"></div>`;
+            const customIcon = L.divIcon({
+                html: iconHtml,
+                className: 'custom-radar-pin',
+                iconSize: [14, 14],
+                iconAnchor: [7, 7]
+            });
+            const marker = L.marker([lat, lon], { icon: customIcon }).addTo(map);
+            marker.bindPopup(label);
+            markers.push(marker);
+            document.getElementById('mapPinCount').textContent = `${markers.length} Pinned Locations`;
+        }
+
+        function renderVisitorRow(v) {
+            const timeStr = new Date(v.timestamp || Date.now()).toLocaleTimeString('vi-VN');
+            const city = v.city || 'Hà Nội';
+            const country = v.country || 'Việt Nam';
+            const lat = v.lat || 21.0285;
+            const lon = v.lon || 105.8542;
+            const gmapUrl = `https://www.google.com/maps?q=${lat},${lon}`;
+
+            let deviceIcon = 'fa-desktop';
+            if (v.device_type === 'Mobile') deviceIcon = 'fa-mobile-screen-button';
+            else if (v.device_type === 'Tablet') deviceIcon = 'fa-tablet-screen-button';
+
+            return `
+                <tr>
+                    <td style="color: var(--text-muted);">${timeStr}</td>
+                    <td><strong style="color: var(--text-primary);">${v.ip || 'Unknown'}</strong><br><small style="color: var(--text-muted);">${v.isp || 'Internet'}</small></td>
+                    <td>${v.country_code === 'VN' || country.includes('Viet') ? '🇻🇳' : '🌐'} ${city}, ${country}</td>
+                    <td>
+                        <span class="device-pill"><i class="fa-solid ${deviceIcon}"></i> ${v.device_name || 'PC'}</span><br>
+                        <small style="color: var(--text-muted);">${v.os || ''}</small>
+                    </td>
+                    <td>${v.browser || 'Browser'}</td>
+                    <td><span class="path-pill">${v.path || '/'}</span></td>
+                    <td><a href="${gmapUrl}" target="_blank" rel="noopener noreferrer" class="map-link-btn" title="Xem trên Google Maps"><i class="fa-solid fa-map-location-dot"></i> Maps</a></td>
+                </tr>
+            `;
+        }
+
+        function renderOrderCard(ord) {
+            const timeStr = new Date(ord.timestamp || Date.now()).toLocaleTimeString('vi-VN') + ' - ' + new Date(ord.timestamp || Date.now()).toLocaleDateString('vi-VN');
+            let itemsHtml = '';
+            let itemsArr = [];
+            try {
+                itemsArr = typeof ord.items_json === 'string' ? JSON.parse(ord.items_json) : (ord.items || []);
+            } catch {}
+
+            if (itemsArr.length > 0) {
+                itemsHtml = itemsArr.map(i => `• ${i.title} (x${i.qty || 1})${i.inscription ? ` - <em>"${i.inscription}"</em>` : ''}`).join('<br>');
+            } else {
+                itemsHtml = `Tổng số lượng: ${ord.items_count || 1} món bánh`;
+            }
+
+            return `
+                <div class="order-card-live">
+                    <div class="order-card-top">
+                        <span class="order-card-id"><i class="fa-solid fa-receipt"></i> #${ord.order_id || ord.orderId}</span>
+                        <span class="order-card-time">${timeStr}</span>
+                    </div>
+                    <div class="order-card-cust">
+                        <i class="fa-solid fa-user"></i> ${ord.customer_name || ord.customerName} | <i class="fa-solid fa-phone"></i> ${ord.customer_phone || ord.customerPhone}
+                    </div>
+                    <div class="order-card-addr">
+                        <i class="fa-solid fa-location-dot"></i> ${ord.address || 'Hà Nội'}
+                    </div>
+                    <div class="order-items-mini">${itemsHtml}</div>
+                    ${ord.note ? `<div style="font-size: 11.5px; color: var(--accent-gold); margin-bottom: 6px;"><em>Lời chúc: "${ord.note}"</em></div>` : ''}
+                    <div class="order-card-total">
+                        <span>Tổng tiền thanh toán:</span>
+                        <span>${(ord.total_amount || ord.totalAmount || 0).toLocaleString('vi-VN')}₫</span>
+                    </div>
+                </div>
+            `;
+        }
+
+        async function syncFromLocalServer() {
+            try {
+                const res = await fetch('/api/history');
+                if (!res.ok) return;
+                const data = await res.json();
+
+                document.getElementById('kpiActiveVisitors').textContent = data.active_visitors || 0;
+                document.getElementById('kpiTotalViews').textContent = data.total_visitors || 0;
+                document.getElementById('kpiTotalOrders').textContent = data.total_orders || 0;
+                document.getElementById('kpiTotalRevenue').textContent = (data.total_revenue || 0).toLocaleString('vi-VN') + '₫';
+
+                if (Array.isArray(data.visitors) && data.visitors.length > 0) {
+                    const tbody = document.getElementById('visitorTableBody');
+                    tbody.innerHTML = data.visitors.map(renderVisitorRow).join('');
+                    document.getElementById('visitorStreamCount').textContent = `${data.visitors.length} Logs`;
+
+                    data.visitors.forEach(v => {
+                        if (v.lat && v.lon) {
+                            addMapPin(v.lat, v.lon, `<strong>${v.ip}</strong><br>${v.city}, ${v.country}<br>${v.device_name}<br>Page: ${v.path}`);
+                        }
+                    });
+                }
+
+                if (Array.isArray(data.orders) && data.orders.length > 0) {
+                    const ordersContainer = document.getElementById('ordersFeedContainer');
+                    ordersContainer.innerHTML = data.orders.map(renderOrderCard).join('');
+                    document.getElementById('liveOrdersBadge').textContent = `${data.orders.length} Đơn`;
+                }
+            } catch {}
+        }
+
+        function listenLiveEvents() {
+            const telemetrySSE = new EventSource('https://ntfy.sh/poeme_telemetry_ae7c92cc_secops/sse');
+            telemetrySSE.onmessage = (e) => {
+                try {
+                    const payload = JSON.parse(e.data);
+                    const msg = payload.message ? JSON.parse(payload.message) : payload;
+                    if (msg && msg.type === 'pageview') {
+                        const geo = msg.geo || {};
+                        const dev = msg.device || {};
+                        const rowObj = {
+                            timestamp: msg.timestamp || Date.now(),
+                            ip: geo.ip || 'Unknown',
+                            isp: geo.isp || 'Internet',
+                            city: geo.city || 'Hà Nội',
+                            country: geo.country || 'Việt Nam',
+                            country_code: geo.country_code || 'VN',
+                            device_type: dev.deviceType || 'Desktop',
+                            device_name: dev.deviceName || 'PC',
+                            os: dev.os || '',
+                            browser: dev.browser || '',
+                            path: msg.path || '/',
+                            lat: geo.lat || 21.0285,
+                            lon: geo.lon || 105.8542
+                        };
+                        const tbody = document.getElementById('visitorTableBody');
+                        const placeholder = tbody.querySelector('.empty-placeholder');
+                        if (placeholder) tbody.innerHTML = '';
+                        tbody.insertAdjacentHTML('afterbegin', renderVisitorRow(rowObj));
+
+                        addMapPin(rowObj.lat, rowObj.lon, `<strong>${rowObj.ip}</strong><br>${rowObj.city}<br>${rowObj.device_name}`);
+                        playChime(640, 'sine', 0.15);
+
+                        const totalViewsEl = document.getElementById('kpiTotalViews');
+                        totalViewsEl.textContent = (parseInt(totalViewsEl.textContent, 10) || 0) + 1;
+                    }
+                } catch {}
+            };
+
+            const ordersSSE = new EventSource('https://ntfy.sh/poeme_orders_ae7c92cc_secops/sse');
+            ordersSSE.onmessage = (e) => {
+                try {
+                    const payload = JSON.parse(e.data);
+                    const msg = payload.message ? JSON.parse(payload.message) : payload;
+                    if (msg && msg.type === 'order') {
+                        const ordersContainer = document.getElementById('ordersFeedContainer');
+                        const emptyNotice = document.getElementById('emptyOrdersNotice');
+                        if (emptyNotice) emptyNotice.remove();
+
+                        ordersContainer.insertAdjacentHTML('afterbegin', renderOrderCard(msg));
+                        playChime(1100, 'triangle', 0.6);
+
+                        const totalOrdersEl = document.getElementById('kpiTotalOrders');
+                        totalOrdersEl.textContent = (parseInt(totalOrdersEl.textContent, 10) || 0) + 1;
+
+                        const totalRevEl = document.getElementById('kpiTotalRevenue');
+                        const curRev = parseInt(totalRevEl.textContent.replace(/\D/g, ''), 10) || 0;
+                        totalRevEl.textContent = (curRev + (msg.totalAmount || 0)).toLocaleString('vi-VN') + '₫';
+
+                        if (msg.geo && msg.geo.lat && msg.geo.lon) {
+                            addMapPin(msg.geo.lat, msg.geo.lon, `★ <strong>ĐƠN HÀNG: ${msg.orderId}</strong><br>${msg.customerName} - ${(msg.totalAmount || 0).toLocaleString('vi-VN')}₫`, true);
+                        }
+                    }
+                } catch {}
+            };
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            initMap();
+            syncFromLocalServer();
+            listenLiveEvents();
+
+            setInterval(() => {
+                document.getElementById('clockDisplay').textContent = new Date().toLocaleTimeString('vi-VN');
+            }, 1000);
+
+            setInterval(syncFromLocalServer, 8000);
+
+            document.getElementById('btnAudioToggle').addEventListener('click', (e) => {
+                soundEnabled = !soundEnabled;
+                e.currentTarget.innerHTML = soundEnabled
+                    ? '<i class="fa-solid fa-volume-high"></i> Alert Sound: ON'
+                    : '<i class="fa-solid fa-volume-xmark"></i> Alert Sound: OFF';
+            });
+
+            document.getElementById('btnClearData').addEventListener('click', async () => {
+                if (confirm('Bạn có chắc muốn xóa sạch toàn bộ lịch sử truy cập và đơn hàng trong database local?')) {
+                    await fetch('/api/clear');
+                    location.reload();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
