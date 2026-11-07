@@ -20,13 +20,16 @@
         <div class="header-wrap">
             <div id="menu-toggle"><div class="menu-wrap"><i></i><i></i><i></i></div></div>
 
-            <div id="logo">
+            <div id="logo" class="header-logo-block">
                 <a href="/" class="logo-link">
                     <img src="/public/Poeme Japanese Bakery Logo.png" alt="Poeme Japanese Bakery" class="logo-img">
                 </a>
+                <button type="button" class="btn-search-mobile btn-search-toggle" id="btnSearchMobile" title="Tìm kiếm" data-i18n-title="search_btn">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
             </div>
 
-                        <nav id="primary-menu" class="navigation--horizontal">
+            <nav id="primary-menu" class="navigation--horizontal">
                 <div class="navigation-wrapper">
                     <ul class="navigation ega-menu ega-ul">
                         <li class="ega-menu__item">
@@ -40,17 +43,15 @@
                                 <span data-i18n="nav_products">Sản phẩm</span>
                                 <i class="fa-solid fa-caret-down"></i>
                             </a>
-                                                        <div class="mega-menu">
+                            <div class="mega-menu">
                                 <div class="mega-menu-inner">
+                                    <div class="mega-menu-top-mobile">
+                                        <a href="/products" class="mega-all-products-link">
+                                            <span data-i18n="nav_all_products">Tất cả sản phẩm</span>
+                                            <i class="fa-solid fa-arrow-right"></i>
+                                        </a>
+                                    </div>
                                     <div class="mega-menu-grid">
-
-                                        <div class="mega-col">
-                                            <a href="/products?cat=banh-gato" class="mega-col-title" data-i18n="cat_banh_gato">Bánh Gato</a>
-                                            <ul class="mega-sub-list">
-                                                <li><a href="/products?sub=banh-gato-nguyen-chiec" data-i18n="sub_gato_whole">Bánh sinh nhật nguyên chiếc</a></li>
-                                            </ul>
-                                        </div>
-
                                         <div class="mega-col">
                                             <a href="/products?cat=banh-kem-tuoi" class="mega-col-title" data-i18n="cat_banh_kem_tuoi">Bánh Kem Tươi</a>
                                             <ul class="mega-sub-list">
@@ -81,6 +82,13 @@
                                         </div>
 
                                         <div class="mega-col">
+                                            <a href="/products?cat=banh-gato" class="mega-col-title" data-i18n="cat_banh_gato">Bánh Gato</a>
+                                            <ul class="mega-sub-list">
+                                                <li><a href="/products?sub=banh-gato-nguyen-chiec" data-i18n="sub_gato_whole">Bánh sinh nhật nguyên chiếc</a></li>
+                                            </ul>
+                                        </div>
+
+                                        <div class="mega-col">
                                             <a href="/products?cat=nuoc" class="mega-col-title" data-i18n="cat_nuoc">Đồ Uống</a>
                                             <ul class="mega-sub-list">
                                                 <li><a href="/products?cat=nuoc" data-i18n="cat_nuoc">Đồ Uống</a></li>
@@ -100,6 +108,14 @@
                                                 <li><a href="/products?sub=phu-kien-sinh-nhat" data-i18n="sub_accessories_party">Phụ kiện trang trí sinh nhật & tiệc</a></li>
                                             </ul>
                                         </div>
+
+                                        <div class="mega-col mega-col--all">
+                                            <a href="/products" class="mega-col-title mega-col-title--special">
+                                                <span data-i18n="nav_all_products">Tất cả sản phẩm</span>
+                                                <i class="fa-solid fa-arrow-right"></i>
+                                            </a>
+                                            <p class="mega-sub-desc" data-i18n="mega_explore_desc">Khám phá hơn 170+ món bánh tinh hoa Nhật Bản</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -107,8 +123,8 @@
                         <li class="ega-menu__item">
                             <a class="ega-menu__link" href="/stores"><span data-i18n="nav_stores">Danh sách cửa hàng</span></a>
                         </li>
-                        <li class="ega-menu__item">
-                            <button type="button" class="btn-search-nav btn-search-toggle" title="Tìm kiếm" data-i18n-title="search_btn">
+                        <li class="ega-menu__item desktop-search-item">
+                            <button type="button" class="btn-search-nav btn-search-toggle" id="btnSearchDesktop" title="Tìm kiếm" data-i18n-title="search_btn">
                                 <i class="fa-solid fa-magnifying-glass"></i>
                             </button>
                         </li>
@@ -179,10 +195,42 @@
         </div>
     </main>
 
+    <button type="button" class="floating-cat-btn" id="btnFloatingCat" aria-label="Mở danh mục sản phẩm">
+        <i class="fa-solid fa-bars"></i>
+    </button>
+
+    <div class="cat-modal-backdrop" id="catModalBackdrop"></div>
+    <div class="cat-modal-dialog" id="catModalDialog" role="dialog" aria-modal="true" aria-labelledby="catModalHeading">
+        <div class="cat-modal-header">
+            <h3 class="cat-modal-title" id="catModalHeading" data-i18n="modal_cat_heading">DANH MỤC</h3>
+        </div>
+        <div class="cat-modal-body">
+            <ul class="cat-modal-list" id="catModalList">
+            </ul>
+        </div>
+        <div class="cat-modal-footer">
+            <button type="button" class="cat-modal-close" id="btnCatModalClose" aria-label="Đóng">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+    </div>
+
     <div class="floating-contact" id="floatingContactWidget">
-        <a href="https://discord.gg/poeme" target="_blank" rel="noopener noreferrer" class="float-btn float-discord" title="Cộng đồng & Hỗ trợ Discord" data-i18n-title="float_discord">
-            <i class="fa-brands fa-discord"></i>
-        </a>
+        <div class="float-action-list" id="floatActionList">
+            <a href="https://discord.gg/poeme" target="_blank" rel="noopener noreferrer" class="float-btn float-call" title="Hotline tư vấn" data-i18n-title="float_call">
+                <i class="fa-solid fa-phone"></i>
+            </a>
+            <a href="https://discord.gg/poeme" target="_blank" rel="noopener noreferrer" class="float-btn float-messenger" title="Nhắn tin Messenger" data-i18n-title="float_messenger">
+                <i class="fa-brands fa-facebook-messenger"></i>
+            </a>
+            <a href="https://discord.gg/poeme" target="_blank" rel="noopener noreferrer" class="float-btn float-discord" title="Cộng đồng Discord" data-i18n-title="float_discord">
+                <i class="fa-brands fa-discord"></i>
+            </a>
+        </div>
+        <button type="button" class="float-btn float-toggle" id="btnToggleContact" title="Thu gọn liên hệ" aria-label="Mở kênh liên hệ">
+            <i class="fa-solid fa-headset icon-closed"></i>
+            <i class="fa-solid fa-xmark icon-opened"></i>
+        </button>
     </div>
 
     <footer>

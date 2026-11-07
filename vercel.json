@@ -3,6 +3,11 @@
   "outputDirectory": ".",
   "cleanUrls": true,
   "trailingSlash": false,
+  "redirects": [
+    { "source": "/index.html", "destination": "/", "permanent": true },
+    { "source": "/index", "destination": "/", "permanent": true },
+    { "source": "/pages/:path*", "destination": "/:path*", "permanent": true }
+  ],
   "rewrites": [
     { "source": "/products", "destination": "/pages/products" },
     { "source": "/product-detail", "destination": "/pages/product-detail" },

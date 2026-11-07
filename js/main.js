@@ -10,6 +10,17 @@ import {
     initSearchPageCatalog
 } from './modules/catalog.js';
 
+if (typeof window !== 'undefined' && window.location) {
+    const p = window.location.pathname;
+    if (p.endsWith('.html') || p === '/index.html' || p === '/index') {
+        const clean = p.replace(/\/index(\.html)?$/, '/').replace(/\.html$/, '');
+        const target = (clean || '/') + window.location.search + window.location.hash;
+        try {
+            window.history.replaceState(null, '', target);
+        } catch {}
+    }
+}
+
 if (typeof registerProductsI18n === 'function') {
     registerProductsI18n(PRODUCTS);
 }
@@ -99,6 +110,24 @@ function init() {
             if (e.key === 'Escape' && primaryMenu.classList.contains('is-open')) {
                 primaryMenu.classList.remove('is-open');
                 menuToggle.classList.remove('is-active');
+            }
+        });
+
+        const hasChildItems = document.querySelectorAll('#primary-menu .ega-menu__item.has-child');
+        hasChildItems.forEach(item => {
+            const link = item.querySelector(':scope > a');
+            if (link) {
+                link.addEventListener('click', (e) => {
+                    if (window.innerWidth <= 991) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        const wasExpanded = item.classList.contains('is-expanded');
+                        hasChildItems.forEach(other => other.classList.remove('is-expanded'));
+                        if (!wasExpanded) {
+                            item.classList.add('is-expanded');
+                        }
+                    }
+                });
             }
         });
     }

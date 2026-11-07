@@ -473,6 +473,126 @@ export function initProductsPageCatalog() {
 
     buildCategorySidebar();
     renderCatalog();
+
+    function initFloatingCategoryModal() {
+        const btnFloatingCat = document.getElementById('btnFloatingCat');
+        const catModalDialog = document.getElementById('catModalDialog');
+        const catModalBackdrop = document.getElementById('catModalBackdrop');
+        const btnCatModalClose = document.getElementById('btnCatModalClose');
+        const sidebarFilter = document.querySelector('.sidebar-filter');
+
+        if (!btnFloatingCat) return;
+
+        function updateBtnVisibility() {
+            if (!sidebarFilter) {
+                btnFloatingCat.classList.toggle('is-visible', window.scrollY > 220);
+                return;
+            }
+            const rect = sidebarFilter.getBoundingClientRect();
+            const shouldShow = rect.bottom < 120 || window.scrollY > 220;
+            btnFloatingCat.classList.toggle('is-visible', shouldShow);
+        }
+
+        window.addEventListener('scroll', updateBtnVisibility, { passive: true });
+        updateBtnVisibility();
+
+        function renderCatModalItems() {
+            const modalList = document.getElementById('catModalList');
+            if (!modalList) return;
+            const lang = (typeof getLanguage === 'function' ? getLanguage() : localStorage.getItem('poeme_lang')) || 'en';
+            const allProds = getProductList();
+
+            const counts = { all: allProds.length };
+            CATEGORIES.filter(c => c.slug !== 'all').forEach(c => {
+                counts[c.slug] = allProds.filter(p => p.category === c.slug).length;
+            });
+
+            let html = '';
+            const isAllActive = currentCategory === 'all' && currentSubcategory === 'all';
+            html += `
+                <li class="cat-modal-item ${isAllActive ? 'is-active' : ''}" data-cat="all">
+                    <span class="cat-modal-name">${lang === 'en' ? 'All Products' : 'Tất cả sản phẩm'}</span>
+                    <span class="cat-modal-count">${counts.all}</span>
+                </li>
+            `;
+
+            CATEGORIES.filter(c => c.slug !== 'all').forEach(cat => {
+                const isActive = currentCategory === cat.slug;
+                const catName = lang === 'en' ? cat.name_en : cat.name_vi;
+                html += `
+                    <li class="cat-modal-item ${isActive ? 'is-active' : ''}" data-cat="${cat.slug}">
+                        <span class="cat-modal-name">${catName}</span>
+                        <span class="cat-modal-count">${counts[cat.slug] || 0}</span>
+                    </li>
+                `;
+            });
+
+            modalList.innerHTML = html;
+
+            modalList.querySelectorAll('.cat-modal-item').forEach(item => {
+                item.addEventListener('click', () => {
+                    const catSlug = item.getAttribute('data-cat');
+                    currentCategory = catSlug;
+                    currentSubcategory = 'all';
+                    openAccordionCat = (catSlug !== 'all') ? catSlug : null;
+                    currentPage = 1;
+
+                    try {
+                        let newUrl = '/products';
+                        if (currentCategory !== 'all') {
+                            newUrl = `/products?cat=${encodeURIComponent(currentCategory)}`;
+                        }
+                        history.replaceState(null, '', newUrl);
+                    } catch {}
+
+                    updateCategorySidebarState();
+                    renderCatalog();
+                    closeCatModal();
+
+                    const gridEl = document.getElementById('productGrid');
+                    if (gridEl) {
+                        const y = gridEl.getBoundingClientRect().top + window.pageYOffset - 90;
+                        window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
+                    }
+                });
+            });
+        }
+
+        function openCatModal() {
+            renderCatModalItems();
+            catModalDialog?.classList.add('is-open');
+            catModalBackdrop?.classList.add('is-open');
+        }
+
+        function closeCatModal() {
+            catModalDialog?.classList.remove('is-open');
+            catModalBackdrop?.classList.remove('is-open');
+        }
+
+        btnFloatingCat.onclick = (e) => {
+            e.stopPropagation();
+            openCatModal();
+        };
+
+        if (btnCatModalClose) {
+            btnCatModalClose.onclick = (e) => {
+                e.stopPropagation();
+                closeCatModal();
+            };
+        }
+
+        if (catModalBackdrop) {
+            catModalBackdrop.onclick = closeCatModal;
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && catModalDialog?.classList.contains('is-open')) {
+                closeCatModal();
+            }
+        });
+    }
+
+    initFloatingCategoryModal();
 }
 
 export function initProductDetailPage() {
