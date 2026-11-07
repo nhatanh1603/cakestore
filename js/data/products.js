@@ -34,6 +34,18 @@ export const CATEGORIES = [
     "name_vi": "Phụ Kiện",
     "name_en": "Party Accessories",
     "icon": "fa-solid fa-wand-magic-sparkles"
+  },
+  {
+    "slug": "nuoc",
+    "name_vi": "Đồ Uống",
+    "name_en": "Beverages",
+    "icon": "fa-solid fa-mug-hot"
+  },
+  {
+    "slug": "snack",
+    "name_vi": "Snacks & Đồ Ăn Vặt",
+    "name_en": "Snacks & Tidbits",
+    "icon": "fa-solid fa-bowl-food"
   }
 ];
 
@@ -121,6 +133,24 @@ export const SUBCATEGORIES = [
     "parent": "phu-kien",
     "name_vi": "Nến & Mũ Sinh Nhật",
     "name_en": "Birthday Candles & Hats"
+  },
+  {
+    "slug": "nuoc-sua-trai-cay",
+    "parent": "nuoc",
+    "name_vi": "Sữa Trái Cây & Nước Gạo",
+    "name_en": "Fruit Milk & Rice Drink"
+  },
+  {
+    "slug": "nuoc-tra-hoa-qua",
+    "parent": "nuoc",
+    "name_vi": "Trà & Nước Ép Nguyên Chất",
+    "name_en": "Tea & Pure Fruit Juice"
+  },
+  {
+    "slug": "snack-do-an-vat",
+    "parent": "snack",
+    "name_vi": "Bánh Gạo & Cơm Cháy",
+    "name_en": "Crispy Crackers & Burnt Rice"
   }
 ];
 
@@ -5677,5 +5707,158 @@ export const PRODUCTS = [
         "price": 12000
       }
     ]
+  },
+  {
+    "id": "SuaTraiCayTHTrueJuiceMilk",
+    "name_vi": "Sữa trái cây TH True JUICE Milk 300ml",
+    "name_en": "TH True JUICE Milk Fruit Drink 300ml",
+    "category": "nuoc",
+    "category_name": "Đồ Uống",
+    "category_name_en": "Beverages",
+    "subcategory": "nuoc-sua-trai-cay",
+    "subcategory_name": "Sữa Trái Cây & Nước Gạo",
+    "subcategory_name_en": "Fruit Milk & Rice Drink",
+    "price": 18000,
+    "img": "public/images/products/nuoc/SuaTraiCayTHTrueJuiceMilk.webp",
+    "featured": false,
+    "description_vi": "Nước uống sữa trái cây tự nhiên kết hợp sữa tươi sạch TH và nước ép trái cây thật thanh mát.",
+    "description_en": "Natural fruit juice milk blending clean TH fresh milk and real fruit juice 300ml.",
+    "variants": []
+  },
+  {
+    "id": "NuocGaoRangTHTrueRice",
+    "name_vi": "Nước gạo rang TH True RICE 300ml",
+    "name_en": "TH True RICE Roasted Rice Drink 300ml",
+    "category": "nuoc",
+    "category_name": "Đồ Uống",
+    "category_name_en": "Beverages",
+    "subcategory": "nuoc-sua-trai-cay",
+    "subcategory_name": "Sữa Trái Cây & Nước Gạo",
+    "subcategory_name_en": "Fruit Milk & Rice Drink",
+    "price": 18000,
+    "img": "public/images/products/nuoc/NuocGaoRangTHTrueRice.webp",
+    "featured": false,
+    "description_vi": "Nước gạo rang tự nhiên thanh khiết, không thêm đường tinh luyện tốt cho sức khỏe.",
+    "description_en": "All-natural roasted rice drink with no added refined sugars, pure and healthy 300ml.",
+    "variants": []
+  },
+  {
+    "id": "TraXanhViChanhTHTrueTea",
+    "name_vi": "Trà xanh vị chanh TH True TEA 350ml",
+    "name_en": "TH True TEA Lemon Green Tea 350ml",
+    "category": "nuoc",
+    "category_name": "Đồ Uống",
+    "category_name_en": "Beverages",
+    "subcategory": "nuoc-tra-hoa-qua",
+    "subcategory_name": "Trà & Nước Ép Nguyên Chất",
+    "subcategory_name_en": "Tea & Pure Fruit Juice",
+    "price": 15000,
+    "img": "public/images/products/nuoc/TraXanhViChanhTHTrueTea.webp",
+    "featured": false,
+    "description_vi": "Trà xanh tự nhiên vị chanh tươi mát lành giải nhiệt từ búp trà Shan Tuyết cổ thụ.",
+    "description_en": "Refreshing lemon green tea brewed from organic natural tea leaves 350ml.",
+    "variants": []
+  },
+  {
+    "id": "NuocEpCamDaoTHTrueJuice",
+    "name_vi": "Nước ép cam đào TH True JUICE 350ml",
+    "name_en": "TH True JUICE Orange Peach Juice 350ml",
+    "category": "nuoc",
+    "category_name": "Đồ Uống",
+    "category_name_en": "Beverages",
+    "subcategory": "nuoc-tra-hoa-qua",
+    "subcategory_name": "Trà & Nước Ép Nguyên Chất",
+    "subcategory_name_en": "Tea & Pure Fruit Juice",
+    "price": 22000,
+    "img": "public/images/products/nuoc/NuocEpCamDaoTHTrueJuice.webp",
+    "featured": false,
+    "description_vi": "Nước ép cam đào tự nhiên 100% nguyên chất, dồi dào Vitamin C tăng cường đề kháng.",
+    "description_en": "100% natural orange and peach blended juice rich in vitamin C 350ml.",
+    "variants": []
+  },
+  {
+    "id": "NuocEpTaoOiTHTrueJuice",
+    "name_vi": "Nước ép táo ổi TH True JUICE 350ml",
+    "name_en": "TH True JUICE Apple Guava Juice 350ml",
+    "category": "nuoc",
+    "category_name": "Đồ Uống",
+    "category_name_en": "Beverages",
+    "subcategory": "nuoc-tra-hoa-qua",
+    "subcategory_name": "Trà & Nước Ép Nguyên Chất",
+    "subcategory_name_en": "Tea & Pure Fruit Juice",
+    "price": 22000,
+    "img": "public/images/products/nuoc/NuocEpTaoOiTHTrueJuice.webp",
+    "featured": false,
+    "description_vi": "Nước ép táo ổi nguyên chất mát lành, ngọt dịu tự nhiên không chất bảo quản.",
+    "description_en": "Pure apple and guava juice blend with natural gentle sweetness 350ml.",
+    "variants": []
+  },
+  {
+    "id": "TraDaoSaTraTacMatOngCozy",
+    "name_vi": "Trà đào sả & tắc mật ong Cozy",
+    "name_en": "Cozy Peach Lemongrass & Kumquat Honey Tea",
+    "category": "nuoc",
+    "category_name": "Đồ Uống",
+    "category_name_en": "Beverages",
+    "subcategory": "nuoc-tra-hoa-qua",
+    "subcategory_name": "Trà & Nước Ép Nguyên Chất",
+    "subcategory_name_en": "Tea & Pure Fruit Juice",
+    "price": 16000,
+    "img": "public/images/products/nuoc/TraDaoSaTraTacMatOngCozy.webp",
+    "featured": false,
+    "description_vi": "Trà Cozy hương vị thảo mộc thanh mát: Đào sả thơm lừng và tắc mật ong dịu ngọt.",
+    "description_en": "Refreshing Cozy ready-to-drink tea bottle in peach lemongrass & kumquat honey.",
+    "variants": []
+  },
+  {
+    "id": "NuocTraiCayCapriSunAnhDao",
+    "name_vi": "Nước trái cây Capri-Sun vị anh đào",
+    "name_en": "Capri-Sun Cherry Fruit Juice Pouch",
+    "category": "nuoc",
+    "category_name": "Đồ Uống",
+    "category_name_en": "Beverages",
+    "subcategory": "nuoc-tra-hoa-qua",
+    "subcategory_name": "Trà & Nước Ép Nguyên Chất",
+    "subcategory_name_en": "Tea & Pure Fruit Juice",
+    "price": 20000,
+    "img": "public/images/products/nuoc/NuocTraiCayCapriSunAnhDao.webp",
+    "featured": false,
+    "description_vi": "Nước trái cây Capri-Sun vị anh đào nhập khẩu, túi thiếc tiện dụng thơm mát cho bé.",
+    "description_en": "Imported Capri-Sun cherry fruit pouch, fun and refreshing with no artificial colors.",
+    "variants": []
+  },
+  {
+    "id": "BanhGaoOneOne",
+    "name_vi": "Bánh gạo One One 150g",
+    "name_en": "One One Crispy Rice Crackers 150g",
+    "category": "snack",
+    "category_name": "Snacks & Đồ Ăn Vặt",
+    "category_name_en": "Snacks & Tidbits",
+    "subcategory": "snack-do-an-vat",
+    "subcategory_name": "Bánh Gạo & Cơm Cháy",
+    "subcategory_name_en": "Crispy Crackers & Burnt Rice",
+    "price": 28000,
+    "img": "public/images/products/snack/BanhGaoOneOne.webp",
+    "featured": false,
+    "description_vi": "Bánh gạo nướng One One giòn tan thơm bùi vị gạo tự nhiên, ít béo thơm ngon.",
+    "description_en": "Crispy One One baked rice crackers, light and crunchy with natural roasted aroma.",
+    "variants": []
+  },
+  {
+    "id": "BanhComChayChaBong",
+    "name_vi": "Cơm cháy chà bông",
+    "name_en": "Crispy Burnt Rice With Pork Floss",
+    "category": "snack",
+    "category_name": "Snacks & Đồ Ăn Vặt",
+    "category_name_en": "Snacks & Tidbits",
+    "subcategory": "snack-do-an-vat",
+    "subcategory_name": "Bánh Gạo & Cơm Cháy",
+    "subcategory_name_en": "Crispy Crackers & Burnt Rice",
+    "price": 35000,
+    "img": "public/images/products/snack/BanhComChayChaBong.webp",
+    "featured": false,
+    "description_vi": "Cơm cháy chiên giòn rụm ngập sốt mắm ớt cay nhẹ và chà bông heo hảo hạng.",
+    "description_en": "Savory Saigon crispy burnt rice crackers topped with rich sauce and pork floss.",
+    "variants": []
   }
 ];
