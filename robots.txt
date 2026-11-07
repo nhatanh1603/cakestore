@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://poeme.vn/sitemap.xml
+Sitemap: https://www.poemefake.id.vn/sitemap.xml
