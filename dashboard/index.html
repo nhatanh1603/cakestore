@@ -55,9 +55,8 @@
             -moz-osx-font-smoothing: grayscale;
         }
 
-        @keyframes pulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.4; transform: scale(0.85); }
+        .leaflet-control-attribution {
+            display: none !important;
         }
 
         .main-container {
@@ -90,11 +89,10 @@
             display: flex;
             flex-direction: column;
             overflow: hidden;
-            border-radius: 12px;
+            border-radius: 8px;
             height: 100%;
             min-height: 0;
-            box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.12);
-            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
         }
 
         .col-center {
@@ -112,7 +110,7 @@
         .panel-header {
             padding: 10px 14px;
             border-bottom: 1px solid var(--border-subtle);
-            background: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
+            background: rgba(255, 255, 255, 0.02);
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -125,43 +123,41 @@
             gap: 9px;
         }
         .icon-badge {
-            width: 26px;
-            height: 26px;
-            border-radius: 7px;
+            width: 24px;
+            height: 24px;
+            border-radius: 5px;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            font-size: 12px;
+            font-size: 11px;
         }
         .icon-badge.green {
-            background: rgba(16, 185, 129, 0.18);
-            color: #34d399;
-            box-shadow: 0 0 10px rgba(16, 185, 129, 0.25);
-            border: 1px solid rgba(16, 185, 129, 0.3);
+            background: rgba(16, 185, 129, 0.12);
+            color: #10b981;
+            border: 1px solid rgba(16, 185, 129, 0.25);
         }
         .icon-badge.gold {
-            background: rgba(245, 158, 11, 0.18);
-            color: #fbbf24;
-            box-shadow: 0 0 10px rgba(245, 158, 11, 0.25);
-            border: 1px solid rgba(245, 158, 11, 0.3);
+            background: rgba(245, 158, 11, 0.12);
+            color: #f59e0b;
+            border: 1px solid rgba(245, 158, 11, 0.25);
         }
         .panel-header h2 {
-            font-size: 12px;
+            font-size: 11.5px;
             font-weight: 700;
-            letter-spacing: 0.6px;
+            letter-spacing: 0.8px;
             text-transform: uppercase;
-            color: #ffffff;
+            color: #e2e8f0;
             margin: 0;
         }
         .panel-header .badge {
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            padding: 3px 9px;
-            border-radius: 9999px;
-            font-size: 11px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 10.5px;
             font-family: var(--font-mono);
-            font-weight: 700;
-            color: #e2e8f0;
+            font-weight: 600;
+            color: #cbd5e1;
         }
 
         /* Floating HUD Toolbar on top of map */
@@ -182,68 +178,63 @@
             align-items: center;
             gap: 4px;
             pointer-events: auto;
-            background: rgba(15, 23, 42, 0.88);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.16);
-            padding: 4px 6px;
-            border-radius: 8px;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+            background: rgba(15, 23, 42, 0.94);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            padding: 3px 5px;
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
         }
         .hud-btn {
             background: transparent;
             border: 1px solid transparent;
             color: #cbd5e1;
-            font-size: 11.5px;
+            font-size: 11px;
             font-family: var(--font-main);
             font-weight: 600;
-            padding: 5px 10px;
-            border-radius: 6px;
+            padding: 5px 9px;
+            border-radius: 4px;
             cursor: pointer;
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            transition: all 0.15s ease;
+            transition: all 0.12s ease;
         }
         .hud-btn:hover {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.08);
             color: #ffffff;
         }
         .hud-btn.active {
-            background: rgba(56, 189, 248, 0.2);
-            border-color: rgba(56, 189, 248, 0.5);
+            background: rgba(56, 189, 248, 0.15);
+            border-color: rgba(56, 189, 248, 0.4);
             color: #38bdf8;
-            box-shadow: 0 0 12px rgba(56, 189, 248, 0.25);
         }
         .hud-btn.hud-btn-gps {
             color: #f43f5e;
         }
         .hud-btn.hud-btn-gps:hover {
-            background: rgba(244, 63, 94, 0.2);
+            background: rgba(244, 63, 94, 0.15);
             color: #fff;
         }
         .hud-search-box {
             display: flex;
             align-items: center;
-            background: rgba(0, 0, 0, 0.35);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            border-radius: 6px;
-            padding: 3px 9px;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            padding: 3px 8px;
             gap: 6px;
-            transition: border-color 0.15s, box-shadow 0.15s;
         }
         .hud-search-box:focus-within {
-            border-color: rgba(56, 189, 248, 0.5);
-            box-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
+            border-color: rgba(56, 189, 248, 0.4);
         }
         .hud-search-box input {
             background: transparent;
             border: none;
             outline: none;
             color: #ffffff;
-            font-size: 11.5px;
+            font-size: 11px;
             width: 175px;
-            padding: 3px 0;
+            padding: 2px 0;
             font-family: var(--font-main);
         }
         .hud-search-box input::placeholder {
@@ -254,12 +245,10 @@
             border: none;
             color: #38bdf8;
             cursor: pointer;
-            font-size: 12px;
-            padding: 2px 4px;
-            transition: transform 0.15s;
+            font-size: 11px;
+            padding: 2px;
         }
         .hud-search-box button:hover {
-            transform: translateX(2px);
             color: #fff;
         }
 
@@ -273,26 +262,22 @@
             display: flex;
             align-items: center;
             gap: 16px;
-            background: rgba(15, 23, 42, 0.92);
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.2);
-            border-radius: 9999px;
-            padding: 7px 20px;
+            background: rgba(15, 23, 42, 0.94);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45);
+            border-radius: 6px;
+            padding: 6px 16px;
         }
         .dock-metric {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 7px;
         }
-        .dock-pulse-dot {
-            width: 9px;
-            height: 9px;
-            background: #34d399;
+        .dock-status-dot {
+            width: 7px;
+            height: 7px;
+            background: #10b981;
             border-radius: 50%;
-            box-shadow: 0 0 10px #34d399;
-            animation: pulse 1.6s infinite;
         }
         .dock-label {
             font-size: 10px;
@@ -303,19 +288,19 @@
         }
         .dock-val {
             font-family: var(--font-mono);
-            font-size: 14.5px;
-            font-weight: 800;
+            font-size: 14px;
+            font-weight: 700;
         }
-        .text-green { color: #34d399; text-shadow: 0 0 10px rgba(52, 211, 153, 0.4); }
-        .text-cyan { color: #38bdf8; text-shadow: 0 0 10px rgba(56, 189, 248, 0.4); }
+        .text-green { color: #10b981; }
+        .text-cyan { color: #38bdf8; }
         .dock-sep {
             width: 1px;
-            height: 18px;
-            background: rgba(255, 255, 255, 0.16);
+            height: 16px;
+            background: rgba(255, 255, 255, 0.12);
         }
         .dock-btn-clear {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             color: #94a3b8;
             font-size: 11px;
             font-family: var(--font-main);
@@ -323,16 +308,15 @@
             cursor: pointer;
             display: inline-flex;
             align-items: center;
-            gap: 6px;
-            padding: 4px 10px;
-            border-radius: 9999px;
-            transition: all 0.2s ease;
+            gap: 5px;
+            padding: 3px 8px;
+            border-radius: 4px;
+            transition: all 0.15s ease;
         }
         .dock-btn-clear:hover {
-            color: #fff;
-            background: rgba(244, 63, 94, 0.25);
-            border-color: rgba(244, 63, 94, 0.5);
-            box-shadow: 0 0 12px rgba(244, 63, 94, 0.3);
+            color: #f43f5e;
+            background: rgba(244, 63, 94, 0.12);
+            border-color: rgba(244, 63, 94, 0.3);
         }
 
 
@@ -453,9 +437,8 @@
             border: none !important;
         }
         .radar-pin-visitor {
-            position: relative;
-            width: 24px;
-            height: 24px;
+            width: 20px;
+            height: 20px;
             background: #10b981;
             border: 2px solid #ffffff;
             border-radius: 50%;
@@ -463,24 +446,13 @@
             align-items: center;
             justify-content: center;
             color: #fff;
-            font-size: 10px;
-            box-shadow: 0 0 14px rgba(16, 185, 129, 0.8);
+            font-size: 9px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
             cursor: pointer;
         }
-        .radar-pin-visitor::after {
-            content: '';
-            position: absolute;
-            width: 40px;
-            height: 40px;
-            border: 2px solid #10b981;
-            border-radius: 50%;
-            animation: radar-ripple 1.8s infinite ease-out;
-            pointer-events: none;
-        }
         .radar-pin-order {
-            position: relative;
-            width: 28px;
-            height: 28px;
+            width: 22px;
+            height: 22px;
             background: #f59e0b;
             border: 2px solid #ffffff;
             border-radius: 50%;
@@ -488,24 +460,13 @@
             align-items: center;
             justify-content: center;
             color: #fff;
-            font-size: 11px;
-            box-shadow: 0 0 16px rgba(245, 158, 11, 0.9);
+            font-size: 10px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
             cursor: pointer;
         }
-        .radar-pin-order::after {
-            content: '';
-            position: absolute;
-            width: 46px;
-            height: 46px;
-            border: 2px solid #f59e0b;
-            border-radius: 50%;
-            animation: radar-ripple 1.5s infinite ease-out;
-            pointer-events: none;
-        }
         .radar-pin-gps {
-            position: relative;
-            width: 28px;
-            height: 28px;
+            width: 22px;
+            height: 22px;
             background: #ef4444;
             border: 2px solid #ffffff;
             border-radius: 50%;
@@ -513,23 +474,9 @@
             align-items: center;
             justify-content: center;
             color: #fff;
-            font-size: 12px;
-            box-shadow: 0 0 16px rgba(239, 68, 68, 0.9);
+            font-size: 11px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
             cursor: pointer;
-        }
-        .radar-pin-gps::after {
-            content: '';
-            position: absolute;
-            width: 48px;
-            height: 48px;
-            border: 2px solid #ef4444;
-            border-radius: 50%;
-            animation: radar-ripple 1.2s infinite ease-out;
-            pointer-events: none;
-        }
-        @keyframes radar-ripple {
-            0% { transform: scale(0.5); opacity: 1; }
-            100% { transform: scale(1.6); opacity: 0; }
         }
 
         /* Left Column: Visitor Stream Feed */
@@ -537,28 +484,25 @@
             flex: 1;
             min-height: 0;
             overflow-y: auto;
-            padding: 10px;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-        .visitor-card {
-            background: rgba(30, 41, 59, 0.45);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 9px;
-            padding: 10px 12px;
-            cursor: pointer;
-            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+            padding: 8px;
             display: flex;
             flex-direction: column;
             gap: 7px;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.18);
+        }
+        .visitor-card {
+            background: rgba(30, 41, 59, 0.35);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 6px;
+            padding: 9px 11px;
+            cursor: pointer;
+            transition: background 0.12s ease, border-color 0.12s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
         }
         .visitor-card:hover {
-            background: rgba(30, 41, 59, 0.85);
-            border-color: rgba(52, 211, 153, 0.55);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px -3px rgba(0, 0, 0, 0.4), 0 0 14px rgba(16, 185, 129, 0.22);
+            background: rgba(30, 41, 59, 0.7);
+            border-color: rgba(255, 255, 255, 0.2);
         }
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(-4px); }
@@ -572,35 +516,40 @@
         .vcard-ip-wrap {
             display: flex;
             align-items: center;
-            gap: 7px;
+            gap: 6px;
         }
         .vcard-dot {
-            width: 8px;
-            height: 8px;
-            background: #34d399;
+            width: 6px;
+            height: 6px;
+            background: #10b981;
             border-radius: 50%;
-            box-shadow: 0 0 8px #34d399;
         }
         .vcard-ip {
             font-family: var(--font-mono);
-            font-size: 12px;
-            font-weight: 700;
+            font-size: 11.5px;
+            font-weight: 600;
             color: #ffffff;
         }
         .vcard-time {
             font-family: var(--font-mono);
-            font-size: 10.5px;
+            font-size: 10px;
             color: var(--text-muted);
         }
         .vcard-loc {
             display: flex;
             align-items: center;
             gap: 6px;
-            font-size: 11.5px;
+            font-size: 11px;
             color: #e2e8f0;
         }
-        .vcard-flag {
-            font-size: 14px;
+        .vcard-iso {
+            font-family: var(--font-mono);
+            font-size: 9.5px;
+            font-weight: 700;
+            color: #94a3b8;
+            background: rgba(255, 255, 255, 0.08);
+            padding: 1px 5px;
+            border-radius: 3px;
         }
         .vcard-place {
             color: #ffffff;
@@ -611,13 +560,13 @@
         }
         .vcard-isp {
             margin-left: auto;
-            font-size: 10px;
+            font-size: 9.5px;
             color: #cbd5e1;
             font-family: var(--font-mono);
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            padding: 1px 6px;
-            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 1px 5px;
+            border-radius: 3px;
             max-width: 95px;
             white-space: nowrap;
             overflow: hidden;
@@ -626,24 +575,24 @@
         .vcard-bottom {
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 5px;
         }
         .vcard-pill {
             display: inline-flex;
             align-items: center;
             gap: 4px;
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 2px 7px;
-            border-radius: 5px;
-            font-size: 10.5px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 10px;
             color: #cbd5e1;
             font-weight: 500;
         }
         .vcard-pill.path {
             color: #38bdf8;
-            background: rgba(56, 189, 248, 0.12);
-            border-color: rgba(56, 189, 248, 0.35);
+            background: rgba(56, 189, 248, 0.1);
+            border-color: rgba(56, 189, 248, 0.25);
             font-family: var(--font-mono);
             max-width: 130px;
             white-space: nowrap;
@@ -653,17 +602,17 @@
         .vcard-gmaps-link {
             margin-left: auto;
             color: #94a3b8;
-            font-size: 11px;
-            padding: 3px 6px;
-            border-radius: 4px;
-            transition: all 0.15s;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            font-size: 10.5px;
+            padding: 2px 5px;
+            border-radius: 3px;
+            transition: all 0.12s;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.06);
         }
         .vcard-gmaps-link:hover {
             color: #38bdf8;
-            background: rgba(56, 189, 248, 0.18);
-            border-color: rgba(56, 189, 248, 0.4);
+            background: rgba(56, 189, 248, 0.15);
+            border-color: rgba(56, 189, 248, 0.3);
         }
 
         /* Right Column: Orders Feed */
@@ -671,29 +620,26 @@
             flex: 1;
             min-height: 0;
             overflow-y: auto;
-            padding: 10px;
+            padding: 8px;
             display: flex;
             flex-direction: column;
-            gap: 9px;
+            gap: 8px;
         }
         .order-card-live {
-            background: linear-gradient(145deg, rgba(245, 158, 11, 0.09) 0%, rgba(22, 33, 56, 0.65) 100%);
-            border: 1px solid rgba(245, 158, 11, 0.38);
-            border-left: 4px solid #fbbf24;
-            border-radius: 9px;
-            padding: 12px;
+            background: rgba(30, 41, 59, 0.35);
+            border: 1px solid rgba(245, 158, 11, 0.25);
+            border-left: 3px solid #f59e0b;
+            border-radius: 6px;
+            padding: 10px 12px;
             display: flex;
             flex-direction: column;
             gap: 6px;
             cursor: pointer;
-            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.22);
+            transition: background 0.12s ease, border-color 0.12s ease;
         }
         .order-card-live:hover {
-            background: linear-gradient(145deg, rgba(245, 158, 11, 0.15) 0%, rgba(30, 45, 74, 0.85) 100%);
-            border-color: rgba(251, 191, 36, 0.7);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px -2px rgba(0, 0, 0, 0.4), 0 0 16px rgba(245, 158, 11, 0.25);
+            background: rgba(30, 41, 59, 0.7);
+            border-color: rgba(245, 158, 11, 0.5);
         }
         .order-card-top {
             display: flex;
@@ -786,16 +732,7 @@
         }
 
         .empty-placeholder {
-            text-align: center;
-            color: var(--text-muted);
-            padding: 30px 14px;
-            font-size: 12px;
-            font-family: var(--font-main);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 140px;
+            display: none !important;
         }
 
         @media (max-width: 1024px) {
@@ -819,10 +756,7 @@
                     <span class="badge" id="visitorStreamCount">0 Khách</span>
                 </div>
                 <div class="visitor-stream-feed" id="visitorStreamFeed">
-                    <div class="empty-placeholder" id="emptyVisitorsNotice">
-                        <i class="fa-solid fa-satellite-dish" style="font-size: 26px; margin-bottom: 8px; color: var(--accent-mint); opacity: 0.7;"></i>
-                        Đang lắng nghe tín hiệu từ poemefake.id.vn...
-                    </div>
+                    <div class="empty-placeholder" id="emptyVisitorsNotice"></div>
                 </div>
             </div>
 
@@ -871,11 +805,7 @@
                     <span class="badge" id="liveOrdersBadge" style="background: rgba(245, 158, 11, 0.2); color: var(--accent-gold);">0 Đơn</span>
                 </div>
                 <div class="orders-feed" id="ordersFeedContainer">
-                    <div class="empty-placeholder" id="emptyOrdersNotice">
-                        <i class="fa-solid fa-box-open" style="font-size: 26px; margin-bottom: 8px; color: var(--accent-gold); opacity: 0.6;"></i>
-                        Chưa có đơn hàng mới nào được đặt.<br>
-                        Khi khách bấm "Đặt hàng ngay" trên web online, đơn sẽ xuất hiện tại đây ngay lập tức!
-                    </div>
+                    <div class="empty-placeholder" id="emptyOrdersNotice"></div>
                 </div>
             </div>
         </div>
@@ -883,7 +813,7 @@
         <!-- DƯỚI CÙNG: Floating Pill Dock ở giữa màn hình -->
         <div class="floating-dock">
             <div class="dock-metric">
-                <span class="dock-pulse-dot"></span>
+                <span class="dock-status-dot"></span>
                 <span class="dock-label">ONLINE:</span>
                 <strong class="dock-val text-green" id="kpiActiveVisitors">0</strong>
             </div>
@@ -912,17 +842,15 @@
         const ordersList = [];
 
         function initMap() {
-            map = L.map('radarMap', { zoomControl: false }).setView([21.0285, 105.8542], 12);
+            map = L.map('radarMap', { zoomControl: false, attributionControl: false }).setView([21.0285, 105.8542], 12);
             L.control.zoom({ position: 'bottomleft' }).addTo(map);
 
             streetLayer = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
-                attribution: '&copy; Esri & OpenStreetMap contributors',
                 maxZoom: 19
             });
 
             satelliteLayer = L.layerGroup([
                 L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-                    attribution: '&copy; Esri & contributors',
                     maxZoom: 19
                 }),
                 L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}', {
@@ -931,7 +859,6 @@
             ]);
 
             darkLayer = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
-                attribution: '&copy; Esri & contributors',
                 maxZoom: 16
             });
 
@@ -1008,7 +935,7 @@
                                     <span class="popup-time">${new Date().toLocaleTimeString('vi-VN')}</span>
                                 </div>
                                 <div class="popup-location">
-                                    <strong>🎯 Vị trí thực tế của thiết bị bạn</strong>
+                                    <strong>Vị trí thiết bị của bạn</strong>
                                 </div>
                                 <div class="popup-ip">
                                     <code>Tọa độ: ${latitude.toFixed(6)}, ${longitude.toFixed(6)}</code>
@@ -1054,9 +981,9 @@
 
                             const searchIcon = L.divIcon({
                                 className: 'custom-radar-pin-wrap',
-                                html: `<div class="radar-pin-gps" style="background: #3b82f6; box-shadow: 0 0 16px rgba(59, 130, 246, 0.9);"><i class="fa-solid fa-magnifying-glass"></i></div>`,
-                                iconSize: [28, 28],
-                                iconAnchor: [14, 14]
+                                html: `<div class="radar-pin-gps" style="background: #3b82f6;"><i class="fa-solid fa-magnifying-glass"></i></div>`,
+                                iconSize: [24, 24],
+                                iconAnchor: [12, 12]
                             });
 
                             const searchMarker = L.marker([lat, lon], { icon: searchIcon }).addTo(map);
@@ -1118,13 +1045,13 @@
             if (!map || isNaN(finalLat) || isNaN(finalLon)) return;
 
             const pinClass = isOrder ? 'radar-pin-order' : 'radar-pin-visitor';
-            const iconSymbol = isOrder ? '<i class="fa-solid fa-cake-candles"></i>' : '<i class="fa-solid fa-user"></i>';
+            const iconSymbol = isOrder ? '<i class="fa-solid fa-receipt"></i>' : '<i class="fa-solid fa-user"></i>';
 
             const customIcon = L.divIcon({
                 className: 'custom-radar-pin-wrap',
                 html: `<div class="${pinClass}">${iconSymbol}</div>`,
-                iconSize: isOrder ? [28, 28] : [24, 24],
-                iconAnchor: isOrder ? [14, 14] : [12, 12]
+                iconSize: isOrder ? [22, 22] : [20, 20],
+                iconAnchor: isOrder ? [11, 11] : [10, 10]
             });
 
             const marker = L.marker([finalLat, finalLon], { icon: customIcon }).addTo(map);
@@ -1137,19 +1064,18 @@
             const deviceName = data.device_name || data.deviceName || 'PC';
             const os = data.os || '';
             const path = data.path || '/';
-            const flag = data.flag || (country.includes('Viet') ? '🇻🇳' : '🌐');
             const fp = data.fingerprint || (data.device && data.device.fingerprint) || 'DEV-ACTIVE';
 
             const popupHtml = `
                 <div class="radar-popup-card">
                     <div class="popup-top">
                         <span class="popup-tag ${isOrder ? 'tag-order' : 'tag-visitor'}">
-                            <i class="fa-solid ${isOrder ? 'fa-receipt' : 'fa-satellite-dish'}"></i> ${isOrder ? '★ ĐƠN HÀNG MỚI' : 'KHÁCH TRUY CẬP'}
+                            <i class="fa-solid ${isOrder ? 'fa-receipt' : 'fa-satellite-dish'}"></i> ${isOrder ? 'ĐƠN HÀNG MỚI' : 'KHÁCH TRUY CẬP'}
                         </span>
                         <span class="popup-time">${timeStr}</span>
                     </div>
                     <div class="popup-location">
-                        <strong>${flag} ${city}, ${country}</strong>
+                        <strong>${city}, ${country}</strong>
                     </div>
                     <div class="popup-ip">
                         <code>IP: ${ip}</code>
@@ -1194,9 +1120,10 @@
             else if (v.device_type === 'Tablet') deviceIcon = 'fa-tablet-screen-button';
 
             const isVN = v.country_code === 'VN' || country.includes('Viet');
+            const iso = (v.country_code || (isVN ? 'VN' : 'INTL')).toUpperCase();
 
             return `
-                <div class="visitor-card" onclick="focusMapPin(${lat}, ${lon}, '${v.ip}')" title="Nhấn để định vị ngay trên bản đồ">
+                <div class="visitor-card" onclick="focusMapPin(${lat}, ${lon}, '${v.ip}')" title="Định vị trên bản đồ">
                     <div class="vcard-top">
                         <div class="vcard-ip-wrap">
                             <span class="vcard-dot"></span>
@@ -1205,14 +1132,14 @@
                         <span class="vcard-time">${timeStr}</span>
                     </div>
                     <div class="vcard-loc">
-                        <span class="vcard-flag">${isVN ? '🇻🇳' : '🌐'}</span>
+                        <span class="vcard-iso">[${iso}]</span>
                         <span class="vcard-place">${city}, ${country}</span>
                         <span class="vcard-isp">${v.isp || 'Internet'}</span>
                     </div>
                     <div class="vcard-bottom">
                         <span class="vcard-pill"><i class="fa-solid ${deviceIcon}"></i> ${v.device_name || 'PC'}</span>
                         <span class="vcard-pill path"><i class="fa-solid fa-compass"></i> ${v.path || '/'}</span>
-                        <a href="${gmapUrl}" target="_blank" rel="noopener noreferrer" class="vcard-gmaps-link" onclick="event.stopPropagation();" title="Xem trên Google Maps">
+                        <a href="${gmapUrl}" target="_blank" rel="noopener noreferrer" class="vcard-gmaps-link" onclick="event.stopPropagation();" title="Google Maps">
                             <i class="fa-solid fa-arrow-up-right-from-square"></i>
                         </a>
                     </div>
