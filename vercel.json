@@ -1,4 +1,17 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "outputDirectory": "."
+  "outputDirectory": ".",
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "rewrites": [
+    { "source": "/", "destination": "/index.html" },
+    { "source": "/products", "destination": "/pages/products.html" },
+    { "source": "/product-detail", "destination": "/pages/product-detail.html" },
+    { "source": "/cart", "destination": "/pages/cart.html" },
+    { "source": "/checkout", "destination": "/pages/checkout.html" },
+    { "source": "/about", "destination": "/pages/about.html" },
+    { "source": "/stores", "destination": "/pages/stores.html" },
+    { "source": "/search", "destination": "/pages/search.html" },
+    { "source": "/404", "destination": "/404.html" }
+  ]
 }

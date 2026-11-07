@@ -60,9 +60,9 @@ export function renderProductCard(product, lang = 'en', basePath = '') {
     const title = lang === 'en' ? (product.name_en || product.name_vi) : (product.name_vi || product.name_en);
     const isRoot = !basePath || basePath === '';
     const detailUrl = isRoot
-        ? `pages/product-detail.html?id=${encodeURIComponent(product.id)}`
-        : `product-detail.html?id=${encodeURIComponent(product.id)}`;
-    const imgUrl = `${basePath}${product.img}`;
+        ? `/product-detail?id=${encodeURIComponent(product.id)}`
+        : `/product-detail?id=${encodeURIComponent(product.id)}`;
+    const imgUrl = product.img.startsWith("/") ? product.img : "/" + product.img;
 
     return `
         <div class="ega-col-lg-3 ega-col-md-4 ega-col-6 pd-col-item" data-id="${product.id}" data-category="${product.category}" data-price="${product.price}">
@@ -96,9 +96,9 @@ export function initHomeCatalog() {
         return `
             <div class="mustbuy__item ega-col-6 ega-col-md-3" data-id="${p.id}">
                 <div class="pd-item__wrapper">
-                    <a href="pages/product-detail.html?id=${encodeURIComponent(p.id)}" class="pd-item">
+                    <a href="/product-detail?id=${encodeURIComponent(p.id)}" class="pd-item">
                         <div class="pd-item__img img-featured">
-                            <img src="${p.img}" alt="${title}" loading="lazy">
+                            <img src="${p.img.startsWith("/") ? p.img : "/" + p.img}" alt="${title}" loading="lazy">
                         </div>
                         <h3>${title}</h3>
                         <div class="price"><ins class="ega-text--no-underline">${formatPrice(p.price)}</ins></div>
@@ -278,9 +278,9 @@ export function initProductsPageCatalog() {
 
                 currentPage = 1;
                 try {
-                    let newUrl = 'products.html';
+                    let newUrl = '/products';
                     if (currentCategory !== 'all') {
-                        newUrl = `products.html?cat=${encodeURIComponent(currentCategory)}`;
+                        newUrl = `/products?cat=${encodeURIComponent(currentCategory)}`;
                     }
                     history.replaceState(null, '', newUrl);
                 } catch {}
@@ -302,7 +302,7 @@ export function initProductsPageCatalog() {
 
                 currentPage = 1;
                 try {
-                    const newUrl = `products.html?sub=${encodeURIComponent(currentSubcategory)}`;
+                    const newUrl = `/products?sub=${encodeURIComponent(currentSubcategory)}`;
                     history.replaceState(null, '', newUrl);
                 } catch {}
 
@@ -459,7 +459,7 @@ export function initProductsPageCatalog() {
     document.querySelectorAll('.dropdown-menu a').forEach(link => {
         link.addEventListener('click', (e) => {
             const href = link.getAttribute('href') || '';
-            if (href.includes('products.html?cat=')) {
+            if ((href.includes('/products?cat=') || href.includes('/products?cat='))) {
                 e.preventDefault();
                 const catParam = href.split('?cat=')[1];
                 window.history.pushState({}, '', href);
@@ -501,14 +501,14 @@ export function initProductDetailPage() {
 
     document.title = `${title} | Poeme Japanese Bakery`;
     titleEl.textContent = title;
-    mainImg.src = `../${product.img}`;
+    mainImg.src = product.img.startsWith("/") ? product.img : "/" + product.img;
     mainImg.alt = title;
 
     const breadcrumbWrap = document.querySelector('.breadcrumb-wrap .ega-container');
     if (breadcrumbWrap) {
         breadcrumbWrap.innerHTML = `
-            <a href="../index.html" data-i18n="crumb_home">${lang === 'en' ? 'Home' : 'Trang chủ'}</a> <span>/</span>
-            <a href="products.html?cat=${encodeURIComponent(product.category)}">${catName}</a> <span>/</span>
+            <a href="/" data-i18n="crumb_home">${lang === 'en' ? 'Home' : 'Trang chủ'}</a> <span>/</span>
+            <a href="/products?cat=${encodeURIComponent(product.category)}">${catName}</a> <span>/</span>
             <strong>${title}</strong>
         `;
     }
@@ -516,7 +516,7 @@ export function initProductDetailPage() {
     if (thumbsContainer) {
         thumbsContainer.innerHTML = `
             <div class="pd-thumb-item active">
-                <img src="../${product.img}" alt="${title}">
+                <img src="${product.img.startsWith("/") ? product.img : "/" + product.img}" alt="${title}">
             </div>
         `;
     }
@@ -566,7 +566,7 @@ export function initProductDetailPage() {
             price: currentSelectedPrice,
             qty: qty,
             variant: selectedVariant,
-            img: `../${product.img}`
+            img: product.img.startsWith("/") ? product.img : "/" + product.img
         };
     }
 
@@ -587,7 +587,7 @@ export function initProductDetailPage() {
             if (typeof window.CartStore !== 'undefined') {
                 window.CartStore.add(createCartItem());
             }
-            window.location.href = 'checkout.html';
+            window.location.href = '/checkout';
         };
     }
 
@@ -632,9 +632,9 @@ export function initProductDetailPage() {
                             const pTitle = lang === 'en' ? (p.name_en || p.name_vi) : p.name_vi;
                             return `
                             <div class="related-card-item">
-                                <a href="product-detail.html?id=${encodeURIComponent(p.id)}" class="related-card-link">
+                                <a href="/product-detail?id=${encodeURIComponent(p.id)}" class="related-card-link">
                                     <div class="related-card-img">
-                                        <img src="../${p.img}" alt="${pTitle}" loading="lazy" onerror="this.onerror=null; this.src='../public/images/brand/Poeme Japanese Bakery Logo.png';">
+                                        <img src="${p.img.startsWith("/") ? p.img : "/" + p.img}" alt="${pTitle}" loading="lazy" onerror="this.onerror=null; this.src='/public/images/brand/Poeme Japanese Bakery Logo.png';">
                                     </div>
                                     <div class="related-card-body">
                                         <h4 class="related-card-title" title="${pTitle}">${pTitle}</h4>
@@ -810,9 +810,9 @@ export function initSearchPageCatalog() {
             return `
                 <div class="ega-col-md-3 ega-col-6 pd-col-item" data-id="${p.id}">
                     <div class="pd-item__wrapper">
-                        <a href="product-detail.html?id=${encodeURIComponent(p.id)}" class="pd-item">
+                        <a href="/product-detail?id=${encodeURIComponent(p.id)}" class="pd-item">
                             <div class="pd-item__img img-featured">
-                                <img src="../${p.img}" alt="${title}" loading="lazy">
+                                <img src="${p.img.startsWith("/") ? p.img : "/" + p.img}" alt="${title}" loading="lazy">
                             </div>
                             <h3>${title}</h3>
                             <div class="price"><ins class="ega-text--no-underline">${formatPrice(p.price)}</ins></div>

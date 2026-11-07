@@ -167,6 +167,18 @@
 
 @media (max-width: 991px) {
     .collection-layout { grid-template-columns: 1fr; }
+    .sidebar-filter {
+        position: static !important;
+        top: auto !important;
+        max-height: none !important;
+        overflow-y: visible !important;
+        padding-right: 0 !important;
+        margin-bottom: 24px !important;
+        background: #fcfcfc;
+        border: 1px solid #ededed;
+        padding: 14px 16px;
+        border-radius: 6px;
+    }
 }
 
 .sidebar-filter {
@@ -467,18 +479,56 @@
 @media (max-width: 650px) {
     #productGrid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 14px 10px;
+        gap: 12px 8px;
     }
     .collection-header, .search-header-line {
         flex-direction: column;
         align-items: flex-start;
         gap: 12px;
     }
+    .pd-item__img {
+        border-radius: 6px !important;
+        border: 1px solid #ededed;
+    }
     .pd-item h3 {
-        font-size: 12.5px;
+        font-size: 12px;
+        margin: 6px 0 3px;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        min-height: 32px;
     }
     .pd-item .price ins {
         font-size: 12.5px;
+    }
+    .pd-item:active {
+        transform: scale(0.98);
+        opacity: 0.9;
+    }
+    .pd-action-row {
+        gap: 10px;
+    }
+    .quantity-box button {
+        width: 38px;
+        height: 44px;
+    }
+    .quantity-box input {
+        width: 46px;
+        height: 44px;
+        font-size: 15px;
+    }
+    .btn-add-cart {
+        height: 44px;
+        font-size: 12px;
+        padding: 0 10px;
+    }
+    .btn-buy-now {
+        height: 46px;
+        font-size: 13.5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 }
 

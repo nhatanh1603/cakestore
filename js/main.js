@@ -82,8 +82,24 @@ function init() {
     const menuToggle = document.getElementById('menu-toggle');
     const primaryMenu = document.getElementById('primary-menu');
     if (menuToggle && primaryMenu) {
-        menuToggle.addEventListener('click', () => {
+        menuToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            menuToggle.classList.toggle('is-active');
             primaryMenu.classList.toggle('is-open');
+        });
+
+        document.addEventListener('click', (e) => {
+            if (primaryMenu.classList.contains('is-open') && !primaryMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+                primaryMenu.classList.remove('is-open');
+                menuToggle.classList.remove('is-active');
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && primaryMenu.classList.contains('is-open')) {
+                primaryMenu.classList.remove('is-open');
+                menuToggle.classList.remove('is-active');
+            }
         });
     }
 
@@ -132,7 +148,7 @@ function init() {
                 return `
                 <div class="cart-item-card" data-idx="${idx}">
                     <div class="cart-item-img">
-                        <img src="${item.img}" alt="${displayTitle}" onerror="this.onerror=null; this.src='../public/images/brand/Poeme Japanese Bakery Logo.png';">
+                        <img src="${item.img.startsWith("/") ? item.img : "/" + item.img}" alt="${displayTitle}" onerror="this.onerror=null; this.src='/public/images/brand/Poeme Japanese Bakery Logo.png';">
                     </div>
                     <div class="cart-item-info">
                         <h3 class="cart-item-title">${displayTitle}</h3>
@@ -259,7 +275,7 @@ function init() {
                     return `
                     <div class="cart-item-preview">
                         <div class="cart-thumb">
-                            <img src="${item.img}" alt="${displayTitle}" onerror="this.onerror=null; this.src='../public/images/brand/Poeme Japanese Bakery Logo.png';">
+                            <img src="${item.img.startsWith("/") ? item.img : "/" + item.img}" alt="${displayTitle}" onerror="this.onerror=null; this.src='/public/images/brand/Poeme Japanese Bakery Logo.png';">
                             <span class="cart-qty-badge">${item.qty}</span>
                         </div>
                         <div style="flex: 1;">
@@ -285,7 +301,7 @@ function init() {
         let checkoutCart = CartStore.get();
         if (checkoutCart.length === 0) {
             if (!orderSuccessBox || orderSuccessBox.style.display !== 'flex') {
-                window.location.replace('cart.html');
+                window.location.replace('/cart');
                 return;
             }
         }
@@ -296,7 +312,7 @@ function init() {
             return `
             <div class="cart-item-preview">
                 <div class="cart-thumb">
-                    <img src="${item.img}" alt="${displayTitle}" onerror="this.onerror=null; this.src='../public/images/brand/Poeme Japanese Bakery Logo.png';">
+                    <img src="${item.img.startsWith("/") ? item.img : "/" + item.img}" alt="${displayTitle}" onerror="this.onerror=null; this.src='/public/images/brand/Poeme Japanese Bakery Logo.png';">
                     <span class="cart-qty-badge">${item.qty}</span>
                 </div>
                 <div style="flex: 1;">
@@ -628,8 +644,8 @@ function init() {
             }
             const isSubpage = window.location.pathname.includes('/pages/');
             const targetUrl = isSubpage
-                ? `search.html?q=${encodeURIComponent(query)}`
-                : `pages/search.html?q=${encodeURIComponent(query)}`;
+                ? `/search?q=${encodeURIComponent(query)}`
+                : `/search?q=${encodeURIComponent(query)}`;
             window.location.href = targetUrl;
         });
     }

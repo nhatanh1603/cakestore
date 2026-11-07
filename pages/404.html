@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>404 - Page Not Found | Poeme Japanese Bakery</title>
-    <link rel="icon" type="image/png" href="../public/Poeme Dessert Logo Icon.png">
-    <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="/public/Poeme Dessert Logo Icon.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Pacifico&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="../css/base.css">
-    <link rel="stylesheet" href="../css/header-footer.css">
-    <link rel="stylesheet" href="../css/pages.css">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/header-footer.css">
+    <link rel="stylesheet" href="/css/pages.css">
 </head>
 <body>
 
@@ -21,8 +21,8 @@
             <div id="menu-toggle"><div class="menu-wrap"><i></i><i></i><i></i></div></div>
 
             <div id="logo">
-                <a href="../index.html" class="logo-link">
-                    <img src="../public/Poeme Japanese Bakery Logo.png" alt="Poeme Japanese Bakery" class="logo-img">
+                <a href="/" class="logo-link">
+                    <img src="/public/Poeme Japanese Bakery Logo.png" alt="Poeme Japanese Bakery" class="logo-img">
                 </a>
             </div>
 
@@ -30,18 +30,18 @@
                 <div class="navigation-wrapper">
                     <ul class="navigation ega-menu ega-ul">
                         <li class="ega-menu__item">
-                            <a class="ega-menu__link" href="../index.html"><span data-i18n="nav_home">Trang chủ</span></a>
+                            <a class="ega-menu__link" href="/"><span data-i18n="nav_home">Trang chủ</span></a>
                         </li>
                         <li class="ega-menu__item">
-                            <a class="ega-menu__link" href="about.html"><span data-i18n="nav_about">Giới thiệu</span></a>
+                            <a class="ega-menu__link" href="/about"><span data-i18n="nav_about">Giới thiệu</span></a>
                         </li>
                         <li class="ega-menu__item has-child">
-                            <a class="ega-menu__link" href="products.html">
+                            <a class="ega-menu__link" href="/products">
                                 <span data-i18n="nav_products">Sản phẩm</span> <i class="fa-solid fa-chevron-down"></i>
                             </a>
                         </li>
                         <li class="ega-menu__item">
-                            <a class="ega-menu__link" href="stores.html"><span data-i18n="nav_stores">Cửa hàng</span></a>
+                            <a class="ega-menu__link" href="/stores"><span data-i18n="nav_stores">Cửa hàng</span></a>
                         </li>
                         <li class="ega-menu__item">
                             <button type="button" class="btn-search-nav" id="btnNavSearch" title="Tìm kiếm" data-i18n-title="search_btn">
@@ -59,7 +59,7 @@
                     <button type="button" class="lang-btn" data-lang="vi">VI</button>
                 </div>
                 <div class="icon-action header-right__icons">
-                    <a class="header-icon cart-count" href="cart.html" title="Giỏ hàng" data-i18n-title="cart_title">
+                    <a class="header-icon cart-count" href="/cart" title="Giỏ hàng" data-i18n-title="cart_title">
                         <i class="fa-solid fa-bag-shopping"></i>
                         <span class="cart-num">0</span>
                     </a>
@@ -79,7 +79,7 @@
 
     <div class="breadcrumb-wrap">
         <div class="ega-container">
-            <a href="../index.html" data-i18n="crumb_home">Trang chủ</a> <span>/</span> <strong>404 Not Found</strong>
+            <a href="/" data-i18n="crumb_home">Trang chủ</a> <span>/</span> <strong>404 Not Found</strong>
         </div>
     </div>
 
@@ -91,21 +91,16 @@
                 Trang bạn đang tìm kiếm có thể đã bị đổi tên, tạm thời không khả dụng hoặc không tồn tại. Hãy quay về trang chủ để khám phá những chiếc bánh tươi ngon mỗi ngày nhé!
             </p>
             <div class="notfound-actions">
-                <a href="../index.html" class="notfound-btn-primary" data-i18n="notfound_back_home">Về trang chủ</a>
-                <a href="products.html" class="notfound-btn-secondary" data-i18n="notfound_browse_products">Khám phá sản phẩm</a>
+                <a href="/" class="notfound-btn-primary" data-i18n="notfound_back_home">Về trang chủ</a>
+                <a href="/products" class="notfound-btn-secondary" data-i18n="notfound_browse_products">Khám phá sản phẩm</a>
             </div>
         </div>
     </main>
 
     <div class="floating-contact" id="floatingContactWidget">
-        <div class="floating-contact-items" id="floatingContactItems">
-            <a href="tel:0964115466" class="float-btn float-phone" title="Hotline Hỗ trợ" data-i18n-title="float_hotline"><i class="fa-solid fa-phone"></i></a>
-            <a href="https://m.me/poemebakery" target="_blank" rel="noopener noreferrer" class="float-btn float-messenger" title="Nhắn tin Hỗ trợ" data-i18n-title="float_messenger"><i class="fa-brands fa-facebook-messenger"></i></a>
-            <a href="https://discord.gg/poeme" target="_blank" rel="noopener noreferrer" class="float-btn float-discord" title="Discord Poeme" data-i18n-title="float_discord"><i class="fa-brands fa-discord"></i></a>
-        </div>
-        <button type="button" class="float-btn float-toggle" id="btnToggleContact" title="Thu gọn liên hệ" data-i18n-title="float_toggle" onclick="window.toggleFloatingContact && window.toggleFloatingContact(event)">
-            <i class="fa-solid fa-chevron-down toggle-icon"></i>
-        </button>
+        <a href="https://discord.gg/poeme" target="_blank" rel="noopener noreferrer" class="float-btn float-discord" title="Cộng đồng & Hỗ trợ Discord" data-i18n-title="float_discord">
+            <i class="fa-brands fa-discord"></i>
+        </a>
     </div>
 
     <footer>
@@ -115,29 +110,29 @@
                     <div class="footer-menu-1 ega-col-lg-3 ega-col-12">
                         <h2 class="footer-title" data-i18n="foot_policy_title">CHÍNH SÁCH</h2>
                         <ul class="ega-ul ega-color--initial">
-                            <li><a href="../index.html#homeHeroBanner" class="bold" data-i18n="foot_policy_1">Chính sách mua hàng, vận chuyển và đổi trả</a></li>
-                            <li><a href="../index.html#homeHeroBanner" data-i18n="foot_policy_2">Chính sách an toàn thực phẩm</a></li>
-                            <li><a href="../index.html#homeHeroBanner" data-i18n="foot_policy_3">Chính sách bảo mật</a></li>
-                            <li><a href="../index.html#homeHeroBanner" data-i18n="foot_policy_4">Điều khoản dịch vụ</a></li>
+                            <li><a href="/#homeHeroBanner" class="bold" data-i18n="foot_policy_1">Chính sách mua hàng, vận chuyển và đổi trả</a></li>
+                            <li><a href="/#homeHeroBanner" data-i18n="foot_policy_2">Chính sách an toàn thực phẩm</a></li>
+                            <li><a href="/#homeHeroBanner" data-i18n="foot_policy_3">Chính sách bảo mật</a></li>
+                            <li><a href="/#homeHeroBanner" data-i18n="foot_policy_4">Điều khoản dịch vụ</a></li>
                         </ul>
                     </div>
 
                     <div class="footer-menu-2 ega-col-lg-3 ega-col-12">
                         <h2 class="footer-title" data-i18n="foot_info_title">THÔNG TIN</h2>
                         <ul class="ega-ul ega-color--initial">
-                            <li><a href="about.html" class="bold" data-i18n="foot_info_1">Về Poeme Japanese Bakery</a></li>
-                            <li><a href="stores.html" data-i18n="foot_info_2">Danh sách 10 cửa hàng</a></li>
-                            <li><a href="search.html" data-i18n="foot_info_3">Tra cứu sản phẩm</a></li>
-                            <li><a href="about.html" data-i18n="foot_info_4">Tuyển dụng</a></li>
+                            <li><a href="/about" class="bold" data-i18n="foot_info_1">Về Poeme Japanese Bakery</a></li>
+                            <li><a href="/stores" data-i18n="foot_info_2">Danh sách 10 cửa hàng</a></li>
+                            <li><a href="/search" data-i18n="foot_info_3">Tra cứu sản phẩm</a></li>
+                            <li><a href="/about" data-i18n="foot_info_4">Tuyển dụng</a></li>
                         </ul>
                     </div>
 
                     <div class="footer-menu-3 ega-col-lg-3 ega-col-12">
                         <h2 class="footer-title" data-i18n="foot_cats_title">DANH MỤC BÁNH</h2>
                         <ul class="ega-ul ega-color--initial">
-                            <li><a href="products.html?cat=banh-gato" class="bold" data-i18n="foot_cat_1">Bánh kem</a></li>
-                            <li><a href="products.html?cat=banh-mi" data-i18n="foot_cat_2">Bánh mì</a></li>
-                            <li><a href="products.html?cat=banh-quy" data-i18n="foot_cat_3">Bánh quy</a></li>
+                            <li><a href="/products?cat=banh-gato" class="bold" data-i18n="foot_cat_1">Bánh kem</a></li>
+                            <li><a href="/products?cat=banh-mi" data-i18n="foot_cat_2">Bánh mì</a></li>
+                            <li><a href="/products?cat=banh-quy" data-i18n="foot_cat_3">Bánh quy</a></li>
                         </ul>
                     </div>
 
@@ -150,9 +145,9 @@
                                 <button type="submit"><i class="fa-solid fa-arrow-right"></i></button>
                             </form>
                             <div class="footer-social ega-clearfix">
-                                <a href="https://facebook.com" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
-                                <a href="https://instagram.com" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-                                <a href="https://youtube.com" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+                                <a href="https://discord.gg/poeme" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-facebook-f"></i></a>
+                                <a href="https://discord.gg/poeme" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram"></i></a>
+                                <a href="https://discord.gg/poeme" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-youtube"></i></a>
                             </div>
                         </div>
                     </div>
@@ -170,6 +165,6 @@
         </div>
     </footer>
 
-    <script type="module" src="../js/main.js"></script>
+    <script type="module" src="/js/main.js"></script>
 </body>
 </html>
