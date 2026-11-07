@@ -206,7 +206,7 @@ header .header-wrap {
         padding: 16px 18px 12px;
         margin: 10px 0 16px;
         background: #ffffff;
-        border-radius: 10px;
+        border-radius: 0 !important;
         border: 1px solid #ebebeb;
         box-shadow: 0 6px 22px rgba(0, 0, 0, 0.2);
     }
@@ -275,20 +275,6 @@ header .header-wrap {
     #primary-menu .mega-col-title:hover {
         color: var(--primary-red);
         padding-left: 4px;
-    }
-    #primary-menu .mega-col:nth-child(1) .mega-col-title::after,
-    #primary-menu .mega-col:nth-child(2) .mega-col-title::after,
-    #primary-menu .mega-col:nth-child(3) .mega-col-title::after {
-        content: "\f054";
-        font-family: "Font Awesome 6 Free";
-        font-weight: 900;
-        font-size: 11px;
-        color: #888888;
-        transition: transform 0.2s ease, color 0.2s ease;
-    }
-    #primary-menu .mega-col-title:hover::after {
-        color: var(--primary-red);
-        transform: translateX(3px);
     }
     #primary-menu .mega-sub-list {
         display: none !important;

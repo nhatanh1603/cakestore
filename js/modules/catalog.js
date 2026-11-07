@@ -512,12 +512,9 @@ export function initProductsPageCatalog() {
             CATEGORIES.filter(c => c.slug !== 'all').forEach(cat => {
                 const isActive = currentCategory === cat.slug;
                 const catName = lang === 'en' ? cat.name_en : cat.name_vi;
-                const catSubs = SUBCATEGORIES.filter(s => s.parent === cat.slug);
-                const showArrow = catSubs.length > 0;
                 html += `
                     <li class="cat-modal-item ${isActive ? 'is-active' : ''}" data-cat="${cat.slug}">
                         <span class="cat-modal-name">${catName}</span>
-                        ${showArrow ? '<i class="fa-solid fa-chevron-right cat-modal-arrow"></i>' : ''}
                     </li>
                 `;
             });
@@ -543,12 +540,7 @@ export function initProductsPageCatalog() {
                     updateCategorySidebarState();
                     renderCatalog();
                     closeCatModal();
-
-                    const gridEl = document.getElementById('productGrid');
-                    if (gridEl) {
-                        const y = gridEl.getBoundingClientRect().top + window.pageYOffset - 90;
-                        window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
-                    }
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
                 });
             });
         }
