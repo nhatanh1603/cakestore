@@ -504,11 +504,24 @@
         }
 
         function initMap() {
-            map = L.map('radarMap', { zoomControl: true }).setView([21.0285, 105.8542], 11);
-            L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-                attribution: '&copy; CartoDB & OpenStreetMap contributors',
+            map = L.map('radarMap', { zoomControl: true }).setView([21.0285, 105.8542], 12);
+
+            const esriDark = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+                attribution: '&copy; Esri & OpenStreetMap contributors',
+                maxZoom: 16
+            });
+
+            const osmStandard = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; OpenStreetMap contributors',
                 maxZoom: 19
-            }).addTo(map);
+            });
+
+            esriDark.addTo(map);
+
+            L.control.layers({
+                'Bản đồ Tối (Radar Dark)': esriDark,
+                'Bản đồ Chi Tiết (OpenStreetMap)': osmStandard
+            }, null, { position: 'topright' }).addTo(map);
         }
 
         function addMapPin(lat, lon, label, isOrder = false) {
