@@ -4,14 +4,13 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "rewrites": [
-    { "source": "/", "destination": "/index.html" },
-    { "source": "/products", "destination": "/pages/products.html" },
-    { "source": "/product-detail", "destination": "/pages/product-detail.html" },
-    { "source": "/cart", "destination": "/pages/cart.html" },
-    { "source": "/checkout", "destination": "/pages/checkout.html" },
-    { "source": "/about", "destination": "/pages/about.html" },
-    { "source": "/stores", "destination": "/pages/stores.html" },
-    { "source": "/search", "destination": "/pages/search.html" },
-    { "source": "/404", "destination": "/404.html" }
+    { "source": "/products", "destination": "/pages/products" },
+    { "source": "/product-detail", "destination": "/pages/product-detail" },
+    { "source": "/cart", "destination": "/pages/cart" },
+    { "source": "/checkout", "destination": "/pages/checkout" },
+    { "source": "/about", "destination": "/pages/about" },
+    { "source": "/stores", "destination": "/pages/stores" },
+    { "source": "/search", "destination": "/pages/search" },
+    { "source": "/404", "destination": "/404" }
   ]
 }
