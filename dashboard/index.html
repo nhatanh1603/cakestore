@@ -110,71 +110,56 @@
 
         .main-container {
             flex: 1;
-            padding: 20px 24px;
+            padding: 14px 18px 0;
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 12px;
+            min-height: calc(100vh - 65px);
         }
 
-        .metrics-grid {
+        .content-grid-3col {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 16px;
-        }
-        .metric-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            padding: 16px 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            position: relative;
-            overflow: hidden;
-        }
-        .metric-card::after {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 3px;
-        }
-        .card-online::after { background: var(--accent-green); }
-        .card-views::after { background: var(--accent-cyan); }
-        .card-orders::after { background: var(--accent-gold); }
-        .card-revenue::after { background: var(--accent-purple); }
-
-        .metric-info h3 {
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 0.8px;
-            color: var(--text-muted);
-            margin-bottom: 6px;
-            font-family: var(--font-mono);
-        }
-        .metric-info .metric-num {
-            font-size: 26px;
-            font-weight: 800;
-            font-family: var(--font-mono);
-        }
-        .metric-icon {
-            font-size: 28px;
-            opacity: 0.35;
-        }
-
-        .content-grid {
-            display: grid;
-            grid-template-columns: 1.6fr 1fr;
-            gap: 20px;
+            grid-template-columns: 1.25fr 1.6fr 1.05fr;
+            gap: 14px;
             flex: 1;
+            min-height: 0;
         }
-        .panel {
+
+        .col-left, .col-center, .col-right {
             background: var(--bg-card);
             border: 1px solid var(--border);
             display: flex;
             flex-direction: column;
             overflow: hidden;
+            border-radius: 4px;
         }
+
+        .col-center #radarMap {
+            flex: 1;
+            min-height: 520px;
+            width: 100%;
+            background: #0b111b;
+        }
+
+        .col-left .table-wrap {
+            flex: 1;
+            max-height: calc(100vh - 195px);
+            overflow-y: auto;
+            overflow-x: auto;
+        }
+
+        .col-right .orders-feed {
+            flex: 1;
+            max-height: calc(100vh - 195px);
+            overflow-y: auto;
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
         .panel-header {
-            padding: 12px 18px;
+            padding: 11px 16px;
             border-bottom: 1px solid var(--border);
             background: rgba(255, 255, 255, 0.02);
             display: flex;
@@ -182,7 +167,7 @@
             justify-content: space-between;
         }
         .panel-header h2 {
-            font-size: 13.5px;
+            font-size: 13px;
             font-weight: 700;
             letter-spacing: 0.5px;
             text-transform: uppercase;
@@ -192,16 +177,83 @@
         }
         .panel-header .badge {
             background: rgba(255, 255, 255, 0.08);
-            padding: 3px 8px;
-            border-radius: 12px;
+            padding: 2px 7px;
+            border-radius: 10px;
             font-size: 11px;
             font-family: var(--font-mono);
         }
 
-        #radarMap {
-            height: 440px;
-            width: 100%;
-            background: #0b111b;
+        .radar-bottom-bar {
+            background: #0d131f;
+            border-top: 1px solid var(--border);
+            padding: 10px 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 0 -18px;
+        }
+        .bottom-metrics-wrap {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .bottom-metric-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border);
+            padding: 6px 14px;
+            border-radius: 4px;
+        }
+        .bottom-metric-item.item-online {
+            border-left: 3px solid var(--accent-green);
+        }
+        .bottom-metric-item.item-views {
+            border-left: 3px solid var(--accent-cyan);
+        }
+        .b-dot {
+            width: 9px;
+            height: 9px;
+            background: var(--accent-green);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--accent-green);
+            animation: pulse 1.6s infinite;
+        }
+        .b-icon {
+            font-size: 15px;
+            color: var(--accent-cyan);
+        }
+        .b-info {
+            display: flex;
+            flex-direction: column;
+        }
+        .b-label {
+            font-size: 9.5px;
+            letter-spacing: 0.8px;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            font-weight: 600;
+        }
+        .b-val {
+            font-size: 18px;
+            font-weight: 800;
+            font-family: var(--font-mono);
+            color: #fff;
+            line-height: 1.1;
+        }
+        .bottom-security-status {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            font-size: 11.5px;
+            color: var(--text-secondary);
+            font-family: var(--font-mono);
+        }
+        .bottom-security-status strong {
+            color: #fff;
         }
 
         .map-toolbar {
@@ -494,20 +546,23 @@
         }
         table.radar-table th {
             background: #0f1521;
-            padding: 10px 14px;
+            padding: 8px 10px;
             font-family: var(--font-mono);
-            font-size: 11px;
+            font-size: 10.5px;
             text-transform: uppercase;
             color: var(--text-muted);
             border-bottom: 1px solid var(--border);
             position: sticky;
             top: 0;
             z-index: 2;
+            white-space: nowrap;
         }
         table.radar-table td {
-            padding: 10px 14px;
+            padding: 8px 10px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.04);
             font-family: var(--font-mono);
+            font-size: 11px;
+            white-space: nowrap;
         }
         table.radar-table tr:hover td {
             background: var(--bg-card-hover);
@@ -649,139 +704,116 @@
             </h1>
         </div>
         <div class="radar-status">
-            <span class="live-dot" id="radarStatusText">RADAR ACTIVE</span>
+            <span class="live-dot" id="radarStatusText">RADAR ACTIVE (poemefake.id.vn)</span>
             <span style="color: var(--text-muted);" id="clockDisplay">--:--:--</span>
-            <div style="display: flex; gap: 8px;">
-                <a href="/web/" target="_blank" style="text-decoration: none; display: inline-flex; align-items: center; gap: 5px; background: rgba(6, 182, 212, 0.15); border: 1px solid var(--accent-cyan); color: var(--accent-cyan); padding: 5px 12px; border-radius: 4px; font-size: 11.5px; font-weight: 600;">
-                    <i class="fa-solid fa-store"></i> Mở Web Bán Bánh Local
-                </a>
-                <button id="btnAudioToggle" style="background: none; border: 1px solid var(--border); color: var(--text-secondary); padding: 5px 10px; cursor: pointer; border-radius: 4px; font-size: 11.5px;">
-                    <i class="fa-solid fa-volume-high"></i> Âm Thanh: BẬT
-                </button>
-            </div>
         </div>
     </header>
 
     <main class="main-container">
 
-        <div class="metrics-grid">
-            <div class="metric-card card-online">
-                <div class="metric-info">
-                    <h3>Đang Online (5m)</h3>
-                    <div class="metric-num" style="color: var(--accent-green);" id="kpiActiveVisitors">0</div>
+        <div class="content-grid-3col">
+            <!-- CỘT TRÁI: Luồng truy cập thời gian thực -->
+            <div class="col-left">
+                <div class="panel-header">
+                    <h2><i class="fa-solid fa-list-check" style="color: var(--accent-green);"></i> Luồng Truy Cập</h2>
+                    <span class="badge" id="visitorStreamCount">0 Logs</span>
                 </div>
-                <div class="metric-icon" style="color: var(--accent-green);"><i class="fa-solid fa-users-viewfinder"></i></div>
-            </div>
-            <div class="metric-card card-views">
-                <div class="metric-info">
-                    <h3>Tổng Lượt Xem</h3>
-                    <div class="metric-num" style="color: var(--accent-cyan);" id="kpiTotalViews">0</div>
+                <div class="table-wrap">
+                    <table class="radar-table">
+                        <thead>
+                            <tr>
+                                <th>Thời Gian</th>
+                                <th>IP & Mạng</th>
+                                <th>Vị Trí</th>
+                                <th>Thiết Bị</th>
+                                <th>Trang</th>
+                                <th>Bản Đồ</th>
+                            </tr>
+                        </thead>
+                        <tbody id="visitorTableBody">
+                            <tr>
+                                <td colspan="6" class="empty-placeholder">
+                                    <i class="fa-solid fa-satellite-dish" style="font-size: 24px; margin-bottom: 8px; display: block;"></i>
+                                    Đang lắng nghe tín hiệu từ poemefake.id.vn...
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-                <div class="metric-icon" style="color: var(--accent-cyan);"><i class="fa-solid fa-eye"></i></div>
             </div>
-            <div class="metric-card card-orders">
-                <div class="metric-info">
-                    <h3>Đơn Hàng Mới</h3>
-                    <div class="metric-num" style="color: var(--accent-gold);" id="kpiTotalOrders">0</div>
-                </div>
-                <div class="metric-icon" style="color: var(--accent-gold);"><i class="fa-solid fa-receipt"></i></div>
-            </div>
-            <div class="metric-card card-revenue">
-                <div class="metric-info">
-                    <h3>Doanh Thu Đã Chốt</h3>
-                    <div class="metric-num" style="color: var(--accent-purple);" id="kpiTotalRevenue">0₫</div>
-                </div>
-                <div class="metric-icon" style="color: var(--accent-purple);"><i class="fa-solid fa-sack-dollar"></i></div>
-            </div>
-        </div>
 
-        <div class="content-grid">
-            <div style="display: flex; flex-direction: column; gap: 20px;">
-                <div class="panel">
-                    <div class="panel-header">
-                        <h2><i class="fa-solid fa-earth-asia" style="color: var(--accent-cyan);"></i> Bản Đồ Định Vị Khách Hàng (Live Interactive Map)</h2>
-                        <span class="badge" id="mapPinCount">0 Pinned Locations</span>
+            <!-- CỘT GIỮA: Bản đồ tương tác trung tâm -->
+            <div class="col-center">
+                <div class="panel-header">
+                    <h2><i class="fa-solid fa-earth-asia" style="color: var(--accent-cyan);"></i> Bản Đồ Định Vị Khách Hàng (Live Interactive Map)</h2>
+                    <span class="badge" id="mapPinCount">0 Pinned Locations</span>
+                </div>
+                <div class="map-toolbar">
+                    <div class="map-layer-toggles">
+                        <button type="button" class="map-tool-btn active" id="btnLayerStreet"><i class="fa-solid fa-road"></i> Đường Phố</button>
+                        <button type="button" class="map-tool-btn" id="btnLayerSatellite"><i class="fa-solid fa-satellite"></i> Vệ Tinh</button>
+                        <button type="button" class="map-tool-btn" id="btnLayerDark"><i class="fa-solid fa-moon"></i> Radar Đêm</button>
                     </div>
-                    <div class="map-toolbar">
-                        <div class="map-layer-toggles">
-                            <button type="button" class="map-tool-btn active" id="btnLayerStreet"><i class="fa-solid fa-road"></i> Đường Phố Rõ Nét</button>
-                            <button type="button" class="map-tool-btn" id="btnLayerSatellite"><i class="fa-solid fa-satellite"></i> Vệ Tinh Trực Quan</button>
-                            <button type="button" class="map-tool-btn" id="btnLayerDark"><i class="fa-solid fa-moon"></i> Radar Đêm</button>
+                    <div class="map-actions">
+                        <div class="map-search-box">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <input type="text" id="mapSearchInput" placeholder="Tìm địa chỉ (VD: 137 Đình Thôn)..." maxlength="80">
+                            <button type="button" id="btnMapSearch" title="Tìm và bay tới địa chỉ"><i class="fa-solid fa-arrow-right"></i></button>
                         </div>
-                        <div class="map-actions">
-                            <div class="map-search-box">
-                                <i class="fa-solid fa-magnifying-glass"></i>
-                                <input type="text" id="mapSearchInput" placeholder="Tìm địa chỉ (VD: 137 Đình Thôn)..." maxlength="80">
-                                <button type="button" id="btnMapSearch" title="Tìm và bay tới địa chỉ"><i class="fa-solid fa-arrow-right"></i></button>
-                            </div>
-                            <button type="button" class="map-tool-btn action-gps" id="btnMyGps" title="Định vị tọa độ thực tế của máy bạn bằng chip GPS/WiFi"><i class="fa-solid fa-crosshairs"></i> Vị Trí Của Tôi (GPS)</button>
-                            <button type="button" class="map-tool-btn" id="btnMyHome" style="border-color: #3b82f6; color: #60a5fa;" title="Bay nhanh tới địa chỉ 137 Đình Thôn"><i class="fa-solid fa-house-chimney"></i> 137 Đình Thôn</button>
-                            <button type="button" class="map-tool-btn" id="btnFitBounds" title="Xem tất cả vị trí khách"><i class="fa-solid fa-expand"></i> Xem Toàn Bộ</button>
-                            <button type="button" class="map-tool-btn" id="btnResetHanoi" title="Đưa tâm bản đồ về Hà Nội"><i class="fa-solid fa-location-dot"></i> Về Hà Nội</button>
-                        </div>
-                    </div>
-                    <div id="radarMap"></div>
-                </div>
-
-                <div class="panel">
-                    <div class="panel-header">
-                        <h2><i class="fa-solid fa-list-check" style="color: var(--accent-green);"></i> Luồng Truy Cập Thời Gian Thực (Live Visitor Stream)</h2>
-                        <span class="badge" id="visitorStreamCount">0 Logs</span>
-                    </div>
-                    <div class="table-wrap">
-                        <table class="radar-table">
-                            <thead>
-                                <tr>
-                                    <th>Thời Gian</th>
-                                    <th>Địa Chỉ IP & Nhà Mạng</th>
-                                    <th>Vị Trí (Tỉnh / Thành)</th>
-                                    <th>Thiết Bị & Model</th>
-                                    <th>Trình Duyệt</th>
-                                    <th>Trang Đang Xem</th>
-                                    <th>Bản Đồ</th>
-                                </tr>
-                            </thead>
-                            <tbody id="visitorTableBody">
-                                <tr>
-                                    <td colspan="7" class="empty-placeholder">
-                                        <i class="fa-solid fa-satellite-dish" style="font-size: 24px; margin-bottom: 8px; display: block;"></i>
-                                        Đang lắng nghe tín hiệu từ poemefake.id.vn...
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <button type="button" class="map-tool-btn action-gps" id="btnMyGps" title="Định vị tọa độ thực tế của máy bạn bằng chip GPS/WiFi"><i class="fa-solid fa-crosshairs"></i> GPS</button>
+                        <button type="button" class="map-tool-btn" id="btnMyHome" style="border-color: #3b82f6; color: #60a5fa;" title="Bay nhanh tới địa chỉ 137 Đình Thôn"><i class="fa-solid fa-house-chimney"></i> 137 Đình Thôn</button>
+                        <button type="button" class="map-tool-btn" id="btnFitBounds" title="Xem tất cả vị trí khách"><i class="fa-solid fa-expand"></i> Toàn Bộ</button>
+                        <button type="button" class="map-tool-btn" id="btnResetHanoi" title="Đưa tâm bản đồ về Hà Nội"><i class="fa-solid fa-location-dot"></i> Hà Nội</button>
                     </div>
                 </div>
+                <div id="radarMap"></div>
             </div>
 
-            <div style="display: flex; flex-direction: column; gap: 20px;">
-                <div class="panel" style="flex: 1;">
-                    <div class="panel-header">
-                        <h2><i class="fa-solid fa-bell" style="color: var(--accent-gold);"></i> Đơn Hàng Vừa Đặt (Live Orders)</h2>
-                        <span class="badge" id="liveOrdersBadge" style="background: rgba(245, 158, 11, 0.2); color: var(--accent-gold);">0 Đơn</span>
-                    </div>
-                    <div class="orders-feed" id="ordersFeedContainer">
-                        <div class="empty-placeholder" id="emptyOrdersNotice">
-                            <i class="fa-solid fa-box-open" style="font-size: 26px; margin-bottom: 8px; display: block;"></i>
-                            Chưa có đơn hàng mới nào được đặt.<br>
-                            Khi khách bấm "Đặt hàng ngay" trên web online, đơn sẽ xuất hiện tại đây ngay lập tức!
-                        </div>
-                    </div>
+            <!-- CỘT PHẢI: Đơn đặt hàng vừa đặt -->
+            <div class="col-right">
+                <div class="panel-header">
+                    <h2><i class="fa-solid fa-bell" style="color: var(--accent-gold);"></i> Đơn Hàng Vừa Đặt (Live Orders)</h2>
+                    <span class="badge" id="liveOrdersBadge" style="background: rgba(245, 158, 11, 0.2); color: var(--accent-gold);">0 Đơn</span>
                 </div>
-
-                <div class="threat-radar">
-                    <span class="threat-status-ok"><i class="fa-solid fa-shield-halved"></i> Firewall Status: Active • XSS & Tamper Guard Online</span>
-                    <button id="btnClearData" style="background: none; border: 1px solid var(--border); color: var(--text-muted); padding: 3px 8px; font-size: 11px; cursor: pointer; border-radius: 3px;">
-                        <i class="fa-solid fa-trash-can"></i> Xóa Lịch Sử
-                    </button>
+                <div class="orders-feed" id="ordersFeedContainer">
+                    <div class="empty-placeholder" id="emptyOrdersNotice">
+                        <i class="fa-solid fa-box-open" style="font-size: 26px; margin-bottom: 8px; display: block; color: var(--accent-gold); opacity: 0.6;"></i>
+                        Chưa có đơn hàng mới nào được đặt.<br>
+                        Khi khách bấm "Đặt hàng ngay" trên web online, đơn sẽ xuất hiện tại đây ngay lập tức!
+                    </div>
                 </div>
             </div>
         </div>
 
+        <!-- DƯỚI CÙNG: Đang Online + Tổng Lượt Xem + Trạng thái bảo mật -->
+        <footer class="radar-bottom-bar">
+            <div class="bottom-metrics-wrap">
+                <div class="bottom-metric-item item-online">
+                    <div class="b-dot"></div>
+                    <div class="b-info">
+                        <span class="b-label">ĐANG ONLINE (5 PHÚT)</span>
+                        <strong class="b-val" id="kpiActiveVisitors">0</strong>
+                    </div>
+                </div>
+                <div class="bottom-metric-item item-views">
+                    <i class="fa-solid fa-eye b-icon"></i>
+                    <div class="b-info">
+                        <span class="b-label">TỔNG LƯỢT XEM</span>
+                        <strong class="b-val" id="kpiTotalViews">0</strong>
+                    </div>
+                </div>
+            </div>
+            <div class="bottom-security-status">
+                <span><i class="fa-solid fa-shield-halved" style="color: var(--accent-green);"></i> Giám sát mục tiêu: <strong>https://www.poemefake.id.vn</strong></span>
+                <span><i class="fa-solid fa-lock" style="color: var(--accent-cyan);"></i> WAF & Anti-Tamper: Active</span>
+                <button id="btnClearData" style="background: rgba(255,255,255,0.05); border: 1px solid var(--border); color: var(--text-muted); padding: 4px 10px; border-radius: 4px; font-size: 11px; cursor: pointer;">
+                    <i class="fa-solid fa-trash-can"></i> Xóa Lịch Sử
+                </button>
+            </div>
+        </footer>
     </main>
 
     <script>
-        let soundEnabled = true;
         let map = null;
         let streetLayer = null;
         let satelliteLayer = null;
@@ -791,23 +823,6 @@
         const markerMap = new Map();
         const visitorsList = [];
         const ordersList = [];
-
-        function playChime(freq = 880, type = 'sine', duration = 0.25) {
-            if (!soundEnabled) return;
-            try {
-                const ctx = new (window.AudioContext || window.webkitAudioContext)();
-                const osc = ctx.createOscillator();
-                const gain = ctx.createGain();
-                osc.type = type;
-                osc.frequency.setValueAtTime(freq, ctx.currentTime);
-                gain.gain.setValueAtTime(0.15, ctx.currentTime);
-                gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + duration);
-                osc.connect(gain);
-                gain.connect(ctx.destination);
-                osc.start();
-                osc.stop(ctx.currentTime + duration);
-            } catch {}
-        }
 
         function initMap() {
             map = L.map('radarMap', { zoomControl: true }).setView([21.0285, 105.8542], 12);
@@ -1195,10 +1210,10 @@
                 if (!res.ok) return;
                 const data = await res.json();
 
-                document.getElementById('kpiActiveVisitors').textContent = data.active_visitors || 0;
-                document.getElementById('kpiTotalViews').textContent = data.total_visitors || 0;
-                document.getElementById('kpiTotalOrders').textContent = data.total_orders || 0;
-                document.getElementById('kpiTotalRevenue').textContent = (data.total_revenue || 0).toLocaleString('vi-VN') + '₫';
+                const activeEl = document.getElementById('kpiActiveVisitors');
+                if (activeEl) activeEl.textContent = data.active_visitors || 0;
+                const viewsEl = document.getElementById('kpiTotalViews');
+                if (viewsEl) viewsEl.textContent = data.total_visitors || 0;
 
                 if (Array.isArray(data.visitors) && data.visitors.length > 0) {
                     const tbody = document.getElementById('visitorTableBody');
@@ -1264,10 +1279,9 @@
                         tbody.insertAdjacentHTML('afterbegin', renderVisitorRow(rowObj));
 
                         addMapPin(rowObj.lat, rowObj.lon, rowObj, false);
-                        playChime(640, 'sine', 0.15);
 
                         const totalViewsEl = document.getElementById('kpiTotalViews');
-                        totalViewsEl.textContent = (parseInt(totalViewsEl.textContent, 10) || 0) + 1;
+                        if (totalViewsEl) totalViewsEl.textContent = (parseInt(totalViewsEl.textContent, 10) || 0) + 1;
                     }
                 } catch {}
             };
@@ -1283,14 +1297,12 @@
                         if (emptyNotice) emptyNotice.remove();
 
                         ordersContainer.insertAdjacentHTML('afterbegin', renderOrderCard(msg));
-                        playChime(1100, 'triangle', 0.6);
 
-                        const totalOrdersEl = document.getElementById('kpiTotalOrders');
-                        totalOrdersEl.textContent = (parseInt(totalOrdersEl.textContent, 10) || 0) + 1;
-
-                        const totalRevEl = document.getElementById('kpiTotalRevenue');
-                        const curRev = parseInt(totalRevEl.textContent.replace(/\D/g, ''), 10) || 0;
-                        totalRevEl.textContent = (curRev + (msg.totalAmount || 0)).toLocaleString('vi-VN') + '₫';
+                        const liveBadge = document.getElementById('liveOrdersBadge');
+                        if (liveBadge) {
+                            const curCount = parseInt(liveBadge.textContent, 10) || 0;
+                            liveBadge.textContent = `${curCount + 1} Đơn`;
+                        }
 
                         if (msg.geo && msg.geo.lat && msg.geo.lon) {
                             addMapPin(msg.geo.lat, msg.geo.lon, {
@@ -1313,20 +1325,17 @@
             syncFromLocalServer();
             listenLiveEvents();
 
+            setTimeout(() => {
+                if (map) map.invalidateSize();
+            }, 300);
+
             setInterval(() => {
                 document.getElementById('clockDisplay').textContent = new Date().toLocaleTimeString('vi-VN');
             }, 1000);
 
             setInterval(syncFromLocalServer, 8000);
 
-            document.getElementById('btnAudioToggle').addEventListener('click', (e) => {
-                soundEnabled = !soundEnabled;
-                e.currentTarget.innerHTML = soundEnabled
-                    ? '<i class="fa-solid fa-volume-high"></i> Alert Sound: ON'
-                    : '<i class="fa-solid fa-volume-xmark"></i> Alert Sound: OFF';
-            });
-
-            document.getElementById('btnClearData').addEventListener('click', async () => {
+            document.getElementById('btnClearData')?.addEventListener('click', async () => {
                 if (confirm('Bạn có chắc muốn xóa sạch toàn bộ lịch sử truy cập và đơn hàng trong database local?')) {
                     await fetch('/api/clear');
                     location.reload();
