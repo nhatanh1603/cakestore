@@ -123,25 +123,6 @@ def save_order(payload):
         print("[RADAR Error saving order]:", e)
 
 def stream_listener(base_topic_url, handler_func):
-    try:
-        poll_url = f"{base_topic_url}/json?poll=1&since=24h"
-        req = urllib.request.Request(poll_url, headers={'User-Agent': 'PoemeRadarServer/1.0'})
-        with urllib.request.urlopen(req, timeout=10) as res:
-            for line in res.read().decode('utf-8').strip().split('\n'):
-                if not line:
-                    continue
-                try:
-                    data = json.loads(line)
-                    msg = data.get('message')
-                    if msg:
-                        handler_func(json.loads(msg))
-                    elif data.get('type') in ['pageview', 'order']:
-                        handler_func(data)
-                except Exception:
-                    pass
-    except Exception:
-        pass
-
     while True:
         try:
             req = urllib.request.Request(f"{base_topic_url}/raw", headers={'User-Agent': 'PoemeRadarServer/1.0'})

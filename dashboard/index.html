@@ -38,16 +38,17 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        html, body {
-            height: 100vh;
-            max-height: 100vh;
+        html {
+            zoom: 1.2;
+            height: 100%;
             overflow: hidden;
         }
         body {
             background: radial-gradient(120% 85% at 50% -10%, #1e293b 0%, #0f172a 45%, #080d1a 100%);
             color: var(--text-primary);
             font-family: var(--font-main);
-            height: 100vh;
+            height: 100%;
+            max-height: 100%;
             display: flex;
             flex-direction: column;
             overflow: hidden;
@@ -60,8 +61,8 @@
         }
 
         .main-container {
-            height: 100vh;
-            max-height: 100vh;
+            height: 100%;
+            max-height: 100%;
             padding: 12px 14px 12px;
             display: flex;
             flex-direction: column;
@@ -72,7 +73,7 @@
 
         .content-grid-3col {
             display: grid;
-            grid-template-columns: 360px 1fr 340px;
+            grid-template-columns: 390px 1fr 340px;
             gap: 12px;
             flex: 1;
             min-height: 0;
@@ -490,7 +491,7 @@
             gap: 7px;
         }
         .visitor-card {
-            background: rgba(30, 41, 59, 0.35);
+            background: rgba(30, 41, 59, 0.4);
             border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 6px;
             padding: 9px 11px;
@@ -499,83 +500,120 @@
             display: flex;
             flex-direction: column;
             gap: 6px;
+            position: relative;
         }
         .visitor-card:hover {
-            background: rgba(30, 41, 59, 0.7);
-            border-color: rgba(255, 255, 255, 0.2);
+            background: rgba(30, 41, 59, 0.75);
+            border-color: rgba(56, 189, 248, 0.35);
         }
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(-4px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        .vcard-top {
+        .vcard-header-row {
             display: flex;
             align-items: center;
             justify-content: space-between;
+            gap: 8px;
         }
-        .vcard-ip-wrap {
+        .vcard-ip-block {
             display: flex;
             align-items: center;
             gap: 6px;
+            flex-wrap: wrap;
+            min-width: 0;
+            flex: 1;
         }
         .vcard-dot {
             width: 6px;
             height: 6px;
             background: #10b981;
             border-radius: 50%;
+            flex-shrink: 0;
         }
         .vcard-ip {
             font-family: var(--font-mono);
-            font-size: 11.5px;
-            font-weight: 600;
+            font-size: 11px;
+            font-weight: 700;
             color: #ffffff;
+            white-space: nowrap;
+        }
+        .vcard-country-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1px 5px;
+            border-radius: 3px;
+            font-size: 9.5px;
+            color: #cbd5e1;
+            white-space: nowrap;
+        }
+        .vcard-flag-img {
+            width: 15px;
+            height: 11px;
+            border-radius: 2px;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+        .vcard-country-txt {
+            font-weight: 600;
+            color: #94a3b8;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 140px;
+        }
+        .vcard-right-controls {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-shrink: 0;
         }
         .vcard-time {
             font-family: var(--font-mono);
             font-size: 10px;
             color: var(--text-muted);
         }
-        .vcard-loc {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 11px;
-            color: #e2e8f0;
-        }
-        .vcard-iso {
-            font-family: var(--font-mono);
-            font-size: 9.5px;
-            font-weight: 700;
-            color: #94a3b8;
-            background: rgba(255, 255, 255, 0.08);
-            padding: 1px 5px;
-            border-radius: 3px;
-        }
-        .vcard-place {
-            color: #ffffff;
-            font-weight: 600;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-        .vcard-isp {
-            margin-left: auto;
-            font-size: 9.5px;
+        .btn-entity-more {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.12);
             color: #cbd5e1;
-            font-family: var(--font-mono);
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            padding: 1px 5px;
-            border-radius: 3px;
-            max-width: 95px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+            width: 22px;
+            height: 22px;
+            border-radius: 4px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 11px;
+            transition: all 0.15s ease;
+            padding: 0;
         }
-        .vcard-bottom {
+        .btn-entity-more:hover {
+            color: #38bdf8;
+            background: rgba(56, 189, 248, 0.15);
+            border-color: rgba(56, 189, 248, 0.4);
+        }
+        .vcard-meta-row {
             display: flex;
             align-items: center;
             gap: 5px;
+            flex-wrap: wrap;
+        }
+        .vcard-hit-badge {
+            font-family: var(--font-mono);
+            font-size: 9.5px;
+            font-weight: 700;
+            color: #38bdf8;
+            background: rgba(56, 189, 248, 0.12);
+            border: 1px solid rgba(56, 189, 248, 0.25);
+            padding: 1px 5px;
+            border-radius: 3px;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
         }
         .vcard-pill {
             display: inline-flex;
@@ -583,27 +621,28 @@
             gap: 4px;
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.08);
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-size: 10px;
+            padding: 1.5px 5px;
+            border-radius: 3px;
+            font-size: 9.5px;
             color: #cbd5e1;
             font-weight: 500;
+            max-width: 140px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
         .vcard-pill.path {
             color: #38bdf8;
             background: rgba(56, 189, 248, 0.1);
             border-color: rgba(56, 189, 248, 0.25);
             font-family: var(--font-mono);
-            max-width: 130px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+            max-width: 120px;
         }
         .vcard-gmaps-link {
             margin-left: auto;
             color: #94a3b8;
-            font-size: 10.5px;
-            padding: 2px 5px;
+            font-size: 10px;
+            padding: 1.5px 4px;
             border-radius: 3px;
             transition: all 0.12s;
             background: rgba(255, 255, 255, 0.04);
@@ -613,6 +652,258 @@
             color: #38bdf8;
             background: rgba(56, 189, 248, 0.15);
             border-color: rgba(56, 189, 248, 0.3);
+        }
+
+        /* Centered Entity Dossier Popup Modal */
+        .modal-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(4, 7, 15, 0.8);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 99999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+        }
+        .modal-backdrop.active {
+            display: flex;
+        }
+        .entity-modal-dialog {
+            background: #0f172a;
+            border: 1px solid rgba(56, 189, 248, 0.35);
+            border-radius: 8px;
+            width: 100%;
+            max-width: 640px;
+            max-height: 86vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9);
+            animation: modalPopIn 0.16s ease-out;
+        }
+        @keyframes modalPopIn {
+            from { opacity: 0; transform: scale(0.96); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        .modal-header {
+            padding: 12px 16px;
+            background: rgba(15, 23, 42, 0.98);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 12px;
+        }
+        .modal-title-wrap {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .modal-badge-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .modal-title-tag {
+            font-family: var(--font-mono);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            color: #38bdf8;
+            background: rgba(56, 189, 248, 0.12);
+            border: 1px solid rgba(56, 189, 248, 0.25);
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .modal-hits-pill {
+            font-family: var(--font-mono);
+            font-size: 10px;
+            font-weight: 700;
+            color: #10b981;
+            background: rgba(16, 185, 129, 0.12);
+            border: 1px solid rgba(16, 185, 129, 0.25);
+            padding: 2px 6px;
+            border-radius: 3px;
+        }
+        .modal-ip-title {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .modal-ip-text {
+            font-family: var(--font-mono);
+            font-size: 15px;
+            font-weight: 700;
+            color: #ffffff;
+        }
+        .modal-copy-btn {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: #94a3b8;
+            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+        .modal-copy-btn:hover {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.15);
+        }
+        .modal-close-x {
+            background: transparent;
+            border: none;
+            color: #94a3b8;
+            font-size: 16px;
+            cursor: pointer;
+            width: 26px;
+            height: 26px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+            transition: all 0.15s ease;
+        }
+        .modal-close-x:hover {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.1);
+        }
+        .modal-body {
+            padding: 14px 16px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            flex: 1;
+        }
+        .modal-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        .modal-section-box {
+            background: rgba(30, 41, 59, 0.45);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 6px;
+            padding: 10px 12px;
+        }
+        .modal-box-header {
+            font-family: var(--font-mono);
+            font-size: 10.5px;
+            font-weight: 700;
+            color: #cbd5e1;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            padding-bottom: 5px;
+        }
+        .modal-kv-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 8px;
+            font-size: 11px;
+            padding: 2.5px 0;
+        }
+        .modal-kv-label {
+            color: #94a3b8;
+            font-weight: 500;
+            flex-shrink: 0;
+        }
+        .modal-kv-val {
+            color: #f1f5f9;
+            font-weight: 600;
+            text-align: right;
+            word-break: break-word;
+        }
+        .modal-kv-val.mono {
+            font-family: var(--font-mono);
+        }
+        .text-purple { color: #c084fc !important; }
+        .text-amber { color: #fbbf24 !important; }
+        .modal-timeline-box {
+            background: rgba(30, 41, 59, 0.45);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 6px;
+            padding: 10px 12px;
+        }
+        .modal-timeline-list {
+            max-height: 120px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            margin-top: 6px;
+        }
+        .timeline-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 10.5px;
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            padding: 4px 7px;
+            border-radius: 3px;
+        }
+        .timeline-path {
+            font-family: var(--font-mono);
+            color: #38bdf8;
+            font-weight: 600;
+        }
+        .timeline-time {
+            font-family: var(--font-mono);
+            color: #94a3b8;
+            font-size: 9.5px;
+        }
+        .modal-footer {
+            padding: 10px 16px;
+            background: rgba(15, 23, 42, 0.98);
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 8px;
+        }
+        .modal-btn-act {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: #f1f5f9;
+            font-size: 11px;
+            font-family: var(--font-main);
+            font-weight: 600;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.15s ease;
+        }
+        .modal-btn-act:hover {
+            background: rgba(255, 255, 255, 0.12);
+            color: #ffffff;
+        }
+        .modal-btn-act.primary {
+            background: rgba(56, 189, 248, 0.15);
+            border-color: rgba(56, 189, 248, 0.4);
+            color: #38bdf8;
+        }
+        .modal-btn-act.primary:hover {
+            background: rgba(56, 189, 248, 0.25);
+            color: #ffffff;
         }
 
         /* Right Column: Orders Feed */
@@ -830,6 +1121,99 @@
         </div>
     </main>
 
+    <!-- Centered Entity Dossier Popup Modal -->
+    <div id="entityModalBackdrop" class="modal-backdrop" onclick="closeEntityModal(event)">
+        <div class="entity-modal-dialog" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <div class="modal-title-wrap">
+                    <div class="modal-badge-row">
+                        <span class="modal-title-tag"><i class="fa-solid fa-fingerprint"></i> HỒ SƠ ĐỊNH DANH CÁ THỂ</span>
+                        <span id="modalEntityHits" class="modal-hits-pill">1 lượt xem</span>
+                    </div>
+                    <div class="modal-ip-title">
+                        <span id="modalEntityIp" class="modal-ip-text">--</span>
+                        <button id="btnCopyIp" type="button" class="modal-copy-btn" title="Sao chép IP"><i class="fa-regular fa-copy"></i> Copy</button>
+                        <span id="modalEntityFlagWrap"></span>
+                    </div>
+                </div>
+                <button type="button" class="modal-close-x" onclick="closeEntityModal()"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <div class="modal-body">
+                <div class="modal-grid">
+                    <div class="modal-section-box">
+                        <div class="modal-box-header"><i class="fa-solid fa-globe"></i> MẠNG & ĐỊA LÝ</div>
+                        <div class="modal-kv-row">
+                            <span class="modal-kv-label">Vị trí:</span>
+                            <span id="modalLoc" class="modal-kv-val">--</span>
+                        </div>
+                        <div class="modal-kv-row">
+                            <span class="modal-kv-label">Quốc gia:</span>
+                            <span id="modalCountry" class="modal-kv-val">--</span>
+                        </div>
+                        <div class="modal-kv-row">
+                            <span class="modal-kv-label">Nhà mạng:</span>
+                            <span id="modalIsp" class="modal-kv-val">--</span>
+                        </div>
+                        <div class="modal-kv-row">
+                            <span class="modal-kv-label">Tọa độ Radar:</span>
+                            <span id="modalCoords" class="modal-kv-val mono">--</span>
+                        </div>
+                        <div class="modal-kv-row">
+                            <span class="modal-kv-label">Phân giải IP:</span>
+                            <span id="modalIpType" class="modal-kv-val mono">--</span>
+                        </div>
+                    </div>
+
+                    <div class="modal-section-box">
+                        <div class="modal-box-header"><i class="fa-solid fa-microchip"></i> THIẾT BỊ & PHẦN CỨNG</div>
+                        <div class="modal-kv-row">
+                            <span class="modal-kv-label">Canvas Hash:</span>
+                            <span id="modalFp" class="modal-kv-val mono text-purple">--</span>
+                        </div>
+                        <div class="modal-kv-row">
+                            <span class="modal-kv-label">Thiết bị:</span>
+                            <span id="modalDevice" class="modal-kv-val">--</span>
+                        </div>
+                        <div class="modal-kv-row">
+                            <span class="modal-kv-label">Hệ điều hành:</span>
+                            <span id="modalOs" class="modal-kv-val">--</span>
+                        </div>
+                        <div class="modal-kv-row">
+                            <span class="modal-kv-label">Trình duyệt:</span>
+                            <span id="modalBrowser" class="modal-kv-val">--</span>
+                        </div>
+                        <div class="modal-kv-row">
+                            <span class="modal-kv-label">Màn hình:</span>
+                            <span id="modalScreen" class="modal-kv-val mono">--</span>
+                        </div>
+                        <div class="modal-kv-row">
+                            <span class="modal-kv-label">Ngôn ngữ:</span>
+                            <span id="modalLang" class="modal-kv-val">--</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-timeline-box">
+                    <div class="modal-box-header"><i class="fa-solid fa-clock-rotate-left"></i> NHẬT KÝ HÀNH VI TRUY CẬP (<span id="modalHistoryCount">0</span> SỰ KIỆN)</div>
+                    <div id="modalHistoryList" class="modal-timeline-list"></div>
+                </div>
+
+                <div id="modalOrdersSection" class="modal-timeline-box" style="display: none; border-color: rgba(251, 191, 36, 0.3);">
+                    <div class="modal-box-header text-amber"><i class="fa-solid fa-bag-shopping"></i> ĐƠN HÀNG DO CÁ THỂ NÀY ĐẶT</div>
+                    <div id="modalOrdersList" class="modal-timeline-list"></div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" id="btnModalFocusMap" class="modal-btn-act primary"><i class="fa-solid fa-crosshairs"></i> Ghim Trên Radar</button>
+                <a id="btnModalGoogleMaps" href="#" target="_blank" rel="noopener noreferrer" class="modal-btn-act"><i class="fa-solid fa-map-location-dot"></i> Google Maps</a>
+                <button type="button" id="btnModalCopyJson" class="modal-btn-act"><i class="fa-solid fa-code"></i> Copy JSON</button>
+                <button type="button" class="modal-btn-act" onclick="closeEntityModal()">Đóng</button>
+            </div>
+        </div>
+    </div>
+
     <script>
         let map = null;
         let streetLayer = null;
@@ -838,8 +1222,14 @@
         let currentLayer = null;
         const markers = [];
         const markerMap = new Map();
-        const visitorsList = [];
-        const ordersList = [];
+        const entityMap = new Map();
+        const orderList = [];
+        let currentModalEntity = null;
+
+        const CLEARED_KEY = 'poeme_radar_cleared_at';
+        function getClearedCutoff() {
+            return parseInt(localStorage.getItem(CLEARED_KEY) || '0', 10);
+        }
 
         function initMap() {
             map = L.map('radarMap', { zoomControl: false, attributionControl: false }).setView([21.0285, 105.8542], 12);
@@ -1042,7 +1432,12 @@
                     finalLon = 105.7758;
                 }
             }
-            if (!map || isNaN(finalLat) || isNaN(finalLon)) return;
+            if (!map || isNaN(finalLat) || isNaN(finalLon)) return null;
+
+            const ip = data.ip || 'Unknown';
+            if (!isOrder && ip !== 'Unknown' && markerMap.has(ip)) {
+                return markerMap.get(ip);
+            }
 
             const pinClass = isOrder ? 'radar-pin-order' : 'radar-pin-visitor';
             const iconSymbol = isOrder ? '<i class="fa-solid fa-receipt"></i>' : '<i class="fa-solid fa-user"></i>';
@@ -1056,14 +1451,13 @@
 
             const marker = L.marker([finalLat, finalLon], { icon: customIcon }).addTo(map);
 
-            const timeStr = new Date(data.timestamp || Date.now()).toLocaleTimeString('vi-VN');
+            const timeStr = new Date(data.timestamp || data.lastSeen || Date.now()).toLocaleTimeString('vi-VN');
             const city = data.city || 'Hà Nội';
             const country = data.country || 'Việt Nam';
-            const ip = data.ip || 'Unknown';
             const isp = data.isp || 'Internet';
             const deviceName = data.device_name || data.deviceName || 'PC';
             const os = data.os || '';
-            const path = data.path || '/';
+            const path = data.currentPath || data.path || '/';
             const fp = data.fingerprint || (data.device && data.device.fingerprint) || 'DEV-ACTIVE';
 
             const popupHtml = `
@@ -1103,48 +1497,69 @@
             markerMap.set(key, marker);
             if (ip && ip !== 'Unknown') markerMap.set(ip, marker);
 
-            document.getElementById('mapPinCount').textContent = `${markers.length} Pinned Locations`;
+            const pinCountEl = document.getElementById('mapPinCount');
+            if (pinCountEl) pinCountEl.textContent = `${markers.length} Pinned Locations`;
             return marker;
         }
 
-        function renderVisitorCard(v) {
-            const timeStr = new Date(v.timestamp || Date.now()).toLocaleTimeString('vi-VN');
-            const city = v.city || 'Hà Nội';
-            const country = v.country || 'Việt Nam';
-            const lat = v.lat || 21.0285;
-            const lon = v.lon || 105.8542;
-            const gmapUrl = `https://www.google.com/maps?q=${lat},${lon}`;
+        function renderEntityCard(entity) {
+            const timeStr = new Date(entity.lastSeen).toLocaleTimeString('vi-VN');
+            const iso = (entity.countryCode || 'VN').toUpperCase();
+            const isoLower = iso.toLowerCase();
+            const city = entity.city || 'Hà Nội';
+            const country = entity.country || 'Việt Nam';
 
             let deviceIcon = 'fa-desktop';
-            if (v.device_type === 'Mobile') deviceIcon = 'fa-mobile-screen-button';
-            else if (v.device_type === 'Tablet') deviceIcon = 'fa-tablet-screen-button';
+            if (entity.device_type === 'Mobile') deviceIcon = 'fa-mobile-screen-button';
+            else if (entity.device_type === 'Tablet') deviceIcon = 'fa-tablet-screen-button';
 
-            const isVN = v.country_code === 'VN' || country.includes('Viet');
-            const iso = (v.country_code || (isVN ? 'VN' : 'INTL')).toUpperCase();
+            const flagCode = (isoLower === 'intl' || isoLower.length !== 2) ? 'vn' : isoLower;
+            const flagUrl = `https://flagcdn.com/20x15/${flagCode}.png`;
 
             return `
-                <div class="visitor-card" onclick="focusMapPin(${lat}, ${lon}, '${v.ip}')" title="Định vị trên bản đồ">
-                    <div class="vcard-top">
-                        <div class="vcard-ip-wrap">
+                <div class="visitor-card" onclick="focusMapPin(${entity.lat}, ${entity.lon}, '${entity.ip}')" title="Định vị trên bản đồ">
+                    <div class="vcard-header-row">
+                        <div class="vcard-ip-block">
                             <span class="vcard-dot"></span>
-                            <span class="vcard-ip">${v.ip || 'Unknown'}</span>
+                            <span class="vcard-ip">${entity.ip}</span>
+                            <span class="vcard-country-badge">
+                                <img src="${flagUrl}" onerror="this.style.display='none'" class="vcard-flag-img" alt="${iso}">
+                                <span class="vcard-country-txt">${iso} • ${city}, ${country}</span>
+                            </span>
                         </div>
-                        <span class="vcard-time">${timeStr}</span>
+                        <div class="vcard-right-controls">
+                            <span class="vcard-time">${timeStr}</span>
+                            <button type="button" class="btn-entity-more" onclick="openEntityModal('${entity.ip}'); event.stopPropagation();" title="Chi tiết cá thể">
+                                <i class="fa-solid fa-ellipsis"></i>
+                            </button>
+                        </div>
                     </div>
-                    <div class="vcard-loc">
-                        <span class="vcard-iso">[${iso}]</span>
-                        <span class="vcard-place">${city}, ${country}</span>
-                        <span class="vcard-isp">${v.isp || 'Internet'}</span>
-                    </div>
-                    <div class="vcard-bottom">
-                        <span class="vcard-pill"><i class="fa-solid ${deviceIcon}"></i> ${v.device_name || 'PC'}</span>
-                        <span class="vcard-pill path"><i class="fa-solid fa-compass"></i> ${v.path || '/'}</span>
-                        <a href="${gmapUrl}" target="_blank" rel="noopener noreferrer" class="vcard-gmaps-link" onclick="event.stopPropagation();" title="Google Maps">
-                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                        </a>
+                    <div class="vcard-meta-row">
+                        <span class="vcard-hit-badge"><i class="fa-solid fa-layer-group"></i> ${entity.hitCount} lượt xem</span>
+                        <span class="vcard-pill"><i class="fa-solid ${deviceIcon}"></i> ${entity.device_name || 'PC'}</span>
+                        <span class="vcard-pill path"><i class="fa-regular fa-compass"></i> ${entity.currentPath || '/'}</span>
+                        ${entity.orders && entity.orders.length > 0 ? `<span class="vcard-hit-badge" style="color: #fbbf24; background: rgba(251, 191, 36, 0.12); border-color: rgba(251, 191, 36, 0.3);"><i class="fa-solid fa-bag-shopping"></i> ${entity.orders.length} đơn</span>` : ''}
                     </div>
                 </div>
             `;
+        }
+
+        function renderAllEntities() {
+            const feed = document.getElementById('visitorStreamFeed');
+            if (!feed) return;
+
+            if (entityMap.size === 0) {
+                feed.innerHTML = '<div class="empty-placeholder">Chờ tín hiệu truy cập mới từ web...</div>';
+                const vCountEl = document.getElementById('visitorStreamCount');
+                if (vCountEl) vCountEl.textContent = '0 Khách';
+                return;
+            }
+
+            const sorted = Array.from(entityMap.values()).sort((a, b) => b.lastSeen - a.lastSeen);
+            const vCountEl = document.getElementById('visitorStreamCount');
+            if (vCountEl) vCountEl.textContent = `${sorted.length} Cá Thể`;
+
+            feed.innerHTML = sorted.map(renderEntityCard).join('');
         }
 
         function renderOrderCard(ord) {
@@ -1188,19 +1603,229 @@
             `;
         }
 
-        const seenVisitorKeys = new Set();
-        const seenOrderKeys = new Set();
-        const visitorActivityTimes = new Map();
+        function renderAllOrders() {
+            const ordersContainer = document.getElementById('ordersFeedContainer');
+            if (!ordersContainer) return;
 
-        function updateOnlineMetrics() {
+            const cutoff = getClearedCutoff();
+            const validOrders = orderList.filter(o => (o.timestamp || 0) > cutoff);
+
+            const liveBadge = document.getElementById('liveOrdersBadge');
+            if (liveBadge) liveBadge.textContent = `${validOrders.length} Đơn`;
+
+            if (validOrders.length === 0) {
+                ordersContainer.innerHTML = '<div class="empty-placeholder" id="emptyOrdersNotice">Chờ đơn hàng mới...</div>';
+                return;
+            }
+
+            ordersContainer.innerHTML = validOrders.map(renderOrderCard).join('');
+        }
+
+        function updateKpis() {
+            const cutoff = getClearedCutoff();
             const now = Date.now();
             const activeThreshold = 15 * 60 * 1000;
+
             let activeCount = 0;
-            visitorActivityTimes.forEach(ts => {
-                if (now - ts < activeThreshold) activeCount++;
+            let totalViews = 0;
+
+            entityMap.forEach(ent => {
+                if (ent.lastSeen > cutoff) {
+                    totalViews += ent.hitCount;
+                    if (now - ent.lastSeen < activeThreshold) {
+                        activeCount++;
+                    }
+                }
             });
+
             const activeEl = document.getElementById('kpiActiveVisitors');
-            if (activeEl && activeCount > 0) activeEl.textContent = activeCount;
+            if (activeEl) activeEl.textContent = activeCount;
+
+            const viewsEl = document.getElementById('kpiTotalViews');
+            if (viewsEl) viewsEl.textContent = totalViews;
+
+            const pinCountEl = document.getElementById('mapPinCount');
+            if (pinCountEl) pinCountEl.textContent = `${markers.length} Pinned Locations`;
+        }
+
+        function processVisitorEvent(data) {
+            const timestamp = data.timestamp || Date.now();
+            const cutoff = getClearedCutoff();
+            if (timestamp <= cutoff) return;
+
+            const ip = data.ip || 'Unknown';
+            const city = data.city || 'Hà Nội';
+            const country = data.country || 'Việt Nam';
+            const countryCode = (data.country_code || (country.includes('Viet') ? 'VN' : 'INTL')).toUpperCase();
+            const path = data.path || '/';
+            const lat = data.lat || 21.0285;
+            const lon = data.lon || 105.8542;
+
+            let entity = entityMap.get(ip);
+            if (!entity) {
+                entity = {
+                    ip,
+                    city,
+                    country,
+                    countryCode,
+                    region: data.region || city,
+                    isp: data.isp || 'Internet',
+                    lat,
+                    lon,
+                    device_type: data.device_type || 'Desktop',
+                    device_name: data.device_name || 'PC',
+                    os: data.os || '',
+                    browser: data.browser || '',
+                    screen: data.screen || '',
+                    language: data.language || 'vi-VN',
+                    fingerprint: data.fingerprint || 'DEV-ACTIVE',
+                    firstSeen: timestamp,
+                    lastSeen: timestamp,
+                    hitCount: 1,
+                    currentPath: path,
+                    paths: [{ path, time: timestamp }],
+                    orders: []
+                };
+                entityMap.set(ip, entity);
+                addMapPin(lat, lon, entity, false);
+            } else {
+                entity.hitCount++;
+                entity.lastSeen = timestamp;
+                entity.currentPath = path;
+                entity.paths.unshift({ path, time: timestamp });
+                if (entity.paths.length > 30) entity.paths.pop();
+                if (data.fingerprint && data.fingerprint !== 'DEV-ACTIVE') entity.fingerprint = data.fingerprint;
+                if (data.screen) entity.screen = data.screen;
+                if (data.os) entity.os = data.os;
+                if (data.browser) entity.browser = data.browser;
+                if (data.isp && data.isp !== 'Internet') entity.isp = data.isp;
+                if (data.city && data.city !== 'Hà Nội') entity.city = data.city;
+                if (data.country) entity.country = data.country;
+            }
+
+            renderAllEntities();
+            updateKpis();
+
+            if (currentModalEntity && currentModalEntity.ip === ip) {
+                updateModalContent(entity);
+            }
+        }
+
+        function processOrderEvent(ord) {
+            const timestamp = ord.timestamp || Date.now();
+            const cutoff = getClearedCutoff();
+            if (timestamp <= cutoff) return;
+
+            orderList.unshift(ord);
+            if (orderList.length > 50) orderList.pop();
+
+            const orderIp = ord.ip || (ord.geo && ord.geo.ip);
+            if (orderIp && entityMap.has(orderIp)) {
+                entityMap.get(orderIp).orders.unshift(ord);
+                renderAllEntities();
+            }
+
+            if (ord.lat && ord.lon) {
+                addMapPin(ord.lat, ord.lon, ord, true);
+            }
+
+            renderAllOrders();
+            updateKpis();
+
+            if (currentModalEntity && currentModalEntity.ip === orderIp) {
+                updateModalContent(entityMap.get(orderIp));
+            }
+        }
+
+        window.openEntityModal = (ip) => {
+            const entity = entityMap.get(ip);
+            if (!entity) return;
+            currentModalEntity = entity;
+            updateModalContent(entity);
+            document.getElementById('entityModalBackdrop').classList.add('active');
+        };
+
+        window.closeEntityModal = (e) => {
+            if (e && e.target && e.target !== document.getElementById('entityModalBackdrop') && !e.target.closest('.modal-close-x') && !e.target.closest('.btn-close-modal')) {
+                return;
+            }
+            document.getElementById('entityModalBackdrop').classList.remove('active');
+            currentModalEntity = null;
+        };
+
+        function updateModalContent(entity) {
+            const iso = (entity.countryCode || 'VN').toUpperCase();
+            const isoLower = iso.toLowerCase();
+            const flagCode = (isoLower === 'intl' || isoLower.length !== 2) ? 'vn' : isoLower;
+            const flagUrl = `https://flagcdn.com/20x15/${flagCode}.png`;
+
+            document.getElementById('modalEntityIp').textContent = entity.ip;
+            document.getElementById('modalEntityHits').textContent = `${entity.hitCount} lượt xem`;
+
+            document.getElementById('modalEntityFlagWrap').innerHTML = `
+                <span class="vcard-country-badge" style="font-size: 11px;">
+                    <img src="${flagUrl}" onerror="this.style.display='none'" class="vcard-flag-img" alt="${iso}">
+                    <span class="vcard-country-txt">${iso} • ${entity.city}, ${entity.country}</span>
+                </span>
+            `;
+
+            document.getElementById('modalLoc').textContent = `${entity.city}, ${entity.region || entity.city}`;
+            document.getElementById('modalCountry').textContent = `${entity.country} (${iso})`;
+            document.getElementById('modalIsp').textContent = entity.isp || 'Internet Service Provider';
+            document.getElementById('modalCoords').textContent = `${Number(entity.lat).toFixed(6)}, ${Number(entity.lon).toFixed(6)}`;
+            document.getElementById('modalIpType').textContent = entity.ip.includes(':') ? 'IPv6' : 'IPv4';
+
+            document.getElementById('modalFp').textContent = entity.fingerprint || 'DEV-ACTIVE';
+            document.getElementById('modalDevice').textContent = `${entity.device_name || 'PC'} (${entity.device_type || 'Desktop'})`;
+            document.getElementById('modalOs').textContent = entity.os || 'Unknown OS';
+            document.getElementById('modalBrowser').textContent = entity.browser || 'Unknown Browser';
+            document.getElementById('modalScreen').textContent = entity.screen || '1920x1080';
+            document.getElementById('modalLang').textContent = entity.language || 'vi-VN';
+
+            document.getElementById('modalHistoryCount').textContent = entity.paths ? entity.paths.length : 1;
+            const historyList = document.getElementById('modalHistoryList');
+            if (entity.paths && entity.paths.length > 0) {
+                historyList.innerHTML = entity.paths.map(p => `
+                    <div class="timeline-item">
+                        <span class="timeline-path"><i class="fa-regular fa-compass"></i> ${p.path}</span>
+                        <span class="timeline-time">${new Date(p.time).toLocaleTimeString('vi-VN')}</span>
+                    </div>
+                `).join('');
+            } else {
+                historyList.innerHTML = `<div class="timeline-item"><span class="timeline-path">${entity.currentPath || '/'}</span><span class="timeline-time">${new Date(entity.lastSeen).toLocaleTimeString('vi-VN')}</span></div>`;
+            }
+
+            const ordersSec = document.getElementById('modalOrdersSection');
+            const ordersList = document.getElementById('modalOrdersList');
+            if (entity.orders && entity.orders.length > 0) {
+                ordersSec.style.display = 'block';
+                ordersList.innerHTML = entity.orders.map(o => `
+                    <div class="timeline-item" style="border-color: rgba(251, 191, 36, 0.3);">
+                        <span class="timeline-path text-amber"><i class="fa-solid fa-receipt"></i> #${o.order_id || o.orderId} - ${(o.total_amount || o.totalAmount || 0).toLocaleString('vi-VN')}₫</span>
+                        <span class="timeline-time">${new Date(o.timestamp).toLocaleTimeString('vi-VN')}</span>
+                    </div>
+                `).join('');
+            } else {
+                ordersSec.style.display = 'none';
+                ordersList.innerHTML = '';
+            }
+
+            document.getElementById('btnModalFocusMap').onclick = () => {
+                closeEntityModal();
+                focusMapPin(entity.lat, entity.lon, entity.ip);
+            };
+
+            document.getElementById('btnModalGoogleMaps').href = `https://www.google.com/maps?q=${entity.lat},${entity.lon}`;
+
+            document.getElementById('btnModalCopyJson').onclick = () => {
+                navigator.clipboard.writeText(JSON.stringify(entity, null, 2));
+                alert('Đã sao chép toàn bộ JSON chi tiết của cá thể IP: ' + entity.ip);
+            };
+
+            document.getElementById('btnCopyIp').onclick = () => {
+                navigator.clipboard.writeText(entity.ip);
+                alert('Đã sao chép IP: ' + entity.ip);
+            };
         }
 
         async function syncFromLocalServer() {
@@ -1208,49 +1833,20 @@
                 const res = await fetch('/api/history');
                 if (!res.ok) return;
                 const data = await res.json();
+                const cutoff = getClearedCutoff();
 
-                const activeEl = document.getElementById('kpiActiveVisitors');
-                if (activeEl) activeEl.textContent = data.active_visitors || 0;
-                const viewsEl = document.getElementById('kpiTotalViews');
-                if (viewsEl) viewsEl.textContent = data.total_visitors || 0;
-
-                if (Array.isArray(data.visitors) && data.visitors.length > 0) {
-                    const feed = document.getElementById('visitorStreamFeed');
-                    feed.innerHTML = data.visitors.map(v => {
-                        const vKey = `${v.timestamp}_${v.ip}_${v.path}`;
-                        seenVisitorKeys.add(vKey);
-                        if (v.ip) visitorActivityTimes.set(v.ip, v.timestamp || Date.now());
-                        return renderVisitorCard(v);
-                    }).join('');
-                    document.getElementById('visitorStreamCount').textContent = `${data.visitors.length} Khách`;
-
+                if (Array.isArray(data.visitors)) {
                     data.visitors.forEach(v => {
-                        if (v.lat && v.lon) {
-                            addMapPin(v.lat, v.lon, v, false);
+                        if ((v.timestamp || 0) > cutoff) {
+                            processVisitorEvent(v);
                         }
                     });
                 }
 
-                if (Array.isArray(data.orders) && data.orders.length > 0) {
-                    const ordersContainer = document.getElementById('ordersFeedContainer');
-                    ordersContainer.innerHTML = data.orders.map(o => {
-                        const oKey = o.order_id || o.orderId || String(o.timestamp);
-                        seenOrderKeys.add(oKey);
-                        return renderOrderCard(o);
-                    }).join('');
-                    document.getElementById('liveOrdersBadge').textContent = `${data.orders.length} Đơn`;
-
+                if (Array.isArray(data.orders)) {
                     data.orders.forEach(o => {
-                        if (o.lat && o.lon) {
-                            addMapPin(o.lat, o.lon, {
-                                ...o,
-                                ip: o.ip || 'Unknown',
-                                city: o.city || 'Hà Nội',
-                                country: o.country || 'Việt Nam',
-                                isp: 'Order Customer',
-                                device_name: o.customer_name || 'Khách Hàng',
-                                path: '/checkout'
-                            }, true);
+                        if ((o.timestamp || 0) > cutoff) {
+                            processOrderEvent(o);
                         }
                     });
                 }
@@ -1258,7 +1854,7 @@
         }
 
         function listenLiveEvents() {
-            const telemetrySSE = new EventSource('https://ntfy.sh/poeme_telemetry_live_83921/sse?since=12h');
+            const telemetrySSE = new EventSource('https://ntfy.sh/poeme_telemetry_live_83921/sse');
             telemetrySSE.onmessage = (e) => {
                 try {
                     const payload = JSON.parse(e.data);
@@ -1266,86 +1862,48 @@
                     if (msg && msg.type === 'pageview') {
                         const geo = msg.geo || {};
                         const dev = msg.device || {};
-                        const vKey = `${msg.timestamp}_${geo.ip || 'unk'}_${msg.path || '/'}`;
-                        if (seenVisitorKeys.has(vKey)) return;
-                        seenVisitorKeys.add(vKey);
-
-                        const rowObj = {
+                        processVisitorEvent({
                             timestamp: msg.timestamp || Date.now(),
                             ip: geo.ip || 'Unknown',
                             isp: geo.isp || 'Internet',
                             city: geo.city || 'Hà Nội',
                             country: geo.country || 'Việt Nam',
                             country_code: geo.country_code || 'VN',
+                            region: geo.region || geo.city || 'Hà Nội',
                             device_type: dev.deviceType || 'Desktop',
                             device_name: dev.deviceName || 'PC',
                             os: dev.os || '',
                             browser: dev.browser || '',
+                            screen: dev.screen || '',
+                            language: dev.language || 'vi-VN',
+                            fingerprint: dev.fingerprint || 'DEV-ACTIVE',
                             path: msg.path || '/',
                             lat: geo.lat || 21.0285,
                             lon: geo.lon || 105.8542
-                        };
-
-                        if (rowObj.ip) visitorActivityTimes.set(rowObj.ip, rowObj.timestamp);
-                        updateOnlineMetrics();
-
-                        const feed = document.getElementById('visitorStreamFeed');
-                        const placeholder = feed.querySelector('.empty-placeholder');
-                        if (placeholder) feed.innerHTML = '';
-                        feed.insertAdjacentHTML('afterbegin', renderVisitorCard(rowObj));
-
-                        const vCountBadge = document.getElementById('visitorStreamCount');
-                        if (vCountBadge) vCountBadge.textContent = `${seenVisitorKeys.size} Khách`;
-
-                        addMapPin(rowObj.lat, rowObj.lon, rowObj, false);
-
-                        const totalViewsEl = document.getElementById('kpiTotalViews');
-                        if (totalViewsEl) {
-                            const cur = parseInt(totalViewsEl.textContent, 10) || 0;
-                            totalViewsEl.textContent = Math.max(cur + 1, seenVisitorKeys.size);
-                        }
+                        });
                     }
                 } catch {}
             };
 
-            const ordersSSE = new EventSource('https://ntfy.sh/poeme_orders_live_83921/sse?since=12h');
+            const ordersSSE = new EventSource('https://ntfy.sh/poeme_orders_live_83921/sse');
             ordersSSE.onmessage = (e) => {
                 try {
                     const payload = JSON.parse(e.data);
                     const msg = payload.message ? JSON.parse(payload.message) : payload;
                     if (msg && msg.type === 'order') {
-                        const oKey = msg.orderId || msg.order_id || String(msg.timestamp);
-                        if (seenOrderKeys.has(oKey)) return;
-                        seenOrderKeys.add(oKey);
-
-                        const ordersContainer = document.getElementById('ordersFeedContainer');
-                        const emptyNotice = document.getElementById('emptyOrdersNotice');
-                        if (emptyNotice) emptyNotice.remove();
-
-                        ordersContainer.insertAdjacentHTML('afterbegin', renderOrderCard(msg));
-
-                        const liveBadge = document.getElementById('liveOrdersBadge');
-                        if (liveBadge) {
-                            liveBadge.textContent = `${seenOrderKeys.size} Đơn`;
-                        }
-
-                        if (msg.geo && msg.geo.lat && msg.geo.lon) {
-                            addMapPin(msg.geo.lat, msg.geo.lon, {
-                                ...msg,
-                                ip: msg.geo.ip || 'Unknown',
-                                city: msg.geo.city || 'Hà Nội',
-                                country: msg.geo.country || 'Việt Nam',
-                                isp: 'Order Customer',
-                                device_name: msg.customerName || 'Khách Hàng',
-                                path: '/checkout'
-                            }, true);
-                        }
+                        processOrderEvent(msg);
                     }
                 } catch {}
             };
         }
 
-        window.addEventListener('DOMContentLoaded', () => {
+        if (window.location.hash === '#open-modal') {
+                setTimeout(() => {
+                    const first = entityMap.keys().next().value;
+                    if (first) openEntityModal(first);
+                }, 400);
+            }
+            window.addEventListener('DOMContentLoaded', () => {
             initMap();
             syncFromLocalServer();
             listenLiveEvents();
@@ -1360,10 +1918,28 @@
 
             setInterval(syncFromLocalServer, 8000);
 
+            window.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') closeEntityModal();
+            });
+
             document.getElementById('btnClearData')?.addEventListener('click', async () => {
-                if (confirm('Bạn có chắc muốn xóa sạch toàn bộ lịch sử truy cập và đơn hàng trong database local?')) {
-                    await fetch('/api/clear');
-                    location.reload();
+                if (confirm('Bạn có chắc muốn xóa sạch toàn bộ lịch sử truy cập và đơn hàng?')) {
+                    const now = Date.now();
+                    localStorage.setItem(CLEARED_KEY, String(now));
+                    await fetch('/api/clear').catch(() => {});
+
+                    entityMap.clear();
+                    orderList.length = 0;
+
+                    markers.forEach(m => {
+                        try { map.removeLayer(m); } catch {}
+                    });
+                    markers.length = 0;
+                    markerMap.clear();
+
+                    renderAllEntities();
+                    renderAllOrders();
+                    updateKpis();
                 }
             });
         });
