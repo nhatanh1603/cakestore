@@ -24,9 +24,7 @@
                 <a href="/" class="logo-link">
                     <img src="/public/Poeme Japanese Bakery Logo.png" alt="Poeme Japanese Bakery" class="logo-img">
                 </a>
-                <button type="button" class="btn-search-mobile btn-search-toggle" id="btnSearchMobile" title="Tìm kiếm" data-i18n-title="search_btn">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </button>
+                
             </div>
 
             <nav id="primary-menu" class="navigation--horizontal">
@@ -46,26 +44,24 @@
                         <li class="ega-menu__item">
                             <a class="ega-menu__link" href="/stores"><span data-i18n="nav_stores">Cửa hàng</span></a>
                         </li>
-                        <li class="ega-menu__item desktop-search-item">
-                            <button type="button" class="btn-search-nav btn-search-toggle" id="btnNavSearch" title="Tìm kiếm" data-i18n-title="search_btn">
-                                <i class="fa-solid fa-magnifying-glass"></i>
-                            </button>
-                        </li>
                     </ul>
                 </div>
             </nav>
 
-            <div class="header-right">
-                <div class="lang-switch" id="langSwitch">
+                        <div class="header-right ega-d--flex">
+                <div class="header-action-group">
+                    <button type="button" class="header-action-btn btn-search-toggle" id="btnHeaderSearch" title="Tìm kiếm" data-i18n-title="search_btn" aria-label="Tìm kiếm">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                    <a class="header-action-btn cart-count" href="/cart" title="Giỏ hàng" data-i18n-title="cart_title" aria-label="Giỏ hàng">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <span class="cart-num">0</span>
+                    </a>
+                </div>
+                <div class="lang-switch" id="langSwitch" role="group" aria-label="Language Switcher">
                     <span class="lang-slider"></span>
                     <button type="button" class="lang-btn active" data-lang="en">EN</button>
                     <button type="button" class="lang-btn" data-lang="vi">VI</button>
-                </div>
-                <div class="icon-action header-right__icons">
-                    <a class="header-icon cart-count" href="/cart" title="Giỏ hàng" data-i18n-title="cart_title">
-                        <i class="fa-solid fa-bag-shopping"></i>
-                        <span class="cart-num">0</span>
-                    </a>
                 </div>
             </div>
 

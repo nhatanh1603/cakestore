@@ -500,29 +500,24 @@ export function initProductsPageCatalog() {
             const modalList = document.getElementById('catModalList');
             if (!modalList) return;
             const lang = (typeof getLanguage === 'function' ? getLanguage() : localStorage.getItem('poeme_lang')) || 'en';
-            const allProds = getProductList();
-
-            const counts = { all: allProds.length };
-            CATEGORIES.filter(c => c.slug !== 'all').forEach(c => {
-                counts[c.slug] = allProds.filter(p => p.category === c.slug).length;
-            });
 
             let html = '';
             const isAllActive = currentCategory === 'all' && currentSubcategory === 'all';
             html += `
-                <li class="cat-modal-item ${isAllActive ? 'is-active' : ''}" data-cat="all">
+                <li class="cat-modal-item cat-modal-item--all ${isAllActive ? 'is-active' : ''}" data-cat="all">
                     <span class="cat-modal-name">${lang === 'en' ? 'All Products' : 'Tất cả sản phẩm'}</span>
-                    <span class="cat-modal-count">${counts.all}</span>
                 </li>
             `;
 
             CATEGORIES.filter(c => c.slug !== 'all').forEach(cat => {
                 const isActive = currentCategory === cat.slug;
                 const catName = lang === 'en' ? cat.name_en : cat.name_vi;
+                const catSubs = SUBCATEGORIES.filter(s => s.parent === cat.slug);
+                const showArrow = catSubs.length > 0;
                 html += `
                     <li class="cat-modal-item ${isActive ? 'is-active' : ''}" data-cat="${cat.slug}">
                         <span class="cat-modal-name">${catName}</span>
-                        <span class="cat-modal-count">${counts[cat.slug] || 0}</span>
+                        ${showArrow ? '<i class="fa-solid fa-chevron-right cat-modal-arrow"></i>' : ''}
                     </li>
                 `;
             });
@@ -907,8 +902,8 @@ export function initSearchPageCatalog() {
         if (titleText) {
             if (rawQuery) {
                 titleText.textContent = lang === 'en'
-                    ? `Search results for "${rawQuery}" (${results.length} found)`
-                    : `Kết quả tìm kiếm cho "${rawQuery}" (${results.length} sản phẩm)`;
+                    ? `Search results for "${rawQuery}"`
+                    : `Kết quả tìm kiếm cho "${rawQuery}"`;
             } else {
                 titleText.textContent = lang === 'en' ? 'All Products Catalog' : 'Tất cả sản phẩm tìm kiếm';
             }

@@ -1566,21 +1566,21 @@
     width: 48px;
     height: 48px;
     border-radius: 50%;
-    background: var(--primary-red);
-    color: #ffffff;
-    border: none;
+    background: #ffffff;
+    color: var(--primary-red);
+    border: 2px solid var(--primary-red);
     outline: none;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 19px;
-    box-shadow: 0 4px 18px rgba(194, 30, 30, 0.45);
+    font-size: 18px;
+    box-shadow: 0 4px 18px rgba(194, 30, 30, 0.32);
     z-index: 980;
     cursor: pointer;
     opacity: 0;
     pointer-events: none;
     transform: scale(0.7);
-    transition: transform 0.28s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.25s ease, background-color 0.2s ease;
+    transition: transform 0.28s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.25s ease, background-color 0.2s ease, color 0.2s ease;
 }
 
 .floating-cat-btn.is-visible {
@@ -1591,7 +1591,8 @@
 
 .floating-cat-btn:hover {
     transform: scale(1.08);
-    background: #a51818;
+    background: var(--primary-red);
+    color: #ffffff;
 }
 
 .cat-modal-backdrop {
@@ -1600,7 +1601,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.4);
+    background: rgba(0, 0, 0, 0.45);
     z-index: 9998;
     opacity: 0;
     visibility: hidden;
@@ -1621,8 +1622,9 @@
     max-width: calc(100vw - 40px);
     max-height: calc(85vh - 100px);
     background: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    border: 1px solid #ebebeb;
+    box-shadow: 0 10px 36px rgba(0, 0, 0, 0.2);
     z-index: 9999;
     display: flex;
     flex-direction: column;
@@ -1640,21 +1642,23 @@
 }
 
 .cat-modal-header {
-    padding: 16px 20px 12px;
-    border-bottom: 1px solid #f0f0f0;
+    padding: 18px 22px 10px;
+    border-bottom: none;
 }
 
 .cat-modal-title {
-    font-size: 14.5px;
+    font-size: 16px;
     font-weight: 700;
-    color: #333333;
+    color: #111111;
     margin: 0;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #222222;
+    letter-spacing: 0;
+    text-transform: none;
 }
 
 .cat-modal-body {
-    padding: 4px 0;
+    padding: 4px 22px;
     overflow-y: auto;
     max-height: 52vh;
 }
@@ -1669,59 +1673,72 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 12px 20px;
-    font-size: 13.5px;
-    color: #444444;
-    border-bottom: 1px solid #f7f7f7;
-    cursor: pointer;
-    transition: background 0.18s, color 0.18s;
-}
-
-.cat-modal-item:hover,
-.cat-modal-item.is-active {
-    background: #fdf5f5;
-    color: var(--primary-red);
-    font-weight: 600;
-}
-
-.cat-modal-count {
-    font-size: 12px;
-    color: #888888;
+    padding: 12px 0;
+    font-size: 14px;
+    color: #333333;
     font-weight: 500;
+    border-bottom: 1px solid #f0f0f0;
+    cursor: pointer;
+    transition: color 0.18s, padding-left 0.18s;
 }
 
-.cat-modal-item.is-active .cat-modal-count {
+.cat-modal-item:last-child {
+    border-bottom: none;
+}
+
+.cat-modal-item:hover {
+    color: var(--primary-red);
+    padding-left: 4px;
+}
+
+.cat-modal-item--all {
     color: var(--primary-red);
     font-weight: 700;
 }
 
+.cat-modal-item.is-active {
+    color: var(--primary-red);
+    font-weight: 700;
+}
+
+.cat-modal-arrow {
+    font-size: 11px;
+    color: #888888;
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.cat-modal-item:hover .cat-modal-arrow {
+    color: var(--primary-red);
+    transform: translateX(3px);
+}
+
 .cat-modal-footer {
-    padding: 12px 20px 14px;
+    padding: 10px 22px 18px;
     display: flex;
     align-items: center;
     justify-content: flex-start;
     background: #ffffff;
-    border-top: 1px solid #f0f0f0;
+    border-top: none;
 }
 
 .cat-modal-close {
-    width: 42px;
-    height: 42px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
-    background: #e53935;
+    background: var(--primary-red);
     color: #ffffff;
     border: none;
     outline: none;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 17px;
+    font-size: 16px;
     cursor: pointer;
-    box-shadow: 0 4px 12px rgba(229, 57, 53, 0.35);
-    transition: transform 0.2s ease, background 0.2s;
+    box-shadow: 0 4px 14px rgba(194, 30, 30, 0.35);
+    transition: transform 0.2s ease, background-color 0.2s ease;
 }
 
 .cat-modal-close:hover {
-    transform: scale(1.08);
-    background: #d32f2f;
+    transform: scale(1.1);
+    background: #a51818;
 }

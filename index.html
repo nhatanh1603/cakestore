@@ -38,9 +38,6 @@
                 <a href="/" class="logo-link">
                     <img src="/public/Poeme Japanese Bakery Logo.png" alt="Poeme Japanese Bakery" class="logo-img">
                 </a>
-                <button type="button" class="btn-search-mobile btn-search-toggle" id="btnSearchMobile" title="Tìm kiếm" data-i18n-title="search_btn">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </button>
             </div>
 
             <nav id="primary-menu" class="navigation--horizontal">
@@ -59,11 +56,9 @@
                             </a>
                             <div class="mega-menu">
                                 <div class="mega-menu-inner">
-                                    <div class="mega-menu-top-mobile">
-                                        <a href="/products" class="mega-all-products-link">
-                                            <span data-i18n="nav_all_products">Tất cả sản phẩm</span>
-                                            <i class="fa-solid fa-arrow-right"></i>
-                                        </a>
+                                    <div class="mobile-mega-card-header">
+                                        <h3 class="mobile-mega-heading" data-i18n="modal_cat_heading">Danh mục sản phẩm</h3>
+                                        <a href="/products" class="mobile-cat-all-link" data-i18n="crumb_all">Tất cả sản phẩm</a>
                                     </div>
                                     <div class="mega-menu-grid">
                                         <div class="mega-col">
@@ -122,14 +117,6 @@
                                                 <li><a href="/products?sub=phu-kien-sinh-nhat" data-i18n="sub_accessories_party">Phụ kiện trang trí sinh nhật & tiệc</a></li>
                                             </ul>
                                         </div>
-
-                                        <div class="mega-col mega-col--all">
-                                            <a href="/products" class="mega-col-title mega-col-title--special">
-                                                <span data-i18n="nav_all_products">Tất cả sản phẩm</span>
-                                                <i class="fa-solid fa-arrow-right"></i>
-                                            </a>
-                                            <p class="mega-sub-desc" data-i18n="mega_explore_desc">Khám phá hơn 170+ món bánh tinh hoa Nhật Bản</p>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -137,26 +124,24 @@
                         <li class="ega-menu__item">
                             <a class="ega-menu__link" href="/stores"><span data-i18n="nav_stores">Danh sách cửa hàng</span></a>
                         </li>
-                        <li class="ega-menu__item desktop-search-item">
-                            <button type="button" class="btn-search-nav btn-search-toggle" id="btnSearchDesktop" title="Tìm kiếm" data-i18n-title="search_btn">
-                                <i class="fa-solid fa-magnifying-glass"></i>
-                            </button>
-                        </li>
                     </ul>
                 </div>
             </nav>
 
             <div class="header-right ega-d--flex">
+                <div class="header-action-group">
+                    <button type="button" class="header-action-btn btn-search-toggle" id="btnHeaderSearch" title="Tìm kiếm" data-i18n-title="search_btn" aria-label="Tìm kiếm">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                    <a class="header-action-btn cart-count" href="/cart" title="Giỏ hàng" data-i18n-title="cart_title" aria-label="Giỏ hàng">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <span class="cart-num">0</span>
+                    </a>
+                </div>
                 <div class="lang-switch" id="langSwitch" role="group" aria-label="Language Switcher">
                     <span class="lang-slider"></span>
                     <button type="button" class="lang-btn active" data-lang="en">EN</button>
                     <button type="button" class="lang-btn" data-lang="vi">VI</button>
-                </div>
-                <div class="icon-action header-right__icons">
-                    <a class="header-icon cart-count" href="/cart" title="Giỏ hàng" data-i18n-title="cart_title">
-                        <i class="fa-solid fa-bag-shopping"></i>
-                        <span class="cart-num">0</span>
-                    </a>
                 </div>
             </div>
 

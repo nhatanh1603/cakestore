@@ -96,13 +96,15 @@ function init() {
         menuToggle.addEventListener('click', (e) => {
             e.stopPropagation();
             menuToggle.classList.toggle('is-active');
-            primaryMenu.classList.toggle('is-open');
+            const isOpen = primaryMenu.classList.toggle('is-open');
+            document.body.classList.toggle('menu-open', isOpen);
         });
 
         document.addEventListener('click', (e) => {
             if (primaryMenu.classList.contains('is-open') && !primaryMenu.contains(e.target) && !menuToggle.contains(e.target)) {
                 primaryMenu.classList.remove('is-open');
                 menuToggle.classList.remove('is-active');
+                document.body.classList.remove('menu-open');
             }
         });
 
@@ -110,6 +112,7 @@ function init() {
             if (e.key === 'Escape' && primaryMenu.classList.contains('is-open')) {
                 primaryMenu.classList.remove('is-open');
                 menuToggle.classList.remove('is-active');
+                document.body.classList.remove('menu-open');
             }
         });
 
