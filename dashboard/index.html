@@ -1188,6 +1188,21 @@
             `;
         }
 
+        const seenVisitorKeys = new Set();
+        const seenOrderKeys = new Set();
+        const visitorActivityTimes = new Map();
+
+        function updateOnlineMetrics() {
+            const now = Date.now();
+            const activeThreshold = 15 * 60 * 1000;
+            let activeCount = 0;
+            visitorActivityTimes.forEach(ts => {
+                if (now - ts < activeThreshold) activeCount++;
+            });
+            const activeEl = document.getElementById('kpiActiveVisitors');
+            if (activeEl && activeCount > 0) activeEl.textContent = activeCount;
+        }
+
         async function syncFromLocalServer() {
             try {
                 const res = await fetch('/api/history');
@@ -1201,7 +1216,12 @@
 
                 if (Array.isArray(data.visitors) && data.visitors.length > 0) {
                     const feed = document.getElementById('visitorStreamFeed');
-                    feed.innerHTML = data.visitors.map(renderVisitorCard).join('');
+                    feed.innerHTML = data.visitors.map(v => {
+                        const vKey = `${v.timestamp}_${v.ip}_${v.path}`;
+                        seenVisitorKeys.add(vKey);
+                        if (v.ip) visitorActivityTimes.set(v.ip, v.timestamp || Date.now());
+                        return renderVisitorCard(v);
+                    }).join('');
                     document.getElementById('visitorStreamCount').textContent = `${data.visitors.length} Khách`;
 
                     data.visitors.forEach(v => {
@@ -1213,7 +1233,11 @@
 
                 if (Array.isArray(data.orders) && data.orders.length > 0) {
                     const ordersContainer = document.getElementById('ordersFeedContainer');
-                    ordersContainer.innerHTML = data.orders.map(renderOrderCard).join('');
+                    ordersContainer.innerHTML = data.orders.map(o => {
+                        const oKey = o.order_id || o.orderId || String(o.timestamp);
+                        seenOrderKeys.add(oKey);
+                        return renderOrderCard(o);
+                    }).join('');
                     document.getElementById('liveOrdersBadge').textContent = `${data.orders.length} Đơn`;
 
                     data.orders.forEach(o => {
@@ -1234,7 +1258,7 @@
         }
 
         function listenLiveEvents() {
-            const telemetrySSE = new EventSource('https://ntfy.sh/poeme_telemetry_live_83921/sse');
+            const telemetrySSE = new EventSource('https://ntfy.sh/poeme_telemetry_live_83921/sse?since=12h');
             telemetrySSE.onmessage = (e) => {
                 try {
                     const payload = JSON.parse(e.data);
@@ -1242,6 +1266,10 @@
                     if (msg && msg.type === 'pageview') {
                         const geo = msg.geo || {};
                         const dev = msg.device || {};
+                        const vKey = `${msg.timestamp}_${geo.ip || 'unk'}_${msg.path || '/'}`;
+                        if (seenVisitorKeys.has(vKey)) return;
+                        seenVisitorKeys.add(vKey);
+
                         const rowObj = {
                             timestamp: msg.timestamp || Date.now(),
                             ip: geo.ip || 'Unknown',
@@ -1257,25 +1285,39 @@
                             lat: geo.lat || 21.0285,
                             lon: geo.lon || 105.8542
                         };
+
+                        if (rowObj.ip) visitorActivityTimes.set(rowObj.ip, rowObj.timestamp);
+                        updateOnlineMetrics();
+
                         const feed = document.getElementById('visitorStreamFeed');
                         const placeholder = feed.querySelector('.empty-placeholder');
                         if (placeholder) feed.innerHTML = '';
                         feed.insertAdjacentHTML('afterbegin', renderVisitorCard(rowObj));
 
+                        const vCountBadge = document.getElementById('visitorStreamCount');
+                        if (vCountBadge) vCountBadge.textContent = `${seenVisitorKeys.size} Khách`;
+
                         addMapPin(rowObj.lat, rowObj.lon, rowObj, false);
 
                         const totalViewsEl = document.getElementById('kpiTotalViews');
-                        if (totalViewsEl) totalViewsEl.textContent = (parseInt(totalViewsEl.textContent, 10) || 0) + 1;
+                        if (totalViewsEl) {
+                            const cur = parseInt(totalViewsEl.textContent, 10) || 0;
+                            totalViewsEl.textContent = Math.max(cur + 1, seenVisitorKeys.size);
+                        }
                     }
                 } catch {}
             };
 
-            const ordersSSE = new EventSource('https://ntfy.sh/poeme_orders_live_83921/sse');
+            const ordersSSE = new EventSource('https://ntfy.sh/poeme_orders_live_83921/sse?since=12h');
             ordersSSE.onmessage = (e) => {
                 try {
                     const payload = JSON.parse(e.data);
                     const msg = payload.message ? JSON.parse(payload.message) : payload;
                     if (msg && msg.type === 'order') {
+                        const oKey = msg.orderId || msg.order_id || String(msg.timestamp);
+                        if (seenOrderKeys.has(oKey)) return;
+                        seenOrderKeys.add(oKey);
+
                         const ordersContainer = document.getElementById('ordersFeedContainer');
                         const emptyNotice = document.getElementById('emptyOrdersNotice');
                         if (emptyNotice) emptyNotice.remove();
@@ -1284,8 +1326,7 @@
 
                         const liveBadge = document.getElementById('liveOrdersBadge');
                         if (liveBadge) {
-                            const curCount = parseInt(liveBadge.textContent, 10) || 0;
-                            liveBadge.textContent = `${curCount + 1} Đơn`;
+                            liveBadge.textContent = `${seenOrderKeys.size} Đơn`;
                         }
 
                         if (msg.geo && msg.geo.lat && msg.geo.lon) {
