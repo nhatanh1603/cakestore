@@ -336,6 +336,40 @@ function init() {
     const discountVal = document.getElementById('discountVal');
     const checkoutCouponRow = document.getElementById('checkoutCouponRow');
 
+    const urlParams = new URLSearchParams(window.location.search);
+    const isBuyNow = urlParams.get('buy_now') === '1' || (typeof sessionStorage !== 'undefined' && sessionStorage.getItem('poeme_checkout_mode') === 'buy_now');
+
+    function getCheckoutItems() {
+        if (isBuyNow) {
+            try {
+                const raw = sessionStorage.getItem('poeme_buy_now');
+                if (raw) {
+                    const parsed = JSON.parse(raw);
+                    if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+                }
+            } catch {}
+            return [];
+        }
+        return CartStore.get();
+    }
+
+    if (window.location.pathname.includes('/cart')) {
+        try {
+            sessionStorage.removeItem('poeme_buy_now');
+            sessionStorage.removeItem('poeme_checkout_mode');
+        } catch {}
+    }
+
+    const btnCheckoutFromCart = document.querySelector('.btn-checkout-now');
+    if (btnCheckoutFromCart) {
+        btnCheckoutFromCart.addEventListener('click', () => {
+            try {
+                sessionStorage.removeItem('poeme_buy_now');
+                sessionStorage.removeItem('poeme_checkout_mode');
+            } catch {}
+        });
+    }
+
     let appliedDiscount = 0;
     let appliedCoupon = '';
     let lastPlacedOrder = null;
@@ -385,15 +419,33 @@ function init() {
             }
         }
 
-        let checkoutCart = CartStore.get();
+        let checkoutCart = getCheckoutItems();
         if (checkoutCart.length === 0) {
             if (!orderSuccessBox || orderSuccessBox.style.display !== 'flex') {
-                window.location.replace('/cart');
+                window.location.replace(isBuyNow ? '/products' : '/cart');
                 return;
             }
         }
 
         const lang = getLanguage();
+        if (isBuyNow) {
+            const backLink = document.querySelector('.checkout-back-link');
+            if (backLink) {
+                backLink.href = 'javascript:history.back()';
+                const span = backLink.querySelector('span');
+                if (span) {
+                    span.setAttribute('data-i18n', 'co_back_product');
+                    span.textContent = lang === 'en' ? 'Back to product' : 'Quay lại sản phẩm';
+                }
+            }
+            const topCrumbCart = document.querySelector('.checkout-breadcrumb a[href="/cart"]');
+            if (topCrumbCart) {
+                topCrumbCart.href = '/products';
+                topCrumbCart.setAttribute('data-i18n', 'crumb_all');
+                topCrumbCart.textContent = lang === 'en' ? 'Products' : 'Sản phẩm';
+            }
+        }
+
         checkoutItemsList.innerHTML = checkoutCart.map(item => {
             const displayTitle = (I18N[lang] && I18N[lang][item.id]) ? I18N[lang][item.id] : item.title;
             const variantHtml = item.variant ? `<p style="font-size: 12px; color: #777; margin: 2px 0;">${item.variant}</p>` : '';
@@ -426,7 +478,7 @@ function init() {
             btnApplyCoupon.addEventListener('click', () => {
                 const code = couponInput.value.trim().toUpperCase();
                 const curLang = getLanguage();
-                let checkoutCart = CartStore.get();
+                let checkoutCart = getCheckoutItems();
                 const baseTotal = checkoutCart.reduce((sum, i) => sum + ((i.price || 0) * (i.qty || 1)), 0);
 
                 if (code === 'POEME' || code === 'FRESH' || code === 'POEME10' || code === 'GIAMGIA10') {
@@ -651,7 +703,7 @@ function init() {
             const receiptTimeVal = pickupTimeSlotSelect ? pickupTimeSlotSelect.value.trim() : '';
             const noteVal = custNoteTextarea ? custNoteTextarea.value.trim() : '';
 
-            const currentCart = CartStore.get();
+            const currentCart = getCheckoutItems();
             const baseTotal = currentCart.reduce((sum, i) => sum + ((i.price || 0) * (i.qty || 1)), 0);
             const finalAmount = Math.max(0, baseTotal - appliedDiscount);
 
@@ -741,7 +793,14 @@ function init() {
 
             renderCheckoutPreview();
 
-            CartStore.clear();
+            if (isBuyNow) {
+                try {
+                    sessionStorage.removeItem('poeme_buy_now');
+                    sessionStorage.removeItem('poeme_checkout_mode');
+                } catch {}
+            } else {
+                CartStore.clear();
+            }
         });
     }
 

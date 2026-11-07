@@ -760,10 +760,14 @@ export function initProductDetailPage() {
     if (btnBuyNow) {
         btnBuyNow.onclick = (e) => {
             e.preventDefault();
-            if (typeof window.CartStore !== 'undefined') {
-                window.CartStore.add(createCartItem());
+            const buyNowItem = createCartItem();
+            try {
+                sessionStorage.setItem('poeme_buy_now', JSON.stringify([buyNowItem]));
+                sessionStorage.setItem('poeme_checkout_mode', 'buy_now');
+            } catch (err) {
+                console.error('SessionStorage error:', err);
             }
-            window.location.href = '/checkout';
+            window.location.href = '/checkout?buy_now=1';
         };
     }
 

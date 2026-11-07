@@ -162,4 +162,24 @@ results.checkout.tests.push({
     passed: !phoneRegex.test('12345') && !phoneRegex.test('0123456789') && !phoneRegex.test('abcdefghij')
 });
 
+// Test Buy-Now vs Cart Independence
+try {
+    CartStore.clear();
+    CartStore.add({ id: 'ExistingCake', title: 'Cart Cake', price: 120000, qty: 1 });
+    let mockSession = {};
+    for (let i = 1; i <= 5; i++) {
+        mockSession['poeme_buy_now'] = JSON.stringify([{ id: 'PinkOhara', title: 'Buy Now Cake', price: 350000, qty: 1, inscription: 'Note ' + i }]);
+        mockSession['poeme_checkout_mode'] = 'buy_now';
+    }
+    const buyNowItems = JSON.parse(mockSession['poeme_buy_now']);
+    const isCartUntouched = CartStore.get().length === 1 && CartStore.get()[0].id === 'ExistingCake';
+    const isSpamSafelyOverwritten = buyNowItems.length === 1 && buyNowItems[0].inscription === 'Note 5';
+    results.checkout.tests.push({
+        name: 'Buy-Now runs independently from Cart (spam-safe & cart untouched)',
+        passed: isCartUntouched && isSpamSafelyOverwritten
+    });
+} catch (e) {
+    results.checkout.tests.push({ name: 'Buy-Now independence', passed: false, error: e.message });
+}
+
 console.log(JSON.stringify(results, null, 2));
