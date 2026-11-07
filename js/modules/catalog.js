@@ -721,10 +721,16 @@ export function initProductDetailPage() {
         btnMinus.onclick = () => {
             let v = parseInt(qtyInput.value, 10) || 1;
             if (v > 1) qtyInput.value = v - 1;
+            else qtyInput.value = 1;
         };
         btnPlus.onclick = () => {
             let v = parseInt(qtyInput.value, 10) || 1;
-            qtyInput.value = v + 1;
+            if (v < 99) qtyInput.value = v + 1;
+        };
+        qtyInput.onchange = () => {
+            let v = parseInt(qtyInput.value, 10);
+            if (isNaN(v) || v < 1) qtyInput.value = 1;
+            else if (v > 99) qtyInput.value = 99;
         };
     }
 

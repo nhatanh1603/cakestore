@@ -213,7 +213,9 @@ function init() {
             cartItemList.querySelectorAll('.btn-cart-minus').forEach(btn => {
                 btn.addEventListener('click', () => {
                     const idx = parseInt(btn.dataset.idx, 10);
-                    const current = cart[idx].qty;
+                    const freshCart = CartStore.get();
+                    if (!freshCart || !freshCart[idx]) return;
+                    const current = freshCart[idx].qty || 1;
                     if (current > 1) {
                         CartStore.updateQty(idx, current - 1);
                     } else {
@@ -226,7 +228,9 @@ function init() {
             cartItemList.querySelectorAll('.btn-cart-plus').forEach(btn => {
                 btn.addEventListener('click', () => {
                     const idx = parseInt(btn.dataset.idx, 10);
-                    CartStore.updateQty(idx, cart[idx].qty + 1);
+                    const freshCart = CartStore.get();
+                    if (!freshCart || !freshCart[idx]) return;
+                    CartStore.updateQty(idx, (freshCart[idx].qty || 1) + 1);
                     renderCartPage();
                 });
             });
@@ -234,6 +238,8 @@ function init() {
             cartItemList.querySelectorAll('.btn-remove-item').forEach(btn => {
                 btn.addEventListener('click', () => {
                     const idx = parseInt(btn.dataset.idx, 10);
+                    const freshCart = CartStore.get();
+                    if (!freshCart || !freshCart[idx]) return;
                     CartStore.remove(idx);
                     renderCartPage();
                 });
@@ -615,8 +621,10 @@ function init() {
             }
         });
 
+        let isSubmittingOrder = false;
         checkoutForm.addEventListener('submit', (e) => {
             e.preventDefault();
+            if (isSubmittingOrder) return;
 
             const isDelivery = optDelivery ? optDelivery.checked : true;
             const nameInput = document.getElementById('custName');
@@ -690,6 +698,7 @@ function init() {
                     checkoutFormError.style.display = 'flex';
                 }
                 if (firstInvalidEl) firstInvalidEl.focus();
+                isSubmittingOrder = false;
                 return;
             }
 
