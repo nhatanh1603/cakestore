@@ -41,68 +41,6 @@
             overflow-x: hidden;
         }
 
-        header.radar-header {
-            background: rgba(17, 23, 34, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border);
-            padding: 14px 24px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-        .header-brand {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-        }
-        .header-brand img {
-            height: 34px;
-            object-fit: contain;
-        }
-        .header-brand h1 {
-            font-size: 16px;
-            font-weight: 800;
-            letter-spacing: 0.5px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .header-brand .radar-tag {
-            background: rgba(16, 185, 129, 0.15);
-            color: var(--accent-green);
-            border: 1px solid rgba(16, 185, 129, 0.3);
-            font-size: 11px;
-            font-family: var(--font-mono);
-            font-weight: 600;
-            padding: 3px 8px;
-            border-radius: 4px;
-            text-transform: uppercase;
-        }
-        .radar-status {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            font-family: var(--font-mono);
-            font-size: 12.5px;
-        }
-        .live-dot {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--accent-green);
-        }
-        .live-dot::before {
-            content: '';
-            width: 9px;
-            height: 9px;
-            background: var(--accent-green);
-            border-radius: 50%;
-            box-shadow: 0 0 10px var(--accent-green);
-            animation: pulse 1.6s infinite;
-        }
         @keyframes pulse {
             0%, 100% { opacity: 1; transform: scale(1); }
             50% { opacity: 0.4; transform: scale(0.85); }
@@ -110,17 +48,17 @@
 
         .main-container {
             flex: 1;
-            padding: 14px 18px 0;
+            padding: 10px 14px 0;
             display: flex;
             flex-direction: column;
-            gap: 12px;
-            min-height: calc(100vh - 65px);
+            gap: 10px;
+            min-height: 100vh;
         }
 
         .content-grid-3col {
             display: grid;
             grid-template-columns: 1.25fr 1.6fr 1.05fr;
-            gap: 14px;
+            gap: 12px;
             flex: 1;
             min-height: 0;
         }
@@ -136,21 +74,21 @@
 
         .col-center #radarMap {
             flex: 1;
-            min-height: 520px;
+            min-height: calc(100vh - 120px);
             width: 100%;
             background: #0b111b;
         }
 
         .col-left .table-wrap {
             flex: 1;
-            max-height: calc(100vh - 195px);
+            max-height: calc(100vh - 125px);
             overflow-y: auto;
             overflow-x: auto;
         }
 
         .col-right .orders-feed {
             flex: 1;
-            max-height: calc(100vh - 195px);
+            max-height: calc(100vh - 125px);
             overflow-y: auto;
             padding: 12px;
             display: flex;
@@ -191,7 +129,7 @@
             align-items: center;
             justify-content: center;
             position: relative;
-            margin: 0 -18px;
+            margin: 0 -14px;
         }
         .bottom-metrics-wrap {
             display: flex;
@@ -699,13 +637,6 @@
     </style>
 </head>
 <body>
-
-    <header class="radar-header">
-        <div class="header-brand">
-            <img src="/public/Poeme Japanese Bakery Logo.png" alt="Poeme Logo" onerror="this.style.display='none'">
-            <h1>POEME OPS & SECURITY RADAR</h1>
-        </div>
-    </header>
 
     <main class="main-container">
 
