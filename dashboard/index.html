@@ -1512,8 +1512,12 @@
                             <span id="modalBrowser" class="modal-kv-val">--</span>
                         </div>
                         <div class="modal-kv-row">
-                            <span class="modal-kv-label">Phần cứng GPU:</span>
-                            <span id="modalGpu" class="modal-kv-val mono" style="font-size: 10px;">--</span>
+                            <span class="modal-kv-label">Đồ họa (GPU):</span>
+                            <span id="modalGpu" class="modal-kv-val">--</span>
+                        </div>
+                        <div class="modal-kv-row" id="modalCpuRow">
+                            <span class="modal-kv-label">Vi xử lý (CPU):</span>
+                            <span id="modalCpu" class="modal-kv-val">--</span>
                         </div>
                         <div class="modal-kv-row" id="modalPhoneRow">
                             <span class="modal-kv-label">Số điện thoại:</span>
@@ -2573,6 +2577,66 @@
             currentModalEntity = null;
         };
 
+        function formatHardwareInfo(rawGpu, cores) {
+            const renderer = String(rawGpu || '');
+            let cleanGpu = 'Tiêu chuẩn (WebGL)';
+            let cleanCpu = cores ? `${cores} Luồng` : '--';
+
+            // 1. Lọc sạch GPU thành tên chuẩn dễ hiểu, gọn gàng
+            if (/Iris(\(R\))?\s*Xe/i.test(renderer)) {
+                cleanGpu = 'Intel Iris Xe Graphics';
+            } else if (/UHD Graphics/i.test(renderer)) {
+                cleanGpu = 'Intel UHD Graphics';
+            } else if (/GeForce|NVIDIA/i.test(renderer)) {
+                const m = renderer.match(/(GeForce\s+[A-Za-z0-9\s]+?)(?:,|\/|\(|$)/i);
+                cleanGpu = m ? `NVIDIA ${m[1].trim()}` : 'NVIDIA GeForce GPU';
+            } else if (/Radeon|AMD/i.test(renderer)) {
+                const m = renderer.match(/(Radeon\s+[A-Za-z0-9\s]+?)(?:,|\/|\(|$)/i);
+                cleanGpu = m ? `AMD ${m[1].trim()}` : 'AMD Radeon Graphics';
+            } else if (/Apple/i.test(renderer)) {
+                const m = renderer.match(/(Apple\s+M\d+[^\(,\)]*)/i);
+                cleanGpu = m ? m[1].trim() : 'Apple GPU (Metal)';
+            } else if (/Adreno/i.test(renderer)) {
+                const m = renderer.match(/(Adreno\s*[\d]+)/i);
+                cleanGpu = m ? `Qualcomm ${m[1].trim()}` : 'Qualcomm Adreno GPU';
+            } else if (/Mali/i.test(renderer)) {
+                const m = renderer.match(/(Mali-[^\s,\(\)]+)/i);
+                cleanGpu = m ? `ARM ${m[1].trim()}` : 'ARM Mali GPU';
+            } else if (renderer && !renderer.includes('Tiêu chuẩn')) {
+                cleanGpu = renderer.replace(/^ANGLE\s*\(/i, '').replace(/OpenGL\s*ES.*$/i, '').replace(/Mesa\s+/i, '').replace(/\)$/, '').trim();
+            }
+
+            // 2. Tự động giải mã CPU từ vi kiến trúc chip Intel / AMD / Apple / Snapdragon
+            let arch = '';
+            if (/\b(RPL|RPL-P|Raptor\s*Lake)\b/i.test(renderer)) {
+                arch = 'Intel 13th Gen (Raptor Lake)';
+            } else if (/\b(ADL|Alder\s*Lake)\b/i.test(renderer)) {
+                arch = 'Intel 12th Gen (Alder Lake)';
+            } else if (/\b(TGL|Tiger\s*Lake)\b/i.test(renderer)) {
+                arch = 'Intel 11th Gen (Tiger Lake)';
+            } else if (/\b(CML|Comet\s*Lake)\b/i.test(renderer)) {
+                arch = 'Intel 10th Gen (Comet Lake)';
+            } else if (/\b(KBL|CFL|Kaby\s*Lake|Coffee\s*Lake)\b/i.test(renderer)) {
+                arch = 'Intel 7th/8th Gen';
+            } else if (/Apple\s+M1/i.test(renderer)) {
+                arch = 'Apple Silicon M1';
+            } else if (/Apple\s+M2/i.test(renderer)) {
+                arch = 'Apple Silicon M2';
+            } else if (/Apple\s+M3/i.test(renderer)) {
+                arch = 'Apple Silicon M3';
+            } else if (/Adreno\s*7\d\d/i.test(renderer)) {
+                arch = 'Snapdragon 8 Gen Series';
+            } else if (/Adreno\s*6\d\d/i.test(renderer)) {
+                arch = 'Snapdragon Series';
+            }
+
+            if (arch) {
+                cleanCpu = cores ? `${arch} • ${cores}` : arch;
+            }
+
+            return { cleanGpu, cleanCpu };
+        }
+
         function updateModalContent(entity) {
             const iso = escapeHtml(entity.countryCode || 'VN');
             const flagUrl = entity.flagUrl || `https://flagcdn.com/20x15/${iso.toLowerCase()}.png`;
@@ -2630,9 +2694,22 @@
                 browserEl.textContent = entity.browser || 'Google Chrome';
             }
 
+            const hwInfo = formatHardwareInfo(entity.gpu, entity.cpu);
             const gpuEl = document.getElementById('modalGpu');
             if (gpuEl) {
-                gpuEl.textContent = entity.gpu || 'Tiêu chuẩn (WebGL)';
+                gpuEl.textContent = hwInfo.cleanGpu;
+                gpuEl.title = entity.gpu || '';
+            }
+
+            const cpuRow = document.getElementById('modalCpuRow');
+            const cpuEl = document.getElementById('modalCpu');
+            if (cpuRow && cpuEl) {
+                if (hwInfo.cleanCpu && hwInfo.cleanCpu !== '--') {
+                    cpuRow.style.display = 'flex';
+                    cpuEl.textContent = hwInfo.cleanCpu;
+                } else {
+                    cpuRow.style.display = 'none';
+                }
             }
 
             const phoneRow = document.getElementById('modalPhoneRow');
