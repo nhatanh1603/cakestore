@@ -39,7 +39,6 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html {
-            zoom: 1.2;
             height: 100%;
             overflow: hidden;
         }
@@ -56,6 +55,30 @@
             -moz-osx-font-smoothing: grayscale;
         }
 
+        /* Sleek Modern Glass Scrollbars */
+        ::-webkit-scrollbar {
+            width: 5px;
+            height: 5px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(15, 23, 42, 0.4);
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(148, 163, 184, 0.25);
+            border-radius: 9999px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: background 0.2s ease, border-color 0.2s ease;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(56, 189, 248, 0.5);
+            border-color: rgba(56, 189, 248, 0.3);
+        }
+        * {
+            scrollbar-width: thin;
+            scrollbar-color: rgba(148, 163, 184, 0.25) transparent;
+        }
+
         .leaflet-control-attribution {
             display: none !important;
         }
@@ -63,12 +86,13 @@
         .main-container {
             height: 100%;
             max-height: 100%;
-            padding: 12px 14px 12px;
+            padding: 10px 12px;
             display: flex;
             flex-direction: column;
             position: relative;
             overflow: hidden;
             box-sizing: border-box;
+            zoom: 1.2;
         }
 
         .content-grid-3col {
@@ -660,16 +684,19 @@
             position: fixed;
             top: 0;
             left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: rgba(4, 7, 15, 0.8);
+            right: 0;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(4, 7, 15, 0.85);
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
             z-index: 99999;
             display: none;
             align-items: center;
             justify-content: center;
-            padding: 16px;
+            padding: 20px;
+            box-sizing: border-box;
         }
         .modal-backdrop.active {
             display: flex;
@@ -680,12 +707,13 @@
             border-radius: 8px;
             width: 100%;
             max-width: 640px;
-            max-height: 86vh;
+            max-height: 88vh;
             display: flex;
             flex-direction: column;
             overflow: hidden;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.95);
             animation: modalPopIn 0.16s ease-out;
+            margin: auto;
         }
         @keyframes modalPopIn {
             from { opacity: 0; transform: scale(0.96); }
@@ -1111,8 +1139,8 @@
             </div>
             <div class="dock-sep"></div>
             <div class="dock-metric">
-                <i class="fa-solid fa-eye text-cyan"></i>
-                <span class="dock-label">TỔNG XEM:</span>
+                <i class="fa-solid fa-users text-cyan"></i>
+                <span class="dock-label">TỔNG KHÁCH:</span>
                 <strong class="dock-val text-cyan" id="kpiTotalViews">0</strong>
             </div>
             <div class="dock-sep"></div>
@@ -1126,16 +1154,10 @@
     <div id="entityModalBackdrop" class="modal-backdrop" onclick="closeEntityModal(event)">
         <div class="entity-modal-dialog" onclick="event.stopPropagation()">
             <div class="modal-header">
-                <div class="modal-title-wrap">
-                    <div class="modal-badge-row">
-                        <span class="modal-title-tag"><i class="fa-solid fa-fingerprint"></i> HỒ SƠ ĐỊNH DANH CÁ THỂ</span>
-                        <span id="modalEntityHits" class="modal-hits-pill">1 lượt xem</span>
-                    </div>
-                    <div class="modal-ip-title">
-                        <span id="modalEntityIp" class="modal-ip-text">--</span>
-                        <button id="btnCopyIp" type="button" class="modal-copy-btn" title="Sao chép IP"><i class="fa-regular fa-copy"></i> Copy</button>
-                        <span id="modalEntityFlagWrap"></span>
-                    </div>
+                <div class="modal-ip-title">
+                    <span id="modalEntityIp" class="modal-ip-text">--</span>
+                    <button id="btnCopyIp" type="button" class="modal-copy-btn" title="Sao chép IP"><i class="fa-regular fa-copy"></i> Copy</button>
+                    <span id="modalEntityFlagWrap"></span>
                 </div>
                 <button type="button" class="modal-close-x" onclick="closeEntityModal()"><i class="fa-solid fa-xmark"></i></button>
             </div>
@@ -1225,10 +1247,119 @@
         const markerMap = new Map();
         const entityMap = new Map();
         const orderList = [];
+        const processedEventSignatures = new Set();
         let currentModalEntity = null;
         let localServerAvailable = true;
 
         const CLEARED_KEY = 'poeme_radar_cleared_at';
+        const STORAGE_ENTITIES_KEY = 'poeme_radar_entities_cache_v2';
+        const STORAGE_ORDERS_KEY = 'poeme_radar_orders_cache_v2';
+
+        const VN_LOCATION_MAP = {
+            'hanoi': 'Hà Nội',
+            'ha noi': 'Hà Nội',
+            'ho chi minh': 'TP. Hồ Chí Minh',
+            'ho chi minh city': 'TP. Hồ Chí Minh',
+            'saigon': 'TP. Hồ Chí Minh',
+            'da nang': 'Đà Nẵng',
+            'danang': 'Đà Nẵng',
+            'hai phong': 'Hải Phòng',
+            'haiphong': 'Hải Phòng',
+            'can tho': 'Cần Thơ',
+            'cantho': 'Cần Thơ',
+            'bien hoa': 'Biên Hòa',
+            'nha trang': 'Nha Trang',
+            'hue': 'Huế',
+            'thua thien hue': 'Thừa Thiên Huế',
+            'vung tau': 'Vũng Tàu',
+            'quang ninh': 'Quảng Ninh',
+            'ha long': 'Hạ Long',
+            'bac ninh': 'Bắc Ninh',
+            'bac giang': 'Bắc Giang',
+            'thai nguyen': 'Thái Nguyên',
+            'nam dinh': 'Nam Định',
+            'hai duong': 'Hải Dương',
+            'hung yen': 'Hưng Yên',
+            'vinh': 'Vinh',
+            'nghe an': 'Nghệ An',
+            'thanh hoa': 'Thanh Hóa',
+            'binh duong': 'Bình Dương',
+            'dong nai': 'Đồng Nai',
+            'long an': 'Long An',
+            'kien giang': 'Kiên Giang',
+            'lam dong': 'Lâm Đồng',
+            'da lat': 'Đà Lạt',
+            'dak lak': 'Đắk Lắk',
+            'buon ma thuot': 'Buôn Ma Thuột',
+            'vietnam': 'Việt Nam',
+            'viet nam': 'Việt Nam',
+            'vn': 'Việt Nam',
+            'united states': 'Hoa Kỳ',
+            'usa': 'Hoa Kỳ',
+            'us': 'Hoa Kỳ',
+            'united states of america': 'Hoa Kỳ',
+            'japan': 'Nhật Bản',
+            'jp': 'Nhật Bản',
+            'south korea': 'Hàn Quốc',
+            'korea': 'Hàn Quốc',
+            'kr': 'Hàn Quốc',
+            'china': 'Trung Quốc',
+            'cn': 'Trung Quốc',
+            'singapore': 'Singapore',
+            'sg': 'Singapore',
+            'germany': 'Đức',
+            'de': 'Đức',
+            'france': 'Pháp',
+            'fr': 'Pháp',
+            'united kingdom': 'Vương Quốc Anh',
+            'uk': 'Vương Quốc Anh',
+            'gb': 'Vương Quốc Anh',
+            'australia': 'Úc',
+            'au': 'Úc',
+            'canada': 'Canada',
+            'ca': 'Canada',
+            'thailand': 'Thái Lan',
+            'th': 'Thái Lan',
+            'taiwan': 'Đài Loan',
+            'tw': 'Đài Loan',
+            'russia': 'Nga',
+            'ru': 'Nga',
+            'malaysia': 'Malaysia',
+            'my': 'Malaysia',
+            'indonesia': 'Indonesia',
+            'id': 'Indonesia',
+            'philippines': 'Philippines',
+            'ph': 'Philippines',
+            'india': 'Ấn Độ',
+            'in': 'Ấn Độ',
+            'netherlands': 'Hà Lan',
+            'nl': 'Hà Lan',
+            'italy': 'Ý',
+            'it': 'Ý',
+            'spain': 'Tây Ban Nha',
+            'es': 'Tây Ban Nha'
+        };
+
+        function localizePlaceName(name) {
+            if (!name) return '';
+            const key = String(name).trim().toLowerCase();
+            return VN_LOCATION_MAP[key] || name;
+        }
+
+        function formatVietnameseLocation(city, country) {
+            const c = (city || '').trim();
+            const co = (country || '').trim();
+            if (c && co) {
+                const locCity = localizePlaceName(c);
+                const locCountry = localizePlaceName(co);
+                if (locCity.toLowerCase() === locCountry.toLowerCase()) return locCountry;
+                return `${locCity}, ${locCountry}`;
+            }
+            if (c) return localizePlaceName(c);
+            if (co) return localizePlaceName(co);
+            return 'Hà Nội, Việt Nam';
+        }
+
         function getClearedCutoff() {
             return parseInt(localStorage.getItem(CLEARED_KEY) || '0', 10);
         }
@@ -1261,7 +1392,55 @@
             if (cName.includes('canada') || code === 'ca') return { code: 'CA', flagUrl: 'https://flagcdn.com/20x15/ca.png' };
             if (cName.includes('china') || code === 'cn') return { code: 'CN', flagUrl: 'https://flagcdn.com/20x15/cn.png' };
             if (cName.includes('thailand') || code === 'th') return { code: 'TH', flagUrl: 'https://flagcdn.com/20x15/th.png' };
-            return { code: 'INTL', flagUrl: 'https://flagcdn.com/20x15/un.png' };
+            return { code: 'VN', flagUrl: 'https://flagcdn.com/20x15/vn.png' };
+        }
+
+        function persistData() {
+            try {
+                const arr = Array.from(entityMap.values()).slice(0, 200);
+                localStorage.setItem(STORAGE_ENTITIES_KEY, JSON.stringify(arr));
+                localStorage.setItem(STORAGE_ORDERS_KEY, JSON.stringify(orderList.slice(0, 50)));
+            } catch {}
+        }
+
+        function loadPersistedData() {
+            const cutoff = getClearedCutoff();
+            try {
+                const rawEntities = localStorage.getItem(STORAGE_ENTITIES_KEY);
+                if (rawEntities) {
+                    const arr = JSON.parse(rawEntities);
+                    if (Array.isArray(arr)) {
+                        arr.forEach(ent => {
+                            if (ent.lastSeen > cutoff) {
+                                entityMap.set(ent.key || ent.ip, ent);
+                                if (Array.isArray(ent.paths)) {
+                                    ent.paths.forEach(p => {
+                                        processedEventSignatures.add(`${ent.ip}|${p.path}|${Math.floor(p.time / 2000)}`);
+                                    });
+                                }
+                                addMapPin(ent.lat, ent.lon, ent, false);
+                            }
+                        });
+                    }
+                }
+            } catch {}
+
+            try {
+                const rawOrders = localStorage.getItem(STORAGE_ORDERS_KEY);
+                if (rawOrders) {
+                    const arr = JSON.parse(rawOrders);
+                    if (Array.isArray(arr)) {
+                        arr.forEach(ord => {
+                            if ((ord.timestamp || 0) > cutoff) {
+                                orderList.push(ord);
+                                if (ord.lat && ord.lon) {
+                                    addMapPin(ord.lat, ord.lon, ord, true);
+                                }
+                            }
+                        });
+                    }
+                }
+            } catch {}
         }
 
         function initMap() {
@@ -1460,8 +1639,7 @@
 
         function buildPopupHtml(data, isOrder, finalLat, finalLon) {
             const timeStr = new Date(data.timestamp || data.lastSeen || Date.now()).toLocaleTimeString('vi-VN');
-            const city = escapeHtml(data.city || 'Hà Nội');
-            const country = escapeHtml(data.country || 'Việt Nam');
+            const locText = escapeHtml(formatVietnameseLocation(data.city, data.country));
             const ip = escapeHtml(data.ip || 'Unknown');
             const isp = escapeHtml(data.isp || 'Internet');
             const deviceName = escapeHtml(data.device_name || data.deviceName || 'PC');
@@ -1478,7 +1656,7 @@
                         <span class="popup-time">${timeStr}</span>
                     </div>
                     <div class="popup-location">
-                        <strong>${city}, ${country}</strong>
+                        <strong>${locText}</strong>
                     </div>
                     <div class="popup-ip">
                         <code>IP: ${ip}</code>
@@ -1548,10 +1726,9 @@
         function renderEntityCard(entity) {
             const timeStr = new Date(entity.lastSeen).toLocaleTimeString('vi-VN');
             const iso = escapeHtml(entity.countryCode || 'VN');
-            const city = escapeHtml(entity.city || 'Hà Nội');
-            const country = escapeHtml(entity.country || 'Việt Nam');
             const ipDisplay = escapeHtml(entity.ip);
             const flagUrl = entity.flagUrl || `https://flagcdn.com/20x15/${iso.toLowerCase()}.png`;
+            const locText = escapeHtml(formatVietnameseLocation(entity.city, entity.country));
 
             let deviceIcon = 'fa-desktop';
             if (entity.device_type === 'Mobile') deviceIcon = 'fa-mobile-screen-button';
@@ -1565,7 +1742,7 @@
                             <span class="vcard-ip">${ipDisplay}</span>
                             <span class="vcard-country-badge">
                                 <img src="${flagUrl}" onerror="this.style.display='none'" class="vcard-flag-img" alt="${iso}">
-                                <span class="vcard-country-txt">${iso} • ${city}, ${country}</span>
+                                <span class="vcard-country-txt">${locText}</span>
                             </span>
                         </div>
                         <div class="vcard-right-controls">
@@ -1668,11 +1845,11 @@
             const activeThreshold = 15 * 60 * 1000;
 
             let activeCount = 0;
-            let totalViews = 0;
+            let uniqueVisitors = 0;
 
             entityMap.forEach(ent => {
                 if (ent.lastSeen > cutoff) {
-                    totalViews += ent.hitCount;
+                    uniqueVisitors++;
                     if (now - ent.lastSeen < activeThreshold) {
                         activeCount++;
                     }
@@ -1683,7 +1860,7 @@
             if (activeEl) activeEl.textContent = activeCount;
 
             const viewsEl = document.getElementById('kpiTotalViews');
-            if (viewsEl) viewsEl.textContent = totalViews;
+            if (viewsEl) viewsEl.textContent = uniqueVisitors;
 
             const pinCountEl = document.getElementById('mapPinCount');
             if (pinCountEl) pinCountEl.textContent = `${markers.length} Pinned Locations`;
@@ -1703,6 +1880,16 @@
             const lon = Number(data.lon) || 105.8542;
 
             const entityKey = (ip && ip !== 'Unknown') ? ip : `anon_${data.fingerprint || data.device_name || 'guest'}`;
+
+            const sig = `${ip}|${path}|${Math.floor(timestamp / 2000)}`;
+            const isNewEvent = !processedEventSignatures.has(sig);
+            if (isNewEvent) {
+                processedEventSignatures.add(sig);
+                if (processedEventSignatures.size > 3000) {
+                    const first = processedEventSignatures.values().next().value;
+                    processedEventSignatures.delete(first);
+                }
+            }
 
             let entity = entityMap.get(entityKey);
             if (!entity) {
@@ -1746,13 +1933,19 @@
                 entityMap.set(entityKey, entity);
                 addMapPin(lat, lon, entity, false);
             } else {
-                entity.hitCount++;
-                if (timestamp >= entity.lastSeen) {
-                    entity.lastSeen = timestamp;
-                    entity.currentPath = path;
+                if (isNewEvent) {
+                    const isDupTimeline = entity.paths && entity.paths.some(p => p.path === path && Math.abs(p.time - timestamp) < 3000);
+                    if (!isDupTimeline) {
+                        entity.hitCount++;
+                        if (timestamp >= entity.lastSeen) {
+                            entity.lastSeen = timestamp;
+                            entity.currentPath = path;
+                        }
+                        if (!entity.paths) entity.paths = [];
+                        entity.paths.unshift({ path, time: timestamp });
+                        if (entity.paths.length > 30) entity.paths.pop();
+                    }
                 }
-                entity.paths.unshift({ path, time: timestamp });
-                if (entity.paths.length > 30) entity.paths.pop();
                 if (data.fingerprint && data.fingerprint !== 'DEV-ACTIVE') entity.fingerprint = data.fingerprint;
                 if (data.screen) entity.screen = data.screen;
                 if (data.os) entity.os = data.os;
@@ -1770,6 +1963,7 @@
 
             renderAllEntities();
             updateKpis();
+            persistData();
 
             if (currentModalEntity && (currentModalEntity.key === entityKey || currentModalEntity.ip === ip)) {
                 updateModalContent(entity);
@@ -1807,6 +2001,7 @@
 
             renderAllOrders();
             updateKpis();
+            persistData();
 
             if (currentModalEntity && currentModalEntity.ip === orderIp) {
                 updateModalContent(currentModalEntity);
@@ -1822,7 +2017,7 @@
         };
 
         window.closeEntityModal = (e) => {
-            if (e && e.target && e.target !== document.getElementById('entityModalBackdrop') && !e.target.closest('.modal-close-x') && !e.target.closest('.btn-close-modal')) {
+            if (e && e.target && e.target !== document.getElementById('entityModalBackdrop') && !e.target.closest('.modal-close-x') && !e.target.closest('.modal-btn-act')) {
                 return;
             }
             document.getElementById('entityModalBackdrop').classList.remove('active');
@@ -1832,80 +2027,120 @@
         function updateModalContent(entity) {
             const iso = escapeHtml(entity.countryCode || 'VN');
             const flagUrl = entity.flagUrl || `https://flagcdn.com/20x15/${iso.toLowerCase()}.png`;
+            const locText = escapeHtml(formatVietnameseLocation(entity.city, entity.country));
 
-            document.getElementById('modalEntityIp').textContent = entity.ip;
-            document.getElementById('modalEntityHits').textContent = `${entity.hitCount} lượt xem`;
+            const ipEl = document.getElementById('modalEntityIp');
+            if (ipEl) ipEl.textContent = entity.ip;
 
-            document.getElementById('modalEntityFlagWrap').innerHTML = `
-                <span class="vcard-country-badge" style="font-size: 11px;">
-                    <img src="${flagUrl}" onerror="this.style.display='none'" class="vcard-flag-img" alt="${iso}">
-                    <span class="vcard-country-txt">${iso} • ${escapeHtml(entity.city)}, ${escapeHtml(entity.country)}</span>
-                </span>
-            `;
+            const flagWrap = document.getElementById('modalEntityFlagWrap');
+            if (flagWrap) {
+                flagWrap.innerHTML = `
+                    <span class="vcard-country-badge" style="font-size: 11px;">
+                        <img src="${flagUrl}" onerror="this.style.display='none'" class="vcard-flag-img" alt="${iso}">
+                        <span class="vcard-country-txt">${locText}</span>
+                    </span>
+                `;
+            }
 
-            document.getElementById('modalLoc').textContent = `${entity.city}, ${entity.region || entity.city}`;
-            document.getElementById('modalCountry').textContent = `${entity.country} (${iso})`;
-            document.getElementById('modalIsp').textContent = entity.isp || 'Internet Service Provider';
-            document.getElementById('modalCoords').textContent = `${Number(entity.lat).toFixed(6)}, ${Number(entity.lon).toFixed(6)}`;
-            document.getElementById('modalIpType').textContent = entity.ip.includes(':') ? 'IPv6' : 'IPv4';
+            const locEl = document.getElementById('modalLoc');
+            if (locEl) locEl.textContent = formatVietnameseLocation(entity.city, '');
 
-            document.getElementById('modalFp').textContent = entity.fingerprint || 'DEV-ACTIVE';
-            document.getElementById('modalDevice').textContent = `${entity.device_name || 'PC'} (${entity.device_type || 'Desktop'})`;
-            document.getElementById('modalOs').textContent = entity.os || 'Unknown OS';
-            document.getElementById('modalBrowser').textContent = entity.browser || 'Unknown Browser';
-            document.getElementById('modalScreen').textContent = entity.screen || '1920x1080';
-            document.getElementById('modalLang').textContent = entity.language || 'vi-VN';
+            const countryEl = document.getElementById('modalCountry');
+            if (countryEl) countryEl.textContent = `${formatVietnameseLocation('', entity.country)} (${iso})`;
 
-            document.getElementById('modalHistoryCount').textContent = entity.paths ? entity.paths.length : 1;
+            const ispEl = document.getElementById('modalIsp');
+            if (ispEl) ispEl.textContent = entity.isp || 'Internet Service Provider';
+
+            const coordsEl = document.getElementById('modalCoords');
+            if (coordsEl) coordsEl.textContent = `${Number(entity.lat).toFixed(6)}, ${Number(entity.lon).toFixed(6)}`;
+
+            const ipTypeEl = document.getElementById('modalIpType');
+            if (ipTypeEl) ipTypeEl.textContent = entity.ip.includes(':') ? 'IPv6' : 'IPv4';
+
+            const fpEl = document.getElementById('modalFp');
+            if (fpEl) fpEl.textContent = entity.fingerprint || 'DEV-ACTIVE';
+
+            const devEl = document.getElementById('modalDevice');
+            if (devEl) devEl.textContent = `${entity.device_name || 'PC'} (${entity.device_type || 'Desktop'})`;
+
+            const osEl = document.getElementById('modalOs');
+            if (osEl) osEl.textContent = entity.os || 'Unknown OS';
+
+            const browserEl = document.getElementById('modalBrowser');
+            if (browserEl) browserEl.textContent = entity.browser || 'Unknown Browser';
+
+            const screenEl = document.getElementById('modalScreen');
+            if (screenEl) screenEl.textContent = entity.screen || '1920x1080';
+
+            const langEl = document.getElementById('modalLang');
+            if (langEl) langEl.textContent = entity.language || 'vi-VN';
+
+            const historyCountEl = document.getElementById('modalHistoryCount');
+            if (historyCountEl) historyCountEl.textContent = entity.paths ? entity.paths.length : 1;
+
             const historyList = document.getElementById('modalHistoryList');
-            if (entity.paths && entity.paths.length > 0) {
-                historyList.innerHTML = entity.paths.map(p => `
-                    <div class="timeline-item">
-                        <span class="timeline-path"><i class="fa-regular fa-compass"></i> ${escapeHtml(p.path)}</span>
-                        <span class="timeline-time">${new Date(p.time).toLocaleTimeString('vi-VN')}</span>
-                    </div>
-                `).join('');
-            } else {
-                historyList.innerHTML = `<div class="timeline-item"><span class="timeline-path">${escapeHtml(entity.currentPath || '/')}</span><span class="timeline-time">${new Date(entity.lastSeen).toLocaleTimeString('vi-VN')}</span></div>`;
+            if (historyList) {
+                if (entity.paths && entity.paths.length > 0) {
+                    historyList.innerHTML = entity.paths.map(p => `
+                        <div class="timeline-item">
+                            <span class="timeline-path"><i class="fa-regular fa-compass"></i> ${escapeHtml(p.path)}</span>
+                            <span class="timeline-time">${new Date(p.time).toLocaleTimeString('vi-VN')}</span>
+                        </div>
+                    `).join('');
+                } else {
+                    historyList.innerHTML = `<div class="timeline-item"><span class="timeline-path">${escapeHtml(entity.currentPath || '/')}</span><span class="timeline-time">${new Date(entity.lastSeen).toLocaleTimeString('vi-VN')}</span></div>`;
+                }
             }
 
             const ordersSec = document.getElementById('modalOrdersSection');
             const ordersList = document.getElementById('modalOrdersList');
-            if (entity.orders && entity.orders.length > 0) {
-                ordersSec.style.display = 'block';
-                ordersList.innerHTML = entity.orders.map(o => `
-                    <div class="timeline-item" style="border-color: rgba(251, 191, 36, 0.3);">
-                        <span class="timeline-path text-amber"><i class="fa-solid fa-receipt"></i> #${escapeHtml(o.order_id || o.orderId)} - ${(o.total_amount || o.totalAmount || 0).toLocaleString('vi-VN')}₫</span>
-                        <span class="timeline-time">${new Date(o.timestamp).toLocaleTimeString('vi-VN')}</span>
-                    </div>
-                `).join('');
-            } else {
-                ordersSec.style.display = 'none';
-                ordersList.innerHTML = '';
+            if (ordersSec && ordersList) {
+                if (entity.orders && entity.orders.length > 0) {
+                    ordersSec.style.display = 'block';
+                    ordersList.innerHTML = entity.orders.map(o => `
+                        <div class="timeline-item" style="border-color: rgba(251, 191, 36, 0.3);">
+                            <span class="timeline-path text-amber"><i class="fa-solid fa-receipt"></i> #${escapeHtml(o.order_id || o.orderId)} - ${(o.total_amount || o.totalAmount || 0).toLocaleString('vi-VN')}₫</span>
+                            <span class="timeline-time">${new Date(o.timestamp).toLocaleTimeString('vi-VN')}</span>
+                        </div>
+                    `).join('');
+                } else {
+                    ordersSec.style.display = 'none';
+                    ordersList.innerHTML = '';
+                }
             }
 
-            document.getElementById('btnModalFocusMap').onclick = () => {
-                closeEntityModal();
-                focusMapPin(entity.lat, entity.lon, entity.ip);
-            };
+            const btnFocus = document.getElementById('btnModalFocusMap');
+            if (btnFocus) {
+                btnFocus.onclick = () => {
+                    closeEntityModal();
+                    focusMapPin(entity.lat, entity.lon, entity.ip);
+                };
+            }
 
-            document.getElementById('btnModalGoogleMaps').href = `https://www.google.com/maps?q=${entity.lat},${entity.lon}`;
+            const btnGmaps = document.getElementById('btnModalGoogleMaps');
+            if (btnGmaps) {
+                btnGmaps.href = `https://www.google.com/maps?q=${entity.lat},${entity.lon}`;
+            }
 
             const btnJson = document.getElementById('btnModalCopyJson');
-            btnJson.onclick = function() {
-                navigator.clipboard.writeText(JSON.stringify(entity, null, 2));
-                const orig = this.innerHTML;
-                this.innerHTML = '<i class="fa-solid fa-check text-green"></i> Copied!';
-                setTimeout(() => this.innerHTML = orig, 1500);
-            };
+            if (btnJson) {
+                btnJson.onclick = function() {
+                    navigator.clipboard.writeText(JSON.stringify(entity, null, 2));
+                    const orig = this.innerHTML;
+                    this.innerHTML = '<i class="fa-solid fa-check text-green"></i> Copied!';
+                    setTimeout(() => this.innerHTML = orig, 1500);
+                };
+            }
 
             const btnIp = document.getElementById('btnCopyIp');
-            btnIp.onclick = function() {
-                navigator.clipboard.writeText(entity.ip);
-                const orig = this.innerHTML;
-                this.innerHTML = '<i class="fa-solid fa-check text-green"></i> Copied!';
-                setTimeout(() => this.innerHTML = orig, 1500);
-            };
+            if (btnIp) {
+                btnIp.onclick = function() {
+                    navigator.clipboard.writeText(entity.ip);
+                    const orig = this.innerHTML;
+                    this.innerHTML = '<i class="fa-solid fa-check text-green"></i> Copied!';
+                    setTimeout(() => this.innerHTML = orig, 1500);
+                };
+            }
         }
 
         async function syncFromLocalServer() {
@@ -1985,6 +2220,10 @@
 
         window.addEventListener('DOMContentLoaded', () => {
             initMap();
+            loadPersistedData();
+            renderAllEntities();
+            renderAllOrders();
+            updateKpis();
             syncFromLocalServer();
             listenLiveEvents();
 
@@ -2008,6 +2247,9 @@
                 if (confirm('Bạn có chắc muốn xóa sạch toàn bộ lịch sử truy cập và đơn hàng?')) {
                     const now = Date.now();
                     localStorage.setItem(CLEARED_KEY, String(now));
+                    localStorage.removeItem(STORAGE_ENTITIES_KEY);
+                    localStorage.removeItem(STORAGE_ORDERS_KEY);
+                    processedEventSignatures.clear();
                     await fetch('/api/clear').catch(() => {});
 
                     entityMap.clear();
