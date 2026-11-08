@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Poeme Live Security & Ops Radar | poemefake.id.vn</title>
+    <title>Board</title>
     <link rel="icon" type="image/png" href="/public/Poeme Dessert Logo Icon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -17,9 +17,9 @@
             --bg-base: #0f172a;
             --bg-surface: rgba(30, 41, 59, 0.88);
             --bg-surface-elevated: rgba(51, 65, 85, 0.95);
-            --border-subtle: rgba(255, 255, 255, 0.12);
-            --border-light: rgba(56, 189, 248, 0.3);
-            --border-glow: rgba(56, 189, 248, 0.6);
+            --border-subtle: rgba(255, 255, 255, 0.1);
+            --border-light: rgba(56, 189, 248, 0.25);
+            --border-glow: rgba(56, 189, 248, 0.4);
             
             --accent-green: #10b981;
             --accent-mint: #34d399;
@@ -34,7 +34,7 @@
             --text-secondary: #e2e8f0;
             --text-muted: #94a3b8;
             --font-mono: 'JetBrains Mono', monospace;
-            --font-main: 'Plus Jakarta Sans', 'Inter', -apple-system, sans-serif;
+            --font-main: 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -84,15 +84,18 @@
         }
 
         .main-container {
+            display: none !important;
             height: 100%;
             max-height: 100%;
             padding: 10px 12px;
-            display: flex;
             flex-direction: column;
             position: relative;
             overflow: hidden;
             box-sizing: border-box;
             zoom: 1.2;
+        }
+        .main-container.authenticated {
+            display: flex !important;
         }
 
         /* Mobile Tab Switcher */
@@ -1273,11 +1276,12 @@
 
         /* Mobile & Tablet Responsiveness */
         @media (max-width: 1024px) {
-            .main-container {
+            .main-container.authenticated {
                 zoom: 1 !important;
                 padding: 8px;
                 height: 100vh;
                 overflow: hidden;
+                display: flex !important;
             }
             .mobile-tab-nav {
                 display: flex;
@@ -1333,22 +1337,22 @@
 </head>
 <body>
 
-    <main class="main-container">
+    <main class="main-container" id="mainContainer">
 
-        <!-- Thanh điều hướng Tab khi xem trên Mobile / Tablet -->
+        <!-- Thanh điều hướng Tab khi xem trên Mobile / Tablet (Mặc định: Luồng IP trước) -->
         <div class="mobile-tab-nav">
-            <button type="button" class="mobile-tab-btn active" data-target="colCenterPanel"><i class="fa-solid fa-map-location-dot"></i> Bản Đồ Radar</button>
-            <button type="button" class="mobile-tab-btn" data-target="colLeftPanel"><i class="fa-solid fa-satellite-dish"></i> Luồng IP</button>
+            <button type="button" class="mobile-tab-btn active" data-target="colLeftPanel"><i class="fa-solid fa-list-ul"></i> Luồng IP</button>
+            <button type="button" class="mobile-tab-btn" data-target="colCenterPanel"><i class="fa-solid fa-map-location-dot"></i> Bản Đồ</button>
             <button type="button" class="mobile-tab-btn" data-target="colRightPanel"><i class="fa-solid fa-bell"></i> Đơn Hàng</button>
         </div>
 
         <div class="content-grid-3col">
-            <!-- CỘT TRÁI: Luồng truy cập thời gian thực (Chia Online / Offline) -->
-            <div class="col-left" id="colLeftPanel">
+            <!-- CỘT TRÁI: Luồng truy cập thời gian thực (Mặc định hiển thị chính trên Mobile) -->
+            <div class="col-left mobile-active" id="colLeftPanel">
                 <div class="panel-header">
                     <div class="title-group">
                         <span class="icon-badge green"><i class="fa-solid fa-satellite-dish"></i></span>
-                        <h2>Luồng Truy Cập IP</h2>
+                        <h2>Board</h2>
                     </div>
                     <div class="header-dock-metrics">
                         <div class="h-metric" title="Khách đang trực tuyến">
@@ -1365,9 +1369,6 @@
                         <div class="h-sep"></div>
                         <button id="btnClearData" class="h-btn-action trash" title="Xóa toàn bộ lịch sử">
                             <i class="fa-solid fa-trash-can"></i>
-                        </button>
-                        <button id="btnLockDashboard" class="h-btn-action" title="Khóa bảo mật">
-                            <i class="fa-solid fa-lock"></i>
                         </button>
                     </div>
                 </div>
@@ -1404,7 +1405,7 @@
             </div>
 
             <!-- CỘT GIỮA: Bản đồ tương tác trung tâm với HUD nổi -->
-            <div class="col-center mobile-active" id="colCenterPanel">
+            <div class="col-center" id="colCenterPanel">
                 <div class="map-hud-overlay">
                     <div class="hud-group hud-layers">
                         <button type="button" class="hud-btn active" id="btnLayerStreet" title="Bản đồ đường phố">
@@ -1502,25 +1503,21 @@
                             <span class="modal-kv-label">Thiết bị:</span>
                             <span id="modalDevice" class="modal-kv-val">--</span>
                         </div>
-                        <div class="modal-kv-row" id="modalPhoneRow" style="display: none;">
-                            <span class="modal-kv-label">Số điện thoại:</span>
-                            <span id="modalPhone" class="modal-kv-val text-amber mono">--</span>
+                        <div class="modal-kv-row">
+                            <span class="modal-kv-label">Hệ điều hành:</span>
+                            <span id="modalOs" class="modal-kv-val">--</span>
                         </div>
                         <div class="modal-kv-row">
-                            <span class="modal-kv-label">Vi xử lý (CPU):</span>
-                            <span id="modalCpu" class="modal-kv-val mono">--</span>
+                            <span class="modal-kv-label">Trình duyệt:</span>
+                            <span id="modalBrowser" class="modal-kv-val">--</span>
                         </div>
                         <div class="modal-kv-row">
-                            <span class="modal-kv-label">Bộ nhớ (RAM):</span>
-                            <span id="modalRam" class="modal-kv-val mono">--</span>
-                        </div>
-                        <div class="modal-kv-row">
-                            <span class="modal-kv-label">Đồ họa (GPU):</span>
+                            <span class="modal-kv-label">Phần cứng GPU:</span>
                             <span id="modalGpu" class="modal-kv-val mono" style="font-size: 10px;">--</span>
                         </div>
-                        <div class="modal-kv-row">
-                            <span class="modal-kv-label">Hệ điều hành / DE:</span>
-                            <span id="modalOs" class="modal-kv-val">--</span>
+                        <div class="modal-kv-row" id="modalPhoneRow">
+                            <span class="modal-kv-label">Số điện thoại:</span>
+                            <span id="modalPhone" class="modal-kv-val text-amber mono">--</span>
                         </div>
                         <div class="modal-kv-row">
                             <span class="modal-kv-label">Xác thực:</span>
@@ -1579,22 +1576,65 @@
         let currentModalEntity = null;
         let localServerAvailable = true;
 
-        const AUTH_STORAGE_KEY = 'poeme_radar_token';
+        const AUTH_STORAGE_KEY = 'board_auth_token';
         let currentAuthToken = localStorage.getItem(AUTH_STORAGE_KEY) || '';
         let failedLoginAttempts = 0;
         let lockUntil = 0;
 
-        function checkAuthStatus() {
+        function touchActivity() {
+            if (document.visibilityState === 'visible' && currentAuthToken) {
+                localStorage.setItem('board_last_active', String(Date.now()));
+                localStorage.removeItem('board_leave_time');
+            }
+        }
+
+        function unlockDashboard() {
+            const main = document.getElementById('mainContainer');
             const gate = document.getElementById('radarAuthGate');
-            if (!gate) return;
+            if (main) main.classList.add('authenticated');
+            if (gate) gate.classList.remove('active');
+            touchActivity();
+            if (map) {
+                setTimeout(() => map.invalidateSize(), 200);
+            }
+        }
+
+        window.lockRadarDashboard = () => {
+            currentAuthToken = '';
+            localStorage.removeItem(AUTH_STORAGE_KEY);
+            localStorage.removeItem('board_last_active');
+            localStorage.removeItem('board_leave_time');
+            const main = document.getElementById('mainContainer');
+            const gate = document.getElementById('radarAuthGate');
+            if (main) main.classList.remove('authenticated');
+            if (gate) gate.classList.add('active');
+            const pinInp = document.getElementById('radarPinInput');
+            if (pinInp) {
+                pinInp.value = '';
+                setTimeout(() => pinInp.focus(), 100);
+            }
+        };
+
+        function checkAuthStatus() {
+            currentAuthToken = localStorage.getItem(AUTH_STORAGE_KEY) || '';
+            const leaveTime = Number(localStorage.getItem('board_leave_time')) || 0;
+            const lastActive = Number(localStorage.getItem('board_last_active')) || 0;
+            const now = Date.now();
+
             if (currentAuthToken) {
-                gate.classList.remove('active');
+                // Nếu người dùng rời khỏi trang hoặc không hoạt động quá 60 giây -> Khóa
+                if (leaveTime && (now - leaveTime > 60000)) {
+                    lockRadarDashboard();
+                    return;
+                }
+                if (lastActive && (now - lastActive > 60000) && document.visibilityState !== 'visible') {
+                    lockRadarDashboard();
+                    return;
+                }
+                // Còn trong 60s hoặc đang mở tab -> Mở khóa
+                unlockDashboard();
             } else {
-                gate.classList.add('active');
-                setTimeout(() => {
-                    const inp = document.getElementById('radarPinInput');
-                    if (inp) inp.focus();
-                }, 100);
+                lockRadarDashboard();
             }
         }
 
@@ -1621,12 +1661,12 @@
             const now = Date.now();
             if (now < lockUntil) {
                 const remain = Math.ceil((lockUntil - now) / 1000);
-                if (errEl) errEl.textContent = `Hệ thống tạm khóa do nhập sai nhiều lần. Vui lòng chờ ${remain}s.`;
+                if (errEl) errEl.textContent = `Hệ thống tạm khóa. Vui lòng chờ ${remain}s.`;
                 return;
             }
 
             if (!pin) {
-                if (errEl) errEl.textContent = 'Vui lòng nhập mã PIN bảo mật';
+                if (pinInp) pinInp.focus();
                 return;
             }
 
@@ -1635,53 +1675,53 @@
                 submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i>';
             }
 
-            try {
-                const res = await fetch('/api/login', {
+            const CORRECT_PIN = '148167';
+
+            if (pin === CORRECT_PIN) {
+                currentAuthToken = 'board_auth_' + Date.now();
+                localStorage.setItem(AUTH_STORAGE_KEY, currentAuthToken);
+                localStorage.setItem('board_last_active', String(Date.now()));
+                localStorage.removeItem('board_leave_time');
+                failedLoginAttempts = 0;
+                if (errEl) errEl.textContent = '';
+                unlockDashboard();
+
+                // Đồng bộ nền với local Python server nếu có (tránh văng lỗi JSON nếu chạy static web)
+                fetch('/api/login', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ pin })
-                });
-                const data = await res.json();
-                if (res.ok && data.success && data.token) {
-                    currentAuthToken = data.token;
-                    localStorage.setItem(AUTH_STORAGE_KEY, data.token);
-                    failedLoginAttempts = 0;
-                    if (errEl) errEl.textContent = '';
-                    const gate = document.getElementById('radarAuthGate');
-                    if (gate) gate.classList.remove('active');
+                }).then(async res => {
+                    if (res.ok) {
+                        const ct = res.headers.get('content-type') || '';
+                        if (ct.includes('application/json')) {
+                            const d = await res.json();
+                            if (d.token) {
+                                currentAuthToken = d.token;
+                                localStorage.setItem(AUTH_STORAGE_KEY, d.token);
+                            }
+                        }
+                    }
+                }).catch(() => {}).finally(() => {
                     syncFromLocalServer();
+                });
+            } else {
+                failedLoginAttempts++;
+                if (failedLoginAttempts >= 5) {
+                    lockUntil = Date.now() + 60000;
+                    if (errEl) errEl.textContent = 'Khóa 60s do nhập sai nhiều lần';
                 } else {
-                    failedLoginAttempts++;
-                    if (failedLoginAttempts >= 5) {
-                        lockUntil = Date.now() + 60000;
-                        if (errEl) errEl.textContent = 'Khóa 60s';
-                    } else {
-                        if (errEl) errEl.textContent = '';
-                    }
-                    if (pinInp) {
-                        pinInp.value = '';
-                        pinInp.focus();
-                    }
+                    if (errEl) errEl.textContent = '';
                 }
-            } catch (err) {
-                if (errEl) errEl.textContent = 'Lỗi kết nối máy chủ radar: ' + err.message;
-            } finally {
-                if (submitBtn) {
-                    submitBtn.disabled = false;
-                    submitBtn.innerHTML = 'Xác nhận';
+                if (pinInp) {
+                    pinInp.value = '';
+                    pinInp.focus();
                 }
             }
-        };
 
-        window.lockRadarDashboard = () => {
-            currentAuthToken = '';
-            localStorage.removeItem(AUTH_STORAGE_KEY);
-            const gate = document.getElementById('radarAuthGate');
-            if (gate) gate.classList.add('active');
-            const pinInp = document.getElementById('radarPinInput');
-            if (pinInp) {
-                pinInp.value = '';
-                pinInp.focus();
+            if (submitBtn) {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = 'Xác nhận';
             }
         };
 
@@ -2580,44 +2620,31 @@
                 }
             }
 
+            const osEl = document.getElementById('modalOs');
+            if (osEl) {
+                osEl.textContent = entity.os || 'Chưa xác định';
+            }
+
+            const browserEl = document.getElementById('modalBrowser');
+            if (browserEl) {
+                browserEl.textContent = entity.browser || 'Google Chrome';
+            }
+
+            const gpuEl = document.getElementById('modalGpu');
+            if (gpuEl) {
+                gpuEl.textContent = entity.gpu || 'Tiêu chuẩn (WebGL)';
+            }
+
             const phoneRow = document.getElementById('modalPhoneRow');
             const phoneEl = document.getElementById('modalPhone');
-            const isMobileDevice = entity.device_type === 'Mobile' || /iphone|android/i.test(entity.device_name || '');
             if (phoneRow && phoneEl) {
                 let customerPhone = entity.phone || '';
                 if (!customerPhone && entity.orders && entity.orders.length > 0) {
                     const firstOrd = entity.orders.find(o => o.customerPhone || o.customer_phone);
                     if (firstOrd) customerPhone = firstOrd.customerPhone || firstOrd.customer_phone;
                 }
-                if (isMobileDevice) {
-                    phoneRow.style.display = 'flex';
-                    phoneEl.textContent = customerPhone || 'Đang quét SIM/SĐT...';
-                } else if (customerPhone) {
-                    phoneRow.style.display = 'flex';
-                    phoneEl.textContent = customerPhone;
-                } else {
-                    phoneRow.style.display = 'none';
-                }
+                phoneEl.textContent = customerPhone || '--';
             }
-
-            const cpuEl = document.getElementById('modalCpu');
-            if (cpuEl) {
-                cpuEl.textContent = entity.cpu || (isMobileDevice ? 'Apple A-Series / Snapdragon' : 'Intel Core i9 / AMD Ryzen (Multi-Core)');
-            }
-
-            const ramEl = document.getElementById('modalRam');
-            if (ramEl) {
-                ramEl.textContent = entity.ram || (isMobileDevice ? '6.00 GiB / 8.00 GiB LPDDR5' : '16.00 GiB DDR5 / Btrfs');
-            }
-
-            const osEl = document.getElementById('modalOs');
-            if (osEl) {
-                const baseOs = entity.os || 'Unknown OS';
-                osEl.textContent = isMobileDevice ? baseOs : `${baseOs} (GNOME / Wayland)`;
-            }
-
-            const gpuEl = document.getElementById('modalGpu');
-            if (gpuEl) gpuEl.textContent = entity.gpu || 'Tiêu chuẩn (WebGL)';
 
             const spoofEl = document.getElementById('modalSpoof');
             if (spoofEl) {
@@ -2777,6 +2804,9 @@
                             language: dev.language || 'vi-VN',
                             fingerprint: dev.fingerprint || 'DEV-ACTIVE',
                             gpu: dev.gpu || '',
+                            cpu: dev.cpu || '',
+                            ram: dev.ram || '',
+                            phone: dev.phone || '',
                             isEmulated: !!dev.isEmulated,
                             path: msg.path || '/',
                             lat: geo.lat || 21.0285,
@@ -2809,9 +2839,45 @@
             syncFromLocalServer();
             listenLiveEvents();
 
-            document.getElementById('btnLockDashboard')?.addEventListener('click', () => {
-                lockRadarDashboard();
+            // Cập nhật phiên liên tục khi người dùng đang trên trang
+            ['mousemove', 'keydown', 'touchstart', 'scroll', 'click'].forEach(evt => {
+                window.addEventListener(evt, touchActivity, { passive: true });
             });
+
+            // Theo dõi rời trang / đổi tab / đóng trang: nếu quá 60s sẽ tự động khóa
+            document.addEventListener('visibilitychange', () => {
+                if (document.visibilityState === 'hidden') {
+                    localStorage.setItem('board_leave_time', String(Date.now()));
+                } else {
+                    const leaveTime = Number(localStorage.getItem('board_leave_time')) || 0;
+                    if (leaveTime && (Date.now() - leaveTime > 60000)) {
+                        lockRadarDashboard();
+                    } else {
+                        touchActivity();
+                    }
+                }
+            });
+
+            window.addEventListener('pagehide', () => {
+                localStorage.setItem('board_leave_time', String(Date.now()));
+            });
+
+            window.addEventListener('beforeunload', () => {
+                localStorage.setItem('board_leave_time', String(Date.now()));
+            });
+
+            // Giữ phiên active mỗi 5s khi đang mở
+            setInterval(touchActivity, 5000);
+
+            // Kiểm tra định kỳ: nếu đang chạy nền và đã rời trang quá 60s thì khóa ngay
+            setInterval(() => {
+                if (currentAuthToken && document.visibilityState === 'hidden') {
+                    const leaveTime = Number(localStorage.getItem('board_leave_time')) || 0;
+                    if (leaveTime && (Date.now() - leaveTime > 60000)) {
+                        lockRadarDashboard();
+                    }
+                }
+            }, 5000);
 
             window.addEventListener('resize', () => {
                 if (map) map.invalidateSize();
