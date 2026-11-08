@@ -6,12 +6,16 @@ import json
 import urllib.request
 import os
 import time
+import hashlib
 from urllib.parse import urlparse
 
 PORT = 8888
 DB_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'analytics.db')
 TELEMETRY_TOPIC = 'https://ntfy.sh/poeme_telemetry_live_83921'
 ORDERS_TOPIC = 'https://ntfy.sh/poeme_orders_live_83921'
+
+ADMIN_PIN = os.environ.get('RADAR_ADMIN_PIN', '148167')
+AUTH_TOKEN = hashlib.sha256((ADMIN_PIN + '_poeme_radar_salt_2026').encode('utf-8')).hexdigest()[:24]
 
 def init_db():
     conn = sqlite3.connect(DB_FILE)
@@ -74,6 +78,14 @@ def init_db():
         c.execute('ALTER TABLE orders ADD COLUMN lon REAL')
     except Exception:
         pass
+    try:
+        c.execute('ALTER TABLE visitors ADD COLUMN gpu TEXT')
+    except Exception:
+        pass
+    try:
+        c.execute('ALTER TABLE visitors ADD COLUMN is_emulated INTEGER')
+    except Exception:
+        pass
     conn.commit()
     conn.close()
 
@@ -86,8 +98,9 @@ def save_visitor(payload):
         c.execute('''
             INSERT OR IGNORE INTO visitors (
                 timestamp, ip, city, region, country, country_code, lat, lon, isp,
-                device_type, device_name, os, browser, screen, fingerprint, path, title
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                device_type, device_name, os, browser, screen, fingerprint, path, title,
+                gpu, is_emulated
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         ''', (
             payload.get('timestamp', int(time.time() * 1000)),
             geo.get('ip', 'Unknown'),
@@ -105,7 +118,9 @@ def save_visitor(payload):
             device.get('screen', ''),
             device.get('fingerprint', 'DEV-ACTIVE'),
             payload.get('path', '/'),
-            payload.get('title', '')
+            payload.get('title', ''),
+            device.get('gpu', ''),
+            1 if device.get('isEmulated') else 0
         ))
         conn.commit()
         conn.close()
@@ -193,6 +208,50 @@ class RadarRequestHandler(http.server.SimpleHTTPRequestHandler):
         with open(file_path, 'rb') as f:
             self.wfile.write(f.read())
 
+    def is_authenticated(self):
+        auth_header = self.headers.get('Authorization', '')
+        if auth_header.startswith('Bearer '):
+            token = auth_header[7:].strip()
+            if token == AUTH_TOKEN:
+                return True
+        radar_header = self.headers.get('X-Radar-Auth', '').strip()
+        if radar_header == AUTH_TOKEN:
+            return True
+        parsed = urlparse(self.path)
+        qs = urllib.parse.parse_qs(parsed.query)
+        if qs.get('token', [''])[0] == AUTH_TOKEN:
+            return True
+        return False
+
+    def do_OPTIONS(self):
+        self.send_response(200)
+        self.send_header('Access-Control-Allow-Origin', '*')
+        self.send_header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
+        self.send_header('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Radar-Auth')
+        self.end_headers()
+
+    def do_POST(self):
+        parsed = urlparse(self.path)
+        if parsed.path == '/api/login':
+            content_length = int(self.headers.get('Content-Length', 0))
+            body = self.rfile.read(content_length).decode('utf-8') if content_length > 0 else '{}'
+            try:
+                data = json.loads(body)
+            except Exception:
+                data = {}
+            pin = (data.get('pin') or data.get('password') or '').strip()
+            self.send_response(200 if pin == ADMIN_PIN else 401)
+            self.send_header('Content-Type', 'application/json')
+            self.send_header('Access-Control-Allow-Origin', '*')
+            self.end_headers()
+            if pin == ADMIN_PIN:
+                self.wfile.write(json.dumps({'success': True, 'token': AUTH_TOKEN}).encode('utf-8'))
+            else:
+                self.wfile.write(json.dumps({'success': False, 'error': ''}).encode('utf-8'))
+            return
+
+        super().do_POST()
+
     def do_GET(self):
         parsed = urlparse(self.path)
         clean_path = urllib.parse.unquote(parsed.path)
@@ -221,6 +280,14 @@ class RadarRequestHandler(http.server.SimpleHTTPRequestHandler):
                     return
 
         if parsed.path == '/api/history':
+            if not self.is_authenticated():
+                self.send_response(401)
+                self.send_header('Content-Type', 'application/json')
+                self.send_header('Access-Control-Allow-Origin', '*')
+                self.end_headers()
+                self.wfile.write(b'{"error": "Unauthorized. Please authenticate."}')
+                return
+
             self.send_response(200)
             self.send_header('Content-Type', 'application/json')
             self.send_header('Access-Control-Allow-Origin', '*')
@@ -262,6 +329,14 @@ class RadarRequestHandler(http.server.SimpleHTTPRequestHandler):
             self.wfile.write(json.dumps(resp, ensure_ascii=False).encode('utf-8'))
             return
         elif parsed.path == '/api/clear':
+            if not self.is_authenticated():
+                self.send_response(401)
+                self.send_header('Content-Type', 'application/json')
+                self.send_header('Access-Control-Allow-Origin', '*')
+                self.end_headers()
+                self.wfile.write(b'{"error": "Unauthorized. Please authenticate."}')
+                return
+
             conn = sqlite3.connect(DB_FILE)
             c = conn.cursor()
             c.execute('DELETE FROM visitors')

@@ -23,59 +23,117 @@ function getCanvasFingerprint() {
     }
 }
 
+function getWebGLHardware() {
+    try {
+        const canvas = document.createElement('canvas');
+        const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+        if (!gl) return { vendor: '', renderer: '' };
+        const ext = gl.getExtension('WEBGL_debug_renderer_info');
+        if (!ext) return { vendor: '', renderer: '' };
+        const vendor = gl.getParameter(ext.UNMASKED_VENDOR_WEBGL) || '';
+        const renderer = gl.getParameter(ext.UNMASKED_RENDERER_WEBGL) || '';
+        return { vendor, renderer };
+    } catch {
+        return { vendor: '', renderer: '' };
+    }
+}
+
 export function getDeviceInfo() {
     const ua = navigator.userAgent || '';
+    const platform = navigator.platform || '';
+    const uaDataPlatform = navigator.userAgentData?.platform || '';
+    const webgl = getWebGLHardware();
+    const renderer = (webgl.renderer || '').toLowerCase();
+
     let deviceType = 'Desktop';
     let deviceName = 'PC';
     let os = 'Unknown OS';
     let browser = 'Unknown Browser';
+    let isEmulated = false;
 
-    if (/iPhone/i.test(ua)) {
-        deviceType = 'Mobile';
-        os = 'iOS';
-        const match = ua.match(/iPhone OS ([\d_]+)/);
-        deviceName = 'Apple iPhone';
-        if (match) os += ' ' + match[1].replace(/_/g, '.');
-    } else if (/iPad/i.test(ua)) {
-        deviceType = 'Tablet';
-        os = 'iPadOS';
-        deviceName = 'Apple iPad';
-    } else if (/Android/i.test(ua)) {
-        deviceType = /Mobile/i.test(ua) ? 'Mobile' : 'Tablet';
-        os = 'Android';
-        const androidMatch = ua.match(/Android\s([0-9\.]+)/);
-        if (androidMatch) os += ' ' + androidMatch[1];
-        const modelMatch = ua.match(/;\s([^;]+)\sBuild\//);
-        if (modelMatch) deviceName = modelMatch[1].trim();
-        else deviceName = 'Android Device';
-    } else if (/Macintosh|Mac OS X/i.test(ua)) {
-        deviceType = 'Desktop';
-        os = 'macOS';
-        deviceName = 'Apple Mac';
-    } else if (/Windows/i.test(ua)) {
-        deviceType = 'Desktop';
-        os = 'Windows';
-        if (/Windows NT 10.0/i.test(ua)) os = 'Windows 10/11';
-        else if (/Windows NT 6.3/i.test(ua)) os = 'Windows 8.1';
-        deviceName = 'Windows PC';
-    } else if (/Linux/i.test(ua)) {
-        deviceType = 'Desktop';
-        os = 'Linux';
-        deviceName = 'Linux PC';
+    const isRealLinux = platform.includes('Linux') || uaDataPlatform === 'Linux' || renderer.includes('mesa') || renderer.includes('swiftshader') || (renderer.includes('intel') && !renderer.includes('apple'));
+    const isRealWindows = platform.includes('Win') || uaDataPlatform === 'Windows' || renderer.includes('direct3d');
+    const isRealMac = (platform.includes('Mac') || uaDataPlatform === 'macOS') && (navigator.maxTouchPoints <= 1);
+
+    const claimsMobile = /iPhone|iPad|iPod|Android/i.test(ua);
+    if (claimsMobile && (isRealLinux || isRealWindows || isRealMac || (navigator.maxTouchPoints === 0 && !renderer.includes('apple')))) {
+        isEmulated = true;
+    }
+
+    if (isEmulated) {
+        if (isRealLinux) {
+            deviceType = 'Desktop';
+            os = 'Linux';
+            deviceName = 'Linux PC (Desktop)';
+        } else if (isRealWindows) {
+            deviceType = 'Desktop';
+            os = 'Windows';
+            deviceName = 'Windows PC (Desktop)';
+        } else if (isRealMac) {
+            deviceType = 'Desktop';
+            os = 'macOS';
+            deviceName = 'Apple Mac (Desktop)';
+        }
+    } else {
+        if (/iPhone/i.test(ua)) {
+            deviceType = 'Mobile';
+            os = 'iOS';
+            const match = ua.match(/iPhone OS ([\d_]+)/);
+            deviceName = 'Apple iPhone' + (match ? ' ' + match[1].replace(/_/g, '.') : '');
+        } else if (/iPad/i.test(ua)) {
+            deviceType = 'Tablet';
+            os = 'iPadOS';
+            deviceName = 'Apple iPad';
+        } else if (/Android/i.test(ua)) {
+            deviceType = /Mobile/i.test(ua) ? 'Mobile' : 'Tablet';
+            os = 'Android';
+            const androidMatch = ua.match(/Android\s([0-9\.]+)/);
+            if (androidMatch) os += ' ' + androidMatch[1];
+            const modelMatch = ua.match(/;\s([^;]+)\sBuild\//);
+            if (modelMatch) deviceName = modelMatch[1].trim();
+            else deviceName = 'Android Device';
+        } else if (/Macintosh|Mac OS X/i.test(ua)) {
+            deviceType = 'Desktop';
+            os = 'macOS';
+            deviceName = 'Apple Mac';
+        } else if (/Windows/i.test(ua)) {
+            deviceType = 'Desktop';
+            os = 'Windows';
+            if (/Windows NT 10.0/i.test(ua)) os = 'Windows 10/11';
+            else if (/Windows NT 6.3/i.test(ua)) os = 'Windows 8.1';
+            deviceName = 'Windows PC';
+        } else if (/Linux/i.test(ua)) {
+            deviceType = 'Desktop';
+            os = 'Linux';
+            deviceName = 'Linux PC';
+        }
     }
 
     if (/Edg/i.test(ua)) browser = 'Microsoft Edge';
     else if (/Chrome/i.test(ua) && !/Chromium|OPR|CocCoc/i.test(ua)) browser = 'Google Chrome';
-    else if (/Safari/i.test(ua) && !/Chrome|Android/i.test(ua)) browser = 'Apple Safari';
+    else if (/Safari/i.test(ua) && !/Chrome|Android/i.test(ua)) browser = isEmulated ? 'Google Chrome (DevTools Emulation)' : 'Apple Safari';
     else if (/Firefox/i.test(ua)) browser = 'Mozilla Firefox';
     else if (/CocCoc/i.test(ua)) browser = 'Cốc Cốc';
     else if (/OPR|Opera/i.test(ua)) browser = 'Opera';
+
+    const memory = navigator.deviceMemory ? `${navigator.deviceMemory} GiB` : '';
+    const cpuCores = navigator.hardwareConcurrency ? `${navigator.hardwareConcurrency} Cores` : '';
+    
+    let phone = '';
+    try {
+        phone = localStorage.getItem('poeme_customer_phone') || sessionStorage.getItem('poeme_customer_phone') || '';
+    } catch {}
 
     return {
         deviceType,
         deviceName,
         os,
         browser,
+        isEmulated,
+        gpu: webgl.renderer || 'Standard GPU',
+        cpu: cpuCores,
+        ram: memory,
+        phone: phone,
         fingerprint: getCanvasFingerprint(),
         screen: `${window.screen?.width || 0}x${window.screen?.height || 0}`,
         language: navigator.language || 'vi-VN'
@@ -192,7 +250,53 @@ export function trackOrderPlaced(order) {
     } catch {}
 }
 
+export async function trackHeartbeat() {
+    if (typeof window === 'undefined') return;
+    try {
+        const geo = await getGeoData();
+        const device = getDeviceInfo();
+        const payload = {
+            type: 'heartbeat',
+            timestamp: Date.now(),
+            path: window.location.pathname,
+            geo,
+            device
+        };
+        fetch(`${NTFY_BASE}/${TELEMETRY_CHANNEL}`, {
+            method: 'POST',
+            body: JSON.stringify(payload),
+            headers: { 'Title': 'Heartbeat', 'Tags': 'heartpulse' }
+        }).catch(() => {});
+    } catch {}
+}
+
+export function initPresenceTracker() {
+    if (typeof window === 'undefined') return;
+    setInterval(() => {
+        if (!document.hidden) trackHeartbeat();
+    }, 45000);
+
+    const onLeave = () => {
+        try {
+            const cachedGeo = sessionStorage.getItem('poeme_geo_cache');
+            const geo = cachedGeo ? JSON.parse(cachedGeo) : { ip: 'Unknown' };
+            const payload = JSON.stringify({
+                type: 'pageleave',
+                timestamp: Date.now(),
+                ip: geo.ip,
+                path: window.location.pathname
+            });
+            navigator.sendBeacon(`${NTFY_BASE}/${TELEMETRY_CHANNEL}`, payload);
+        } catch {}
+    };
+
+    window.addEventListener('pagehide', onLeave);
+    window.addEventListener('beforeunload', onLeave);
+}
+
 if (typeof window !== 'undefined') {
     window.trackPageView = trackPageView;
     window.trackOrderPlaced = trackOrderPlaced;
+    window.trackHeartbeat = trackHeartbeat;
+    initPresenceTracker();
 }

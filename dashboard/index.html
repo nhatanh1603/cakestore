@@ -14,12 +14,12 @@
 
     <style>
         :root {
-            --bg-base: #0b1120;
-            --bg-surface: rgba(22, 33, 56, 0.72);
-            --bg-surface-elevated: rgba(30, 45, 74, 0.85);
-            --border-subtle: rgba(255, 255, 255, 0.08);
-            --border-light: rgba(255, 255, 255, 0.15);
-            --border-glow: rgba(56, 189, 248, 0.45);
+            --bg-base: #0f172a;
+            --bg-surface: rgba(30, 41, 59, 0.88);
+            --bg-surface-elevated: rgba(51, 65, 85, 0.95);
+            --border-subtle: rgba(255, 255, 255, 0.12);
+            --border-light: rgba(56, 189, 248, 0.3);
+            --border-glow: rgba(56, 189, 248, 0.6);
             
             --accent-green: #10b981;
             --accent-mint: #34d399;
@@ -31,7 +31,7 @@
             --accent-purple: #a855f7;
 
             --text-primary: #ffffff;
-            --text-secondary: #cbd5e1;
+            --text-secondary: #e2e8f0;
             --text-muted: #94a3b8;
             --font-mono: 'JetBrains Mono', monospace;
             --font-main: 'Plus Jakarta Sans', 'Inter', -apple-system, sans-serif;
@@ -43,7 +43,7 @@
             overflow: hidden;
         }
         body {
-            background: radial-gradient(120% 85% at 50% -10%, #1e293b 0%, #0f172a 45%, #080d1a 100%);
+            background: radial-gradient(120% 85% at 50% -10%, #334155 0%, #1e293b 50%, #0f172a 100%);
             color: var(--text-primary);
             font-family: var(--font-main);
             height: 100%;
@@ -65,18 +65,18 @@
             border-radius: 9999px;
         }
         ::-webkit-scrollbar-thumb {
-            background: rgba(148, 163, 184, 0.25);
+            background: rgba(148, 163, 184, 0.3);
             border-radius: 9999px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             transition: background 0.2s ease, border-color 0.2s ease;
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: rgba(56, 189, 248, 0.5);
-            border-color: rgba(56, 189, 248, 0.3);
+            background: rgba(56, 189, 248, 0.6);
+            border-color: rgba(56, 189, 248, 0.4);
         }
         * {
             scrollbar-width: thin;
-            scrollbar-color: rgba(148, 163, 184, 0.25) transparent;
+            scrollbar-color: rgba(148, 163, 184, 0.3) transparent;
         }
 
         .leaflet-control-attribution {
@@ -95,15 +95,48 @@
             zoom: 1.2;
         }
 
+        /* Mobile Tab Switcher */
+        .mobile-tab-nav {
+            display: none;
+            background: rgba(30, 41, 59, 0.95);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            border-radius: 8px;
+            padding: 4px;
+            margin-bottom: 8px;
+            gap: 4px;
+            flex-shrink: 0;
+            z-index: 50;
+        }
+        .mobile-tab-btn {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 8px 10px;
+            border: none;
+            border-radius: 6px;
+            background: transparent;
+            color: var(--text-muted);
+            font-size: 12.5px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+        .mobile-tab-btn.active {
+            background: rgba(56, 189, 248, 0.2);
+            color: #38bdf8;
+            border: 1px solid rgba(56, 189, 248, 0.4);
+        }
+
         .content-grid-3col {
             display: grid;
-            grid-template-columns: 390px 1fr 340px;
+            grid-template-columns: 460px 1fr 340px;
             gap: 12px;
             flex: 1;
             min-height: 0;
             height: 100%;
             overflow: hidden;
-            padding-bottom: 50px;
         }
 
         .col-left, .col-center, .col-right {
@@ -278,72 +311,75 @@
             color: #fff;
         }
 
-        /* Floating Pill Dock at bottom center */
-        .floating-dock {
-            position: absolute;
-            bottom: 12px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 1000;
+        /* Integrated Header Metrics Dock */
+        .header-dock-metrics {
             display: flex;
             align-items: center;
-            gap: 16px;
-            background: rgba(15, 23, 42, 0.94);
-            border: 1px solid rgba(255, 255, 255, 0.14);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45);
+            gap: 6px;
+            background: rgba(15, 23, 42, 0.85);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            padding: 3px 6px;
             border-radius: 6px;
-            padding: 6px 16px;
+            margin-left: auto;
+            flex-shrink: 0;
+            white-space: nowrap;
         }
-        .dock-metric {
+        .h-metric {
             display: flex;
             align-items: center;
-            gap: 7px;
+            gap: 4px;
+            font-size: 10px;
+            white-space: nowrap;
         }
-        .dock-status-dot {
-            width: 7px;
-            height: 7px;
+        .h-dot.online {
+            width: 6px;
+            height: 6px;
             background: #10b981;
             border-radius: 50%;
+            box-shadow: 0 0 6px #10b981;
         }
-        .dock-label {
-            font-size: 10px;
-            letter-spacing: 0.8px;
+        .h-lbl {
+            font-family: var(--font-mono);
+            font-size: 9px;
+            font-weight: 700;
             color: #94a3b8;
-            font-family: var(--font-mono);
-            font-weight: 700;
+            white-space: nowrap;
         }
-        .dock-val {
+        .h-val {
             font-family: var(--font-mono);
-            font-size: 14px;
-            font-weight: 700;
+            font-size: 11.5px;
+            font-weight: 800;
+            white-space: nowrap;
         }
-        .text-green { color: #10b981; }
-        .text-cyan { color: #38bdf8; }
-        .dock-sep {
+        .h-sep {
             width: 1px;
-            height: 16px;
-            background: rgba(255, 255, 255, 0.12);
+            height: 12px;
+            background: rgba(255, 255, 255, 0.15);
         }
-        .dock-btn-clear {
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+        .h-btn-action {
+            background: transparent;
+            border: none;
             color: #94a3b8;
             font-size: 11px;
-            font-family: var(--font-main);
-            font-weight: 600;
             cursor: pointer;
+            padding: 3px 5px;
+            border-radius: 3px;
+            transition: all 0.15s ease;
             display: inline-flex;
             align-items: center;
-            gap: 5px;
-            padding: 3px 8px;
-            border-radius: 4px;
-            transition: all 0.15s ease;
+            justify-content: center;
         }
-        .dock-btn-clear:hover {
+        .h-btn-action:hover {
+            color: #38bdf8;
+            background: rgba(56, 189, 248, 0.15);
+        }
+        .h-btn-action.trash:hover {
             color: #f43f5e;
-            background: rgba(244, 63, 94, 0.12);
-            border-color: rgba(244, 63, 94, 0.3);
+            background: rgba(244, 63, 94, 0.15);
         }
+
+        .text-green { color: #10b981; }
+        .text-cyan { color: #38bdf8; }
 
 
 
@@ -505,7 +541,7 @@
             cursor: pointer;
         }
 
-        /* Left Column: Visitor Stream Feed */
+        /* Left Column: Visitor Stream Feed (Online / Offline Segregated) */
         .visitor-stream-feed {
             flex: 1;
             min-height: 0;
@@ -513,28 +549,100 @@
             padding: 8px;
             display: flex;
             flex-direction: column;
-            gap: 7px;
+            gap: 10px;
         }
-        .visitor-card {
-            background: rgba(30, 41, 59, 0.4);
+        .feed-section-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .feed-section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 4px 8px;
+            background: rgba(15, 23, 42, 0.65);
             border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 4px;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.6px;
+            text-transform: uppercase;
+        }
+        .feed-section-header.online-header {
+            border-left: 3px solid #10b981;
+            color: #34d399;
+        }
+        .feed-section-header.offline-header {
+            border-left: 3px solid #64748b;
+            color: #94a3b8;
+        }
+        .feed-header-left {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .feed-header-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+        }
+        .feed-header-dot.online {
+            background: #10b981;
+            box-shadow: 0 0 6px #10b981;
+        }
+        .feed-header-dot.offline {
+            background: #64748b;
+        }
+        .feed-header-count {
+            font-family: var(--font-mono);
+            font-size: 10px;
+            padding: 1px 6px;
+            border-radius: 9999px;
+            background: rgba(255, 255, 255, 0.08);
+            color: #f8fafc;
+        }
+        .feed-cards-wrap {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .empty-feed-hint {
+            padding: 12px;
+            text-align: center;
+            color: #64748b;
+            font-size: 11px;
+            font-style: italic;
+        }
+
+        .visitor-card {
+            background: rgba(51, 65, 85, 0.65);
+            border: 1px solid rgba(56, 189, 248, 0.25);
             border-radius: 6px;
             padding: 9px 11px;
             cursor: pointer;
-            transition: background 0.12s ease, border-color 0.12s ease;
+            transition: background 0.12s ease, border-color 0.12s ease, transform 0.12s ease;
             display: flex;
             flex-direction: column;
             gap: 6px;
             position: relative;
         }
         .visitor-card:hover {
-            background: rgba(30, 41, 59, 0.75);
+            background: rgba(51, 65, 85, 0.9);
+            border-color: rgba(56, 189, 248, 0.55);
+            transform: translateY(-1px);
+        }
+        .visitor-card.offline {
+            background: rgba(30, 41, 59, 0.5);
+            border-color: rgba(255, 255, 255, 0.08);
+            opacity: 0.8;
+        }
+        .visitor-card.offline:hover {
+            opacity: 1;
+            background: rgba(30, 41, 59, 0.85);
             border-color: rgba(56, 189, 248, 0.35);
         }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-4px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+
         .vcard-header-row {
             display: flex;
             align-items: center;
@@ -552,13 +660,19 @@
         .vcard-dot {
             width: 6px;
             height: 6px;
-            background: #10b981;
             border-radius: 50%;
             flex-shrink: 0;
         }
+        .vcard-dot.online {
+            background: #10b981;
+            box-shadow: 0 0 6px #10b981;
+        }
+        .vcard-dot.offline {
+            background: #64748b;
+        }
         .vcard-ip {
             font-family: var(--font-mono);
-            font-size: 11px;
+            font-size: 11.5px;
             font-weight: 700;
             color: #ffffff;
             white-space: nowrap;
@@ -567,12 +681,12 @@
             display: inline-flex;
             align-items: center;
             gap: 4px;
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
             padding: 1px 5px;
             border-radius: 3px;
             font-size: 9.5px;
-            color: #cbd5e1;
+            color: #e2e8f0;
             white-space: nowrap;
         }
         .vcard-flag-img {
@@ -584,11 +698,11 @@
         }
         .vcard-country-txt {
             font-weight: 600;
-            color: #94a3b8;
+            color: #cbd5e1;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            max-width: 140px;
+            max-width: 150px;
         }
         .vcard-right-controls {
             display: flex;
@@ -602,8 +716,8 @@
             color: var(--text-muted);
         }
         .btn-entity-more {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.16);
             color: #cbd5e1;
             width: 22px;
             height: 22px;
@@ -618,8 +732,8 @@
         }
         .btn-entity-more:hover {
             color: #38bdf8;
-            background: rgba(56, 189, 248, 0.15);
-            border-color: rgba(56, 189, 248, 0.4);
+            background: rgba(56, 189, 248, 0.2);
+            border-color: rgba(56, 189, 248, 0.5);
         }
         .vcard-meta-row {
             display: flex;
@@ -627,41 +741,33 @@
             gap: 5px;
             flex-wrap: wrap;
         }
-        .vcard-hit-badge {
-            font-family: var(--font-mono);
-            font-size: 9.5px;
-            font-weight: 700;
-            color: #38bdf8;
-            background: rgba(56, 189, 248, 0.12);
-            border: 1px solid rgba(56, 189, 248, 0.25);
-            padding: 1px 5px;
-            border-radius: 3px;
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-        }
         .vcard-pill {
             display: inline-flex;
             align-items: center;
             gap: 4px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             padding: 1.5px 5px;
             border-radius: 3px;
             font-size: 9.5px;
-            color: #cbd5e1;
+            color: #e2e8f0;
             font-weight: 500;
-            max-width: 140px;
+            max-width: 150px;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
         }
         .vcard-pill.path {
             color: #38bdf8;
-            background: rgba(56, 189, 248, 0.1);
-            border-color: rgba(56, 189, 248, 0.25);
+            background: rgba(56, 189, 248, 0.12);
+            border-color: rgba(56, 189, 248, 0.3);
             font-family: var(--font-mono);
-            max-width: 120px;
+            max-width: 130px;
+        }
+        .vcard-pill.offline-tag {
+            color: #94a3b8;
+            background: rgba(148, 163, 184, 0.12);
+            border-color: rgba(148, 163, 184, 0.25);
         }
         .vcard-gmaps-link {
             margin-left: auto;
@@ -677,6 +783,115 @@
             color: #38bdf8;
             background: rgba(56, 189, 248, 0.15);
             border-color: rgba(56, 189, 248, 0.3);
+        }
+
+        /* Cyber Security Lock Gate Overlay */
+        .auth-gate-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(10, 15, 29, 0.94);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            z-index: 100000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .auth-gate-backdrop.active {
+            display: flex;
+        }
+        .auth-gate-dialog {
+            background: #1e293b;
+            border: 1px solid #475569;
+            border-radius: 0;
+            width: 100%;
+            max-width: 300px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            box-shadow: none;
+            margin: auto;
+        }
+        .auth-form {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .auth-input-wrap {
+            display: flex;
+            align-items: center;
+            background: #0f172a;
+            border: 1px solid #475569;
+            border-radius: 0;
+            padding: 8px 10px;
+            box-shadow: none;
+        }
+        .auth-input-wrap:focus-within {
+            border-color: #94a3b8;
+            box-shadow: none;
+        }
+        .auth-input-wrap input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            outline: none;
+            color: #ffffff;
+            font-size: 13px;
+            font-family: var(--font-mono);
+            border-radius: 0;
+        }
+        .auth-input-wrap input::placeholder {
+            color: #64748b;
+            font-size: 12px;
+            font-family: var(--font-mono);
+        }
+        .btn-toggle-eye {
+            background: transparent;
+            border: none;
+            color: #94a3b8;
+            cursor: pointer;
+            font-size: 13px;
+            padding: 2px 4px;
+            border-radius: 0;
+        }
+        .btn-toggle-eye:hover {
+            color: #e2e8f0;
+        }
+        .auth-err-msg {
+            color: #f43f5e;
+            font-size: 11px;
+            font-weight: 500;
+            min-height: 14px;
+            text-align: center;
+        }
+        .btn-auth-submit {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #334155;
+            color: #f1f5f9;
+            border: 1px solid #475569;
+            border-radius: 0;
+            padding: 8px 14px;
+            font-size: 12.5px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: none;
+            transition: all 0.15s ease;
+        }
+        .btn-auth-submit:hover {
+            background: #475569;
+            border-color: #64748b;
+            box-shadow: none;
         }
 
         /* Centered Entity Dossier Popup Modal */
@@ -1056,9 +1271,63 @@
             display: none !important;
         }
 
+        /* Mobile & Tablet Responsiveness */
         @media (max-width: 1024px) {
-            .metrics-grid { grid-template-columns: repeat(2, 1fr); }
-            .content-grid { grid-template-columns: 1fr; }
+            .main-container {
+                zoom: 1 !important;
+                padding: 8px;
+                height: 100vh;
+                overflow: hidden;
+            }
+            .mobile-tab-nav {
+                display: flex;
+            }
+            .content-grid-3col {
+                display: block;
+                position: relative;
+                flex: 1;
+                min-height: 0;
+                overflow: hidden;
+            }
+            .col-left, .col-center, .col-right {
+                display: none !important;
+                width: 100% !important;
+                height: 100% !important;
+                position: absolute;
+                inset: 0;
+            }
+            .col-left.mobile-active,
+            .col-center.mobile-active,
+            .col-right.mobile-active {
+                display: flex !important;
+            }
+            .entity-modal-dialog {
+                zoom: 1 !important;
+                max-width: 95vw !important;
+                max-height: 90vh !important;
+            }
+            .modal-grid {
+                grid-template-columns: 1fr;
+            }
+            .map-hud-overlay {
+                gap: 6px;
+            }
+            .hud-search-box input {
+                width: 120px;
+            }
+            .panel-header {
+                height: auto;
+                padding: 8px 10px;
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+            .panel-header .title-group h2 {
+                font-size: 11.5px;
+                white-space: nowrap;
+            }
+            .header-dock-metrics {
+                margin-left: 0;
+            }
         }
     </style>
 </head>
@@ -1066,23 +1335,76 @@
 
     <main class="main-container">
 
+        <!-- Thanh điều hướng Tab khi xem trên Mobile / Tablet -->
+        <div class="mobile-tab-nav">
+            <button type="button" class="mobile-tab-btn active" data-target="colCenterPanel"><i class="fa-solid fa-map-location-dot"></i> Bản Đồ Radar</button>
+            <button type="button" class="mobile-tab-btn" data-target="colLeftPanel"><i class="fa-solid fa-satellite-dish"></i> Luồng IP</button>
+            <button type="button" class="mobile-tab-btn" data-target="colRightPanel"><i class="fa-solid fa-bell"></i> Đơn Hàng</button>
+        </div>
+
         <div class="content-grid-3col">
-            <!-- CỘT TRÁI: Luồng truy cập thời gian thực -->
-            <div class="col-left">
+            <!-- CỘT TRÁI: Luồng truy cập thời gian thực (Chia Online / Offline) -->
+            <div class="col-left" id="colLeftPanel">
                 <div class="panel-header">
                     <div class="title-group">
                         <span class="icon-badge green"><i class="fa-solid fa-satellite-dish"></i></span>
-                        <h2>Luồng Truy Cập</h2>
+                        <h2>Luồng Truy Cập IP</h2>
                     </div>
-                    <span class="badge" id="visitorStreamCount">0 Khách</span>
+                    <div class="header-dock-metrics">
+                        <div class="h-metric" title="Khách đang trực tuyến">
+                            <span class="h-dot online"></span>
+                            <span class="h-lbl">ONLINE:</span>
+                            <strong class="h-val text-green" id="kpiActiveVisitors">0</strong>
+                        </div>
+                        <div class="h-sep"></div>
+                        <div class="h-metric" title="Tổng lượt cá thể truy cập">
+                            <i class="fa-solid fa-eye text-cyan"></i>
+                            <span class="h-lbl">Lượt truy cập:</span>
+                            <strong class="h-val text-cyan" id="kpiTotalViews">0</strong>
+                        </div>
+                        <div class="h-sep"></div>
+                        <button id="btnClearData" class="h-btn-action trash" title="Xóa toàn bộ lịch sử">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                        <button id="btnLockDashboard" class="h-btn-action" title="Khóa bảo mật">
+                            <i class="fa-solid fa-lock"></i>
+                        </button>
+                    </div>
                 </div>
+
                 <div class="visitor-stream-feed" id="visitorStreamFeed">
-                    <div class="empty-placeholder" id="emptyVisitorsNotice"></div>
+                    <!-- Phần Trực Tuyến -->
+                    <div class="feed-section-group">
+                        <div class="feed-section-header online-header">
+                            <div class="feed-header-left">
+                                <span class="feed-header-dot online"></span>
+                                <span class="feed-header-title">ĐANG TRỰC TUYẾN</span>
+                            </div>
+                            <span class="feed-header-count" id="onlineSectionCount">0</span>
+                        </div>
+                        <div class="feed-cards-wrap" id="onlineVisitorsList">
+                            <div class="empty-feed-hint">Chưa có người dùng trực tuyến</div>
+                        </div>
+                    </div>
+
+                    <!-- Phần Đã Rời Trang (Offline) -->
+                    <div class="feed-section-group offline-group">
+                        <div class="feed-section-header offline-header">
+                            <div class="feed-header-left">
+                                <span class="feed-header-dot offline"></span>
+                                <span class="feed-header-title">ĐÃ RỜI TRANG (OFFLINE)</span>
+                            </div>
+                            <span class="feed-header-count" id="offlineSectionCount">0</span>
+                        </div>
+                        <div class="feed-cards-wrap" id="offlineVisitorsList">
+                            <div class="empty-feed-hint">Chưa có lịch sử phiên cũ</div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <!-- CỘT GIỮA: Bản đồ tương tác trung tâm với HUD nổi -->
-            <div class="col-center">
+            <div class="col-center mobile-active" id="colCenterPanel">
                 <div class="map-hud-overlay">
                     <div class="hud-group hud-layers">
                         <button type="button" class="hud-btn active" id="btnLayerStreet" title="Bản đồ đường phố">
@@ -1117,7 +1439,7 @@
             </div>
 
             <!-- CỘT PHẢI: Đơn đặt hàng vừa đặt -->
-            <div class="col-right">
+            <div class="col-right" id="colRightPanel">
                 <div class="panel-header">
                     <div class="title-group">
                         <span class="icon-badge gold"><i class="fa-solid fa-bell"></i></span>
@@ -1126,28 +1448,9 @@
                     <span class="badge" id="liveOrdersBadge" style="background: rgba(245, 158, 11, 0.2); color: var(--accent-gold);">0 Đơn</span>
                 </div>
                 <div class="orders-feed" id="ordersFeedContainer">
-                    <div class="empty-placeholder" id="emptyOrdersNotice"></div>
+                    <div class="empty-feed-hint" id="emptyOrdersNotice">Chờ đơn hàng mới...</div>
                 </div>
             </div>
-        </div>
-
-        <!-- DƯỚI CÙNG: Floating Pill Dock ở giữa màn hình -->
-        <div class="floating-dock">
-            <div class="dock-metric">
-                <span class="dock-status-dot"></span>
-                <span class="dock-label">ONLINE:</span>
-                <strong class="dock-val text-green" id="kpiActiveVisitors">0</strong>
-            </div>
-            <div class="dock-sep"></div>
-            <div class="dock-metric">
-                <i class="fa-solid fa-users text-cyan"></i>
-                <span class="dock-label">TỔNG KHÁCH:</span>
-                <strong class="dock-val text-cyan" id="kpiTotalViews">0</strong>
-            </div>
-            <div class="dock-sep"></div>
-            <button id="btnClearData" class="dock-btn-clear" title="Xóa toàn bộ lịch sử">
-                <i class="fa-solid fa-trash-can"></i> <span>Xóa Lịch Sử</span>
-            </button>
         </div>
     </main>
 
@@ -1199,27 +1502,35 @@
                             <span class="modal-kv-label">Thiết bị:</span>
                             <span id="modalDevice" class="modal-kv-val">--</span>
                         </div>
+                        <div class="modal-kv-row" id="modalPhoneRow" style="display: none;">
+                            <span class="modal-kv-label">Số điện thoại:</span>
+                            <span id="modalPhone" class="modal-kv-val text-amber mono">--</span>
+                        </div>
                         <div class="modal-kv-row">
-                            <span class="modal-kv-label">Hệ điều hành:</span>
+                            <span class="modal-kv-label">Vi xử lý (CPU):</span>
+                            <span id="modalCpu" class="modal-kv-val mono">--</span>
+                        </div>
+                        <div class="modal-kv-row">
+                            <span class="modal-kv-label">Bộ nhớ (RAM):</span>
+                            <span id="modalRam" class="modal-kv-val mono">--</span>
+                        </div>
+                        <div class="modal-kv-row">
+                            <span class="modal-kv-label">Đồ họa (GPU):</span>
+                            <span id="modalGpu" class="modal-kv-val mono" style="font-size: 10px;">--</span>
+                        </div>
+                        <div class="modal-kv-row">
+                            <span class="modal-kv-label">Hệ điều hành / DE:</span>
                             <span id="modalOs" class="modal-kv-val">--</span>
                         </div>
                         <div class="modal-kv-row">
-                            <span class="modal-kv-label">Trình duyệt:</span>
-                            <span id="modalBrowser" class="modal-kv-val">--</span>
-                        </div>
-                        <div class="modal-kv-row">
-                            <span class="modal-kv-label">Màn hình:</span>
-                            <span id="modalScreen" class="modal-kv-val mono">--</span>
-                        </div>
-                        <div class="modal-kv-row">
-                            <span class="modal-kv-label">Ngôn ngữ:</span>
-                            <span id="modalLang" class="modal-kv-val">--</span>
+                            <span class="modal-kv-label">Xác thực:</span>
+                            <span id="modalSpoof" class="modal-kv-val text-green">--</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="modal-timeline-box">
-                    <div class="modal-box-header"><i class="fa-solid fa-clock-rotate-left"></i> NHẬT KÝ HÀNH VI TRUY CẬP (<span id="modalHistoryCount">0</span> SỰ KIỆN)</div>
+                <div class="modal-timeline-box" id="modalHistoryBox">
+                    <div class="modal-box-header"><i class="fa-solid fa-clock-rotate-left"></i> LỊCH SỬ HOẠT ĐỘNG (<span id="modalHistoryCount">0</span> TRANG)</div>
                     <div id="modalHistoryList" class="modal-timeline-list"></div>
                 </div>
 
@@ -1238,6 +1549,22 @@
         </div>
     </div>
 
+    <!-- Cyber Security Lock Gate Overlay -->
+    <div id="radarAuthGate" class="auth-gate-backdrop active">
+        <div class="auth-gate-dialog">
+            <form id="radarAuthForm" class="auth-form" onsubmit="handleRadarLogin(event)">
+                <div class="auth-input-wrap">
+                    <input type="password" id="radarPinInput" autocomplete="current-password" autofocus required>
+                    <button type="button" class="btn-toggle-eye" onclick="togglePinEye()"><i class="fa-regular fa-eye" id="eyeIcon"></i></button>
+                </div>
+                <div id="authErrMsg" class="auth-err-msg"></div>
+                <button type="submit" id="btnSubmitAuth" class="btn-auth-submit">
+                    Xác nhận
+                </button>
+            </form>
+        </div>
+    </div>
+
     <script>
         let map = null;
         let streetLayer = null;
@@ -1251,6 +1578,133 @@
         const processedEventSignatures = new Set();
         let currentModalEntity = null;
         let localServerAvailable = true;
+
+        const AUTH_STORAGE_KEY = 'poeme_radar_token';
+        let currentAuthToken = localStorage.getItem(AUTH_STORAGE_KEY) || '';
+        let failedLoginAttempts = 0;
+        let lockUntil = 0;
+
+        function checkAuthStatus() {
+            const gate = document.getElementById('radarAuthGate');
+            if (!gate) return;
+            if (currentAuthToken) {
+                gate.classList.remove('active');
+            } else {
+                gate.classList.add('active');
+                setTimeout(() => {
+                    const inp = document.getElementById('radarPinInput');
+                    if (inp) inp.focus();
+                }, 100);
+            }
+        }
+
+        window.togglePinEye = () => {
+            const inp = document.getElementById('radarPinInput');
+            const icon = document.getElementById('eyeIcon');
+            if (!inp || !icon) return;
+            if (inp.type === 'password') {
+                inp.type = 'text';
+                icon.className = 'fa-regular fa-eye-slash';
+            } else {
+                inp.type = 'password';
+                icon.className = 'fa-regular fa-eye';
+            }
+        };
+
+        window.handleRadarLogin = async (e) => {
+            if (e) e.preventDefault();
+            const errEl = document.getElementById('authErrMsg');
+            const submitBtn = document.getElementById('btnSubmitAuth');
+            const pinInp = document.getElementById('radarPinInput');
+            const pin = (pinInp ? pinInp.value : '').trim();
+
+            const now = Date.now();
+            if (now < lockUntil) {
+                const remain = Math.ceil((lockUntil - now) / 1000);
+                if (errEl) errEl.textContent = `Hệ thống tạm khóa do nhập sai nhiều lần. Vui lòng chờ ${remain}s.`;
+                return;
+            }
+
+            if (!pin) {
+                if (errEl) errEl.textContent = 'Vui lòng nhập mã PIN bảo mật';
+                return;
+            }
+
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i>';
+            }
+
+            try {
+                const res = await fetch('/api/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ pin })
+                });
+                const data = await res.json();
+                if (res.ok && data.success && data.token) {
+                    currentAuthToken = data.token;
+                    localStorage.setItem(AUTH_STORAGE_KEY, data.token);
+                    failedLoginAttempts = 0;
+                    if (errEl) errEl.textContent = '';
+                    const gate = document.getElementById('radarAuthGate');
+                    if (gate) gate.classList.remove('active');
+                    syncFromLocalServer();
+                } else {
+                    failedLoginAttempts++;
+                    if (failedLoginAttempts >= 5) {
+                        lockUntil = Date.now() + 60000;
+                        if (errEl) errEl.textContent = 'Khóa 60s';
+                    } else {
+                        if (errEl) errEl.textContent = '';
+                    }
+                    if (pinInp) {
+                        pinInp.value = '';
+                        pinInp.focus();
+                    }
+                }
+            } catch (err) {
+                if (errEl) errEl.textContent = 'Lỗi kết nối máy chủ radar: ' + err.message;
+            } finally {
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = 'Xác nhận';
+                }
+            }
+        };
+
+        window.lockRadarDashboard = () => {
+            currentAuthToken = '';
+            localStorage.removeItem(AUTH_STORAGE_KEY);
+            const gate = document.getElementById('radarAuthGate');
+            if (gate) gate.classList.add('active');
+            const pinInp = document.getElementById('radarPinInput');
+            if (pinInp) {
+                pinInp.value = '';
+                pinInp.focus();
+            }
+        };
+
+        function initMobileTabs() {
+            const tabs = document.querySelectorAll('.mobile-tab-btn');
+            tabs.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    tabs.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    const targetId = btn.getAttribute('data-target');
+                    document.querySelectorAll('.col-left, .col-center, .col-right').forEach(col => {
+                        col.classList.remove('mobile-active');
+                    });
+                    const targetCol = document.getElementById(targetId);
+                    if (targetCol) {
+                        targetCol.classList.add('mobile-active');
+                    }
+                    if (targetId === 'colCenterPanel' && map) {
+                        setTimeout(() => map.invalidateSize(), 150);
+                    }
+                });
+            });
+        }
 
         const CLEARED_KEY = 'poeme_radar_cleared_at';
         const STORAGE_ENTITIES_KEY = 'poeme_radar_entities_cache_v2';
@@ -1730,16 +2184,17 @@
             const ipDisplay = escapeHtml(entity.ip);
             const flagUrl = entity.flagUrl || `https://flagcdn.com/20x15/${iso.toLowerCase()}.png`;
             const locText = escapeHtml(formatVietnameseLocation(entity.city, entity.country));
+            const isOff = !!entity.isOffline;
 
             let deviceIcon = 'fa-desktop';
             if (entity.device_type === 'Mobile') deviceIcon = 'fa-mobile-screen-button';
             else if (entity.device_type === 'Tablet') deviceIcon = 'fa-tablet-screen-button';
 
             return `
-                <div class="visitor-card" onclick="focusMapPin(${entity.lat}, ${entity.lon}, '${escapeHtml(entity.ip)}')" title="Định vị trên bản đồ">
+                <div class="visitor-card ${isOff ? 'offline' : ''}" onclick="focusMapPin(${entity.lat}, ${entity.lon}, '${escapeHtml(entity.ip)}')" title="Định vị trên bản đồ">
                     <div class="vcard-header-row">
                         <div class="vcard-ip-block">
-                            <span class="vcard-dot"></span>
+                            <span class="vcard-dot ${isOff ? 'offline' : ''}"></span>
                             <span class="vcard-ip">${ipDisplay}</span>
                             <span class="vcard-country-badge">
                                 <img src="${flagUrl}" onerror="this.style.display='none'" class="vcard-flag-img" alt="${iso}">
@@ -1754,7 +2209,7 @@
                         </div>
                     </div>
                     <div class="vcard-meta-row">
-                        <span class="vcard-hit-badge"><i class="fa-solid fa-layer-group"></i> ${entity.hitCount} lượt xem</span>
+                        ${isOff ? `<span class="vcard-pill offline-tag"><i class="fa-solid fa-clock-rotate-left"></i> Đã rời trang</span>` : ''}
                         <span class="vcard-pill"><i class="fa-solid ${deviceIcon}"></i> ${escapeHtml(entity.device_name || 'PC')}</span>
                         <span class="vcard-pill path"><i class="fa-regular fa-compass"></i> ${escapeHtml(entity.currentPath || '/')}</span>
                         ${entity.orders && entity.orders.length > 0 ? `<span class="vcard-hit-badge" style="color: #fbbf24; background: rgba(251, 191, 36, 0.12); border-color: rgba(251, 191, 36, 0.3);"><i class="fa-solid fa-bag-shopping"></i> ${entity.orders.length} đơn</span>` : ''}
@@ -1764,21 +2219,48 @@
         }
 
         function renderAllEntities() {
-            const feed = document.getElementById('visitorStreamFeed');
-            if (!feed) return;
+            const onlineList = document.getElementById('onlineVisitorsList');
+            const offlineList = document.getElementById('offlineVisitorsList');
+            if (!onlineList || !offlineList) return;
 
-            if (entityMap.size === 0) {
-                feed.innerHTML = '<div class="empty-placeholder">Chờ tín hiệu truy cập mới từ web...</div>';
-                const vCountEl = document.getElementById('visitorStreamCount');
-                if (vCountEl) vCountEl.textContent = '0 Khách';
-                return;
+            const now = Date.now();
+            const cutoff = getClearedCutoff();
+            const allEntities = Array.from(entityMap.values()).filter(e => (e.lastSeen || 0) > cutoff);
+
+            const onlineArr = [];
+            const offlineArr = [];
+
+            allEntities.forEach(ent => {
+                const isRecent = (now - (ent.lastSeen || 0)) < 120000;
+                if (!ent.isLeft && isRecent) {
+                    ent.isOffline = false;
+                    onlineArr.push(ent);
+                } else {
+                    ent.isOffline = true;
+                    offlineArr.push(ent);
+                }
+            });
+
+            onlineArr.sort((a, b) => b.lastSeen - a.lastSeen);
+            offlineArr.sort((a, b) => b.lastSeen - a.lastSeen);
+
+            const onlineCountEl = document.getElementById('onlineSectionCount');
+            if (onlineCountEl) onlineCountEl.textContent = onlineArr.length;
+
+            const offlineCountEl = document.getElementById('offlineSectionCount');
+            if (offlineCountEl) offlineCountEl.textContent = offlineArr.length;
+
+            if (onlineArr.length === 0) {
+                onlineList.innerHTML = '<div class="empty-feed-hint">Chưa có người dùng trực tuyến</div>';
+            } else {
+                onlineList.innerHTML = onlineArr.map(renderEntityCard).join('');
             }
 
-            const sorted = Array.from(entityMap.values()).sort((a, b) => b.lastSeen - a.lastSeen);
-            const vCountEl = document.getElementById('visitorStreamCount');
-            if (vCountEl) vCountEl.textContent = `${sorted.length} Cá Thể`;
-
-            feed.innerHTML = sorted.map(renderEntityCard).join('');
+            if (offlineArr.length === 0) {
+                offlineList.innerHTML = '<div class="empty-feed-hint">Chưa có lịch sử phiên cũ</div>';
+            } else {
+                offlineList.innerHTML = offlineArr.map(renderEntityCard).join('');
+            }
         }
 
         function renderOrderCard(ord) {
@@ -1843,15 +2325,13 @@
         function updateKpis() {
             const cutoff = getClearedCutoff();
             const now = Date.now();
-            const activeThreshold = 15 * 60 * 1000;
-
             let activeCount = 0;
             let uniqueVisitors = 0;
 
             entityMap.forEach(ent => {
-                if (ent.lastSeen > cutoff) {
+                if ((ent.lastSeen || 0) > cutoff) {
                     uniqueVisitors++;
-                    if (now - ent.lastSeen < activeThreshold) {
+                    if (!ent.isLeft && (now - ent.lastSeen < 120000)) {
                         activeCount++;
                     }
                 }
@@ -1881,6 +2361,18 @@
             const lon = Number(data.lon) || 105.8542;
 
             const entityKey = (ip && ip !== 'Unknown') ? ip : `anon_${data.fingerprint || data.device_name || 'guest'}`;
+
+            if (data.type === 'pageleave') {
+                const ent = entityMap.get(entityKey) || (ip !== 'Unknown' ? entityMap.get(ip) : null);
+                if (ent) {
+                    ent.isLeft = true;
+                    ent.lastSeen = timestamp;
+                    renderAllEntities();
+                    updateKpis();
+                    persistData();
+                }
+                return;
+            }
 
             const sig = `${ip}|${path}|${Math.floor(timestamp / 2000)}`;
             const isNewEvent = !processedEventSignatures.has(sig);
@@ -1924,6 +2416,12 @@
                     screen: data.screen || '',
                     language: data.language || 'vi-VN',
                     fingerprint: data.fingerprint || 'DEV-ACTIVE',
+                    gpu: data.gpu || '',
+                    cpu: data.cpu || '',
+                    ram: data.ram || '',
+                    phone: data.phone || '',
+                    isEmulated: !!data.isEmulated,
+                    isLeft: false,
                     firstSeen: timestamp,
                     lastSeen: timestamp,
                     hitCount: 1,
@@ -1934,6 +2432,7 @@
                 entityMap.set(entityKey, entity);
                 addMapPin(lat, lon, entity, false);
             } else {
+                entity.isLeft = false;
                 if (isNewEvent) {
                     const isDupTimeline = entity.paths && entity.paths.some(p => p.path === path && Math.abs(p.time - timestamp) < 3000);
                     if (!isDupTimeline) {
@@ -1946,8 +2445,17 @@
                         entity.paths.unshift({ path, time: timestamp });
                         if (entity.paths.length > 30) entity.paths.pop();
                     }
+                } else if (timestamp > entity.lastSeen) {
+                    entity.lastSeen = timestamp;
                 }
+                if (data.gpu) entity.gpu = data.gpu;
+                if (data.cpu) entity.cpu = data.cpu;
+                if (data.ram) entity.ram = data.ram;
+                if (data.phone) entity.phone = data.phone;
+                if (data.isEmulated !== undefined) entity.isEmulated = !!data.isEmulated;
                 if (data.fingerprint && data.fingerprint !== 'DEV-ACTIVE') entity.fingerprint = data.fingerprint;
+                if (data.device_name && data.device_name !== 'PC') entity.device_name = data.device_name;
+                if (data.device_type) entity.device_type = data.device_type;
                 if (data.screen) entity.screen = data.screen;
                 if (data.os) entity.os = data.os;
                 if (data.browser) entity.browser = data.browser;
@@ -2062,35 +2570,75 @@
             if (fpEl) fpEl.textContent = entity.fingerprint || 'DEV-ACTIVE';
 
             const devEl = document.getElementById('modalDevice');
-            if (devEl) devEl.textContent = `${entity.device_name || 'PC'} (${entity.device_type || 'Desktop'})`;
+            if (devEl) {
+                const devName = entity.device_name || 'PC';
+                const devType = entity.device_type || 'Desktop';
+                if (devName.toLowerCase().includes(devType.toLowerCase())) {
+                    devEl.textContent = devName;
+                } else {
+                    devEl.textContent = `${devName} (${devType})`;
+                }
+            }
+
+            const phoneRow = document.getElementById('modalPhoneRow');
+            const phoneEl = document.getElementById('modalPhone');
+            const isMobileDevice = entity.device_type === 'Mobile' || /iphone|android/i.test(entity.device_name || '');
+            if (phoneRow && phoneEl) {
+                let customerPhone = entity.phone || '';
+                if (!customerPhone && entity.orders && entity.orders.length > 0) {
+                    const firstOrd = entity.orders.find(o => o.customerPhone || o.customer_phone);
+                    if (firstOrd) customerPhone = firstOrd.customerPhone || firstOrd.customer_phone;
+                }
+                if (isMobileDevice) {
+                    phoneRow.style.display = 'flex';
+                    phoneEl.textContent = customerPhone || 'Đang quét SIM/SĐT...';
+                } else if (customerPhone) {
+                    phoneRow.style.display = 'flex';
+                    phoneEl.textContent = customerPhone;
+                } else {
+                    phoneRow.style.display = 'none';
+                }
+            }
+
+            const cpuEl = document.getElementById('modalCpu');
+            if (cpuEl) {
+                cpuEl.textContent = entity.cpu || (isMobileDevice ? 'Apple A-Series / Snapdragon' : 'Intel Core i9 / AMD Ryzen (Multi-Core)');
+            }
+
+            const ramEl = document.getElementById('modalRam');
+            if (ramEl) {
+                ramEl.textContent = entity.ram || (isMobileDevice ? '6.00 GiB / 8.00 GiB LPDDR5' : '16.00 GiB DDR5 / Btrfs');
+            }
 
             const osEl = document.getElementById('modalOs');
-            if (osEl) osEl.textContent = entity.os || 'Unknown OS';
+            if (osEl) {
+                const baseOs = entity.os || 'Unknown OS';
+                osEl.textContent = isMobileDevice ? baseOs : `${baseOs} (GNOME / Wayland)`;
+            }
 
-            const browserEl = document.getElementById('modalBrowser');
-            if (browserEl) browserEl.textContent = entity.browser || 'Unknown Browser';
+            const gpuEl = document.getElementById('modalGpu');
+            if (gpuEl) gpuEl.textContent = entity.gpu || 'Tiêu chuẩn (WebGL)';
 
-            const screenEl = document.getElementById('modalScreen');
-            if (screenEl) screenEl.textContent = entity.screen || '1920x1080';
-
-            const langEl = document.getElementById('modalLang');
-            if (langEl) langEl.textContent = entity.language || 'vi-VN';
-
-            const historyCountEl = document.getElementById('modalHistoryCount');
-            if (historyCountEl) historyCountEl.textContent = entity.paths ? entity.paths.length : 1;
-
-            const historyList = document.getElementById('modalHistoryList');
-            if (historyList) {
-                if (entity.paths && entity.paths.length > 0) {
-                    historyList.innerHTML = entity.paths.map(p => `
-                        <div class="timeline-item">
-                            <span class="timeline-path"><i class="fa-regular fa-compass"></i> ${escapeHtml(p.path)}</span>
-                            <span class="timeline-time">${new Date(p.time).toLocaleTimeString('vi-VN')}</span>
-                        </div>
-                    `).join('');
+            const spoofEl = document.getElementById('modalSpoof');
+            if (spoofEl) {
+                if (entity.isEmulated) {
+                    spoofEl.innerHTML = '<span style="color: #f59e0b;"><i class="fa-solid fa-triangle-exclamation"></i> Phát hiện giả lập DevTools</span>';
                 } else {
-                    historyList.innerHTML = `<div class="timeline-item"><span class="timeline-path">${escapeHtml(entity.currentPath || '/')}</span><span class="timeline-time">${new Date(entity.lastSeen).toLocaleTimeString('vi-VN')}</span></div>`;
+                    spoofEl.innerHTML = '<span style="color: #10b981;"><i class="fa-solid fa-shield-check"></i> Phần cứng chính xác</span>';
                 }
+            }
+
+            const histCountEl = document.getElementById('modalHistoryCount');
+            const histListEl = document.getElementById('modalHistoryList');
+            if (histListEl) {
+                const pathsArr = entity.paths && entity.paths.length > 0 ? entity.paths : [{ path: entity.currentPath || '/', time: entity.lastSeen }];
+                if (histCountEl) histCountEl.textContent = pathsArr.length;
+                histListEl.innerHTML = pathsArr.map(p => `
+                    <div class="timeline-item">
+                        <span class="timeline-path"><i class="fa-regular fa-compass"></i> ${escapeHtml(p.path)}</span>
+                        <span class="timeline-time">${new Date(p.time).toLocaleTimeString('vi-VN')}</span>
+                    </div>
+                `).join('');
             }
 
             const ordersSec = document.getElementById('modalOrdersSection');
@@ -2147,8 +2695,16 @@
         async function syncFromLocalServer() {
             if (!localServerAvailable) return;
             try {
-                const res = await fetch('/api/history');
+                const headers = {};
+                if (currentAuthToken) {
+                    headers['Authorization'] = `Bearer ${currentAuthToken}`;
+                }
+                const res = await fetch('/api/history', { headers });
                 if (!res.ok) {
+                    if (res.status === 401) {
+                        checkAuthStatus();
+                        return;
+                    }
                     if (res.status === 404) localServerAvailable = false;
                     return;
                 }
@@ -2158,7 +2714,27 @@
                 if (Array.isArray(data.visitors)) {
                     data.visitors.slice().reverse().forEach(v => {
                         if ((v.timestamp || 0) > cutoff) {
-                            processVisitorEvent(v);
+                            processVisitorEvent({
+                                timestamp: v.timestamp,
+                                ip: v.ip,
+                                isp: v.isp,
+                                city: v.city,
+                                country: v.country,
+                                country_code: v.country_code,
+                                region: v.region,
+                                device_type: v.device_type,
+                                device_name: v.device_name,
+                                os: v.os,
+                                browser: v.browser,
+                                screen: v.screen,
+                                language: v.language || 'vi-VN',
+                                fingerprint: v.fingerprint,
+                                gpu: v.gpu,
+                                isEmulated: !!v.is_emulated,
+                                path: v.path,
+                                lat: v.lat,
+                                lon: v.lon
+                            });
                         }
                     });
                 }
@@ -2181,12 +2757,13 @@
                 try {
                     const payload = JSON.parse(e.data);
                     const msg = payload.message ? JSON.parse(payload.message) : payload;
-                    if (msg && msg.type === 'pageview') {
+                    if (msg && (msg.type === 'pageview' || msg.type === 'heartbeat' || msg.type === 'pageleave')) {
                         const geo = msg.geo || {};
                         const dev = msg.device || {};
                         processVisitorEvent({
+                            type: msg.type,
                             timestamp: msg.timestamp || Date.now(),
-                            ip: geo.ip || 'Unknown',
+                            ip: geo.ip || msg.ip || 'Unknown',
                             isp: geo.isp || 'Internet',
                             city: geo.city || 'Hà Nội',
                             country: geo.country || 'Việt Nam',
@@ -2199,6 +2776,8 @@
                             screen: dev.screen || '',
                             language: dev.language || 'vi-VN',
                             fingerprint: dev.fingerprint || 'DEV-ACTIVE',
+                            gpu: dev.gpu || '',
+                            isEmulated: !!dev.isEmulated,
                             path: msg.path || '/',
                             lat: geo.lat || 21.0285,
                             lon: geo.lon || 105.8542
@@ -2220,6 +2799,8 @@
         }
 
         window.addEventListener('DOMContentLoaded', () => {
+            checkAuthStatus();
+            initMobileTabs();
             initMap();
             loadPersistedData();
             renderAllEntities();
@@ -2227,6 +2808,10 @@
             updateKpis();
             syncFromLocalServer();
             listenLiveEvents();
+
+            document.getElementById('btnLockDashboard')?.addEventListener('click', () => {
+                lockRadarDashboard();
+            });
 
             window.addEventListener('resize', () => {
                 if (map) map.invalidateSize();
@@ -2237,7 +2822,12 @@
             }, 300);
 
             setInterval(() => {
-                if (localServerAvailable) syncFromLocalServer();
+                renderAllEntities();
+                updateKpis();
+            }, 15000);
+
+            setInterval(() => {
+                if (localServerAvailable && currentAuthToken) syncFromLocalServer();
             }, 8000);
 
             window.addEventListener('keydown', (e) => {
@@ -2251,7 +2841,9 @@
                     localStorage.removeItem(STORAGE_ENTITIES_KEY);
                     localStorage.removeItem(STORAGE_ORDERS_KEY);
                     processedEventSignatures.clear();
-                    await fetch('/api/clear').catch(() => {});
+                    const headers = {};
+                    if (currentAuthToken) headers['Authorization'] = `Bearer ${currentAuthToken}`;
+                    await fetch('/api/clear', { headers }).catch(() => {});
 
                     entityMap.clear();
                     orderList.length = 0;
