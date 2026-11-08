@@ -173,6 +173,7 @@
             justify-content: space-between;
             gap: 8px;
             pointer-events: none;
+            flex-wrap: wrap;
         }
         .hud-group {
             display: flex;
@@ -1225,10 +1226,42 @@
         const entityMap = new Map();
         const orderList = [];
         let currentModalEntity = null;
+        let localServerAvailable = true;
 
         const CLEARED_KEY = 'poeme_radar_cleared_at';
         function getClearedCutoff() {
             return parseInt(localStorage.getItem(CLEARED_KEY) || '0', 10);
+        }
+
+        function escapeHtml(str) {
+            if (str == null) return '';
+            return String(str)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;');
+        }
+
+        function getCountryFlagInfo(countryCode, countryName) {
+            const cName = (countryName || '').toLowerCase();
+            let code = (countryCode || '').toLowerCase().trim();
+            if (code.length === 2 && code !== 'in' && code !== 'un') {
+                return { code: code.toUpperCase(), flagUrl: `https://flagcdn.com/20x15/${code}.png` };
+            }
+            if (cName.includes('viet') || code === 'vn') return { code: 'VN', flagUrl: 'https://flagcdn.com/20x15/vn.png' };
+            if (cName.includes('united states') || cName.includes('america') || code === 'us') return { code: 'US', flagUrl: 'https://flagcdn.com/20x15/us.png' };
+            if (cName.includes('japan') || code === 'jp') return { code: 'JP', flagUrl: 'https://flagcdn.com/20x15/jp.png' };
+            if (cName.includes('singapore') || code === 'sg') return { code: 'SG', flagUrl: 'https://flagcdn.com/20x15/sg.png' };
+            if (cName.includes('germany') || code === 'de') return { code: 'DE', flagUrl: 'https://flagcdn.com/20x15/de.png' };
+            if (cName.includes('france') || code === 'fr') return { code: 'FR', flagUrl: 'https://flagcdn.com/20x15/fr.png' };
+            if (cName.includes('korea') || code === 'kr') return { code: 'KR', flagUrl: 'https://flagcdn.com/20x15/kr.png' };
+            if (cName.includes('united kingdom') || cName.includes('britain') || code === 'gb' || code === 'uk') return { code: 'GB', flagUrl: 'https://flagcdn.com/20x15/gb.png' };
+            if (cName.includes('australia') || code === 'au') return { code: 'AU', flagUrl: 'https://flagcdn.com/20x15/au.png' };
+            if (cName.includes('canada') || code === 'ca') return { code: 'CA', flagUrl: 'https://flagcdn.com/20x15/ca.png' };
+            if (cName.includes('china') || code === 'cn') return { code: 'CN', flagUrl: 'https://flagcdn.com/20x15/cn.png' };
+            if (cName.includes('thailand') || code === 'th') return { code: 'TH', flagUrl: 'https://flagcdn.com/20x15/th.png' };
+            return { code: 'INTL', flagUrl: 'https://flagcdn.com/20x15/un.png' };
         }
 
         function initMap() {
@@ -1264,6 +1297,9 @@
                     if (currentLayer) map.removeLayer(currentLayer);
                     layer.addTo(map);
                     currentLayer = layer;
+                    if (layer === darkLayer && map.getZoom() > 16) {
+                        map.setZoom(16);
+                    }
                 });
             };
 
@@ -1385,9 +1421,9 @@
                                         </span>
                                     </div>
                                     <div class="popup-location">
-                                        <strong>${item.name || query}</strong>
+                                        <strong>${escapeHtml(item.name || query)}</strong>
                                     </div>
-                                    <div style="font-size: 11px; color: #9ca3af; margin: 6px 0;">${item.display_name}</div>
+                                    <div style="font-size: 11px; color: #9ca3af; margin: 6px 0;">${escapeHtml(item.display_name)}</div>
                                     <div class="popup-actions">
                                         <a href="https://www.google.com/maps?q=${lat},${lon}" target="_blank" rel="noopener noreferrer" class="btn-popup-gmaps">
                                             <i class="fa-solid fa-map-location-dot"></i> Mở trên Google Maps
@@ -1422,45 +1458,18 @@
             }
         };
 
-        function addMapPin(lat, lon, data, isOrder = false) {
-            let finalLat = Number(lat);
-            let finalLon = Number(lon);
-            if (isOrder && data.address) {
-                const addrLower = (data.address || '').toLowerCase();
-                if (addrLower.includes('đình thôn') || addrLower.includes('dinh thon')) {
-                    finalLat = 21.0175;
-                    finalLon = 105.7758;
-                }
-            }
-            if (!map || isNaN(finalLat) || isNaN(finalLon)) return null;
-
-            const ip = data.ip || 'Unknown';
-            if (!isOrder && ip !== 'Unknown' && markerMap.has(ip)) {
-                return markerMap.get(ip);
-            }
-
-            const pinClass = isOrder ? 'radar-pin-order' : 'radar-pin-visitor';
-            const iconSymbol = isOrder ? '<i class="fa-solid fa-receipt"></i>' : '<i class="fa-solid fa-user"></i>';
-
-            const customIcon = L.divIcon({
-                className: 'custom-radar-pin-wrap',
-                html: `<div class="${pinClass}">${iconSymbol}</div>`,
-                iconSize: isOrder ? [22, 22] : [20, 20],
-                iconAnchor: isOrder ? [11, 11] : [10, 10]
-            });
-
-            const marker = L.marker([finalLat, finalLon], { icon: customIcon }).addTo(map);
-
+        function buildPopupHtml(data, isOrder, finalLat, finalLon) {
             const timeStr = new Date(data.timestamp || data.lastSeen || Date.now()).toLocaleTimeString('vi-VN');
-            const city = data.city || 'Hà Nội';
-            const country = data.country || 'Việt Nam';
-            const isp = data.isp || 'Internet';
-            const deviceName = data.device_name || data.deviceName || 'PC';
-            const os = data.os || '';
-            const path = data.currentPath || data.path || '/';
-            const fp = data.fingerprint || (data.device && data.device.fingerprint) || 'DEV-ACTIVE';
+            const city = escapeHtml(data.city || 'Hà Nội');
+            const country = escapeHtml(data.country || 'Việt Nam');
+            const ip = escapeHtml(data.ip || 'Unknown');
+            const isp = escapeHtml(data.isp || 'Internet');
+            const deviceName = escapeHtml(data.device_name || data.deviceName || 'PC');
+            const os = escapeHtml(data.os || '');
+            const path = escapeHtml(data.currentPath || data.path || '/');
+            const fp = escapeHtml(data.fingerprint || (data.device && data.device.fingerprint) || 'DEV-ACTIVE');
 
-            const popupHtml = `
+            return `
                 <div class="radar-popup-card">
                     <div class="popup-top">
                         <span class="popup-tag ${isOrder ? 'tag-order' : 'tag-visitor'}">
@@ -1479,8 +1488,9 @@
                         <div><i class="fa-solid fa-laptop"></i> Thiết bị: <strong>${deviceName} ${os ? `(${os})` : ''}</strong></div>
                         <div><i class="fa-solid fa-fingerprint"></i> Mã máy: <strong style="color: #a78bfa;">${fp}</strong></div>
                         <div><i class="fa-regular fa-compass"></i> Trang xem: <code class="path-code">${path}</code></div>
-                        ${isOrder && (data.orderId || data.order_id) ? `<div><i class="fa-solid fa-bag-shopping"></i> Mã đơn: <strong style="color: #f59e0b;">#${data.orderId || data.order_id}</strong></div>` : ''}
-                        ${isOrder && data.address ? `<div><i class="fa-solid fa-location-dot"></i> Giao tới: <strong style="color: #38bdf8;">${data.address}</strong></div>` : ''}
+                        ${!isOrder && data.hitCount > 1 ? `<div><i class="fa-solid fa-layer-group"></i> Lượt xem: <strong style="color: #38bdf8;">${data.hitCount} lượt</strong></div>` : ''}
+                        ${isOrder && (data.orderId || data.order_id) ? `<div><i class="fa-solid fa-bag-shopping"></i> Mã đơn: <strong style="color: #f59e0b;">#${escapeHtml(data.orderId || data.order_id)}</strong></div>` : ''}
+                        ${isOrder && data.address ? `<div><i class="fa-solid fa-location-dot"></i> Giao tới: <strong style="color: #38bdf8;">${escapeHtml(data.address)}</strong></div>` : ''}
                     </div>
                     <div class="popup-actions">
                         <a href="https://www.google.com/maps?q=${finalLat},${finalLon}" target="_blank" rel="noopener noreferrer" class="btn-popup-gmaps">
@@ -1489,8 +1499,41 @@
                     </div>
                 </div>
             `;
+        }
 
-            marker.bindPopup(popupHtml, { maxWidth: 280, className: 'dark-radar-popup' });
+        function addMapPin(lat, lon, data, isOrder = false) {
+            let finalLat = Number(lat);
+            let finalLon = Number(lon);
+            if (isOrder && data.address) {
+                const addrLower = (data.address || '').toLowerCase();
+                if (addrLower.includes('đình thôn') || addrLower.includes('dinh thon')) {
+                    finalLat = 21.0175;
+                    finalLon = 105.7758;
+                }
+            }
+            if (!map || isNaN(finalLat) || isNaN(finalLon)) return null;
+
+            const ip = data.ip || 'Unknown';
+            if (!isOrder && ip !== 'Unknown' && markerMap.has(ip)) {
+                const existing = markerMap.get(ip);
+                if (existing) {
+                    existing.setPopupContent(buildPopupHtml(data, isOrder, finalLat, finalLon));
+                }
+                return existing;
+            }
+
+            const pinClass = isOrder ? 'radar-pin-order' : 'radar-pin-visitor';
+            const iconSymbol = isOrder ? '<i class="fa-solid fa-receipt"></i>' : '<i class="fa-solid fa-user"></i>';
+
+            const customIcon = L.divIcon({
+                className: 'custom-radar-pin-wrap',
+                html: `<div class="${pinClass}">${iconSymbol}</div>`,
+                iconSize: isOrder ? [22, 22] : [20, 20],
+                iconAnchor: isOrder ? [11, 11] : [10, 10]
+            });
+
+            const marker = L.marker([finalLat, finalLon], { icon: customIcon }).addTo(map);
+            marker.bindPopup(buildPopupHtml(data, isOrder, finalLat, finalLon), { maxWidth: 280, className: 'dark-radar-popup' });
             markers.push(marker);
 
             const key = `${Number(finalLat).toFixed(4)}_${Number(finalLon).toFixed(4)}`;
@@ -1504,24 +1547,22 @@
 
         function renderEntityCard(entity) {
             const timeStr = new Date(entity.lastSeen).toLocaleTimeString('vi-VN');
-            const iso = (entity.countryCode || 'VN').toUpperCase();
-            const isoLower = iso.toLowerCase();
-            const city = entity.city || 'Hà Nội';
-            const country = entity.country || 'Việt Nam';
+            const iso = escapeHtml(entity.countryCode || 'VN');
+            const city = escapeHtml(entity.city || 'Hà Nội');
+            const country = escapeHtml(entity.country || 'Việt Nam');
+            const ipDisplay = escapeHtml(entity.ip);
+            const flagUrl = entity.flagUrl || `https://flagcdn.com/20x15/${iso.toLowerCase()}.png`;
 
             let deviceIcon = 'fa-desktop';
             if (entity.device_type === 'Mobile') deviceIcon = 'fa-mobile-screen-button';
             else if (entity.device_type === 'Tablet') deviceIcon = 'fa-tablet-screen-button';
 
-            const flagCode = (isoLower === 'intl' || isoLower.length !== 2) ? 'vn' : isoLower;
-            const flagUrl = `https://flagcdn.com/20x15/${flagCode}.png`;
-
             return `
-                <div class="visitor-card" onclick="focusMapPin(${entity.lat}, ${entity.lon}, '${entity.ip}')" title="Định vị trên bản đồ">
+                <div class="visitor-card" onclick="focusMapPin(${entity.lat}, ${entity.lon}, '${escapeHtml(entity.ip)}')" title="Định vị trên bản đồ">
                     <div class="vcard-header-row">
                         <div class="vcard-ip-block">
                             <span class="vcard-dot"></span>
-                            <span class="vcard-ip">${entity.ip}</span>
+                            <span class="vcard-ip">${ipDisplay}</span>
                             <span class="vcard-country-badge">
                                 <img src="${flagUrl}" onerror="this.style.display='none'" class="vcard-flag-img" alt="${iso}">
                                 <span class="vcard-country-txt">${iso} • ${city}, ${country}</span>
@@ -1529,15 +1570,15 @@
                         </div>
                         <div class="vcard-right-controls">
                             <span class="vcard-time">${timeStr}</span>
-                            <button type="button" class="btn-entity-more" onclick="openEntityModal('${entity.ip}'); event.stopPropagation();" title="Chi tiết cá thể">
+                            <button type="button" class="btn-entity-more" onclick="openEntityModal('${escapeHtml(entity.key)}'); event.stopPropagation();" title="Chi tiết cá thể">
                                 <i class="fa-solid fa-ellipsis"></i>
                             </button>
                         </div>
                     </div>
                     <div class="vcard-meta-row">
                         <span class="vcard-hit-badge"><i class="fa-solid fa-layer-group"></i> ${entity.hitCount} lượt xem</span>
-                        <span class="vcard-pill"><i class="fa-solid ${deviceIcon}"></i> ${entity.device_name || 'PC'}</span>
-                        <span class="vcard-pill path"><i class="fa-regular fa-compass"></i> ${entity.currentPath || '/'}</span>
+                        <span class="vcard-pill"><i class="fa-solid ${deviceIcon}"></i> ${escapeHtml(entity.device_name || 'PC')}</span>
+                        <span class="vcard-pill path"><i class="fa-regular fa-compass"></i> ${escapeHtml(entity.currentPath || '/')}</span>
                         ${entity.orders && entity.orders.length > 0 ? `<span class="vcard-hit-badge" style="color: #fbbf24; background: rgba(251, 191, 36, 0.12); border-color: rgba(251, 191, 36, 0.3);"><i class="fa-solid fa-bag-shopping"></i> ${entity.orders.length} đơn</span>` : ''}
                     </div>
                 </div>
@@ -1571,30 +1612,30 @@
             } catch {}
 
             if (itemsArr.length > 0) {
-                itemsHtml = itemsArr.map(i => `<div class="ord-item-line">• <strong>${i.title}</strong> <span class="ord-qty">x${i.qty || 1}</span>${i.inscription ? ` <em class="ord-inscr">"${i.inscription}"</em>` : ''}</div>`).join('');
+                itemsHtml = itemsArr.map(i => `<div class="ord-item-line">• <strong>${escapeHtml(i.title)}</strong> <span class="ord-qty">x${i.qty || 1}</span>${i.inscription ? ` <em class="ord-inscr">"${escapeHtml(i.inscription)}"</em>` : ''}</div>`).join('');
             } else {
                 itemsHtml = `<div class="ord-item-line">Tổng số lượng: ${ord.items_count || 1} món bánh</div>`;
             }
 
             const lat = ord.lat;
             const lon = ord.lon;
-            const focusFn = (lat && lon) ? `onclick="focusMapPin(${lat}, ${lon}, '${ord.order_id || ord.orderId}')"` : '';
+            const focusFn = (lat && lon) ? `onclick="focusMapPin(${lat}, ${lon}, '${escapeHtml(ord.order_id || ord.orderId)}')"` : '';
 
             return `
                 <div class="order-card-live" ${focusFn}>
                     <div class="order-card-top">
-                        <span class="order-card-id"><i class="fa-solid fa-receipt"></i> #${ord.order_id || ord.orderId}</span>
+                        <span class="order-card-id"><i class="fa-solid fa-receipt"></i> #${escapeHtml(ord.order_id || ord.orderId)}</span>
                         <span class="order-card-time">${timeStr}</span>
                     </div>
                     <div class="order-card-cust">
-                        <span><i class="fa-solid fa-user"></i> ${ord.customer_name || ord.customerName}</span>
-                        <span class="cust-phone"><i class="fa-solid fa-phone"></i> ${ord.customer_phone || ord.customerPhone}</span>
+                        <span><i class="fa-solid fa-user"></i> ${escapeHtml(ord.customer_name || ord.customerName || 'Khách Hàng')}</span>
+                        <span class="cust-phone"><i class="fa-solid fa-phone"></i> ${escapeHtml(ord.customer_phone || ord.customerPhone || '')}</span>
                     </div>
                     <div class="order-card-addr">
-                        <i class="fa-solid fa-location-dot"></i> ${ord.address || 'Hà Nội'}
+                        <i class="fa-solid fa-location-dot"></i> ${escapeHtml(ord.address || 'Hà Nội')}
                     </div>
                     <div class="order-items-mini">${itemsHtml}</div>
-                    ${ord.note ? `<div class="order-note"><em>Lời chúc: "${ord.note}"</em></div>` : ''}
+                    ${ord.note ? `<div class="order-note"><em>Lời chúc: "${escapeHtml(ord.note)}"</em></div>` : ''}
                     <div class="order-card-total">
                         <span class="total-label">Tổng thanh toán:</span>
                         <span class="total-val">${(ord.total_amount || ord.totalAmount || 0).toLocaleString('vi-VN')}₫</span>
@@ -1656,18 +1697,34 @@
             const ip = data.ip || 'Unknown';
             const city = data.city || 'Hà Nội';
             const country = data.country || 'Việt Nam';
-            const countryCode = (data.country_code || (country.includes('Viet') ? 'VN' : 'INTL')).toUpperCase();
+            const flagInfo = getCountryFlagInfo(data.country_code, country);
             const path = data.path || '/';
-            const lat = data.lat || 21.0285;
-            const lon = data.lon || 105.8542;
+            const lat = Number(data.lat) || 21.0285;
+            const lon = Number(data.lon) || 105.8542;
 
-            let entity = entityMap.get(ip);
+            const entityKey = (ip && ip !== 'Unknown') ? ip : `anon_${data.fingerprint || data.device_name || 'guest'}`;
+
+            let entity = entityMap.get(entityKey);
             if (!entity) {
+                if (entityMap.size >= 200) {
+                    let oldestKey = null;
+                    let oldestTime = Infinity;
+                    entityMap.forEach((v, k) => {
+                        if (v.lastSeen < oldestTime) {
+                            oldestTime = v.lastSeen;
+                            oldestKey = k;
+                        }
+                    });
+                    if (oldestKey) entityMap.delete(oldestKey);
+                }
+
                 entity = {
+                    key: entityKey,
                     ip,
                     city,
                     country,
-                    countryCode,
+                    countryCode: flagInfo.code,
+                    flagUrl: flagInfo.flagUrl,
                     region: data.region || city,
                     isp: data.isp || 'Internet',
                     lat,
@@ -1686,12 +1743,14 @@
                     paths: [{ path, time: timestamp }],
                     orders: []
                 };
-                entityMap.set(ip, entity);
+                entityMap.set(entityKey, entity);
                 addMapPin(lat, lon, entity, false);
             } else {
                 entity.hitCount++;
-                entity.lastSeen = timestamp;
-                entity.currentPath = path;
+                if (timestamp >= entity.lastSeen) {
+                    entity.lastSeen = timestamp;
+                    entity.currentPath = path;
+                }
                 entity.paths.unshift({ path, time: timestamp });
                 if (entity.paths.length > 30) entity.paths.pop();
                 if (data.fingerprint && data.fingerprint !== 'DEV-ACTIVE') entity.fingerprint = data.fingerprint;
@@ -1700,13 +1759,19 @@
                 if (data.browser) entity.browser = data.browser;
                 if (data.isp && data.isp !== 'Internet') entity.isp = data.isp;
                 if (data.city && data.city !== 'Hà Nội') entity.city = data.city;
-                if (data.country) entity.country = data.country;
+                if (data.country) {
+                    entity.country = data.country;
+                    const f = getCountryFlagInfo(data.country_code, data.country);
+                    entity.countryCode = f.code;
+                    entity.flagUrl = f.flagUrl;
+                }
+                addMapPin(lat, lon, entity, false);
             }
 
             renderAllEntities();
             updateKpis();
 
-            if (currentModalEntity && currentModalEntity.ip === ip) {
+            if (currentModalEntity && (currentModalEntity.key === entityKey || currentModalEntity.ip === ip)) {
                 updateModalContent(entity);
             }
         }
@@ -1716,12 +1781,23 @@
             const cutoff = getClearedCutoff();
             if (timestamp <= cutoff) return;
 
+            const targetId = ord.orderId || ord.order_id;
+            if (targetId && orderList.some(o => (o.orderId || o.order_id) === targetId)) {
+                return;
+            }
+
             orderList.unshift(ord);
             if (orderList.length > 50) orderList.pop();
 
             const orderIp = ord.ip || (ord.geo && ord.geo.ip);
-            if (orderIp && entityMap.has(orderIp)) {
-                entityMap.get(orderIp).orders.unshift(ord);
+            if (orderIp) {
+                entityMap.forEach(ent => {
+                    if (ent.ip === orderIp || ent.key === orderIp) {
+                        if (!ent.orders.some(o => (o.orderId || o.order_id) === targetId)) {
+                            ent.orders.unshift(ord);
+                        }
+                    }
+                });
                 renderAllEntities();
             }
 
@@ -1733,12 +1809,12 @@
             updateKpis();
 
             if (currentModalEntity && currentModalEntity.ip === orderIp) {
-                updateModalContent(entityMap.get(orderIp));
+                updateModalContent(currentModalEntity);
             }
         }
 
-        window.openEntityModal = (ip) => {
-            const entity = entityMap.get(ip);
+        window.openEntityModal = (entityKeyOrIp) => {
+            const entity = entityMap.get(entityKeyOrIp) || Array.from(entityMap.values()).find(e => e.ip === entityKeyOrIp);
             if (!entity) return;
             currentModalEntity = entity;
             updateModalContent(entity);
@@ -1754,10 +1830,8 @@
         };
 
         function updateModalContent(entity) {
-            const iso = (entity.countryCode || 'VN').toUpperCase();
-            const isoLower = iso.toLowerCase();
-            const flagCode = (isoLower === 'intl' || isoLower.length !== 2) ? 'vn' : isoLower;
-            const flagUrl = `https://flagcdn.com/20x15/${flagCode}.png`;
+            const iso = escapeHtml(entity.countryCode || 'VN');
+            const flagUrl = entity.flagUrl || `https://flagcdn.com/20x15/${iso.toLowerCase()}.png`;
 
             document.getElementById('modalEntityIp').textContent = entity.ip;
             document.getElementById('modalEntityHits').textContent = `${entity.hitCount} lượt xem`;
@@ -1765,7 +1839,7 @@
             document.getElementById('modalEntityFlagWrap').innerHTML = `
                 <span class="vcard-country-badge" style="font-size: 11px;">
                     <img src="${flagUrl}" onerror="this.style.display='none'" class="vcard-flag-img" alt="${iso}">
-                    <span class="vcard-country-txt">${iso} • ${entity.city}, ${entity.country}</span>
+                    <span class="vcard-country-txt">${iso} • ${escapeHtml(entity.city)}, ${escapeHtml(entity.country)}</span>
                 </span>
             `;
 
@@ -1787,12 +1861,12 @@
             if (entity.paths && entity.paths.length > 0) {
                 historyList.innerHTML = entity.paths.map(p => `
                     <div class="timeline-item">
-                        <span class="timeline-path"><i class="fa-regular fa-compass"></i> ${p.path}</span>
+                        <span class="timeline-path"><i class="fa-regular fa-compass"></i> ${escapeHtml(p.path)}</span>
                         <span class="timeline-time">${new Date(p.time).toLocaleTimeString('vi-VN')}</span>
                     </div>
                 `).join('');
             } else {
-                historyList.innerHTML = `<div class="timeline-item"><span class="timeline-path">${entity.currentPath || '/'}</span><span class="timeline-time">${new Date(entity.lastSeen).toLocaleTimeString('vi-VN')}</span></div>`;
+                historyList.innerHTML = `<div class="timeline-item"><span class="timeline-path">${escapeHtml(entity.currentPath || '/')}</span><span class="timeline-time">${new Date(entity.lastSeen).toLocaleTimeString('vi-VN')}</span></div>`;
             }
 
             const ordersSec = document.getElementById('modalOrdersSection');
@@ -1801,7 +1875,7 @@
                 ordersSec.style.display = 'block';
                 ordersList.innerHTML = entity.orders.map(o => `
                     <div class="timeline-item" style="border-color: rgba(251, 191, 36, 0.3);">
-                        <span class="timeline-path text-amber"><i class="fa-solid fa-receipt"></i> #${o.order_id || o.orderId} - ${(o.total_amount || o.totalAmount || 0).toLocaleString('vi-VN')}₫</span>
+                        <span class="timeline-path text-amber"><i class="fa-solid fa-receipt"></i> #${escapeHtml(o.order_id || o.orderId)} - ${(o.total_amount || o.totalAmount || 0).toLocaleString('vi-VN')}₫</span>
                         <span class="timeline-time">${new Date(o.timestamp).toLocaleTimeString('vi-VN')}</span>
                     </div>
                 `).join('');
@@ -1817,26 +1891,36 @@
 
             document.getElementById('btnModalGoogleMaps').href = `https://www.google.com/maps?q=${entity.lat},${entity.lon}`;
 
-            document.getElementById('btnModalCopyJson').onclick = () => {
+            const btnJson = document.getElementById('btnModalCopyJson');
+            btnJson.onclick = function() {
                 navigator.clipboard.writeText(JSON.stringify(entity, null, 2));
-                alert('Đã sao chép toàn bộ JSON chi tiết của cá thể IP: ' + entity.ip);
+                const orig = this.innerHTML;
+                this.innerHTML = '<i class="fa-solid fa-check text-green"></i> Copied!';
+                setTimeout(() => this.innerHTML = orig, 1500);
             };
 
-            document.getElementById('btnCopyIp').onclick = () => {
+            const btnIp = document.getElementById('btnCopyIp');
+            btnIp.onclick = function() {
                 navigator.clipboard.writeText(entity.ip);
-                alert('Đã sao chép IP: ' + entity.ip);
+                const orig = this.innerHTML;
+                this.innerHTML = '<i class="fa-solid fa-check text-green"></i> Copied!';
+                setTimeout(() => this.innerHTML = orig, 1500);
             };
         }
 
         async function syncFromLocalServer() {
+            if (!localServerAvailable) return;
             try {
                 const res = await fetch('/api/history');
-                if (!res.ok) return;
+                if (!res.ok) {
+                    if (res.status === 404) localServerAvailable = false;
+                    return;
+                }
                 const data = await res.json();
                 const cutoff = getClearedCutoff();
 
                 if (Array.isArray(data.visitors)) {
-                    data.visitors.forEach(v => {
+                    data.visitors.slice().reverse().forEach(v => {
                         if ((v.timestamp || 0) > cutoff) {
                             processVisitorEvent(v);
                         }
@@ -1844,13 +1928,15 @@
                 }
 
                 if (Array.isArray(data.orders)) {
-                    data.orders.forEach(o => {
+                    data.orders.slice().reverse().forEach(o => {
                         if ((o.timestamp || 0) > cutoff) {
                             processOrderEvent(o);
                         }
                     });
                 }
-            } catch {}
+            } catch {
+                localServerAvailable = false;
+            }
         }
 
         function listenLiveEvents() {
@@ -1897,13 +1983,7 @@
             };
         }
 
-        if (window.location.hash === '#open-modal') {
-                setTimeout(() => {
-                    const first = entityMap.keys().next().value;
-                    if (first) openEntityModal(first);
-                }, 400);
-            }
-            window.addEventListener('DOMContentLoaded', () => {
+        window.addEventListener('DOMContentLoaded', () => {
             initMap();
             syncFromLocalServer();
             listenLiveEvents();
@@ -1916,7 +1996,9 @@
                 if (map) map.invalidateSize();
             }, 300);
 
-            setInterval(syncFromLocalServer, 8000);
+            setInterval(() => {
+                if (localServerAvailable) syncFromLocalServer();
+            }, 8000);
 
             window.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape') closeEntityModal();

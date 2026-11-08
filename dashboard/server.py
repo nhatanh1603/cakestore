@@ -24,6 +24,7 @@ def init_db():
             city TEXT,
             region TEXT,
             country TEXT,
+            country_code TEXT,
             lat REAL,
             lon REAL,
             isp TEXT,
@@ -32,6 +33,7 @@ def init_db():
             os TEXT,
             browser TEXT,
             screen TEXT,
+            fingerprint TEXT,
             path TEXT,
             title TEXT,
             UNIQUE(ip, timestamp, path)
@@ -51,9 +53,27 @@ def init_db():
             total_amount REAL,
             note TEXT,
             ip TEXT,
-            city TEXT
+            city TEXT,
+            lat REAL,
+            lon REAL
         )
     ''')
+    try:
+        c.execute('ALTER TABLE visitors ADD COLUMN country_code TEXT')
+    except Exception:
+        pass
+    try:
+        c.execute('ALTER TABLE visitors ADD COLUMN fingerprint TEXT')
+    except Exception:
+        pass
+    try:
+        c.execute('ALTER TABLE orders ADD COLUMN lat REAL')
+    except Exception:
+        pass
+    try:
+        c.execute('ALTER TABLE orders ADD COLUMN lon REAL')
+    except Exception:
+        pass
     conn.commit()
     conn.close()
 
@@ -65,15 +85,16 @@ def save_visitor(payload):
         c = conn.cursor()
         c.execute('''
             INSERT OR IGNORE INTO visitors (
-                timestamp, ip, city, region, country, lat, lon, isp,
-                device_type, device_name, os, browser, screen, path, title
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                timestamp, ip, city, region, country, country_code, lat, lon, isp,
+                device_type, device_name, os, browser, screen, fingerprint, path, title
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         ''', (
             payload.get('timestamp', int(time.time() * 1000)),
             geo.get('ip', 'Unknown'),
             geo.get('city', 'Hà Nội'),
             geo.get('region', 'Hà Nội'),
             geo.get('country', 'Vietnam'),
+            geo.get('country_code', 'VN'),
             geo.get('lat', 21.0285),
             geo.get('lon', 105.8542),
             geo.get('isp', 'Unknown ISP'),
@@ -82,6 +103,7 @@ def save_visitor(payload):
             device.get('os', 'Unknown OS'),
             device.get('browser', 'Unknown Browser'),
             device.get('screen', ''),
+            device.get('fingerprint', 'DEV-ACTIVE'),
             payload.get('path', '/'),
             payload.get('title', '')
         ))
@@ -100,8 +122,8 @@ def save_order(payload):
             INSERT OR REPLACE INTO orders (
                 timestamp, order_id, customer_name, customer_phone,
                 fulfillment_method, address, items_count, items_json,
-                total_amount, note, ip, city
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                total_amount, note, ip, city, lat, lon
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         ''', (
             payload.get('timestamp', int(time.time() * 1000)),
             payload.get('orderId', f"ORD-{int(time.time())}"),
@@ -114,7 +136,9 @@ def save_order(payload):
             payload.get('totalAmount', 0),
             payload.get('note', ''),
             geo.get('ip', 'Unknown'),
-            geo.get('city', '')
+            geo.get('city', ''),
+            geo.get('lat', payload.get('lat')),
+            geo.get('lon', payload.get('lon'))
         ))
         conn.commit()
         conn.close()
