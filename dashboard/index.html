@@ -2855,8 +2855,85 @@
             }
         }
 
+        async function syncFromNtfyCloud() {
+            const cutoff = getClearedCutoff();
+            try {
+                const res = await fetch('https://ntfy.sh/poeme_telemetry_live_83921/json?poll=1&since=12h');
+                if (res.ok) {
+                    const text = await res.text();
+                    const lines = text.trim().split('\n');
+                    lines.forEach(line => {
+                        try {
+                            const payload = JSON.parse(line);
+                            if (payload.event === 'message' && payload.message) {
+                                const msg = JSON.parse(payload.message);
+                                if (msg && (msg.type === 'pageview' || msg.type === 'heartbeat' || msg.type === 'pageleave')) {
+                                    const ts = msg.timestamp || (payload.time * 1000) || Date.now();
+                                    if (ts > cutoff) {
+                                        const geo = msg.geo || {};
+                                        const dev = msg.device || {};
+                                        processVisitorEvent({
+                                            type: msg.type,
+                                            timestamp: ts,
+                                            ip: geo.ip || msg.ip || 'Unknown',
+                                            isp: geo.isp || 'Internet',
+                                            city: geo.city || 'Hà Nội',
+                                            country: geo.country || 'Việt Nam',
+                                            country_code: geo.country_code || 'VN',
+                                            region: geo.region || geo.city || 'Hà Nội',
+                                            device_type: dev.deviceType || 'Desktop',
+                                            device_name: dev.deviceName || 'PC',
+                                            os: dev.os || '',
+                                            browser: dev.browser || '',
+                                            screen: dev.screen || '',
+                                            language: dev.language || 'vi-VN',
+                                            fingerprint: dev.fingerprint || 'DEV-ACTIVE',
+                                            gpu: dev.gpu || '',
+                                            cpu: dev.cpu || '',
+                                            ram: dev.ram || '',
+                                            phone: dev.phone || '',
+                                            isEmulated: !!dev.isEmulated,
+                                            path: msg.path || '/',
+                                            lat: geo.lat || 21.0285,
+                                            lon: geo.lon || 105.8542
+                                        });
+                                    }
+                                }
+                            }
+                        } catch {}
+                    });
+                }
+            } catch {}
+
+            try {
+                const oRes = await fetch('https://ntfy.sh/poeme_orders_live_83921/json?poll=1&since=12h');
+                if (oRes.ok) {
+                    const text = await oRes.text();
+                    const lines = text.trim().split('\n');
+                    lines.forEach(line => {
+                        try {
+                            const payload = JSON.parse(line);
+                            if (payload.event === 'message' && payload.message) {
+                                const ord = JSON.parse(payload.message);
+                                if (ord && ord.type === 'order') {
+                                    const ts = ord.timestamp || (payload.time * 1000) || Date.now();
+                                    if (ts > cutoff) {
+                                        processOrderEvent(ord);
+                                    }
+                                }
+                            }
+                        } catch {}
+                    });
+                }
+            } catch {}
+            renderAllEntities();
+            renderAllOrders();
+            updateKpis();
+            persistData();
+        }
+
         function listenLiveEvents() {
-            const telemetrySSE = new EventSource('https://ntfy.sh/poeme_telemetry_live_83921/sse');
+            const telemetrySSE = new EventSource('https://ntfy.sh/poeme_telemetry_live_83921/sse?since=1h');
             telemetrySSE.onmessage = (e) => {
                 try {
                     const payload = JSON.parse(e.data);
@@ -2866,7 +2943,7 @@
                         const dev = msg.device || {};
                         processVisitorEvent({
                             type: msg.type,
-                            timestamp: msg.timestamp || Date.now(),
+                            timestamp: msg.timestamp || (payload.time * 1000) || Date.now(),
                             ip: geo.ip || msg.ip || 'Unknown',
                             isp: geo.isp || 'Internet',
                             city: geo.city || 'Hà Nội',
@@ -2893,7 +2970,7 @@
                 } catch {}
             };
 
-            const ordersSSE = new EventSource('https://ntfy.sh/poeme_orders_live_83921/sse');
+            const ordersSSE = new EventSource('https://ntfy.sh/poeme_orders_live_83921/sse?since=1h');
             ordersSSE.onmessage = (e) => {
                 try {
                     const payload = JSON.parse(e.data);
@@ -2914,6 +2991,7 @@
             renderAllOrders();
             updateKpis();
             syncFromLocalServer();
+            syncFromNtfyCloud();
             listenLiveEvents();
 
             // Cập nhật phiên liên tục khi người dùng đang trên trang
@@ -2970,8 +3048,12 @@
             }, 15000);
 
             setInterval(() => {
-                if (localServerAvailable && currentAuthToken) syncFromLocalServer();
-            }, 8000);
+                if (localServerAvailable && currentAuthToken) {
+                    syncFromLocalServer();
+                } else {
+                    syncFromNtfyCloud();
+                }
+            }, 15000);
 
             window.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape') closeEntityModal();

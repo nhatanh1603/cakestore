@@ -144,38 +144,67 @@ async function getGeoData() {
     try {
         const cached = sessionStorage.getItem('poeme_geo_cache');
         if (cached) return JSON.parse(cached);
+
+        // 1. Thử qua ipwho.is (timeout 3.5s để đủ thời gian mạng di động / discord browser)
         const controller = new AbortController();
-        const tid = setTimeout(() => controller.abort(), 1200);
-        const res = await fetch('https://ipwho.is/', { signal: controller.signal, cache: 'no-store' });
-        clearTimeout(tid);
-        if (res.ok) {
-            const data = await res.json();
-            if (data && data.success) {
-                const geo = {
-                    ip: data.ip,
-                    city: data.city || 'Hà Nội',
-                    region: data.region || 'Hà Nội',
-                    country: data.country || 'Vietnam',
-                    country_code: data.country_code || 'VN',
-                    lat: data.latitude || 21.0285,
-                    lon: data.longitude || 105.8542,
-                    isp: data.connection?.isp || data.connection?.org || 'Internet',
-                    flag: data.flag?.emoji || '🇻🇳'
-                };
-                sessionStorage.setItem('poeme_geo_cache', JSON.stringify(geo));
-                return geo;
+        const tid = setTimeout(() => controller.abort(), 3500);
+        try {
+            const res = await fetch('https://ipwho.is/', { signal: controller.signal, cache: 'no-store' });
+            clearTimeout(tid);
+            if (res.ok) {
+                const data = await res.json();
+                if (data && data.success) {
+                    const geo = {
+                        ip: data.ip,
+                        city: data.city || 'Hà Nội',
+                        region: data.region || 'Hà Nội',
+                        country: data.country || 'Việt Nam',
+                        country_code: data.country_code || 'VN',
+                        lat: data.latitude || 21.0285,
+                        lon: data.longitude || 105.8542,
+                        isp: data.connection?.isp || data.connection?.org || 'Internet',
+                        flag: data.flag?.emoji || '🇻🇳'
+                    };
+                    sessionStorage.setItem('poeme_geo_cache', JSON.stringify(geo));
+                    return geo;
+                }
             }
-        }
+        } catch {}
+
+        // 2. Dự phòng: Lấy IP trực tiếp qua ipify nếu ipwho.is bị chặn / timeout
+        try {
+            const res2 = await fetch('https://api.ipify.org?format=json', { cache: 'no-store' });
+            if (res2.ok) {
+                const d2 = await res2.json();
+                if (d2 && d2.ip) {
+                    const geo = {
+                        ip: d2.ip,
+                        city: 'Việt Nam',
+                        region: 'Việt Nam',
+                        country: 'Việt Nam',
+                        country_code: 'VN',
+                        lat: 21.0285,
+                        lon: 105.8542,
+                        isp: 'Nhà mạng Viễn thông',
+                        flag: '🇻🇳'
+                    };
+                    sessionStorage.setItem('poeme_geo_cache', JSON.stringify(geo));
+                    return geo;
+                }
+            }
+        } catch {}
     } catch {}
+
+    const isLocal = typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
     return {
-        ip: '127.0.0.1 (Local Host)',
+        ip: isLocal ? '127.0.0.1 (Local Host)' : 'Đang phân giải IP...',
         city: 'Hà Nội',
         region: 'Hà Nội',
         country: 'Việt Nam',
         country_code: 'VN',
         lat: 21.0285,
         lon: 105.8542,
-        isp: 'Local Development Network',
+        isp: isLocal ? 'Local Development' : 'Internet',
         flag: '🇻🇳'
     };
 }
